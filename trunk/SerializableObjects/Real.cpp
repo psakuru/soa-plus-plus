@@ -20,7 +20,7 @@ void Real::operator=(const SerializableObject& objectToCopy)
     value = castReference->value;
     }
 
-int Real::Real(void* destinationBuffer)
+uint64_t Real::Real(void* destinationBuffer)
     {
     destinationBuffer = malloc(sizeof(double));
     *((double*)destinationBuffer) = value;
