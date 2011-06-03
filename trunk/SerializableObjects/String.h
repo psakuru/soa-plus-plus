@@ -14,7 +14,7 @@ class String : public SerializableObject
         /** Default destructor */
         ~String();
         void operator=(const SerializableObject&);
-        int serialize(void* destinationBuffer);
+        uint64_t serialize(void* destinationBuffer);
         void deserialize(void* bufferToUse);
 };
 
