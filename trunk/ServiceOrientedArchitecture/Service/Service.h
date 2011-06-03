@@ -7,8 +7,9 @@
 class Service
 {
     private:
-        list<SerializableObject*> inputParameters;
-        list<SerializableObject*> outputParameters;
+        //TODO QUESTE DENTRO IL THREAD
+        //list<SerializableObject*> inputParameters;
+        //list<SerializableObject*> outputParameters;
         string serviceID;
         //TODO Pool di thread;
         TcpIpPassiveSocket socket;
