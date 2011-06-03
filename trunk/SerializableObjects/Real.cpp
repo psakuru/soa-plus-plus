@@ -1,0 +1,33 @@
+#include "Real.h"
+
+Real::Real()
+{
+    value = 0;
+}
+
+Real::Real(double valueToSet)
+{
+    value = valueToSet;
+}
+
+Real::~Real()
+{
+}
+
+void Real::operator=(const SerializableObject& objectToCopy)
+    {
+    const Real* castReference = dynamic_cast<const Real*>(&objectToCopy);
+    value = castReference->value;
+    }
+
+int Real::Real(void* destinationBuffer)
+    {
+    destinationBuffer = malloc(sizeof(double));
+    *((double*)destinationBuffer) = value;
+    return sizeof(double);
+    }
+
+void deserialize(void* bufferToUse)
+    {
+    value = *((double*)bufferToUse);
+    }
