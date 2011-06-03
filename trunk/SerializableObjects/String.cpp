@@ -21,13 +21,14 @@ void String::operator=(const SerializableObject& objectToCopy)
 
 int String::serialize(void* destinationBuffer)
     {
-    destinationBuffer = malloc(sizeof(size_t)+value.length()*sizeof(char));
+    int size = sizeof(size_t)+value.length()*sizeof(char);
+    destinationBuffer = malloc(size);
     *((size_t*)destinationBuffer) = value.length();
     for(int i = 0; i < value.length(); i++)
         {
         (((char*)destinationBuffer)[sizeof(size_t)+i]) = value.at(i);
         }
-    return sizeof(size_t)+value.length()*sizeof(char);
+    return size;
     }
 
 void String::deserialize(void* bufferToUse)
