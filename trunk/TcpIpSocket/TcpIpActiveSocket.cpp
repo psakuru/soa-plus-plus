@@ -29,11 +29,13 @@ TcpIpActiveSocket::TcpIpActiveSocket(int listeningSocketDescriptor) : TcpIpSocke
 {
     socklen_t addressLength = 0;
     socketDescriptor = accept(listeningSocketDescriptor, (sockaddr*)&serverAddress, &addressLength);
+    strerror(errno);
     //TODO: eccezioni
 }
 
 TcpIpActiveSocket::~TcpIpActiveSocket()
 {
+    cout << "Socket attivo chiuso" << endl;
     close(socketDescriptor);
 }
 

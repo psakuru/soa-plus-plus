@@ -12,6 +12,7 @@ class ByteArray
         uint64_t length;
     public:
         ByteArray();
+        ByteArray(const ByteArray& byteArrayToCopy);
         ByteArray(uint64_t length);
         ByteArray(void* byteArrayToSet, uint64_t lengthToSet);
         virtual ~ByteArray();

@@ -1,8 +1,14 @@
 #include "TcpIpSocket.h"
+#include <string.h>
+#include <errno.h>
 
 TcpIpSocket::TcpIpSocket()
 {
     socketDescriptor = socket(AF_INET, SOCK_STREAM, 0);
+    if(socketDescriptor < 0)
+        {
+        strerror(errno);
+        }
     //TODO gestione eccezioni
 }
 
