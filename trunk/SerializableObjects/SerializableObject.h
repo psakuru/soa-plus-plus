@@ -1,6 +1,8 @@
 #ifndef SERIALIZABLEOBJECT_H
 #define SERIALIZABLEOBJECT_H
 
+#include <stdint.h>
+
 
 class SerializableObject
 {
