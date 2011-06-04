@@ -7,8 +7,9 @@ using namespace std;
 
 class String : public SerializableObject
 {
-    public:
+    private:
         string& value;
+    public:
         String();
         String(string& valueToSet);
         /** Default destructor */

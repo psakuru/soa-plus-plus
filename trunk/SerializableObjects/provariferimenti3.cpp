@@ -22,9 +22,11 @@ void ServiceProxy::sendRequest()
 	{
 	list<SerializableObject*>::iterator i = parametersOUT.begin();
 	list<SerializableObject*>::iterator j = parametersIN.begin();
-	string s = "lalala";
-	String ritorno(s);
-	*(*i) = ritorno;
+	void* stringaSerializzata;
+	(*j)->serialize(stringaSerializzata);
+	SerializableObject* ritorno = new String();
+	ritorno->deserialize(stringaSerializzata);
+	*(*i) = *(*j);
 	return;
 	}
 
@@ -61,6 +63,6 @@ int main()
 	string reliable = "Reliable";
 	ParticularServiceProxy proxy;
 	proxy(serviceIs, reliable);
-	cout << serviceIs;
+	cout << "Dopo un viaggio fantastico, la mia variabile locale vale: " <<  serviceIs << endl;
 	return 0;
 	}
