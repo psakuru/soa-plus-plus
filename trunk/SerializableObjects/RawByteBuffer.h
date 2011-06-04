@@ -1,6 +1,7 @@
 #ifndef RAWBYTEBUFFER_H
 #define RAWBYTEBUFFER_H
 
+#include "SerializableObject.h"
 #include "ByteArray/ByteArray.h"
 
 class RawByteBuffer : public SerializableObject
@@ -13,7 +14,7 @@ class RawByteBuffer : public SerializableObject
         virtual ~RawByteBuffer();
         /** Default destructor */
         void operator=(const SerializableObject&);
-        uint64_t serialize((void*)& destinationBuffer);
+        uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);
 };
 

@@ -12,7 +12,7 @@ class Real : public SerializableObject
         /** Default destructor */
         ~Real();
         void operator=(const SerializableObject& objectToCopy);
-        uint64_t serialize((void*)& destinationBuffer);
+        uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);
 };
 

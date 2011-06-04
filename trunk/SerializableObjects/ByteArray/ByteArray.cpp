@@ -13,7 +13,7 @@ ByteArray::ByteArray(uint64_t length)
     this->length = length;
 }
 
-ByteArray(void* byteArrayToSet, uint64_t lengthToSet) : byteArray((byte*)byteArrayToSet), length(lengthToSet)
+ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet) : byteArray((byte*)byteArrayToSet), length(lengthToSet)
 {
 }
 
@@ -44,12 +44,12 @@ void ByteArray::erase()
     length = 0;
 }
 
-void append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength)
+void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength)
 {
-    realloc(byteArry, length + fragmentLength);
+    byteArray = (byte*)realloc(byteArray, length + fragmentLength);
     for(int i = 0; i < fragmentLength; i++)
         {
-        byteArray[length + i] = bufferToUse.byteArray[startingPosition + i];
+        byteArray[length + i] = bufferToUse[startingPosition + i];
         }
     length = length + fragmentLength;
 }
