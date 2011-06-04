@@ -1,4 +1,5 @@
 #include "ByteArray.h"
+#include <stdlib.h>
 
 ByteArray::ByteArray()
 {
@@ -8,7 +9,7 @@ ByteArray::ByteArray()
 
 ByteArray::ByteArray(uint64_t length)
 {
-    byteArray = malloc(length*sizeof(byte));
+    byteArray = (byte*)malloc(length*sizeof(byte));
     this->length = length;
 }
 
