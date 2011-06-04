@@ -20,7 +20,7 @@ void Integer::operator=(const SerializableObject& objectToCopy)
     value = castReference->value;
     }
 
-uint64_t Integer::serialize(void* destinationBuffer)
+uint64_t Integer::serialize((void*)& destinationBuffer)
     {
     destinationBuffer = malloc(sizeof(int32_t));
     *((int32_t*)destinationBuffer) = value;

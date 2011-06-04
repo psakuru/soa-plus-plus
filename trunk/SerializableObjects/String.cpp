@@ -21,7 +21,7 @@ void String::operator=(const SerializableObject& objectToCopy)
     value = castReference->value;
     }
 
-uint64_t String::serialize(void* destinationBuffer)
+uint64_t String::serialize((void*)& destinationBuffer)
     {
     uint64_t size = sizeof(size_t)+value.length()*sizeof(char);
     destinationBuffer = malloc(size);

@@ -13,7 +13,7 @@ class RawByteBuffer : public SerializableObject
         virtual ~RawByteBuffer();
         /** Default destructor */
         void operator=(const SerializableObject&);
-        uint64_t serialize(void* destinationBuffer);
+        uint64_t serialize((void*)& destinationBuffer);
         void deserialize(void* bufferToUse);
 };
 

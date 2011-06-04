@@ -18,12 +18,12 @@ void RawByteBuffer::operator=(const SerializableObject&)
     value = castReference->value;
     }
 
-uint64_t serialize(void* destinationBuffer)
+uint64_t serialize((void*)& destinationBuffer)
     {
-    uint64_t size = sizeof(uint64_t) + value.length;
+    uint64_t size = sizeof(uint64_t) + value.getLength;
     destinationBuffer = malloc(size);
-    *((uint64_t*)destinationBuffer) = value.length;
-    for(int i = 0; i < value.length(); i++)
+    *((uint64_t*)destinationBuffer) = value.getLength;
+    for(int i = 0; i < value.getLength(); i++)
         {
         *(((byte*)destinationBuffer)+sizeof(uint64_t)+i) = value[i];
         }

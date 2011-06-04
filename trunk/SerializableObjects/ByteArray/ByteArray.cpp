@@ -13,6 +13,10 @@ ByteArray::ByteArray(uint64_t length)
     this->length = length;
 }
 
+ByteArray(void* byteArrayToSet, uint64_t lengthToSet) : byteArray((byte*)byteArrayToSet), length(lengthToSet)
+{
+}
+
 ByteArray::~ByteArray()
 {
     free(byteArray);
@@ -49,3 +53,13 @@ void append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLengt
         }
     length = length + fragmentLength;
 }
+
+uint64_t ByteArray::getLength()
+{
+    return length;
+}
+
+const byte* ByteArray::getPointer()
+    {
+    return byteArray;
+    }

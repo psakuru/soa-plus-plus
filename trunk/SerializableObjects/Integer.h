@@ -13,7 +13,7 @@ class Integer : public SerializableObject
         Integer(int32_t& valueToSet);
         /** Default destructor */
         ~Integer();
-        uint64_t serialize(void* destinationBuffer);
+        uint64_t serialize((void*)& destinationBuffer);
         void deserialize(void* bufferToUse);
 };
 
