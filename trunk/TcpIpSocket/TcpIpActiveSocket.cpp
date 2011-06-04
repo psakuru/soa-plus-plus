@@ -47,6 +47,5 @@ void* TcpIpActiveSocket::receiveMessage(int length)
 {
     void* bufferToReturn = malloc(length);
     read(socketDescriptor, bufferToReturn, length);
-    int* mess = (int*)bufferToReturn;
     return bufferToReturn;
 }
