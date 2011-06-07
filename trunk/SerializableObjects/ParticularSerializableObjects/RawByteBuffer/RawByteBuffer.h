@@ -1,7 +1,7 @@
 #ifndef RAWBYTEBUFFER_H
 #define RAWBYTEBUFFER_H
 
-#include "SerializableObject.h"
+#include "../../SerializableObject.h"
 #include "../../ByteArray/ByteArray.h"
 #include "../../TypeConstants.h"
 
