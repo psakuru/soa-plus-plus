@@ -2,19 +2,19 @@
 #define RAWBYTEBUFFER_H
 
 #include "SerializableObject.h"
-#include "ByteArray/ByteArray.h"
+#include "../../ByteArray/ByteArray.h"
 #include "../../TypeConstants.h"
 
 class RawByteBuffer : public SerializableObject
 {
     private:
+        static const Type objectType = SERIALIZABLE_RAW_BYTE_BUFFER;
         ByteArray& value;
     public:
-        static const Type objectType = SERIALIZABLE_RAW_BYTE_BUFFER;
         RawByteBuffer();
         RawByteBuffer(ByteArray& valueToSet);
         virtual ~RawByteBuffer();
-        /** Default destructor */
+        Type getType();
         void operator=(const SerializableObject&);
         uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);

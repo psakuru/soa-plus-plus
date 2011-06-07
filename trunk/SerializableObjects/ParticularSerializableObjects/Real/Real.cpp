@@ -14,6 +14,11 @@ Real::~Real()
 {
 }
 
+Type Integer::getType()
+{
+    return objectType;
+}
+
 void Real::operator=(const SerializableObject& objectToCopy)
     {
     const Real* castReference = dynamic_cast<const Real*>(&objectToCopy);

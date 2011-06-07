@@ -9,12 +9,13 @@ using namespace std;
 class String : public SerializableObject
 {
     private:
+        static const Type objectType = SERIALIZABLE_STRING;
         string& value;
     public:
-        static const Type objectType = SERIALIZABLE_STRING;
         String();
         String(string& valueToSet);
         ~String();
+        Type getType()
         void operator=(const SerializableObject&);
         uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);

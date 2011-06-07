@@ -8,11 +8,12 @@
 class Integer : public SerializableObject
 {
     private:
+        static const Type objectType = SERIALIZABLE_INTEGER;
         int32_t& value;
     public:
-        static const Type objectType = SERIALIZABLE_INTEGER;
         Integer(int32_t& valueToSet);
         ~Integer();
+        Type getType();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);
 };

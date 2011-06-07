@@ -21,6 +21,11 @@ void String::operator=(const SerializableObject& objectToCopy)
     value = castReference->value;
     }
 
+Type Integer::getType()
+{
+    return objectType;
+}
+
 uint64_t String::serialize(void** destinationBuffer)
     {
     uint64_t size = sizeof(size_t)+value.length()*sizeof(char);
