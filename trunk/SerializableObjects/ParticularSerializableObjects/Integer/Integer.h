@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "../../TypeConstants.h"
+#include "../../SerializableObject.h"
 
 
 class Integer : public SerializableObject

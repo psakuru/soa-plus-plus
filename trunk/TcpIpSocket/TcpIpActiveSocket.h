@@ -18,8 +18,8 @@ public:
     TcpIpActiveSocket(string serverIPorURL, int port);
     TcpIpActiveSocket(int listeningSocketDescriptor);
     ~TcpIpActiveSocket();
-    void sendMessage(void* buffer, int length);
-    void* receiveMessage(int length);
+    void sendMessage(void* buffer, uint64_t length);
+    void* receiveMessage(uint64_t length);
 };
 
 #endif // TCPIPACTIVESOCKET_H

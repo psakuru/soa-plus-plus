@@ -43,5 +43,5 @@ void RawByteBuffer::deserialize(void* bufferToUse)
 {
     cout << "Il buffer da appendere è lungo " << *((uint64_t*)bufferToUse) << " bytes" << endl;
     value.erase();
-    value.append((byte*)bufferToUse, sizeof(Type) + sizeof(uint64_t), *((uint64_t*)(((Type*)(bufferToUse))++)));
+    value.append((byte*)bufferToUse, sizeof(uint64_t), *((uint64_t*)(bufferToUse));
 }

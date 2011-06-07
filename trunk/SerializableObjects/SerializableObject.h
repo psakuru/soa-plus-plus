@@ -4,8 +4,6 @@
 #include <stdint.h>
 #include "TypeConstants.h"
 
-typedef int Type;
-
 class SerializableObject
 {
     private:

@@ -1,6 +1,7 @@
 #ifndef REAL_H
 #define REAL_H
 
+#include "../../SerializableObject.h"
 #include "../../TypeConstants.h"
 
 class Real : public SerializableObject

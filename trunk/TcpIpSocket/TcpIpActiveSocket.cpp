@@ -40,12 +40,12 @@ TcpIpActiveSocket::~TcpIpActiveSocket()
 }
 
 
-void TcpIpActiveSocket::sendMessage(void* buffer, int length)
+void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
 {
     write(socketDescriptor, buffer, length);
 }
 
-void* TcpIpActiveSocket::receiveMessage(int length)
+void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
     read(socketDescriptor, bufferToReturn, length);
