@@ -11,6 +11,8 @@ class ServiceProxy
         string serviceRegistryAddress;
         string serviceProviderAddress;
         TcpIpActiveSocket socket;
+        void sendParameters(list<SerializableObject*> parameterList);
+        list<SerializableObject*> receiveResponseParameters();
     protected:
         void doService();
     public:
