@@ -2,6 +2,7 @@
 #define INTEGER_H
 
 #include <stdint.h>
+#include "../../TypeConstants.h"
 
 
 class Integer : public SerializableObject
@@ -9,9 +10,8 @@ class Integer : public SerializableObject
     private:
         int32_t& value;
     public:
-        /** Default constructor */
+        static const Type objectType = SERIALIZABLE_INTEGER;
         Integer(int32_t& valueToSet);
-        /** Default destructor */
         ~Integer();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);

@@ -3,6 +3,7 @@
 
 #include "SerializableObject.h"
 #include <string>
+#include "../../TypeConstants.h"
 using namespace std;
 
 class String : public SerializableObject
@@ -10,9 +11,9 @@ class String : public SerializableObject
     private:
         string& value;
     public:
+        static const Type objectType = SERIALIZABLE_STRING;
         String();
         String(string& valueToSet);
-        /** Default destructor */
         ~String();
         void operator=(const SerializableObject&);
         uint64_t serialize(void** destinationBuffer);

@@ -3,12 +3,14 @@
 
 #include "SerializableObject.h"
 #include "ByteArray/ByteArray.h"
+#include "../../TypeConstants.h"
 
 class RawByteBuffer : public SerializableObject
 {
     private:
         ByteArray& value;
     public:
+        static const Type objectType = SERIALIZABLE_RAW_BYTE_BUFFER;
         RawByteBuffer();
         RawByteBuffer(ByteArray& valueToSet);
         virtual ~RawByteBuffer();
