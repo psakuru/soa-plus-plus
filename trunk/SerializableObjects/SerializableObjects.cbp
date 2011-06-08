@@ -36,6 +36,9 @@
 		</Build>
 		<Unit filename="Integer.cpp" />
 		<Unit filename="Integer.h" />
+		<Unit filename="ParticularSerializableObjects/Signal/Signal.cpp" />
+		<Unit filename="ParticularSerializableObjects/Signal/Signal.h" />
+		<Unit filename="ParticularSerializableObjects/Signal/SignalTypeConstants.h" />
 		<Unit filename="Real.cpp" />
 		<Unit filename="Real.h" />
 		<Unit filename="SerializableObject.cpp" />
