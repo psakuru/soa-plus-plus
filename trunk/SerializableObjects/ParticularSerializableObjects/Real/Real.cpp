@@ -32,7 +32,7 @@ uint64_t Real::Real(void** destinationBuffer)
     return sizeof(double);
     }
 
-void deserialize(void* bufferToUse)
+void deserialize(uint64_t length, void* bufferToUse)
     {
     value = *((double*)bufferToUse);
     }

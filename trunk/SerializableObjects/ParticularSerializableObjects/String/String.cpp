@@ -39,8 +39,8 @@ uint64_t String::serialize(void** destinationBuffer)
     return size;
 }
 
-void String::deserialize(void* bufferToUse)
+void String::deserialize(uint64_t length, void* bufferToUse)
 {
     value.erase();
-    value.append((char*)bufferToUse, sizeof(size_t), *((size_t*)bufferToUse));
+    value.append((char*)bufferToUse, 0, length);
 }

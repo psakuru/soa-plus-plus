@@ -34,7 +34,7 @@ uint64_t Integer::serialize(void** destinationBuffer)
     return bufferSize;
 }
 
-void deserialize(void* bufferToUse) // bufferToUse:= | value |
+void deserialize(uint64_t length, void* bufferToUse) // bufferToUse:= | value |
 {
     value = *((int32_t*)(bufferToUse));
 }

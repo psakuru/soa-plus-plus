@@ -18,7 +18,7 @@ class String : public SerializableObject
         Type getType()
         void operator=(const SerializableObject&);
         uint64_t serialize(void** destinationBuffer);
-        void deserialize(void* bufferToUse);
+        void deserialize(uint64_t length, void* bufferToUse);
 };
 
 #endif // STRING_H

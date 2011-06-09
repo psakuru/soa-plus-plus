@@ -12,11 +12,12 @@ class Integer : public SerializableObject
         static const Type objectType = SERIALIZABLE_INTEGER;
         int32_t& value;
     public:
+        Integer();
         Integer(int32_t& valueToSet);
         ~Integer();
         Type getType();
         uint64_t serialize(void** destinationBuffer);
-        void deserialize(void* bufferToUse);
+        void deserialize(uint64_t length, void* bufferToUse);
 };
 
 #endif // INTEGER_H
