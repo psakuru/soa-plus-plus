@@ -13,7 +13,7 @@ class Signal : public SerializableObject
         virtual ~Signal() = 0;
         virtual void operator=(const SerializableObject&);
         virtual Type getType() = 0;
-        int Integer::getValueLengthLength() = 0;
+        int getValueLengthLength() = 0;
         uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);
 };
