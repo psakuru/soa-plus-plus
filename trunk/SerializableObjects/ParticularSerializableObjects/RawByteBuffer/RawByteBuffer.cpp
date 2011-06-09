@@ -15,9 +15,14 @@ RawByteBuffer::~RawByteBuffer()
 {
 }
 
-Type Integer::getType()
+Type RawByteBuffer::getType()
 {
     return SERIALIZABLE_RAW_BYTE_BUFFER;
+}
+
+int RawByteBuffer::getValueLengthLength()
+{
+	return sizeof(uint64_t);
 }
 
 void RawByteBuffer::operator=(const SerializableObject& objectToCopy)

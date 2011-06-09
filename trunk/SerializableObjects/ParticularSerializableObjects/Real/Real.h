@@ -12,6 +12,7 @@ class Real : public SerializableObject
         Real(double& valueToSet);
         ~Real();
         Type getType()
+        int getValueLengthLength();
         void operator=(const SerializableObject& objectToCopy);
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);

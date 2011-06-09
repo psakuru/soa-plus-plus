@@ -26,6 +26,11 @@ Type Integer::getType()
     return SERIALIZABLE_STRING;
 }
 
+int Integer::getValueLengthLength()
+{
+    return sizeof(size_t);
+}
+
 uint64_t String::serialize(void** destinationBuffer)
 {
     uint64_t size = sizeof(Type) + sizeof(size_t) + value.length()*sizeof(char);

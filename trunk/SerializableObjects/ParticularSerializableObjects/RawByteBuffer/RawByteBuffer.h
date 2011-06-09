@@ -14,6 +14,7 @@ class RawByteBuffer : public SerializableObject
         RawByteBuffer(ByteArray& valueToSet);
         virtual ~RawByteBuffer();
         Type getType();
+        int getValueLengthLength();
         void operator=(const SerializableObject&);
         uint64_t serialize(void** destinationBuffer);
         void deserialize(void* bufferToUse);

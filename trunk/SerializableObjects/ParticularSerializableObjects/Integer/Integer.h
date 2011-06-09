@@ -15,6 +15,7 @@ class Integer : public SerializableObject
         Integer(int32_t& valueToSet);
         ~Integer();
         Type getType();
+        int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
 };

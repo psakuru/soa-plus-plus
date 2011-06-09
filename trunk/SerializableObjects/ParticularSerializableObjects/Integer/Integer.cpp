@@ -19,6 +19,11 @@ Type Integer::getType()
     return SERIALIZABLE_INTEGER;
 }
 
+int Integer::getValueLengthLength()
+{
+	return sizeof(uint8_t);
+}
+
 void Integer::operator=(const SerializableObject& objectToCopy)
 {
     const Integer* castReference = dynamic_cast<const Integer*>(&objectToCopy);
@@ -27,10 +32,11 @@ void Integer::operator=(const SerializableObject& objectToCopy)
 
 uint64_t Integer::serialize(void** destinationBuffer)
 {
-    int bufferSize = sizeof(Type) + sizeof(int32_t); // | Type | value |
+    int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(int32_t); // | Type | valueLength | value |
     *destinationBuffer = malloc(bufferSize);
     *((Type*)(*destinationBuffer)) = objectType;
-    *((int32_t*)(((Type*)(*destinationBuffer))++)) = value;
+    *((uint8_t*)(((Type*)(*destinationBuffer))++)) = sizeof(int32_t);
+    *((int32_t*)(((uint8_t*)(((Type*)(*destinationBuffer))++))++)) = value;
     return bufferSize;
 }
 

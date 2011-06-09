@@ -14,9 +14,14 @@ Real::~Real()
 {
 }
 
-Type Integer::getType()
+Type Real::getType()
 {
     return SERIALIZABLE_REAL;
+}
+
+int Real::getValueLengthLength()
+{
+	return sizeof(uint8_t);
 }
 
 void Real::operator=(const SerializableObject& objectToCopy)
@@ -27,9 +32,12 @@ void Real::operator=(const SerializableObject& objectToCopy)
 
 uint64_t Real::Real(void** destinationBuffer)
     {
-    *destinationBuffer = malloc(sizeof(double));
-    *((double*)(*destinationBuffer)) = value;
-    return sizeof(double);
+    int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(double); // | Type | valueLength | value |
+    *destinationBuffer = malloc(bufferSize);
+    *((Type*)(*destinationBuffer)) = objectType;
+    *((uint8_t*)(((Type*)(*destinationBuffer))++)) = sizeof(double);
+    *((double*)(((uint8_t*)(((Type*)(*destinationBuffer))++))++)) = value;
+    return bufferSize;
     }
 
 void deserialize(uint64_t length, void* bufferToUse)
