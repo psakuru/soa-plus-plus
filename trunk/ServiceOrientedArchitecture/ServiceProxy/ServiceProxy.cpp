@@ -12,28 +12,49 @@ ServiceProxy::~ServiceProxy()
 }
 
 void ServiceProxy::sendParameters(list<SerializableObject*> parameterList)
-    {
+{
     list<SerializableObject*>::size_type listSize = parameterList.size();
-    socket.sendMessage(&listSize, sizeov(list<SerializableObject*>::size_type));
+    socket.sendMessage(&listSize, sizeof(list<SerializableObject*>::size_type));
     list<SerializableObject*>::iterator i = parameterList.begin();
     void* serializedObject = NULL;
     for(; i != parameterList.end(); i++)
-        {
+    {
         uint64_t serializedObjectLength = (*i).serialize(&serializedObject);
         socket.sendMessage(serializedObject, serializedObjectLength);
         free(serializedObject);
         serializedObject = NULL;
-        }
     }
+}
 
-list<SerializableObject*> ServiceProxy::receiveResponseParameters()
+SerializableObject* ServiceProxy::receiveResponseParameter()
+{
+    //TODO trovare un modo per fare la receive senza stare a fare la free del puntatore
+    Type* receivedTypePointer = ((Type*)socket.receiveMessage(sizeof(Type)));
+    Type receivedType = *receivedTypePointer;
+    free(receivedTypePointer);
+    //OK??
+    Guild<SerializableObject>* buildersGuild = Guild<SerializableObject>::instance(); //Singleton con lazy init
+    int valueLengthLength = buildersGuild->getValueLengthLength(receivedType);
+    uint64_t valueLength =
+        (valueLengthLength == 0)? 0:
+        (valueLengthLength == sizeof(uint8_t ))? *((uint8_t*)socket.receiveMessage(sizeof(uint8_t))) :
+        (valueLengthLength == sizeof(uint16_t))? *((uint16_t*)socket.receiveMessage(sizeof(uint16_t))) :
+        (valueLengthLength == sizeof(uint32_t))? *((uint32_t*)socket.receiveMessage(sizeof(uint32_t))) :
+        (valueLengthLength == sizeof(uint64_t))? *((uint64_t*)socket.receiveMessage(sizeof(uint64_t)));
+    void* value = (valueLength == 0)? NULL : socket.receiveMessage(valueLength);
+    return buildersGuild->delegateWork(receivedType, valueLength, value); //NB: la guild deve fare la free del value
+}
+
+list<SerializableObject*>* ServiceProxy::receiveResponseParameters()
+{
+    list<SerializableObject*>* responseParameters = new list<SerializableObject*>;
+    list<SerializableObject*>::size_type outputListSize = outputParameters.size();
+    for(int i = 0; i < outputListSize; i++)
     {
-    RequestStatus lastRequestStatus = *((RequestStatus)socket.receiveMessage(sizeof(RequestStatus)));
-    switch(lastRequestStatus)
-        {
-
-        }
+        responseParameters->push_back(receiveResponseParameter());
     }
+    return responseParameters; //Ritorno per puntatore!
+}
 
 void ServiceProxy::doService()
 {
@@ -52,22 +73,23 @@ void ServiceProxy::doService()
 }
 
 string ServiceProxy::getServiceRegistryAddress()
-    {
+{
     return serviceRegistryAddress;
-    }
+}
 
 string ServiceProxy::setServiceRegistryAddress(string serviceRegistryAddressToSet)
-    {
+{
     serviceRegistryAddress = serviceRegistryAddressToSet;
-    }
+}
 
 void ServiceProxy::bindProxy()
-    {
+{
     //TODO chiedere al serviceRegistry l' indirizzo e porta del serviceProvider che offre il service
     //TODO effettua la connessione verso il serviceProvider
-    }
+}
 
 void staticallyBindProxy(string serviceProviderAddressToSet)
-    {
+{
     //TODO effettua la connessione verso il serviceProvider settando tutto opportunamente
-    }
+}
+
