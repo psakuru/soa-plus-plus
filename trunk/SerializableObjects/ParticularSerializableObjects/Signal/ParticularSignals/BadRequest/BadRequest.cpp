@@ -10,6 +10,11 @@ BadRequest::~BadRequest()
     //dtor
 }
 
+void BadRequest::signalHandler()
+{
+    //cout << "Sono il signalHandler" << endl;
+}
+
 void BadRequest::operator=(const SerializableObject& objectToCopy)
 {
     const BadRequest* castReference = dynamic_cast<const BadRequest*>(&objectToCopy);

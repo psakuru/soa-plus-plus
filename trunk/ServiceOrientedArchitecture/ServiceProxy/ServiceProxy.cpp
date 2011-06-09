@@ -57,6 +57,7 @@ list<SerializableObject*>* ServiceProxy::receiveResponseParameters()
     list<SerializableObject*>::size_type outputListSize = outputParameters.size();
     for(int i = 0; i < outputListSize; i++)
     {
+        //TODO controllo sul tipo ritornato dal server!
         responseParameters->push_back(receiveResponseParameter());
     }
     return responseParameters; //Ritorno per puntatore!

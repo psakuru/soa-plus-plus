@@ -16,6 +16,7 @@ public:
         //TODO controllare che T sia derivato da SerializableObject
         SerializableObject* serializableObjectToReturn = new T();
         serializableObjectToReturn->deserialize(valueLength, value);
+        free(value);
         return serializableObjectToReturn;
     }
 };
