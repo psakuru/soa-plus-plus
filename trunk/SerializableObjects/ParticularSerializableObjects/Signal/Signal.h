@@ -7,8 +7,6 @@
 class Signal : public SerializableObject
 {
     private:
-        static const Type objectType = SERIALIZABLE_SIGNAL;
-        static const SignalType = 0;
         virtual void signalHandler() = 0;
     public:
         Signal();

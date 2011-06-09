@@ -8,7 +8,8 @@ class SerializableObjectBuilder
     protected:
         map< Type, SerializableObject* > subSerializableObjectBuilders;
     public:
-        virtual ~SerializableObjectBuilder()
+        virtual ~SerializableObjectBuilder();
+        virtual SerializableObjectBuilder* operator[](Type builtType);
         virtual void addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd);
         virtual void removeSerializableObjectBuilder(Type builtType);
         virtual int getValueLengthLength(receivedType);

@@ -9,7 +9,6 @@
 class Integer : public SerializableObject
 {
     private:
-        static const Type objectType = SERIALIZABLE_INTEGER;
         int32_t& value;
     public:
         Integer();

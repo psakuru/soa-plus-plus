@@ -17,7 +17,7 @@ RawByteBuffer::~RawByteBuffer()
 
 Type Integer::getType()
 {
-    return objectType;
+    return SERIALIZABLE_RAW_BYTE_BUFFER;
 }
 
 void RawByteBuffer::operator=(const SerializableObject& objectToCopy)

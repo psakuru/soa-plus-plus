@@ -23,7 +23,7 @@ void String::operator=(const SerializableObject& objectToCopy)
 
 Type Integer::getType()
 {
-    return objectType;
+    return SERIALIZABLE_STRING;
 }
 
 uint64_t String::serialize(void** destinationBuffer)

@@ -16,7 +16,7 @@ Integer::~Integer()
 
 Type Integer::getType()
 {
-    return objectType;
+    return SERIALIZABLE_INTEGER;
 }
 
 void Integer::operator=(const SerializableObject& objectToCopy)

@@ -7,7 +7,6 @@
 class Real : public SerializableObject
 {
     private:
-        static const Type objectType = SERIALIZABLE_REAL;
         double& value; //Per il futuro: riportare in notazione mantissa ed esp, a grandezza nota
     public:
         Real(double& valueToSet);

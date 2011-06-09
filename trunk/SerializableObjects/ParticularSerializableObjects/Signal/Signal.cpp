@@ -2,7 +2,6 @@
 
 Signal::Signal()
 {
-    //ctor
 }
 
 uint64_t serialize(void** destinationBuffer)

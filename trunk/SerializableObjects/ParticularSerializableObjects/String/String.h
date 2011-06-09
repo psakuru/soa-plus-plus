@@ -9,7 +9,6 @@ using namespace std;
 class String : public SerializableObject
 {
     private:
-        static const Type objectType = SERIALIZABLE_STRING;
         string& value;
     public:
         String();

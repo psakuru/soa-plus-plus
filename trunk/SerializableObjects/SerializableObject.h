@@ -6,9 +6,9 @@
 
 class SerializableObject
 {
-    private:
-        static const Type objectType = SERIALIZABLE_OBJECT;
     public:
+        static int getValueLengthLength();
+        SerializableObject();
         virtual ~SerializableObject();
         virtual void operator=(const SerializableObject&) = 0;
         virtual Type getType() = 0;

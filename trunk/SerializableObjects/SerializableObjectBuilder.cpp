@@ -10,6 +10,11 @@ SerializableObjectBuilder::~SerializableObjectBuilder()
     //dtor
 }
 
+SerializableObjectBuilder* SerializableObjectBuilder::operator[](Type builtType)
+{
+    return subSerializableObjectBuilders[builtType];
+}
+
 void SerializableObjectBuilder::addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd)
 {
     subSerializableObjectBuilders[builtType] = builderToAdd;

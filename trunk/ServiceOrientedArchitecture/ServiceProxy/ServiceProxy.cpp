@@ -3,6 +3,13 @@
 ServiceProxy::ServiceProxy(string serviceIDToSet, string serviceRegistryAddressToSet)
     : serviceID(serviceIDToSet), serviceRegistryAddress(serviceRegistryAddressToSet)
 {
+    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
+    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
+    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
+    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
+    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
+    buildersHierarchy[SERIALIZABLE_SIGNAL].addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
+    //TODO altri segnali
     bindProxy();
 }
 

@@ -8,7 +8,6 @@
 class RawByteBuffer : public SerializableObject
 {
     private:
-        static const Type objectType = SERIALIZABLE_RAW_BYTE_BUFFER;
         ByteArray& value;
     public:
         RawByteBuffer();

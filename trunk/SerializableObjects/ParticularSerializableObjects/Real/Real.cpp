@@ -16,7 +16,7 @@ Real::~Real()
 
 Type Integer::getType()
 {
-    return objectType;
+    return SERIALIZABLE_REAL;
 }
 
 void Real::operator=(const SerializableObject& objectToCopy)
