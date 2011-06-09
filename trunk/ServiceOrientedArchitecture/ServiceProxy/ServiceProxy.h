@@ -11,6 +11,7 @@ class ServiceProxy
         string serviceRegistryAddress;
         string serviceProviderAddress;
         TcpIpActiveSocket socket;
+        Guild<SerializableObject> buildersGuild;
         void sendParameters(list<SerializableObject*> parameterList);
         list<SerializableObject*>* receiveResponseParameters();
         SerializableObject* receiveResponseParameter();

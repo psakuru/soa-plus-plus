@@ -33,8 +33,7 @@ SerializableObject* ServiceProxy::receiveResponseParameter()
     Type receivedType = *receivedTypePointer;
     free(receivedTypePointer);
     //OK??
-    Guild<SerializableObject>* buildersGuild = Guild<SerializableObject>::instance(); //Singleton con lazy init
-    int valueLengthLength = buildersGuild->getValueLengthLength(receivedType);
+    int valueLengthLength = buildersGuild.getValueLengthLength(receivedType);
     uint64_t valueLength =
         (valueLengthLength == 0)? 0:
         (valueLengthLength == sizeof(uint8_t ))? *((uint8_t*)socket.receiveMessage(sizeof(uint8_t))) :
@@ -42,7 +41,7 @@ SerializableObject* ServiceProxy::receiveResponseParameter()
         (valueLengthLength == sizeof(uint32_t))? *((uint32_t*)socket.receiveMessage(sizeof(uint32_t))) :
         (valueLengthLength == sizeof(uint64_t))? *((uint64_t*)socket.receiveMessage(sizeof(uint64_t)));
     void* value = (valueLength == 0)? NULL : socket.receiveMessage(valueLength);
-    return buildersGuild->delegateWork(receivedType, valueLength, value); //NB: la guild deve fare la free del value
+    return buildersGuild.delegateWork(receivedType, valueLength, value); //NB: la guild deve fare la free del value
 }
 
 list<SerializableObject*>* ServiceProxy::receiveResponseParameters()
