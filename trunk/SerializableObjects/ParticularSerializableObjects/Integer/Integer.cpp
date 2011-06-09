@@ -1,13 +1,11 @@
 #include "Integer.h"
 
-Integer::Integer()
+Integer::Integer() : value(*(new int)) //E chi lo distrugge???
 {
-    value = 0;
 }
 
-Integer::Integer(int32_t& valueToSet)
+Integer::Integer(int32_t& valueToSet) : value(valueToSet)
 {
-    value = valueToSet;
 }
 
 Integer::~Integer()
@@ -34,9 +32,9 @@ uint64_t Integer::serialize(void** destinationBuffer)
 {
     int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(int32_t); // | Type | valueLength | value |
     *destinationBuffer = malloc(bufferSize);
-    *((Type*)(*destinationBuffer)) = objectType;
-    *((uint8_t*)(((Type*)(*destinationBuffer))++)) = sizeof(int32_t);
-    *((int32_t*)(((uint8_t*)(((Type*)(*destinationBuffer))++))++)) = value;
+    *((Type*)(*destinationBuffer)) = getType();
+    *((uint8_t*)(((Type*)(*destinationBuffer))+1)) = sizeof(int32_t);
+    *((int32_t*)(((uint8_t*)(((Type*)(*destinationBuffer))+1))+1)) = value;
     return bufferSize;
 }
 

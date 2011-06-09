@@ -35,13 +35,23 @@ uint64_t RawByteBuffer::serialize(void** destinationBuffer)
     {
     uint64_t bufferSize = sizeof(Type) + sizeof(uint64_t) + value.getLength();
     *destinationBuffer = malloc(bufferSize);
-    *((Type*)(*destinationBuffer)) = objectType;
-    *((uint64_t*)(((Type*)(*destinationBuffer))++)) = value.getLength();
+    *((Type*)(*destinationBuffer)) = getType();
+    *(
+      (uint64_t*)
+        (
+            (
+                (Type*)
+                    (
+                     *destinationBuffer
+                    )
+            )+1
+        )
+     ) = value.getLength();
     for(int i = 0; i < value.getLength(); i++)
         {
         *(((byte*)(*destinationBuffer))+sizeof(Type) + sizeof(uint64_t)+i) = value[i];
         }
-    return size;
+    return bufferSize;
     }
 
 void RawByteBuffer::deserialize(uint64_t length, void* bufferToUse)

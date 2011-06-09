@@ -1,7 +1,7 @@
 #ifndef STRING_H
 #define STRING_H
 
-#include "SerializableObject.h"
+#include "../../SerializableObject.h"
 #include <string>
 #include "../../TypeConstants.h"
 using namespace std;

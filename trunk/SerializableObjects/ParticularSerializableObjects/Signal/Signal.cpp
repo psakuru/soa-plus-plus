@@ -7,11 +7,11 @@ Signal::Signal()
 uint64_t serialize(void** destinationBuffer)
 {
     *destinationBuffer = malloc(sizeof(Type));
-    *((Type*)(*destinationBuffer)) = objectType;
+    *((Type*)(*destinationBuffer)) = getType();
     return sizeof(Type);
 }
 
-void deserialize(void* bufferToUse)
+void deserialize(uint64_t length, void* bufferToUse)
     {
     signalHandler();
     }

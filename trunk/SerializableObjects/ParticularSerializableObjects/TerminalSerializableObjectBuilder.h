@@ -1,15 +1,17 @@
 #ifndef TERMINALSERIALIZABLEOBJECTBUILDER_H
 #define TERMINALSERIALIZABLEOBJECTBUILDER_H
 
-#include "../../SerializableObjectBuiler.h"
+#include "../SerializableObjectBuilder.h"
+#include <stdlib.h>
 
 template <typename T>
-class TerminalSerializableObjectBuilder : public SerializableObjectBuiler
+class TerminalSerializableObjectBuilder : public SerializableObjectBuilder
 {
 public:
     int getValueLengthLength(Type receivedType)
     {
-        return T::getValueLengthLength;
+        T dummyT;
+        return dummyT.getValueLengthLength();
     }
     SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
     {

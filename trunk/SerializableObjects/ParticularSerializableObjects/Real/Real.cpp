@@ -5,7 +5,7 @@ Real::Real()
     value = 0;
 }
 
-Real::Real(double valueToSet)
+Real::Real(double& valueToSet)
 {
     value = valueToSet;
 }
@@ -34,9 +34,9 @@ uint64_t Real::Real(void** destinationBuffer)
     {
     int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(double); // | Type | valueLength | value |
     *destinationBuffer = malloc(bufferSize);
-    *((Type*)(*destinationBuffer)) = objectType;
-    *((uint8_t*)(((Type*)(*destinationBuffer))++)) = sizeof(double);
-    *((double*)(((uint8_t*)(((Type*)(*destinationBuffer))++))++)) = value;
+    *((Type*)(*destinationBuffer)) = getType();
+    *((uint8_t*)(((Type*)(*destinationBuffer))+1)) = sizeof(double);
+    *((double*)(((uint8_t*)(((Type*)(*destinationBuffer))+1))+1)) = value;
     return bufferSize;
     }
 

@@ -2,7 +2,7 @@
 #define RAWBYTEBUFFER_H
 
 #include "../../SerializableObject.h"
-#include "../../ByteArray/ByteArray.h"
+#include "../../Utilities/ByteArray/ByteArray.h"
 #include "../../TypeConstants.h"
 
 class RawByteBuffer : public SerializableObject
@@ -17,7 +17,7 @@ class RawByteBuffer : public SerializableObject
         int getValueLengthLength();
         void operator=(const SerializableObject&);
         uint64_t serialize(void** destinationBuffer);
-        void deserialize(void* bufferToUse);
+        void deserialize(uint64_t length, void* bufferToUse);
 };
 
 #endif // RAWBYTEBUFFER_H
