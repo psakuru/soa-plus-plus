@@ -5,14 +5,17 @@ using namespace std;
 
 RawByteBuffer::RawByteBuffer() : value(*(new ByteArray))
 {
+userReference = false;
 }
 
 RawByteBuffer::RawByteBuffer(ByteArray& valueToSet) : value(valueToSet)
 {
+userReference = true;
 }
 
 RawByteBuffer::~RawByteBuffer()
 {
+if(!userReference) delete &value;
 }
 
 Type RawByteBuffer::getType()

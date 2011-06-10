@@ -17,8 +17,6 @@ void BadRequest::signalHandler()
 
 void BadRequest::operator=(const SerializableObject& objectToCopy)
 {
-    const BadRequest* castReference = dynamic_cast<const BadRequest*>(&objectToCopy);
-    value = castReference->value;
 }
 
 Type BadRequest::getType()

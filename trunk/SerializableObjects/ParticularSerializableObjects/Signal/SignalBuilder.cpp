@@ -1,5 +1,6 @@
 #include "SignalBuilder.h"
 #include "SignalTypeConstants.h"
+#include <cstddef>
 
 SignalBuilder::SignalBuilder()
 {
@@ -14,5 +15,5 @@ SignalBuilder::~SignalBuilder()
 SerializableObject* SignalBuilder::delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
 {
     Type signalType = *((Type*)value);
-    subSerializableObjectBuilders[signalType].delegateBuilding(signalType, 0, NULL);
+    subSerializableObjectBuilders[signalType]->delegateBuilding(signalType, 0, NULL);
 }

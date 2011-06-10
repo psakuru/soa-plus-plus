@@ -1,17 +1,23 @@
 #include "Signal.h"
+#include <stdlib.h>
 
 Signal::Signal()
 {
+userReference = false;
 }
 
-uint64_t serialize(void** destinationBuffer)
+Signal::~Signal()
+{
+}
+
+uint64_t Signal::serialize(void** destinationBuffer)
 {
     *destinationBuffer = malloc(sizeof(Type));
     *((Type*)(*destinationBuffer)) = getType();
     return sizeof(Type);
 }
 
-void deserialize(uint64_t length, void* bufferToUse)
+void Signal::deserialize(uint64_t length, void* bufferToUse)
     {
     signalHandler();
     }

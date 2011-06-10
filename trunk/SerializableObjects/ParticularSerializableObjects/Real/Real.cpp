@@ -1,17 +1,19 @@
 #include "Real.h"
+#include <stdlib.h>
 
-Real::Real()
+Real::Real() : value(*(new double))
 {
-    value = 0;
+userReference = false;
 }
 
-Real::Real(double& valueToSet)
+Real::Real(double& valueToSet) : value(valueToSet)
 {
-    value = valueToSet;
+userReference = true;
 }
 
 Real::~Real()
 {
+if(!userReference) delete &value;
 }
 
 Type Real::getType()
@@ -30,7 +32,7 @@ void Real::operator=(const SerializableObject& objectToCopy)
     value = castReference->value;
     }
 
-uint64_t Real::Real(void** destinationBuffer)
+uint64_t Real::serialize(void** destinationBuffer)
     {
     int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(double); // | Type | valueLength | value |
     *destinationBuffer = malloc(bufferSize);
@@ -40,7 +42,7 @@ uint64_t Real::Real(void** destinationBuffer)
     return bufferSize;
     }
 
-void deserialize(uint64_t length, void* bufferToUse)
+void Real::deserialize(uint64_t length, void* bufferToUse)
     {
     value = *((double*)bufferToUse);
     }

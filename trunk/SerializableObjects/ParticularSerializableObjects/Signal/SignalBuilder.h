@@ -6,6 +6,8 @@
 class SignalBuilder : public SerializableObjectBuilder
 {
     public:
+    	SignalBuilder();
+    	~SignalBuilder();
         virtual SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value);
 };
 

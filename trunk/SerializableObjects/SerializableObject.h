@@ -6,6 +6,8 @@
 
 class SerializableObject
 {
+	protected:
+		bool userReference;
     public:
         SerializableObject();
         virtual ~SerializableObject();

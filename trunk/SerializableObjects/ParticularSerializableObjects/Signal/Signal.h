@@ -12,8 +12,8 @@ class Signal : public SerializableObject
         virtual void signalHandler() = 0;
     public:
         Signal();
-        virtual ~Signal() = 0;
-        virtual void operator=(const SerializableObject&);
+        virtual ~Signal();
+        virtual void operator=(const SerializableObject&) = 0;
         virtual Type getType() = 0;
         int getValueLengthLength() = 0;
         uint64_t serialize(void** destinationBuffer);

@@ -5,14 +5,17 @@ using namespace std;
 
 String::String() : value(*(new string()))
 {
+userReference = false;
 }
 
 String::String(string& valueToSet) : value(valueToSet)
 {
+userReference = true;
 }
 
 String::~String()
 {
+if(!userReference) delete &value;
 }
 
 void String::operator=(const SerializableObject& objectToCopy)
@@ -21,12 +24,12 @@ void String::operator=(const SerializableObject& objectToCopy)
     value = castReference->value;
 }
 
-Type Integer::getType()
+Type String::getType()
 {
     return SERIALIZABLE_STRING;
 }
 
-int Integer::getValueLengthLength()
+int String::getValueLengthLength()
 {
     return sizeof(size_t);
 }
@@ -35,11 +38,11 @@ uint64_t String::serialize(void** destinationBuffer)
 {
     uint64_t size = sizeof(Type) + sizeof(size_t) + value.length()*sizeof(char);
     *destinationBuffer = malloc(size);
-    *((Type*)(*destinationBuffer)) = objectType;
-    *((size_t*)(((Type*)(*destinationBuffer))++)) = value.length();
+    *((Type*)(*destinationBuffer)) = getType();
+    *((size_t*)(((Type*)(*destinationBuffer))+1)) = value.length();
     for(int i = 0; i < value.length(); i++)
     {
-        *((char*)(((byte*)(*destinationBuffer)) + sizeof(Type) + sizeof(size_t) + i)) = value.at(i);
+        *((char*)(((uint8_t*)(*destinationBuffer)) + sizeof(Type) + sizeof(size_t) + i)) = value.at(i);
     }
     return size;
 }

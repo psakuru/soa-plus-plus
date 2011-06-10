@@ -1,15 +1,19 @@
 #include "Integer.h"
+#include <stdlib.h>
 
-Integer::Integer() : value(*(new int)) //E chi lo distrugge???
+Integer::Integer() : value(*(new int))
 {
+userReference = false;
 }
 
 Integer::Integer(int32_t& valueToSet) : value(valueToSet)
 {
+userReference = true;
 }
 
 Integer::~Integer()
 {
+if(!userReference) delete &value;
 }
 
 Type Integer::getType()
@@ -38,7 +42,7 @@ uint64_t Integer::serialize(void** destinationBuffer)
     return bufferSize;
 }
 
-void deserialize(uint64_t length, void* bufferToUse) // bufferToUse:= | value |
+void Integer::deserialize(uint64_t length, void* bufferToUse) // bufferToUse:= | value |
 {
     value = *((int32_t*)(bufferToUse));
 }
