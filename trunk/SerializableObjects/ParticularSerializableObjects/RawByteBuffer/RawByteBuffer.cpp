@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-RawByteBuffer::RawByteBuffer() : value(*(new ByteArray))
+RawByteBuffer::RawByteBuffer() : value(*(new ByteArray(1)))
 {
 userReference = false;
 }

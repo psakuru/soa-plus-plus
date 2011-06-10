@@ -1,5 +1,7 @@
 #include "Integer.h"
+#include <iostream>
 #include <stdlib.h>
+using namespace std;
 
 Integer::Integer() : value(*(new int))
 {
@@ -45,4 +47,5 @@ uint64_t Integer::serialize(void** destinationBuffer)
 void Integer::deserialize(uint64_t length, void* bufferToUse) // bufferToUse:= | value |
 {
     value = *((int32_t*)(bufferToUse));
+    cout << "Il valore dell' Integer ricevuto è " << value << endl;
 }

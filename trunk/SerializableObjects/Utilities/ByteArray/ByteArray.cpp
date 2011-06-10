@@ -23,13 +23,15 @@ ByteArray::ByteArray(uint64_t length)
     this->length = length;
 }
 
-ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet) : byteArray((byte*)byteArrayToSet), length(lengthToSet)
+ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet)
 {
+    byteArray = (byte*)byteArrayToSet;
+    length = lengthToSet;
 }
 
 ByteArray::~ByteArray()
 {
-    cout << hex <<  (unsigned int)byteArray << endl;
+    cout << hex << (void*)byteArray << dec << endl;
     free(byteArray);
     byteArray = NULL;
 }

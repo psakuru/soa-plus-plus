@@ -3,6 +3,9 @@
 
 #include "../SerializableObjectBuilder.h"
 #include <stdlib.h>
+#include <iostream>
+#include <typeinfo>
+using namespace std;
 
 template <typename T>
 class TerminalSerializableObjectBuilder : public SerializableObjectBuilder
@@ -10,6 +13,8 @@ class TerminalSerializableObjectBuilder : public SerializableObjectBuilder
 public:
     int getValueLengthLength(Type receivedType)
     {
+        cout << "TerminalSerializableObjectBuilder: getValueLengthLength(Type)" << endl;
+        cout << "Istanziazione: T = " << (typeid(T)).name() << endl;
         T dummyT;
         return dummyT.getValueLengthLength();
     }

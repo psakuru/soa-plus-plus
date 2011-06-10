@@ -1,4 +1,6 @@
 #include "SerializableObjectBuilder.h"
+#include <iostream>
+using namespace std;
 
 SerializableObjectBuilder::~SerializableObjectBuilder()
 {
@@ -22,10 +24,12 @@ void SerializableObjectBuilder::removeSerializableObjectBuilder(Type builtType)
 
 int SerializableObjectBuilder::getValueLengthLength(Type receivedType)
 {
+    cout << "SerializableObjectBuilder: getValueLengthLength" << endl;
     return subSerializableObjectBuilders[receivedType]->getValueLengthLength(receivedType);
 }
 
 SerializableObject* SerializableObjectBuilder::delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
 {
+    cout << "Verrà delegata la costruzione dell' oggetto con Type: " << typeToBuild << " valueLength: " << valueLength << endl;
     return subSerializableObjectBuilders[typeToBuild]->delegateBuilding(typeToBuild, valueLength, value);
 }
