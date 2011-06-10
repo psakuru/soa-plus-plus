@@ -1,4 +1,18 @@
 #include "ServiceProxy.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/TerminalSerializableObjectBuilder.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/Integer/Integer.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/Real/Real.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/String/String.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/RawByteBuffer/RawByteBuffer.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/Signal/Signal.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/Signal/SignalBuilder.h"
+#include "../../SerializableObjects/ParticularSerializableObjects/Signal/ParticularSignals/BadRequest/BadRequest.h"
+#include <stdlib.h>
+
+ServiceProxy::ServiceProxy()
+    {
+        //TODO CI ANDRÀ QUALCOSA DENTRO?
+    }
 
 ServiceProxy::ServiceProxy(string serviceIDToSet, string serviceRegistryAddressToSet)
     : serviceID(serviceIDToSet), serviceRegistryAddress(serviceRegistryAddressToSet)
@@ -8,9 +22,9 @@ ServiceProxy::ServiceProxy(string serviceIDToSet, string serviceRegistryAddressT
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
-    buildersHierarchy[SERIALIZABLE_SIGNAL].addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
+    buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
     //TODO altri segnali
-    bindProxy();
+    bindProxy(); //Inizializza il socket e lo fa connettere
 }
 
 ServiceProxy::~ServiceProxy()
@@ -21,13 +35,13 @@ ServiceProxy::~ServiceProxy()
 void ServiceProxy::sendParameters(list<SerializableObject*> parameterList)
 {
     list<SerializableObject*>::size_type listSize = parameterList.size();
-    socket.sendMessage(&listSize, sizeof(list<SerializableObject*>::size_type));
+    socket->sendMessage(&listSize, sizeof(list<SerializableObject*>::size_type));
     list<SerializableObject*>::iterator i = parameterList.begin();
     void* serializedObject = NULL;
     for(; i != parameterList.end(); i++)
     {
-        uint64_t serializedObjectLength = (*i).serialize(&serializedObject);
-        socket.sendMessage(serializedObject, serializedObjectLength);
+        uint64_t serializedObjectLength = (*i)->serialize(&serializedObject);
+        socket->sendMessage(serializedObject, serializedObjectLength);
         free(serializedObject);
         serializedObject = NULL;
     }
@@ -36,19 +50,19 @@ void ServiceProxy::sendParameters(list<SerializableObject*> parameterList)
 SerializableObject* ServiceProxy::receiveResponseParameter()
 {
     //TODO trovare un modo per fare la receive senza stare a fare la free del puntatore
-    Type* receivedTypePointer = ((Type*)socket.receiveMessage(sizeof(Type)));
+    Type* receivedTypePointer = ((Type*)socket->receiveMessage(sizeof(Type)));
     Type receivedType = *receivedTypePointer;
     free(receivedTypePointer);
     //OK??
-    int valueLengthLength = buildersHierarcy.getValueLengthLength(receivedType);
+    int valueLengthLength = buildersHierarchy.getValueLengthLength(receivedType);
     uint64_t valueLength =
         (valueLengthLength == 0)? 0:
-        (valueLengthLength == sizeof(uint8_t ))? *((uint8_t*)socket.receiveMessage(sizeof(uint8_t))) :
-        (valueLengthLength == sizeof(uint16_t))? *((uint16_t*)socket.receiveMessage(sizeof(uint16_t))) :
-        (valueLengthLength == sizeof(uint32_t))? *((uint32_t*)socket.receiveMessage(sizeof(uint32_t))) :
-        (valueLengthLength == sizeof(uint64_t))? *((uint64_t*)socket.receiveMessage(sizeof(uint64_t)));
-    void* value = (valueLength == 0)? NULL : socket.receiveMessage(valueLength);
-    return buildersHierarchy.delegateWork(receivedType, valueLength, value); //NB: la guild deve fare la free del value
+        (valueLengthLength == sizeof(uint8_t ))? *((uint8_t*)socket->receiveMessage(sizeof(uint8_t))) :
+        (valueLengthLength == sizeof(uint16_t))? *((uint16_t*)socket->receiveMessage(sizeof(uint16_t))) :
+        (valueLengthLength == sizeof(uint32_t))? *((uint32_t*)socket->receiveMessage(sizeof(uint32_t))) :
+        (valueLengthLength == sizeof(uint64_t))? *((uint64_t*)socket->receiveMessage(sizeof(uint64_t))) : 0;
+    void* value = (valueLength == 0)? NULL : socket->receiveMessage(valueLength);
+    return buildersHierarchy.delegateBuilding(receivedType, valueLength, value); //NB: la guild deve fare la free del value
 }
 
 list<SerializableObject*>* ServiceProxy::receiveResponseParameters()
@@ -67,16 +81,17 @@ void ServiceProxy::doService()
 {
     sendParameters(inputParameters);
     sendParameters(outputParameters);
-    list<SerializableObject*> valuesToReturn = receiveResponseParameters();
-    list<SerializableObject*>::iterator i = valuesToReturn.begin();
+    list<SerializableObject*>* valuesToReturn = receiveResponseParameters();
+    list<SerializableObject*>::iterator i = valuesToReturn->begin();
     list<SerializableObject*>::iterator j = outputParameters.begin();
     //TODO eccezione: liste con diverso numero di parametri ecc...
-    while(i != valuesToReturn.end())
+    while(i != valuesToReturn->end())
     {
         *(*j) = *(*i);
         i++;
         j++;
     }
+    delete valuesToReturn;
 }
 
 string ServiceProxy::getServiceRegistryAddress()
@@ -95,8 +110,59 @@ void ServiceProxy::bindProxy()
     //TODO effettua la connessione verso il serviceProvider
 }
 
-void staticallyBindProxy(string serviceProviderAddressToSet)
+void ServiceProxy::staticallyBindProxy(string serviceProviderAddressToSet)
 {
-    //TODO effettua la connessione verso il serviceProvider settando tutto opportunamente
+    serviceProviderAddress = serviceProviderAddressToSet;
+    //TODO metodino (?) per il parsing degli indirizzi
+    string ipAddress = serviceProviderAddress.substr(0, serviceProviderAddress.find_first_of(':'));
+    string portString = serviceProviderAddress.substr(serviceProviderAddress.find_first_of(':'));
+    int port = atoi(portString.c_str());
+    //TODO check: e se il socket era stato inizializzato?
+    socket = new TcpIpActiveSocket(ipAddress, port);
 }
 
+void ServiceProxy::operator<<(int& value)
+{
+    SerializableObject* objectToPushIntoList = new Integer(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator<<(double& value)
+{
+    SerializableObject* objectToPushIntoList = new Real(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator<<(string& value)
+{
+    SerializableObject* objectToPushIntoList = new String(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+void ServiceProxy::operator<<(ByteArray& value)
+{
+    SerializableObject* objectToPushIntoList = new RawByteBuffer(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(int& value)
+{
+    SerializableObject* objectToPushIntoList = new Integer(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(double& value)
+{
+    SerializableObject* objectToPushIntoList = new Real(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(string& value)
+{
+    SerializableObject* objectToPushIntoList = new String(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+void ServiceProxy::operator>>(ByteArray& value)
+{
+    SerializableObject* objectToPushIntoList = new RawByteBuffer(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
