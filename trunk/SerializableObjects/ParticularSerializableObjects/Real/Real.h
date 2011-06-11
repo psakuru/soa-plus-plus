@@ -17,6 +17,8 @@ class Real : public SerializableObject
         void operator=(const SerializableObject& objectToCopy);
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
+        void setValue(void* valueToSet);
+        void* getValue();
 };
 
 #endif // REAL_H

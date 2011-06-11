@@ -46,3 +46,14 @@ void Real::deserialize(uint64_t length, void* bufferToUse)
     {
     value = *((double*)bufferToUse);
     }
+
+//setValue e getValue sono STRAREPLICATE. Bisogna trovare una soluzione template o simili
+void Real::setValue(void* valueToSet)
+    {
+    value = *((double*)(valueToSet));
+    }
+
+void* Real::getValue()
+    {
+    return new double(value);
+    }

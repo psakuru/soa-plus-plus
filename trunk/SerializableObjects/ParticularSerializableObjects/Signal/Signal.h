@@ -18,6 +18,8 @@ class Signal : public SerializableObject
         int getValueLengthLength() = 0;
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
+        void setValue(void* valueToSet);
+        void* getValue();
 };
 
 #endif // SIGNAL_H

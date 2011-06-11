@@ -49,3 +49,13 @@ void Integer::deserialize(uint64_t length, void* bufferToUse) // bufferToUse:= |
     value = *((int32_t*)(bufferToUse));
     cout << "Il valore dell' Integer ricevuto è " << value << endl;
 }
+
+void Integer::setValue(void* valueToSet)
+    {
+    value = *((int32_t*)(valueToSet));
+    }
+
+void* Integer::getValue()
+    {
+    return new int(value);
+    }

@@ -21,3 +21,14 @@ void Signal::deserialize(uint64_t length, void* bufferToUse)
     {
     signalHandler();
     }
+
+void Signal::setValue(void* valueToSet)
+    {
+    //NON HA SENSO, NON C'È VALUE!
+    }
+
+void* Signal::getValue()
+    {
+    //NON HA SENSO, NON C'È VALUE!
+    return NULL;
+    }

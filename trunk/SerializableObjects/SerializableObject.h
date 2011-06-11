@@ -16,6 +16,8 @@ class SerializableObject
         virtual Type getType() = 0;
         virtual uint64_t serialize(void** destinationBuffer) = 0;
         virtual void deserialize(uint64_t length, void* bufferToUse) = 0;
+        virtual void setValue(void* valueToSet) = 0;
+        virtual void* getValue() = 0;
 };
 
 #endif // SERIALIZABLEOBJECT_H

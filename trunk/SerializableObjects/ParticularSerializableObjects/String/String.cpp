@@ -52,3 +52,13 @@ void String::deserialize(uint64_t length, void* bufferToUse)
     value.erase();
     value.append((char*)bufferToUse, 0, length);
 }
+
+void String::setValue(void* valueToSet)
+    {
+    value = *((string*)(valueToSet));
+    }
+
+void* String::getValue()
+    {
+    return new string(value);
+    }
