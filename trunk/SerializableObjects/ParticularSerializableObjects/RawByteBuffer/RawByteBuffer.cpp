@@ -30,6 +30,7 @@ int RawByteBuffer::getValueLengthLength()
 
 void RawByteBuffer::operator=(const SerializableObject& objectToCopy)
     {
+    cout << "Operatore di assegnamento di RawByteBuffer " << endl;
     const RawByteBuffer* castReference = dynamic_cast<const RawByteBuffer*>(&objectToCopy);
     value = castReference->value;
     }
@@ -59,6 +60,7 @@ uint64_t RawByteBuffer::serialize(void** destinationBuffer)
 
 void RawByteBuffer::deserialize(uint64_t length, void* bufferToUse)
 {
+    cout << "deserializa di RawByteBuffer" << endl;
     value.erase();
     value.append((byte*)bufferToUse, 0, length);
 }

@@ -6,9 +6,9 @@
 #include "../../TypeConstants.h"
 
 class RawByteBuffer : public SerializableObject
-{   public: //RIMETTI value private!
+{   private:
         ByteArray& value;
-
+    public:
         RawByteBuffer();
         RawByteBuffer(ByteArray& valueToSet);
         virtual ~RawByteBuffer();

@@ -1,6 +1,7 @@
 #include "ByteArray.h"
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include <iostream>
 using namespace std;
 
@@ -23,7 +24,7 @@ ByteArray::ByteArray(uint64_t length)
     this->length = length;
 }
 
-ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet)
+ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet) //byteArrayToSet deve essere stato fatto con la malloc!
 {
     byteArray = (byte*)byteArrayToSet;
     length = lengthToSet;
@@ -31,35 +32,39 @@ ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet)
 
 ByteArray::~ByteArray()
 {
-    cout << hex << (void*)byteArray << dec << endl;
     free(byteArray);
     byteArray = NULL;
+    cout << "Memoria del ByteArray correttamente rilasciata" << endl;
 }
 
 byte& ByteArray::operator[](const uint64_t index)
     {
-    return *(byteArray + index*sizeof(byte));
+    return byteArray[index];
     }
 
 void ByteArray::operator=(const ByteArray& byteArrayToCopy)
     {
+    cout << "Operatore di assegnamento di ByteArray" << endl;
     if(byteArray != NULL)
         {
         free(byteArray);
         byteArray = NULL;
+        length = 0;
+        cout << "Libero la memoria del ByteArray destinatario della copia" << endl;
         }
     byteArray = (byte*)malloc(byteArrayToCopy.length);
-    for(int i = 0; i < length; i++)
-        {
-        byteArray[i] = byteArrayToCopy.byteArray[i];
-        }
+    length = byteArrayToCopy.length;
+    memcpy(byteArray, byteArrayToCopy.byteArray, length);
     }
 
 void ByteArray::erase()
 {
     if(byteArray != NULL)
         {
+        cout << "ByteArray::erase()" <<  endl;
         free(byteArray);
+        cout << "\t free eseguita" <<  endl;
+        strerror(errno);
         byteArray = NULL;
         }
     length = 0;
@@ -68,6 +73,7 @@ void ByteArray::erase()
 void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength)
 {
     byte* temporatyPointer = (byte*)realloc(byteArray, length + fragmentLength);
+    cout << "ByteArray::append()" <<  endl;
     if(temporatyPointer != NULL)
         {
         byteArray = temporatyPointer;
@@ -76,11 +82,9 @@ void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fr
         {
         cout << "MEMORY LEAK!!!!" << endl;
         }
-    for(int i = 0; i < fragmentLength; i++)
-        {
-        byteArray[length + i] = bufferToUse[startingPosition + i];
-        }
+    memcpy(byteArray, &bufferToUse[startingPosition], fragmentLength);
     length = length + fragmentLength;
+    cout << "La lunghezza del buffer dopo la append è: " << length << endl;
 }
 
 uint64_t ByteArray::getLength()
