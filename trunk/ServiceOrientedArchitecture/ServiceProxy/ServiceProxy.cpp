@@ -13,19 +13,18 @@ using namespace std;
 
 ServiceProxy::ServiceProxy()
 {
-    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
-    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
-    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
-    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
-    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
-    buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
-    cout << "Funziona qualcosa??????? : " << buildersHierarchy[SERIALIZABLE_INTEGER]->getValueLengthLength(SERIALIZABLE_INTEGER) << endl ;
-    //TODO altri segnali
+    defaultBuildersHierarchyInit();
     socket = NULL;
 }
 
 ServiceProxy::ServiceProxy(string serviceIDToSet, string serviceRegistryAddressToSet)
-    : serviceID(serviceIDToSet), serviceRegistryAddress(serviceRegistryAddressToSet)
+: serviceID(serviceIDToSet), serviceRegistryAddress(serviceRegistryAddressToSet)
+{
+    defaultBuildersHierarchyInit();
+    bindProxy(); //Inizializza il socket e lo fa connettere
+}
+
+void ServiceProxy::defaultBuildersHierarchyInit()
 {
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
@@ -33,9 +32,7 @@ ServiceProxy::ServiceProxy(string serviceIDToSet, string serviceRegistryAddressT
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
     buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
-    cout << "Funziona qualcosa??????? : " << buildersHierarchy[SERIALIZABLE_INTEGER]->getValueLengthLength(SERIALIZABLE_INTEGER) << endl ;
     //TODO altri segnali
-    bindProxy(); //Inizializza il socket e lo fa connettere
 }
 
 ServiceProxy::~ServiceProxy()

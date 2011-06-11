@@ -17,6 +17,7 @@ class ServiceProxy
         string serviceProviderAddress;
         TcpIpActiveSocket* socket;
         SerializableObjectBuilder buildersHierarchy;
+        void defaultBuildersHierarchyInit();
         void sendParameters(list<SerializableObject*> parameterList);
         list<SerializableObject*>* receiveResponseParameters();
         SerializableObject* receiveResponseParameter();
