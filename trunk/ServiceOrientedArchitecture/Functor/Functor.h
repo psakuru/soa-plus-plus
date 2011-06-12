@@ -11,4 +11,4 @@ public:
 
 };
 
-#endif // FUNCTORH
+#endif // FUNCTOR_H
