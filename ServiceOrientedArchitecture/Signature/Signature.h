@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include "../../SerializableObjects/TypeConstants.h"
 
 class Signature {
 
