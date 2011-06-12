@@ -25,6 +25,7 @@ class GenericSerializableReferenceLayer : public SerializableObject
 			{
 		    const GenericSerializableReferenceLayer* castReference =
 		    	dynamic_cast<const GenericSerializableReferenceLayer*>(&objectToCopy);
+		    	//Lanciare eccezioni di dynamic_cast!
 		    wrappedReference = castReference->wrappedReference;
 		    }
 		void setValue(void* valueToSet)
