@@ -1,7 +1,6 @@
-
 #include <iostream>
-#include "ServiceThread.h"
-#include "Functor.h"
+#include "ServiceThread/ServiceThread.h"
+#include "Functor/Functor.h"
 #include <boost/bind.hpp>
 #include <boost/thread/thread.hpp>
 using namespace std;
