@@ -14,7 +14,8 @@ class SignalSerializationStrategy : public GenericSerializableReferenceLayer<Fak
         virtual void signalHandler() = 0;
     public:
         SignalSerializationStrategy();
-        virtual Type getType() = 0;
+        Type getType();
+        virtual Type getSignalType() = 0;
         int getValueLengthLength() = 0;
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);

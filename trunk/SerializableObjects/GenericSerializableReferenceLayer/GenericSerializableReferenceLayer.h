@@ -1,6 +1,8 @@
 #ifndef GENERIC_SERIALIZABLE_REFERENCE_LAYER_H
 #define GENERIC_SERIALIZABLE_REFERENCE_LAYER_H
 #include "../SerializableObject.h"
+#include <iostream>
+using namespace std;
 
 template <typename T>
 class GenericSerializableReferenceLayer : public SerializableObject
@@ -11,6 +13,7 @@ class GenericSerializableReferenceLayer : public SerializableObject
 	public:
 		GenericSerializableReferenceLayer() : wrappedReference(*(new T()))
 			{
+            cout << "Costruttore di default del GenericSerializableReferenceLayer" << endl;
 			userReference = false;
 			}
 		GenericSerializableReferenceLayer(T& referenceToWrap) : wrappedReference(referenceToWrap)

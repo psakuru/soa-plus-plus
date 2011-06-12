@@ -80,6 +80,7 @@ list<SerializableObject*>* ServiceProxy::receiveResponseParameters()
 {
     list<SerializableObject*>* responseParameters = new list<SerializableObject*>;
     list<SerializableObject*>::size_type outputListSize = outputParameters.size();
+    cout << "Devo riprendere dal server " << outputListSize << "parametri" << endl;
     for(int i = 0; i < outputListSize; i++)
     {
         //TODO controllo sul tipo ritornato dal server!
@@ -191,6 +192,8 @@ void ServiceProxy::operator>>(ByteArray& value)
 
 void ServiceProxy::operator>>(BadRequestSignal& value)
 {
+    cout << "operator<< : wrapping del BadRequestSignal" << endl;
     SerializableObject* objectToPushIntoList = new BadRequest(value);
-    inputParameters.push_back(objectToPushIntoList);
+    outputParameters.push_back(objectToPushIntoList);
+    cout << "BadRequestSignal wrappato in BadRequestSerializationStrategy e inserito nella lista out" << endl;
 }

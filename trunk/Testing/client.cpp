@@ -9,13 +9,13 @@ using namespace std;
 class ParticularServiceProxy : public ServiceProxy
 	{
 	public:
-		void operator()(int i, double d, string s, ByteArray& B/*, BadRequestSignal& b*/)
+		void operator()(int i, double d, string s, ByteArray& B, BadRequestSignal& b)
 			{
 			(*this) << i;
 			(*this) << d;
 			(*this) << s;
 			(*this) >> B;
-			//(*this) >> b;
+			(*this) >> b;
 			doService();
 			}
 	};
@@ -46,9 +46,9 @@ int main()
     cout << "File caricato in memoria all' indirizzo " << hex << (void*)memblock << dec << endl;
     ByteArray fileBytes((void*)memblock, size);
     ParticularServiceProxy p;
-    BadRequestSignal b; //TODO TRACCIARE LA CREAZIONE DEL BAD REQUEST SIGNAL!!!!!!!
+    BadRequestSignal b;
     p.staticallyBindProxy("127.0.0.1:4000");
-    p(43,2.4,"ciao",fileBytes/*, b*/);
+    p(43,2.4,"ciao",fileBytes, b);
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary);
     outfile.write((char*)fileBytes.getPointer(),fileBytes.getLength());}
     catch(exception& e)

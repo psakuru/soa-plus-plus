@@ -107,11 +107,15 @@ int main()
 	socket->sendMessage(serializedObject, serializedObjectLength);
 	free(serializedObject);
 	serializedObject = NULL;
-	/*BadRequest b;
+	BadRequest b;
 	serializedObjectLength = b.serialize(&serializedObject);
+	cout << "TIPO RITORNATO: " << *((Type*)(serializedObject)) << endl;
+    cout << "\t lunghezza del campo value: " << (int)(*((uint8_t*)(((Type*)(serializedObject))+1))) << endl;
+    cout << "\t campo value: " << *((Type*)(((uint8_t*)(((Type*)(serializedObject))+1))+1)) << endl;
+    cout << "Lunghezza del messaggio serializzato: " << serializedObjectLength << endl;
 	socket->sendMessage(serializedObject, serializedObjectLength);
 	free(serializedObject);
-	serializedObject = NULL;*/
+	serializedObject = NULL;
 	}
 	catch(exception& e)
 	{
