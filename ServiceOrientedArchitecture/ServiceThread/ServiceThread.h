@@ -3,10 +3,10 @@
 
 #include <list>
 #include "Service.h"
-#include "../SerializableObjects/SerializableObjectBuilder.h"
+#include "../../SerializableObjects/SerializableObjectBuilder.h"
 #include <boost/thread/thread.hpp>
 #include <boost/ref.hpp>
-#include "../TcpIpSocket/TcpIpSocket.h"
+#include "../../TcpIpSocket/TcpIpSocket.h"
 
 class ServiceThread: public Thread {
 
