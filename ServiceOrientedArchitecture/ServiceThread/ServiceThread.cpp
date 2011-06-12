@@ -4,7 +4,7 @@
 
 ServiceThread::ServiceThread(boost::mutex& mutexToSet,
 		TcpIpPassiveSocket& socketToSet, Service* serviceToSet) :
-	Thread(Functor, this), listeningSocket(socketToSet), mutex(mutexToSet),
+	listeningSocket(socketToSet), mutex(mutexToSet),
 			serviceToDo(serviceToSet) {
 	//TODO BOH!!!
 	buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER,
