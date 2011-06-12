@@ -14,9 +14,12 @@ private:
 public:
 	void setServiceName(String nameToSet);
 	String getServiceName();
-	void setInTypes(list<Type*> inTypesToSet);list<Type*> in getInTypes();
-	void setOutTypes(list<Type*> outTypesToSet);list<Type*> in getOutTypes();
+	void setInTypes(list<Type*> inTypesToSet);
+  list<Type*> getInTypes();
+	void setOutTypes(list<Type*> outTypesToSet);
+  list<Type*> getOutTypes();
 	Signature(nameToSet, inTypesToSet, outTypesToSet);
+   
 };
 
 #endif // SIGNATURE_H
