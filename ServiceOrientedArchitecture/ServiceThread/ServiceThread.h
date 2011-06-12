@@ -8,7 +8,7 @@
 #include <boost/ref.hpp>
 #include "../../TcpIpSocket/TcpIpSocket.h"
 
-class ServiceThread: public Thread {
+class ServiceThread{
 
 private:
 	boost::mutex& mutex;
