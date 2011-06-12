@@ -1,4 +1,4 @@
-#ifndef SERVICEPROXY_H
+ #ifndef SERVICEPROXY_H
 #define SERVICEPROXY_H
 
 #include <list>
