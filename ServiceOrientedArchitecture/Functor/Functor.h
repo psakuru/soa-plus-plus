@@ -1,7 +1,7 @@
 #ifndef FUNCTOR_H
 #define FUNCTOR_H
 
-#include "ServiceThread.h"
+#include "../ServiceThread/ServiceThread.h"
 
 class Functor {
 
