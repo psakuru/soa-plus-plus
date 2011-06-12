@@ -160,6 +160,12 @@ void ServiceProxy::operator<<(ByteArray& value)
     inputParameters.push_back(objectToPushIntoList);
 }
 
+void ServiceProxy::operator<<(BadRequestSignal& value)
+{
+    SerializableObject* objectToPushIntoList = new BadRequest(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
 void ServiceProxy::operator>>(int& value)
 {
     SerializableObject* objectToPushIntoList = new Integer(value);
@@ -181,4 +187,10 @@ void ServiceProxy::operator>>(ByteArray& value)
 {
     SerializableObject* objectToPushIntoList = new RawByteBuffer(value);
     outputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(BadRequestSignal& value)
+{
+    SerializableObject* objectToPushIntoList = new BadRequest(value);
+    inputParameters.push_back(objectToPushIntoList);
 }

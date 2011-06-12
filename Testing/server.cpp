@@ -30,7 +30,7 @@ void builderInit(SerializableObjectBuilder* builder)
 list<SerializableObject*>* riceviParametri(TcpIpActiveSocket* socket)
 	{
 	list<SerializableObject*>::size_type listSize = 0;
-	list<SerializableObject*>::size_type* listSizePointer = 
+	list<SerializableObject*>::size_type* listSizePointer =
 	(list<SerializableObject*>::size_type*)socket->receiveMessage(sizeof(list<SerializableObject*>::size_type));
 	listSize = *listSizePointer;
 	free(listSizePointer);
@@ -47,13 +47,13 @@ list<SerializableObject*>* riceviParametri(TcpIpActiveSocket* socket)
 		int valueLengthLength = builder.getValueLengthLength(receivedType);
 		uint64_t valueLength =
 			(valueLengthLength == 0)? 0:
-		    (valueLengthLength == sizeof(uint8_t ))? 
+		    (valueLengthLength == sizeof(uint8_t ))?
 		    *((uint8_t*)socket->receiveMessage(sizeof(uint8_t))) :
-		    (valueLengthLength == sizeof(uint16_t))? 
+		    (valueLengthLength == sizeof(uint16_t))?
 		    *((uint16_t*)socket->receiveMessage(sizeof(uint16_t))) :
-		    (valueLengthLength == sizeof(uint32_t))? 
+		    (valueLengthLength == sizeof(uint32_t))?
 		    *((uint32_t*)socket->receiveMessage(sizeof(uint32_t))) :
-		    (valueLengthLength == sizeof(uint64_t))? 
+		    (valueLengthLength == sizeof(uint64_t))?
 		    *((uint64_t*)socket->receiveMessage(sizeof(uint64_t))) : 0;
 		void* value = (valueLength == 0)? NULL : socket->receiveMessage(valueLength);
 		parameterList->push_back(builder.delegateBuilding(receivedType, valueLength, value));
@@ -106,7 +106,13 @@ int main()
 	cout << "Lunghezza del file di risposta: " << serializedObjectLength << endl;
 	socket->sendMessage(serializedObject, serializedObjectLength);
 	free(serializedObject);
-	serializedObject = NULL;}
+	serializedObject = NULL;
+	/*BadRequest b;
+	serializedObjectLength = b.serialize(&serializedObject);
+	socket->sendMessage(serializedObject, serializedObjectLength);
+	free(serializedObject);
+	serializedObject = NULL;*/
+	}
 	catch(exception& e)
 	{
 	cout << e.what() << endl;

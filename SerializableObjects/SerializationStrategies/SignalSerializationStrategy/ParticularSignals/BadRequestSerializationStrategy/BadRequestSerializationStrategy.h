@@ -1,17 +1,20 @@
-#ifndef BADREQUEST_H
-#define BADREQUEST_H
+#ifndef BADREQUEST_SERIALIZATION_STRATEGY_H
+#define BADREQUEST_SERIALIZATION_STRATEGY_H
 
 #include "../../SignalSerializationStrategy.h"
+#include "../../Utilities/BadRequestSignal/BadRequestSignal.h"
 
 class BadRequestSerializationStrategy : public SignalSerializationStrategy
 {
     private:
         void signalHandler();
     public:
+        BadRequestSerializationStrategy();
+        BadRequestSerializationStrategy(BadRequestSignal& userReference);
         Type getType();
         int getValueLengthLength();
 };
 
 typedef BadRequestSerializationStrategy BadRequest;
 
-#endif // BADREQUEST_H
+#endif // BADREQUEST_SERIALIZATION_STRATEGY_H

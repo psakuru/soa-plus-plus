@@ -6,6 +6,7 @@
 #include "../../TcpIpSocket/TcpIpActiveSocket.h"
 #include "../../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
 #include "../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
+#include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/Utilities/BadRequestSignal/BadRequestSignal.h"
 
 class ServiceProxy
 {
@@ -26,10 +27,12 @@ class ServiceProxy
         virtual void operator<<(double& value);
         virtual void operator<<(string& value);
         virtual void operator<<(ByteArray& value);
+        virtual void operator<<(BadRequestSignal& value);
         virtual void operator>>(int& value);
         virtual void operator>>(double& value);
         virtual void operator>>(string& value);
         virtual void operator>>(ByteArray& value);
+        virtual void operator>>(BadRequestSignal& value);
         void doService();
     public:
         ServiceProxy();
