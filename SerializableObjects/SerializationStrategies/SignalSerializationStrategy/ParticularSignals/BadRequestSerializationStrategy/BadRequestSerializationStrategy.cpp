@@ -4,7 +4,10 @@ using namespace std;
 
 BadRequestSerializationStrategy::BadRequestSerializationStrategy(){}
 
-BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference){}
+BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference)
+{
+    cout << "Costruttore di BadRequestSerializationStrategy" << endl;
+}
 
 void BadRequestSerializationStrategy::signalHandler()
 {
@@ -12,7 +15,7 @@ void BadRequestSerializationStrategy::signalHandler()
     //Esempio di handling: lanciare un' eccezione!
 }
 
-Type BadRequestSerializationStrategy::getType()
+Type BadRequestSerializationStrategy::getSignalType()
 {
     return SIGNAL_BAD_REQUEST;
 }
