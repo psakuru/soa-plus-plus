@@ -1,9 +1,7 @@
 #include "SignalSerializationStrategy.h"
 #include <stdlib.h>
 
-SignalSerializationStrategy::SignalSerializationStrategy()
-{
-}
+SignalSerializationStrategy::SignalSerializationStrategy(){}
 
 uint64_t Signal::serialize(void** destinationBuffer)
 {
