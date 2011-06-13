@@ -5,6 +5,9 @@ ServiceProxy::ServiceProxy()
     //ctor
 }
 
+ServiceProxy::ServiceProxy(string serviceIDToSet, string serviceRegistryAddressToSet)
+: Service(serviceIDToSet, serviceRegistryAddressToSet){}
+
 ServiceProxy::~ServiceProxy()
 {
     //dtor
@@ -30,4 +33,64 @@ void ServiceProxy::doService()
 {
     sendParameters();
     receiveParameters();
+}
+
+void ServiceProxy::operator<<(int& value)
+{
+    SerializableObject* objectToPushIntoList = new Integer(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator<<(double& value)
+{
+    SerializableObject* objectToPushIntoList = new Real(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator<<(string& value)
+{
+    SerializableObject* objectToPushIntoList = new String(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+void ServiceProxy::operator<<(ByteArray& value)
+{
+    SerializableObject* objectToPushIntoList = new RawByteBuffer(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator<<(BadRequestSignal& value)
+{
+    SerializableObject* objectToPushIntoList = new BadRequest(value);
+    inputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(int& value)
+{
+    SerializableObject* objectToPushIntoList = new Integer(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(double& value)
+{
+    SerializableObject* objectToPushIntoList = new Real(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(string& value)
+{
+    SerializableObject* objectToPushIntoList = new String(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+void ServiceProxy::operator>>(ByteArray& value)
+{
+    SerializableObject* objectToPushIntoList = new RawByteBuffer(value);
+    outputParameters.push_back(objectToPushIntoList);
+}
+
+void ServiceProxy::operator>>(BadRequestSignal& value)
+{
+    cout << "operator<< : wrapping del BadRequestSignal" << endl;
+    SerializableObject* objectToPushIntoList = new BadRequest(value);
+    outputParameters.push_back(objectToPushIntoList);
+    cout << "BadRequestSignal wrappato in BadRequestSerializationStrategy e inserito nella lista out" << endl;
 }
