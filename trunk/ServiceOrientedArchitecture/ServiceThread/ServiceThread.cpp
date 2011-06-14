@@ -4,7 +4,7 @@
 
 ServiceThread::ServiceThread(boost::mutex& mutexToSet,
 		TcpIpPassiveSocket& socketToSet, Service* serviceToSet) :
-	listeningSocket(socketToSet), mutex(mutexToSet),
+	Thread(Functor, this), listeningSocket(socketToSet), mutex(mutexToSet),
 			serviceToDo(serviceToSet) {
 	//TODO BOH!!!
 	buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER,
@@ -82,6 +82,7 @@ void ServiceThread::sendParameters(list<SerializableObject*> parameterList) {
 
 void ServiceThread::run() {
 	detach();
+	try{
 	while (1) {
 		mutex.lock(); // tornello
 		currentSocket = listeningSocket.acceptConnection();
@@ -92,6 +93,10 @@ void ServiceThread::run() {
 		sendParameters(out);
 		in.clear();
 		out.clear();
+	}
+	}
+	catch(boost::thread_interrupted& interrupt){
+		//termina
 	}
 
 }
