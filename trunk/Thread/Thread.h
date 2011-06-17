@@ -2,6 +2,8 @@
 #define THREAD_H
 #include <boost/thread.hpp>
 
+//COMPILARE CON  -Wall -g -lboost_thread -lpthread
+
 class Thread : public boost::thread
 	{
 	private:
@@ -15,7 +17,7 @@ class Thread : public boost::thread
             } visitor;
 	public:
 		Thread();
-		void run();
+		virtual void run() = 0;
 	};
 
 #endif //THREAD_H
