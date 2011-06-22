@@ -15,7 +15,7 @@ void BadRequestSerializationStrategy::signalHandler()
     //Esempio di handling: lanciare un' eccezione!
 }
 
-Type BadRequestSerializationStrategy::getSignalType()
+Type BadRequestSerializationStrategy::getSignalType() const
 {
     return SIGNAL_BAD_REQUEST;
 }

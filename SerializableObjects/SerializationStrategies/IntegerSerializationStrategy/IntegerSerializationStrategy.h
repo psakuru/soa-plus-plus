@@ -13,7 +13,7 @@ class IntegerSerializationStrategy : public GenericSerializableReferenceLayer<in
         IntegerSerializationStrategy();
         IntegerSerializationStrategy(int32_t& valueToSet);
         IntegerSerializationStrategy(int32_t* userReferenceToSet, bool shared);
-        Type getType();
+        Type getType() const;
         int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);

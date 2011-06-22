@@ -2,6 +2,8 @@
 #define GENERIC_SERIALIZABLE_REFERENCE_LAYER_H
 #include "../SerializableObject.h"
 #include <iostream>
+#include <typeinfo>
+#include <stdexcept>
 using namespace std;
 
 template <typename T>
@@ -34,10 +36,18 @@ class GenericSerializableReferenceLayer : public SerializableObject
 			}
 		void operator=(const SerializableObject& objectToCopy)
 			{
-		    const GenericSerializableReferenceLayer* castReference =
+            if(this->getType() == objectToCopy.getType())
+            {
+                const GenericSerializableReferenceLayer* castReference =
 		    	dynamic_cast<const GenericSerializableReferenceLayer*>(&objectToCopy);
-		    	//Lanciare eccezioni di dynamic_cast!
-		    wrappedReference = castReference->wrappedReference;
+                cout << "Stesso tipo! " << (typeid(wrappedReference)).name() << "==" << (typeid(castReference->wrappedReference)).name() << endl;
+                wrappedReference = castReference->wrappedReference;
+            }
+            else
+            {
+                runtime_error incompatibleTypes("Incompatible types.");
+                throw incompatibleTypes;
+            }
 		    }
 		void setValue(void* valueToSet)
 		    {

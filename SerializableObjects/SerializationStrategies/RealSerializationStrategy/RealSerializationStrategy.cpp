@@ -9,7 +9,7 @@ RealSerializationStrategy::RealSerializationStrategy(double& userReferenceToSet)
 RealSerializationStrategy::RealSerializationStrategy(double* userReferenceToSet, bool shared)
 : GenericSerializableReferenceLayer<double>(userReferenceToSet, shared){}
 
-Type RealSerializationStrategy::getType()
+Type RealSerializationStrategy::getType() const
 {
     return SERIALIZABLE_REAL;
 }

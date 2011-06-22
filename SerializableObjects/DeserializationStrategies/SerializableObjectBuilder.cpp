@@ -1,4 +1,5 @@
 #include "SerializableObjectBuilder.h"
+#include <stdexcept>
 #include <iostream>
 using namespace std;
 
@@ -13,7 +14,16 @@ SerializableObjectBuilder::~SerializableObjectBuilder()
 
 SerializableObjectBuilder* SerializableObjectBuilder::operator[](Type builtType)
 {
-    return subSerializableObjectBuilders[builtType];
+    if(subSerializableObjectBuilders.find(builtType) != subSerializableObjectBuilders.end())
+    {
+        return subSerializableObjectBuilders[builtType];
+    }
+    else
+    {
+        runtime_error unknownType("Cannot build this type.");
+        throw unknownType;
+        return NULL;
+    }
 }
 
 void SerializableObjectBuilder::addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd)

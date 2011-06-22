@@ -8,7 +8,7 @@ StringSerializationStrategy::StringSerializationStrategy(){}
 StringSerializationStrategy::StringSerializationStrategy(string& userReferenceToSet)
 : GenericSerializableReferenceLayer<string>(userReferenceToSet){}
 
-Type StringSerializationStrategy::getType()
+Type StringSerializationStrategy::getType() const
 {
     return SERIALIZABLE_STRING;
 }

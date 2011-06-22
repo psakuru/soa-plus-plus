@@ -12,7 +12,7 @@ class RawByteBufferSerializationStrategy : public GenericSerializableReferenceLa
         RawByteBufferSerializationStrategy();
         RawByteBufferSerializationStrategy(ByteArray& userReferenceToSet);
         RawByteBufferSerializationStrategy(ByteArray* userReferenceToSet, bool shared);
-        Type getType();
+        Type getType() const;
         int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);

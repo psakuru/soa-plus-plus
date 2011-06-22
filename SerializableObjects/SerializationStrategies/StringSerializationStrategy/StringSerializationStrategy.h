@@ -13,7 +13,7 @@ class StringSerializationStrategy : public GenericSerializableReferenceLayer<str
         StringSerializationStrategy();
         StringSerializationStrategy(string& valueToSet);
         StringSerializationStrategy(string* valueToSet, bool shared);
-        Type getType();
+        Type getType() const;
         int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
