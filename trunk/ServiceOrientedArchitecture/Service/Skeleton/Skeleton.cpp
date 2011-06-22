@@ -41,7 +41,10 @@ void Skeleton::bind()
 
 void Skeleton::protocol()
 {
+    //TODO try{
     receiveParameters();
+    //TODO
+    //TODO catch(badParameters) rispondi BadRequest
     this->doService();
     sendParameters();
     outputParameters.clear();

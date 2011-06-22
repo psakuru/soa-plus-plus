@@ -12,7 +12,7 @@ RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy(ByteArray
 RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy(ByteArray* userReferenceToSet, bool shared)
 : GenericSerializableReferenceLayer<ByteArray>(userReferenceToSet, shared){}
 
-Type RawByteBufferSerializationStrategy::getType()
+Type RawByteBufferSerializationStrategy::getType() const
 {
     return SERIALIZABLE_RAW_BYTE_BUFFER;
 }

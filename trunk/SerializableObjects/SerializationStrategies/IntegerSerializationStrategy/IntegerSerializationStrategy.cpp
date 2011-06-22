@@ -11,7 +11,7 @@ IntegerSerializationStrategy::IntegerSerializationStrategy(int32_t& userReferenc
 IntegerSerializationStrategy::IntegerSerializationStrategy(int32_t* userReferenceToSet, bool shared)
 : GenericSerializableReferenceLayer<int32_t>(userReferenceToSet, shared){}
 
-Type IntegerSerializationStrategy::getType()
+Type IntegerSerializationStrategy::getType() const
 {
     return SERIALIZABLE_INTEGER;
 }

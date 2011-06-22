@@ -6,7 +6,7 @@ SignalSerializationStrategy::SignalSerializationStrategy()
     //cout << "Costruttore di SignalSerializationStrategy" << endl;
 }
 
-Type Signal::getType()
+Type Signal::getType() const
     {
     return SERIALIZABLE_SIGNAL;
     }

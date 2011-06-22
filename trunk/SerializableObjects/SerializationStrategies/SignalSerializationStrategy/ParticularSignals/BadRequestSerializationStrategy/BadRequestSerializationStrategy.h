@@ -11,7 +11,7 @@ class BadRequestSerializationStrategy : public SignalSerializationStrategy
     public:
         BadRequestSerializationStrategy();
         BadRequestSerializationStrategy(BadRequestSignal& userReference);
-        Type getSignalType();
+        Type getSignalType() const;
         int getValueLengthLength();
 };
 

@@ -26,6 +26,7 @@ public:
         SerializableObject* serializableObjectToReturn = new T();
         serializableObjectToReturn->deserialize(valueLength, value);
         free(value);
+        cout << "SerializableObjectProdotto: " << (typeid(T)).name() << endl;
         return serializableObjectToReturn;
     }
 };

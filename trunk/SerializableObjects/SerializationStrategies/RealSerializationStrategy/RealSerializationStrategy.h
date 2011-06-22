@@ -11,7 +11,7 @@ class RealSerializationStrategy : public GenericSerializableReferenceLayer<doubl
         RealSerializationStrategy();
         RealSerializationStrategy(double& userReferenceToSet);
         RealSerializationStrategy(double* userReferenceToSet, bool shared);
-        Type getType();
+        Type getType() const;
         int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);

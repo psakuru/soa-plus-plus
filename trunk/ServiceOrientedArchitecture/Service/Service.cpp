@@ -84,6 +84,7 @@ SerializableObject* Service::receiveParameter()
     //TODO trovare un modo per fare la receive senza stare a fare la free del puntatore
     Type* receivedTypePointer = ((Type*)socket->receiveMessage(sizeof(Type)));
     Type receivedType = *receivedTypePointer;
+    cout << "Tipo ricevuto: " << receivedType << endl;
     free(receivedTypePointer);
     int valueLengthLength = buildersHierarchy.getValueLengthLength(receivedType);
     //cout << "Lunghezza del campo length da ricevere: " << valueLengthLength << endl;

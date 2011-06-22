@@ -74,7 +74,7 @@ void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
     uint64_t readBytes = 0;
-    while(readBytes < length)
+    while(readBytes < length) //TODO bisogna trovare il modo di lanciare la timeout exception, ad esempio consentendo un num max di cicli
     {
         readBytes += read(socketDescriptor, (void*)(((uint8_t*)bufferToReturn)+readBytes), length - readBytes);
         if(readBytes < 0)
