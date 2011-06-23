@@ -49,3 +49,14 @@ void Skeleton::protocol()
     sendParameters();
     outputParameters.clear();
 }
+
+void Skeleton::addParameter(SerializableObject* parameterToAdd, Direction parameterDirection)
+{
+    if(parameterDirection == OUT || parameterDirection == OUTIN)
+    {
+        runtime_error invalidParameterDirection("Invalid parameter direction.");
+        throw invalidParameterDirection;
+    }
+    inputParameters.push_back(parameterToAdd);
+    updateServiceID(parameterToAdd, parameterDirection);
+}

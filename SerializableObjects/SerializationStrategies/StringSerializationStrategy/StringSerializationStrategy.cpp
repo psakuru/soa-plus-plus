@@ -39,3 +39,8 @@ void StringSerializationStrategy::deserialize(uint64_t length, void* bufferToUse
     wrappedReference.erase();
     wrappedReference.append((char*)bufferToUse, length);
 }
+
+string StringSerializationStrategy::getValueTypeStringRepresentation()
+{
+    return "string";
+}

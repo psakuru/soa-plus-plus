@@ -27,6 +27,8 @@ Service::Service(string serviceIDToSet) : serviceID(serviceIDToSet)
     //cout << tab() << "BEGIN: Service.Service(string serviceIDToSet)" << endl;
     //cout << tab() << "Ho ricevuto il serviceID " << serviceIDToSet << ", lo setto" << endl;
     //cout << tab() << "Inizializzo la buildersHierarchy" << endl;
+    serviceID.append("()");
+    cout << "ServiceID corrente: " << serviceID << endl;
     defaultBuildersHierarchyInit();
     //cout << tab() << "Setto il socket a null: chi mi eredita lo setterà a dovere" << endl;
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti
@@ -176,3 +178,38 @@ void Service::receiveParameters()
     delete incomingParameters;
 }
 
+void Service::updateServiceID(SerializableObject* parameterToAdd, Direction parameterDirection)
+{
+    string directionString;
+    switch(parameterDirection)
+        {
+            case IN:
+                {
+                    directionString = " IN: ";
+                }
+            break;
+            case OUT:
+                {
+                    directionString = " OUT: ";
+                }
+            break;
+            case INOUT:
+                {
+                    directionString = " INOUT: ";
+                }
+            break;
+            case OUTIN:
+                {
+                    directionString = " OUTIN: ";
+                }
+            break;
+            default:
+                {
+                    directionString = " <unknown direction>: ";
+                }
+            break;
+        }
+    directionString.append(parameterToAdd->getValueTypeStringRepresentation()).append(")");
+    serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
+    cout << "ServiceID corrente: " << serviceID << endl;
+}

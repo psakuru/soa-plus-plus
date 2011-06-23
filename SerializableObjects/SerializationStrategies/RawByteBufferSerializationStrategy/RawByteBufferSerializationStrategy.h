@@ -16,6 +16,7 @@ class RawByteBufferSerializationStrategy : public GenericSerializableReferenceLa
         int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
+        string getValueTypeStringRepresentation();
 };
 
 typedef RawByteBufferSerializationStrategy RawByteBuffer;

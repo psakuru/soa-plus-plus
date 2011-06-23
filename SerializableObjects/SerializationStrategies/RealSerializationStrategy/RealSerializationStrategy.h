@@ -15,6 +15,7 @@ class RealSerializationStrategy : public GenericSerializableReferenceLayer<doubl
         int getValueLengthLength();
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
+        string getValueTypeStringRepresentation();
 };
 
 typedef RealSerializationStrategy Real;

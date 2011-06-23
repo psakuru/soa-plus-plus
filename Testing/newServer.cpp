@@ -58,14 +58,19 @@ protected:
     }
 public:
     ParticularPoolableCyclicCallableSkeleton()
-        : PoolableCyclicCallableSkeleton("redHat(IN: int, double, string; INOUT: ByteArray, BadRequestSignal)")
+        : PoolableCyclicCallableSkeleton("redHat")
     {
         cout << "TID:" << boost::this_thread::get_id() << " ParticularPoolableCyclicCallableSkeleton()" << endl << endl;
-        inputParameters.push_back(new Integer);
+        addParameter(new Integer, IN);
+        addParameter(new Real, IN);
+        addParameter(new String, IN);
+        addParameter(new RawByteBuffer, INOUT);
+        addParameter(new BadRequest, INOUT);
+        /*inputParameters.push_back(new Integer);
         inputParameters.push_back(new Real);
         inputParameters.push_back(new String);
         inputParameters.push_back(new RawByteBuffer);
-        inputParameters.push_back(new BadRequest);
+        inputParameters.push_back(new BadRequest);*/
     }
 };
 

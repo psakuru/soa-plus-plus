@@ -29,6 +29,7 @@ public:
     virtual ~SkeletonThreadPool()
     {
         //TODO come elimino il socket?
+        //TODO come evito i memory leak?
         pool.interrupt_all();
     }
 };

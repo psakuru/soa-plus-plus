@@ -9,6 +9,7 @@ protected:
 	string serviceProviderAddress;
     void bind();
     void protocol();
+    void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Stub();
     Stub(string serviceIDToSet, string serviceRegistryAddressToSet);

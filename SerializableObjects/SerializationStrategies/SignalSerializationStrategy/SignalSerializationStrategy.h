@@ -19,6 +19,7 @@ class SignalSerializationStrategy : public GenericSerializableReferenceLayer<Fak
         int getValueLengthLength() = 0;
         uint64_t serialize(void** destinationBuffer);
         void deserialize(uint64_t length, void* bufferToUse);
+        string getValueTypeStringRepresentation();
 };
 
 typedef SignalSerializationStrategy Signal;
