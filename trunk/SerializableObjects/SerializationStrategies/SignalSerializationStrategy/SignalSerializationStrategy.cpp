@@ -25,3 +25,8 @@ void Signal::deserialize(uint64_t length, void* bufferToUse)
 {
 	this->signalHandler();
 }
+
+string SignalSerializationStrategy::getValueTypeStringRepresentation()
+{
+    return "signal";
+}

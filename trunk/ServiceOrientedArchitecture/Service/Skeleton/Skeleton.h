@@ -14,7 +14,7 @@ class Skeleton : public Service
         void bind();
         void protocol();
         virtual void doService() = 0;
-
+        void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
     public:
         Skeleton();
         Skeleton(string serviceIDToSet);

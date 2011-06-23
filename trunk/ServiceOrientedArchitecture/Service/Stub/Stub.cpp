@@ -74,3 +74,29 @@ void Stub::protocol()
     inputParameters.splice(inputParameters.begin(), outputParameters, i, j);
     receiveParameters();
 }
+
+void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterDirection)
+{
+    if(parameterDirection == IN || parameterDirection == INOUT)
+    {
+        runtime_error invalidParameterDirection("Invalid parameter direction.");
+        throw invalidParameterDirection;
+    }
+    switch(parameterDirection)
+    {
+        case OUT:
+        {
+        outputParameters.push_back(parameterToAdd);
+        }
+        break;
+        case OUTIN:
+        {
+        inputParameters.push_back(parameterToAdd);
+        }
+        break;
+        default:
+        break; //TODO eccezione?
+    }
+    parameterDirection = (parameterDirection == OUT)? IN : (parameterDirection == OUTIN)? INOUT : IN;
+    updateServiceID(parameterToAdd, parameterDirection); //TODO Continua a mettere roba per aggiornare la firma nello StreamStub e nella roba di Skeleton
+}

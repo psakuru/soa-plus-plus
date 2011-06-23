@@ -11,6 +11,8 @@ using namespace std;
 typedef PointerList<SerializableObject*> SerializableObjectList;
 //Lista di puntatori a SerializableObject, fa la delete sui puntatori quando distrutta
 
+enum Direction {IN, OUT, INOUT, OUTIN};
+
 class Service
 {
 protected:
@@ -26,6 +28,8 @@ protected:
     SerializableObject* receiveParameter();
     virtual void protocol() = 0;
     virtual void bind() = 0;
+    virtual void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection) = 0;
+    void updateServiceID(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
 	Service();
     Service(string serviceIDToSet);

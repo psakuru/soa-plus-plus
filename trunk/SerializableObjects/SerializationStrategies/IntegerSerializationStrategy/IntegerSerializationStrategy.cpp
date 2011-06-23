@@ -35,3 +35,8 @@ void IntegerSerializationStrategy::deserialize(uint64_t length, void* bufferToUs
 {
     wrappedReference = *((int32_t*)(bufferToUse));
 }
+
+string IntegerSerializationStrategy::getValueTypeStringRepresentation()
+{
+    return "int";
+}

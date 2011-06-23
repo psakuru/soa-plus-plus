@@ -10,7 +10,7 @@ class ParticularServiceStreamStub : public StreamStub
 {
 public:
     ParticularServiceStreamStub()
-        : StreamStub("redHat(IN: int, double, string; INOUT: ByteArray, BadRequestSignal)", "127.0.0.1:3000")
+        : StreamStub("redHat", "127.0.0.1:3000")
         {
             //cout << "BEGIN: ParticularServiceStreamStub()" << endl;
             //cout << "Passati i parametri di default al costruttore di StreamStub" << endl;

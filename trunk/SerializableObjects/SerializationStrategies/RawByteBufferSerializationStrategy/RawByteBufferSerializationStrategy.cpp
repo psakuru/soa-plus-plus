@@ -51,3 +51,8 @@ void RawByteBufferSerializationStrategy::deserialize(uint64_t length, void* buff
     wrappedReference.erase();
     wrappedReference.append((byte*)bufferToUse, 0, length);
 }
+
+string RawByteBufferSerializationStrategy::getValueTypeStringRepresentation()
+{
+    return "ByteArray";
+}

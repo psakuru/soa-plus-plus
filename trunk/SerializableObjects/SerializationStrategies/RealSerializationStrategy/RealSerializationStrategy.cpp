@@ -33,3 +33,8 @@ void RealSerializationStrategy::deserialize(uint64_t length, void* bufferToUse)
     {
     wrappedReference = *((double*)bufferToUse);
     }
+
+string RealSerializationStrategy::getValueTypeStringRepresentation()
+{
+    return "double";
+}
