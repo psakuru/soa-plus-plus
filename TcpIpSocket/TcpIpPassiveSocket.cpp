@@ -56,7 +56,7 @@ TcpIpPassiveSocket::~TcpIpPassiveSocket()
 string TcpIpPassiveSocket::getAddress()
 {
     string address;
-    address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
+    address.append(inet_ntoa(serverAddress.sin_addr));
+    address.append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
     return address;
-
 }

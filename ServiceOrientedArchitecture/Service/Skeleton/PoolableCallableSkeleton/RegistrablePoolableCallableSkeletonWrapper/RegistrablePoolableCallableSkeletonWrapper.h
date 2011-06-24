@@ -10,6 +10,7 @@ class RegistrablePoolableCallableSkeletonWrapper : public RegistrableObject, pub
     public:
         string getRegistrationInfo()
         {
+            cout << "Fino al RegistrablePoolableCallableSkeletonWrapper ci arrivo" << endl;
             T dummyT;
             return dummyT.getRegistrationInfo();
         }

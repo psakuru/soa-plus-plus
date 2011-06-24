@@ -1,4 +1,6 @@
 #include "RegistrableSkeleton.h"
+#include <iostream>
+using namespace std;
 
 RegistrableSkeleton::RegistrableSkeleton() {}
 
@@ -11,8 +13,10 @@ RegistrableSkeleton::RegistrableSkeleton
 
 string RegistrableSkeleton::getRegistrationInfo()
 {
-    string registrationInfoToReturn;
-    //return serviceID@IP:port
-    return
-        registrationInfoToReturn.append("@").append(listeningSocket->getAddress());
+    string registrationInfoToReturn = serviceID;
+    registrationInfoToReturn.append("@");
+    //registrationInfoToReturn.append(listeningSocket->getAddress());
+    //cout << "Verrà registrato: " << registrationInfoToReturn << endl;*/
+    //return serviceID@IP:port*/
+    return registrationInfoToReturn;
 }
