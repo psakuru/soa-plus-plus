@@ -24,7 +24,7 @@ public:
         {
             threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket));
             //Inserimento in O(1), la list non diventa owner del thread
-            pool.add_thread(threadReferences.front);
+            pool.add_thread(threadReferences.front());
             //Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
             //TODO il precedente statement viola l' incapsulamento. Un workaround?
             //NB: il pool prende ownership sul new thread, posso stare tranquillo per la delete

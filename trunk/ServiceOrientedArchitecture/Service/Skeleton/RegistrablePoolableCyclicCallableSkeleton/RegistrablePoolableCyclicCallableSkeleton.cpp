@@ -1,20 +1,20 @@
-#include "PoolableCyclicCallableSkeleton.h"
+#include "RegistrablePoolableCyclicCallableSkeleton.h"
 #include <boost/thread/thread.hpp>
 #include <boost/pool/detail/guard.hpp>
 #include <iostream>
 using namespace std;
 
-PoolableCyclicCallableSkeleton::PoolableCyclicCallableSkeleton(string serviceIDToSet)
-    : CallableService<Skeleton>(serviceIDToSet)
+RegistrablePoolableCyclicCallableSkeleton::RegistrablePoolableCyclicCallableSkeleton(string serviceIDToSet)
+    : Skeleton(serviceIDToSet), RegistrableSkeleton(serviceIDToSet), CallableService<Skeleton>(serviceIDToSet)
 {
-    cout << "TID:" << boost::this_thread::get_id() << " PoolableCyclicCallableSkeleton(" << serviceIDToSet << ")" << endl << endl;
+    cout << "TID:" << boost::this_thread::get_id() << " RegistrablePoolableCyclicCallableSkeleton(" << serviceIDToSet << ")" << endl << endl;
 }
 
-PoolableCyclicCallableSkeleton::~PoolableCyclicCallableSkeleton()
+RegistrablePoolableCyclicCallableSkeleton::~RegistrablePoolableCyclicCallableSkeleton()
 {
 }
 
-void PoolableCyclicCallableSkeleton::shareMutex(boost::mutex* mutexToShare)
+void RegistrablePoolableCyclicCallableSkeleton::shareMutex(boost::mutex* mutexToShare)
 {
     sharedMutex = mutexToShare;
     //Non c' è bisogno di flag che mi dicano se il mutex è condiviso o no:
@@ -23,7 +23,7 @@ void PoolableCyclicCallableSkeleton::shareMutex(boost::mutex* mutexToShare)
 
 
 
-void PoolableCyclicCallableSkeleton::operator()()
+void RegistrablePoolableCyclicCallableSkeleton::operator()()
 {
     //try
     //{

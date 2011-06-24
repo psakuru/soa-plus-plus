@@ -1,6 +1,8 @@
 #ifndef REGISTRABLEOBJECT_H
 #define REGISTRABLEOBJECT_H
 
+#include <string>
+using namespace std;
 
 class RegistrableObject
 {

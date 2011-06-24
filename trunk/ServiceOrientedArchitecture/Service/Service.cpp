@@ -14,6 +14,7 @@ Service::Service()
 {
     tabs++;
     //cout << tab() << "BEGIN: Service.Service()" << endl;
+    cout << "Cool!" << endl;
     defaultBuildersHierarchyInit();
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti
     //cout << tab() << "END: Service.Service()" << endl;
@@ -210,6 +211,7 @@ void Service::updateServiceID(SerializableObject* parameterToAdd, Direction para
             break;
         }
     directionString.append(parameterToAdd->getValueTypeStringRepresentation()).append(")");
+    cout << "ServiceID prima della replace: " << serviceID << endl;
     serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
     cout << "ServiceID corrente: " << serviceID << endl;
 }

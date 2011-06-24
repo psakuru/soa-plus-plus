@@ -15,12 +15,12 @@
 #include "../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
 #include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalTypeConstants.h"
 #include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/PoolableCyclicCallableSkeleton/PoolableCyclicCallableSkeleton.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/PoolableCallableSkeleton/PoolableCallableSkeletonWrapper.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/SkeletonThreadPool.h"
+#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "../ServiceOrientedArchitecture/Service/Skeleton/PoolableCallableSkeleton/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
+#include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
 using namespace std;
 
-class ParticularPoolableCyclicCallableSkeleton : public PoolableCyclicCallableSkeleton
+class ParticularRegistrablePoolableCyclicCallableSkeleton : public RegistrablePoolableCyclicCallableSkeleton
 {
 protected:
     void doService()
@@ -57,8 +57,8 @@ protected:
         outputParameters.push_back(badRequest);
     }
 public:
-    ParticularPoolableCyclicCallableSkeleton()
-        : PoolableCyclicCallableSkeleton("redHat")
+    ParticularRegistrablePoolableCyclicCallableSkeleton()
+        : Skeleton("redHat"), RegistrablePoolableCyclicCallableSkeleton("redHat")
     {
         cout << "TID:" << boost::this_thread::get_id() << " ParticularPoolableCyclicCallableSkeleton()" << endl << endl;
         addParameter(new Integer, IN);
@@ -79,7 +79,7 @@ public:
 int main()
 {
     try{
-    SkeletonThreadPool< PoolableCallableSkeletonWrapper<ParticularPoolableCyclicCallableSkeleton>, 3 > pool(4000, SOMAXCONN);
+    RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<ParticularRegistrablePoolableCyclicCallableSkeleton>, 3 > pool("127.0.0.1", 4000, SOMAXCONN);
     while(1){}
     }
      catch(exception& e)

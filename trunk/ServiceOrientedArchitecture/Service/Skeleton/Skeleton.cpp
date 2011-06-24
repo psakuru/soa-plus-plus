@@ -15,10 +15,10 @@ Skeleton::Skeleton(string serviceIDToSet, TcpIpPassiveSocket* listeningSocketToS
     : Service(serviceIDToSet), listeningSocket(listeningSocketToShare), sharedListeningSocket(true)
 {}
 
-Skeleton::Skeleton(string serviceIDToSet, int port, int backlog)
+Skeleton::Skeleton(string serviceIDToSet, string IPAddress, int port, int backlog)
     : Service(serviceIDToSet)
 {
-    listeningSocket = new TcpIpPassiveSocket(port, backlog);
+    listeningSocket = new TcpIpPassiveSocket(IPAddress, port, backlog);
     sharedListeningSocket = false;
 }
 

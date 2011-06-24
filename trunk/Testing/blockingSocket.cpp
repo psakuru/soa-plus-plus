@@ -1,14 +1,17 @@
-#include "../TcpIpSocket/TcpIpPassiveSocket.h"
 #include <iostream>
 #include <stdlib.h>
+#include <unistd.h>
+#include <netdb.h>
+#include <strings.h>
+#include <arpa/inet.h>
+#include <string>
 using namespace std;
 
 int main()
 	{
-	TcpIpPassiveSocket s(6000,SOMAXCONN);
-	TcpIpActiveSocket* ss = s.acceptConnection();
-	void* m = malloc(sizeof(int));
-	m = ss->receiveMessage(sizeof(int));
-	cout << "FATTO";
+	char* hostName = new char[256];
+	gethostname(hostName,256);
+	cout << gethostbyname(hostName)->h_name;
+	delete[] hostName;
 	return 0;
 	}
