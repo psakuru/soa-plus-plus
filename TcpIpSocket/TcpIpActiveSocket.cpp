@@ -7,6 +7,9 @@
 #include <errno.h>
 #include <string.h>
 #include <stdexcept>
+#include <boost/lexical_cast.hpp>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 using namespace std;
 
 TcpIpActiveSocket::TcpIpActiveSocket()
@@ -79,10 +82,17 @@ void* TcpIpActiveSocket::receiveMessage(uint64_t length)
         readBytes += read(socketDescriptor, (void*)(((uint8_t*)bufferToReturn)+readBytes), length - readBytes);
         if(readBytes < 0)
         {
-        runtime_error readException(strerror(errno));
-        throw readException;
+            runtime_error readException(strerror(errno));
+            throw readException;
         }
     }
     cout << "SOCKET<< " << readBytes << " bytes received" << endl;
     return bufferToReturn;
+}
+
+string TcpIpActiveSocket::getAddress()
+{
+    string address;
+    address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
+    return address;
 }

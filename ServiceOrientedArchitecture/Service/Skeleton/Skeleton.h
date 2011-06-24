@@ -21,7 +21,7 @@ class Skeleton : public Service
         /*<attenzione>*/
         Skeleton(string serviceIDToSet, TcpIpPassiveSocket* listeningSocketToShare);
         /*</attenzione>*/
-        Skeleton(string serviceIDToSet, int port, int backlog);
+        Skeleton(string serviceIDToSet, string IPAddress, int port, int backlog);
         virtual ~Skeleton();
         void shareListeningSocket(TcpIpPassiveSocket* listeningSocketToShare);
 };

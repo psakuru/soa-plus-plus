@@ -7,14 +7,15 @@
 #include <iostream>
 using namespace std;
 
+/* Derivazione virtuale multipla da parametro template */
 template <typename T>
-class CallableService : public T, public CallableObject
+class CallableService : public CallableObject, virtual public T
 {
     public:
         CallableService()
         {
-            T instanceToTest;
-            Service* polimorphicTest = dynamic_cast<Service*>(&instanceToTest);
+            /*T instanceToTest;
+            Service* polimorphicTest = dynamic_cast<Service*>(&instanceToTest);*/
             /* I costruttori di default della classe Service e delle sue derivate
                non fanno nulla, quindi se T è un tipo legale la sua istanziazione
                non comporta aperture di socket o altro...

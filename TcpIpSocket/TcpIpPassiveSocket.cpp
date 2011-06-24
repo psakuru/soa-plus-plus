@@ -7,6 +7,7 @@
 #include <errno.h>
 #include <iostream>
 #include <stdexcept>
+#include <boost/lexical_cast.hpp>
 using namespace std;
 
 TcpIpPassiveSocket::TcpIpPassiveSocket()
@@ -14,11 +15,11 @@ TcpIpPassiveSocket::TcpIpPassiveSocket()
     //ctor
 }
 
-TcpIpPassiveSocket::TcpIpPassiveSocket(int listeningPort, int backlog)
+TcpIpPassiveSocket::TcpIpPassiveSocket(string IPAddress, int listeningPort, int backlog)
 {
     bzero((char *) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_addr.s_addr = inet_addr("127.0.0.1");//INADDR_ANY;
+    serverAddress.sin_addr.s_addr = inet_addr(IPAddress.c_str());//INADDR_ANY;
     serverAddress.sin_port = htons(listeningPort);
     int error = bind(socketDescriptor, (sockaddr*) &serverAddress, sizeof(serverAddress));
     if(error < 0)
@@ -36,10 +37,10 @@ TcpIpPassiveSocket::TcpIpPassiveSocket(int listeningPort, int backlog)
 }
 
 TcpIpActiveSocket* TcpIpPassiveSocket::acceptConnection()
-    {
+{
     TcpIpActiveSocket* socketToReturn = new TcpIpActiveSocket(socketDescriptor);
     return socketToReturn;
-    }
+}
 
 TcpIpPassiveSocket::~TcpIpPassiveSocket()
 {
@@ -50,4 +51,12 @@ TcpIpPassiveSocket::~TcpIpPassiveSocket()
         runtime_error closeException(strerror(errno));
         throw closeException;
     }
+}
+
+string TcpIpPassiveSocket::getAddress()
+{
+    string address;
+    address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
+    return address;
+
 }

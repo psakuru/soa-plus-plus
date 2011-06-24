@@ -13,9 +13,10 @@ protected:
         sockaddr_in serverAddress;
 public:
         TcpIpPassiveSocket();
-        TcpIpPassiveSocket(int listeningPort, int backlog);
+        TcpIpPassiveSocket(string IPAddress, int listeningPort, int backlog);
         ~TcpIpPassiveSocket();
         TcpIpActiveSocket* acceptConnection();
+        string getAddress();
 };
 
 #endif // TCPIPPASSIVESOCKET_H
