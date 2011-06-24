@@ -19,7 +19,7 @@ TcpIpPassiveSocket::TcpIpPassiveSocket(string IPAddress, int listeningPort, int 
 {
     bzero((char *) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
-    serverAddress.sin_addr.s_addr = inet_addr(IPAddress.c_str());//INADDR_ANY;
+    serverAddress.sin_addr.s_addr = inet_addr(IPAddress.c_str());
     serverAddress.sin_port = htons(listeningPort);
     int error = bind(socketDescriptor, (sockaddr*) &serverAddress, sizeof(serverAddress));
     if(error < 0)

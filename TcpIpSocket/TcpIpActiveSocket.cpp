@@ -64,7 +64,7 @@ TcpIpActiveSocket::~TcpIpActiveSocket()
 
 void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
 {
-    int error = write(socketDescriptor, buffer, length);
+    int error = send(socketDescriptor, buffer, length, 0);
     if(error < 0)
     {
         runtime_error writeException(strerror(errno));
@@ -76,16 +76,17 @@ void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
 void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
-    uint64_t readBytes = 0;
-    while(readBytes < length) //TODO bisogna trovare il modo di lanciare la timeout exception, ad esempio consentendo un num max di cicli
+    uint64_t readBytes = recv(socketDescriptor, bufferToReturn, length, MSG_WAITALL);
+    /*while(readBytes < length) //TODO bisogna trovare il modo di lanciare la timeout exception, ad esempio consentendo 
+    un num max di cicli
     {
-        readBytes += read(socketDescriptor, (void*)(((uint8_t*)bufferToReturn)+readBytes), length - readBytes);
+        readBytes += read(socketDescriptor, (void*)(((uint8_t*)bufferToReturn)+readBytes), length - readBytes);*/
         if(readBytes < 0)
         {
             runtime_error readException(strerror(errno));
             throw readException;
         }
-    }
+    //}
     cout << "SOCKET<< " << readBytes << " bytes received" << endl;
     return bufferToReturn;
 }
