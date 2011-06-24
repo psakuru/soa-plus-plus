@@ -39,11 +39,11 @@ RegSkel(string ID) : Skel(ID){cout << "RegSkel(string), serviceID settato alla b
 void reg(){cout << "RegSkel::reg()" << endl;}
 };
 
-template <typename T> class CalServ : public CalObj, virtual public Skel
+template <typename T> class CalServ : public CalObj, virtual public T
 {
 public:
 CalServ(){}
-CalServ(string ID) : T(ID){cout << "CalServ<"<< (typeid(T)).name() << ">(string), serviceID settato alla base: " << serviceID << endl;}
+CalServ(string ID) : T(ID){cout << "CalServ<"<< (typeid(T)).name() << ">(string), serviceID settato alla base: " << this->serviceID << endl;}
 void operator()()=0;
 };
 
@@ -64,8 +64,32 @@ public:
 PartRegCalSkel() : Skel("Bertinotti"), RegCalSkel("Bertinotti") {}
 };
 
+
+class A
+{
+public:
+A(){cout << "A()" << endl;}
+A(int a){cout << "A(int)" << endl;}
+};
+
+class B : virtual public A
+{
+public:
+B(){cout <<"B()"<< endl;}
+B(int a) : A(a){cout << "B(int)" << endl;}
+};
+
+class C : public B
+{
+public:
+C() : A(7), B(7){cout << "C()" << endl;}
+};
+
+
+
 int main()
 {
 PartRegCalSkel r;
+C c;
 return 0;
 }
