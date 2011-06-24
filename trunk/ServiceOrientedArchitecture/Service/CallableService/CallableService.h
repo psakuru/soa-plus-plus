@@ -29,6 +29,10 @@ class CallableService : public CallableObject, virtual public T
             /*T instanceToTest;
             Service* polimorphicTest = dynamic_cast<Service*>(&instanceToTest);*/
         }
+        CallableService(string serviceIdToSet, string ServiceRegistryToSet) : T(serviceIdToSet, ServiceRegistryToSet)
+        {
+            cout << "TID:" << boost::this_thread::get_id() << " CallableService<" << (typeid(T)).name() << ">(" << serviceIdToSet << ")" << endl << endl;
+        }
         virtual ~CallableService() {}
         virtual void operator()() = 0;
 };

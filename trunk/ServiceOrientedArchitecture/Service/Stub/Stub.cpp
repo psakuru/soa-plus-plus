@@ -14,6 +14,7 @@ Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
 {
     //cout << "  BEGIN: Stub.Stub(string serviceIDToSet, string serviceRegistryAddressToSet)" << endl;
     //cout << "  Passati i parametri ricevuti al costruttore di Service" << endl;
+    cout << "ServiceID settato su: " << serviceID << endl;
     serviceRegistryAddress = serviceRegistryAddressToSet;
     //cout << "  Settato il serviceRegistry" << endl;
     bind();

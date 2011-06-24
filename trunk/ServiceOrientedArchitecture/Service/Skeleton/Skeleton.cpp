@@ -31,6 +31,7 @@ void Skeleton::shareListeningSocket(TcpIpPassiveSocket* listeningSocketToShare)
 {
     listeningSocket = listeningSocketToShare;
     sharedListeningSocket = true;
+    cout << "ListeningSocket condiviso: " << (void*)listeningSocket << endl;
 }
 
 void Skeleton::bind()

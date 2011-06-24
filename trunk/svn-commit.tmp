@@ -1,0 +1,7 @@
+Aggiunto il publisher
+--Questa linea, e quelle sotto di essa, saranno ignorate--
+
+M    Testing/a.out
+A    Testing/PublisherTest
+A    Testing/PublisherTest/publisherTest.cpp
+M    Testing/diamondProblem.cpp

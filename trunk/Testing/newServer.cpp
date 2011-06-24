@@ -18,6 +18,8 @@
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/PoolableCallableSkeleton/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
+#include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 using namespace std;
 
 class ParticularRegistrablePoolableCyclicCallableSkeleton : public RegistrablePoolableCyclicCallableSkeleton
@@ -79,7 +81,11 @@ public:
 int main()
 {
     try{
-    RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<ParticularRegistrablePoolableCyclicCallableSkeleton>, 3 > pool("127.0.0.1", 4000, SOMAXCONN);
+    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<ParticularRegistrablePoolableCyclicCallableSkeleton>, 3 >("127.0.0.1", 4000, SOMAXCONN);
+    char a= 'a';
+    cin >> a;
+    Publisher p("127.0.0.1");
+    p.addObjectToPublish(r);
     while(1){}
     }
      catch(exception& e)
