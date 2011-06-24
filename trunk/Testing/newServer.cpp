@@ -58,7 +58,7 @@ protected:
     }
 public:
     ParticularRegistrablePoolableCyclicCallableSkeleton()
-        : Skeleton("redHat"), RegistrablePoolableCyclicCallableSkeleton("redHat")
+        : Skeleton("redHat"), RegistrablePoolableCyclicCallableSkeleton("redHat") //Diamond problem fix!
     {
         cout << "TID:" << boost::this_thread::get_id() << " ParticularPoolableCyclicCallableSkeleton()" << endl << endl;
         addParameter(new Integer, IN);
