@@ -23,8 +23,8 @@ protected:
     TcpIpActiveSocket* socket;
     SerializableObjectBuilder buildersHierarchy;
     void defaultBuildersHierarchyInit();
-    void sendParameters();
-    void receiveParameters();
+    virtual void sendParameters();
+    virtual void receiveParameters();
     SerializableObject* receiveParameter();
     virtual void protocol() = 0;
     virtual void bind() = 0;

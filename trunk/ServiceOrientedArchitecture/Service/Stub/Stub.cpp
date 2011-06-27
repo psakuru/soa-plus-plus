@@ -17,7 +17,7 @@ Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
     cout << "ServiceID settato su: " << serviceID << endl;
     serviceRegistryAddress = serviceRegistryAddressToSet;
     //cout << "  Settato il serviceRegistry" << endl;
-    bind();
+    this->bind();
     //cout << "  END: Stub.Stub(string serviceIDToSet, string serviceRegistryAddressToSet)" << endl;
 }
 
@@ -39,7 +39,7 @@ void Stub::setServiceRegistryAddress(string serviceRegistryAddressToSet)
 void Stub::rebind()
 {
     //cout << "REBind dello stub!" << endl;
-    bind();
+    this->bind();
 }
 
 void Stub::bind()

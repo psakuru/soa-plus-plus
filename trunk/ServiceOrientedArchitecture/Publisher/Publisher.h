@@ -9,6 +9,8 @@ using namespace std;
 
 class Publisher : public CallableService<Stub>
 {
+    protected;
+        void bind();
     public:
         Publisher(string RegistryAddress);
         virtual ~Publisher();
