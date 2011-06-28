@@ -3,10 +3,23 @@
 
 Publisher::Publisher(string RegistryAddress) : Stub("Publisher", RegistryAddress), CallableService<Stub>("Publisher", RegistryAddress)
 {
+    publishingMode = publish;
     addParameter(new String(new string("publish"), false), OUT);
 }
 
 Publisher::~Publisher() {}
+
+string publishingModeToString(PublishingMode publishingModeToConvert)
+{
+    return (publishingModeToConvert == publish)? "publish" : "censor";
+}
+
+void Publisher::setPublishingMode(PublishingMode publishingModeToSet)
+{
+    publishingMode = publishingModeToSet;
+    outputList.clear();
+    addParameter(new String(new string(publishingModeToString(publishingModeToSet)), false), OUT);
+}
 
 void Publisher::bind()
 {
@@ -26,5 +39,5 @@ void Publisher::operator()()
     //TODO addParameter(new GenericSignal, OUTIN);
     protocol();
     outputList.clear();
-    addParameter(new String(new string("publish"), false), OUT);
+    addParameter(new String(new string(publishingModeToString(publishingModeToSet)), false), OUT);
 }
