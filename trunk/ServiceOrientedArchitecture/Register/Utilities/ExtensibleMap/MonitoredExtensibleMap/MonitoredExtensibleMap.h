@@ -46,6 +46,7 @@ public:
         typename map<Key, pair<SchedulingInformation, list<Element> > >::iterator i = this->dataStructure.begin();
         for(; i != this->dataStructure.end(); i++)
         {
+            cout << "[" << (*i).first << "]::";
             typename list<Element>::iterator j = (((*i).second).second).begin();
             for(; j != (((*i).second).second).end(); j++)
             {

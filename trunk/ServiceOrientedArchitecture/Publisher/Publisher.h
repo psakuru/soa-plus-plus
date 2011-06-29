@@ -11,7 +11,7 @@ enum PublishingMode {publish, censor};
 
 class Publisher : public CallableService<Stub>
 {
-    protected;
+    protected:
         PublishingMode publishingMode;
         void bind();
         string publishingModeToString(PublishingMode publishingModeToConvert);

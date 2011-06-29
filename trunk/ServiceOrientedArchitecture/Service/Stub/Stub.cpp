@@ -17,6 +17,7 @@ Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
     cout << "ServiceID settato su: " << serviceID << endl;
     serviceRegistryAddress = serviceRegistryAddressToSet;
     //cout << "  Settato il serviceRegistry" << endl;
+    cout << "Tento la bind()" << endl;
     this->bind();
     //cout << "  END: Stub.Stub(string serviceIDToSet, string serviceRegistryAddressToSet)" << endl;
 }
@@ -50,6 +51,7 @@ void Stub::bind()
 
 void Stub::staticallyBind(string serviceProviderAddressToSet)
 {
+    cout << "staticallyBind(" << serviceProviderAddressToSet << ")" << endl;
     serviceProviderAddress = serviceProviderAddressToSet;
     //TODO metodino (?) per il parsing degli indirizzi
     string ipAddress = serviceProviderAddress.substr(0, serviceProviderAddress.find_first_of(':'));
@@ -68,6 +70,15 @@ void Stub::protocol()
         }*/
     int outputParametersSize = (int)outputParameters.size();
     outputParameters.splice(outputParameters.end(), inputParameters);
+
+
+    /*SerializableObjectList::iterator k = outputParameters.begin();
+    for(; k != outputParameters.end(); k++)
+    {
+        cout << "Modification:" << *((string*)((*k)->getValue())) << endl;
+    }*/
+
+
     sendParameters();
     SerializableObjectList::iterator i = outputParameters.begin();
     advance(i, outputParametersSize);
