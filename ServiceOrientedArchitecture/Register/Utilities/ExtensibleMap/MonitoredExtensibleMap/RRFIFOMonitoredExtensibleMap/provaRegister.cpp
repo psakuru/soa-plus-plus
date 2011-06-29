@@ -30,5 +30,7 @@ int main()
 	cout << m["Primo"] << endl;
 	cout << m["Primo"] << endl;
 	cout << m["Primo"] << endl;	
+	m.clearElementList("Terzo");
+	m.print();
 	return 0;
 }

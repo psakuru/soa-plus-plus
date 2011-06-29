@@ -62,7 +62,7 @@ int main()
     ByteArray fileBytes((void*)memblock, size);
     ParticularServiceStreamStub p;
     BadRequestSignal b;
-    p.staticallyBind("127.0.0.1:4000");
+    p.staticallyBind("127.0.0.1:3000");
     p(43,2.4,"ciao",fileBytes, b);
     delete[] memblock;
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);

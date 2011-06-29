@@ -26,6 +26,7 @@ class RRFIFOMonitoredExtensibleMap
     }
     void insertElementImplementation(Key searchingKey, Element elementToInsert)
     {
+        if(this->dataStructure[searchingKey].second.empty()) this->dataStructure[searchingKey].first = 0;
         this->dataStructure[searchingKey].second.push_back(elementToInsert);
     }
     void clearElementImplementation(Key selectingKey, Element elementToClear)
@@ -42,6 +43,8 @@ class RRFIFOMonitoredExtensibleMap
         if(i != this->dataStructure[selectingKey].second.end())
         {
             this->dataStructure[selectingKey].second.erase(i);
+            (this->dataStructure[selectingKey].first == ((int)(this->dataStructure[selectingKey].second.size())+1))?
+            this->dataStructure[selectingKey].first-- : this->dataStructure[selectingKey].first;
         }
         else return;
     }
