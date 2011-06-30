@@ -16,10 +16,6 @@ Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
     //cout << "  Passati i parametri ricevuti al costruttore di Service" << endl;
     cout << "ServiceID settato su: " << serviceID << endl;
     serviceRegistryAddress = serviceRegistryAddressToSet;
-    //cout << "  Settato il serviceRegistry" << endl;
-    cout << "Tento la bind()" << endl;
-    this->bind();
-    //cout << "  END: Stub.Stub(string serviceIDToSet, string serviceRegistryAddressToSet)" << endl;
 }
 
 Stub::~Stub()
@@ -45,8 +41,44 @@ void Stub::rebind()
 
 void Stub::bind()
 {
-    //cout << "  BEGIN: Stub.bind()" << endl;
-    //cout << "  BEGIN: Stub.bind()" << endl;
+    cout << "eseguita la giusta bind" << endl;
+    SerializableObjectList outputParametersBackup(outputParameters);
+    SerializableObjectList inputParametersBackup(inputParameters);
+    // Non è una deep copy, vengono copiati i puntatori!
+    int iterationsToEmptyList = (int)outputParameters.size();
+    for(int i = 0; i < iterationsToEmptyList; i++)
+    {
+        outputParameters.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
+    }
+    iterationsToEmptyList = (int)inputParameters.size();
+    for(int i = 0; i < iterationsToEmptyList; i++)
+    {
+        inputParameters.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
+    }
+    //Liste vuote: vanno riempite con la richiesta di bind al registro
+    outputParameters.push_back(new String(new string("search"), false));
+    outputParameters.push_back(new String(new string(serviceID),false));
+    inputParameters.push_back(new String); //Per ricevere il service provider!
+    staticallyBind(serviceRegistryAddress);
+    protocol();
+    delete socket;
+    staticallyBind(*((string*)((inputParameters.front())->getValue())));
+    inputParameters.clear();
+    outputParameters.clear();
+    inputParameters = inputParametersBackup; //copia dei puntatori
+    outputParameters = outputParametersBackup; //copia dei puntatori
+    cout << "dopo il protocollo di bind, ripristino le liste: inputParameters.size(): " << (int)inputParameters.size() << endl;
+    cout << "dopo il protocollo di bind, ripristino le liste: outputParameters.size(): " << (int)outputParameters.size() << endl;
+    iterationsToEmptyList = (int)inputParametersBackup.size();
+    for(int i = 0; i < iterationsToEmptyList; i++)
+    {
+        inputParametersBackup.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
+    }
+    iterationsToEmptyList = (int)outputParametersBackup.size();
+    for(int i = 0; i < iterationsToEmptyList; i++)
+    {
+        outputParametersBackup.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
+    }
 }
 
 void Stub::staticallyBind(string serviceProviderAddressToSet)

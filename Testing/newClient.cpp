@@ -10,7 +10,7 @@ class ParticularServiceStreamStub : public StreamStub
 {
 public:
     ParticularServiceStreamStub()
-        : StreamStub("redHat", "127.0.0.1:3000")
+        : StreamStub("redHat", "127.0.0.1:4000")
         {
             //cout << "BEGIN: ParticularServiceStreamStub()" << endl;
             //cout << "Passati i parametri di default al costruttore di StreamStub" << endl;
@@ -30,6 +30,7 @@ public:
         //cout << "Inserisco un BadRequestSignal nella lista di output" << endl;
         (*this) >> b;
         //cout << "Invoco il protocollo" << endl;
+        bind();
         protocol();
         //cout << "END: ParticularServiceStreamStub.operator()" << endl;
     }
@@ -61,8 +62,8 @@ int main()
     //cout << "File caricato in memoria all' indirizzo " << hex << (void*)memblock << dec << endl;
     ByteArray fileBytes((void*)memblock, size);
     ParticularServiceStreamStub p;
+    //p.staticallyBind("127.0.0.1:3000");
     BadRequestSignal b;
-    p.staticallyBind("127.0.0.1:3000");
     p(43,2.4,"ciao",fileBytes, b);
     delete[] memblock;
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);

@@ -30,7 +30,7 @@ Service::Service(string serviceIDToSet) : serviceID(serviceIDToSet)
     //cout << tab() << "Inizializzo la buildersHierarchy" << endl;
     serviceID.append("()");
     cout << "ServiceID corrente: " << serviceID << endl;
-    cout << "Vingilioth:::: vengo richiamato io, maremma cane! serviceID: " << serviceID << " this:" << hex << (void*)this << endl;
+    cout << "Vingilioth:::: vengo richiamato io, maremma cane! serviceID: " << serviceID << " this:" << hex << (void*)this << dec << endl;
     defaultBuildersHierarchyInit();
     //cout << tab() << "Setto il socket a null: chi mi eredita lo setterà a dovere" << endl;
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti

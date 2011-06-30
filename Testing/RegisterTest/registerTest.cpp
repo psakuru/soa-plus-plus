@@ -5,7 +5,7 @@
 
 int main()
 {
-RegistrableObject* r = 
+RegistrableObject* r =
 new RegistrableSkeletonThreadPool
 <
 	RegistrablePoolableCallableSkeletonWrapper
@@ -15,7 +15,7 @@ new RegistrableSkeletonThreadPool
 			RRFIFOMonitoredExtensibleMap
 		>
 	>,
-	3
+	1
 >
 ("127.0.0.1", 4000, SOMAXCONN);
 while(1){}
