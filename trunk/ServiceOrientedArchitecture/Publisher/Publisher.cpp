@@ -5,7 +5,7 @@ Publisher::Publisher(string RegistryAddress) : Stub("Publisher", RegistryAddress
 {
     publishingMode = publish;
     addParameter(new String(new string("publish"), false), OUT);
-    bind();
+    this->bind();
 }
 
 Publisher::~Publisher() {}

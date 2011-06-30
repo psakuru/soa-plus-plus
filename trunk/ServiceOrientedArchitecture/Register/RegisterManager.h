@@ -18,6 +18,7 @@ protected:
         inputParameters.pop_front();
         if(requestedOperation.compare("publish") == 0) editMap("publish");
         if(requestedOperation.compare("censor") == 0) editMap("censor");
+        if(requestedOperation.compare("search") == 0) searchInMap();
         //TODO droppare la richiesta o rispondere in qualche modo?
     }
     virtual void editMap(string command)
@@ -41,6 +42,17 @@ protected:
             sharedRegister->print();
             i++;
         }
+        inputParameters.clear();
+    }
+    virtual void searchInMap()
+    {
+        cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
+        RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance(); //deve essere singleton!
+        SerializableObjectList::iterator i = inputParameters.begin();
+        string key = *((string*)(*i)->getValue());
+        cout << "chiave di ricerca:: " << key << endl;
+        cout << "risultato della ricerca::" << ((*sharedRegister)[key]) << endl;
+        outputParameters.push_back(new String( new string((*sharedRegister)[key]), false ));
         inputParameters.clear();
     }
 public:
