@@ -23,7 +23,6 @@ TcpIpActiveSocket::TcpIpActiveSocket(string serverIPorURL, int port)
     {
         throw UnknownHostException();
     }
-    //TODO: eccezioni
     bzero((char *) &serverAddress, sizeof(serverAddress));
     serverAddress.sin_family = AF_INET;
     bcopy((char *)server->h_addr, (char *)&serverAddress.sin_addr.s_addr, server->h_length);
@@ -33,7 +32,6 @@ TcpIpActiveSocket::TcpIpActiveSocket(string serverIPorURL, int port)
     {
         throw SocketException();
     }
-    //TODO: eccezioni
 }
 
 TcpIpActiveSocket::TcpIpActiveSocket(int listeningSocketDescriptor) : TcpIpSocket(0)
@@ -44,16 +42,14 @@ TcpIpActiveSocket::TcpIpActiveSocket(int listeningSocketDescriptor) : TcpIpSocke
     {
         throw SocketException();
     }
-    //TODO: eccezioni
 }
 
 TcpIpActiveSocket::~TcpIpActiveSocket()
 {
-    //cout << "Socket attivo chiuso" << endl;
     int error = close(socketDescriptor);
     if(error < 0)
     {
-        throw SocketException();
+        //throw SocketException();//NO! Per il problema dello stack-unwinding!
     }
 }
 
@@ -71,15 +67,10 @@ void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
     uint64_t readBytes = recv(socketDescriptor, bufferToReturn, length, MSG_WAITALL);
-    /*while(readBytes < length) //TODO bisogna trovare il modo di lanciare la timeout exception, ad esempio consentendo
-    un num max di cicli
-    {
-        readBytes += read(socketDescriptor, (void*)(((uint8_t*)bufferToReturn)+readBytes), length - readBytes);*/
         if(readBytes < length)
         {
             throw SocketException();
         }
-    //}
     cout << "SOCKET<< " << dec << readBytes << " bytes received" << endl;
     return bufferToReturn;
 }

@@ -60,10 +60,7 @@ void ByteArray::operator=(const ByteArray& byteArrayToCopy)
 
 void ByteArray::erase()
 {
-        //cout << "ByteArray::erase()" <<  endl;
         free(byteArray);
-        //cout << "\t free eseguita" <<  endl;
-        strerror(errno);
         byteArray = NULL;
     length = 0;
 }
@@ -80,9 +77,8 @@ void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fr
         {
         //cout << "MEMORY LEAK!!!!" << endl;
         }
-    memcpy(byteArray, &bufferToUse[startingPosition], fragmentLength);
+    memcpy(byteArray, &bufferToUse[startingPosition], fragmentLength); //TODO sbagliato! è byteArray+length!
     length = length + fragmentLength;
-    //cout << "La lunghezza del buffer dopo la append è: " << length << endl;
 }
 
 uint64_t ByteArray::getLength()

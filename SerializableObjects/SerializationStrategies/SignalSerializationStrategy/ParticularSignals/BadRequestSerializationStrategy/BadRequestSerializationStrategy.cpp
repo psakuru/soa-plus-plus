@@ -12,7 +12,6 @@ BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSigna
 void BadRequestSerializationStrategy::signalHandler()
 {
     cout << "Sono il signalHandler: prostratevi a me, e veneratemi come un dio." << endl;
-    //Esempio di handling: lanciare un' eccezione!
 }
 
 Type BadRequestSerializationStrategy::getSignalType() const
