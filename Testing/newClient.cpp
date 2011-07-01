@@ -38,13 +38,6 @@ public:
 
 int main()
 	{
-     // deve essere dichiarato qui:
-    //tanto in fase di creazione non partono eccezioni, se parte l' eccezione della
-    //connect dentro al costruttore del socket, il costruttore viene interrotto->
-    //il socket non esiste->perstack-unwinding viene richiamato il ~ ->fa la delete su una
-    //cosa a caso. Se invece faccio così, innanzitutto il socket è messo a null,
-    //se poi dovesse esserci un casino nella connect, quando viene lanciata
-    // l' eccezione alla fine fa la delete su NULL, che va bene
 	try{
 	char * memblock;
 //    ifstream::pos_type size;
