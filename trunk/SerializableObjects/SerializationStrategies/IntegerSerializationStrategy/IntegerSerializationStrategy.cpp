@@ -24,7 +24,7 @@ int IntegerSerializationStrategy::getValueLengthLength()
 uint64_t IntegerSerializationStrategy::serialize(void** destinationBuffer)
 {
     int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(int32_t); // | Type | valueLength | value |
-    *destinationBuffer = malloc(bufferSize);
+    *destinationBuffer = malloc(bufferSize); //TODO malloc exception?
     *((Type*)(*destinationBuffer)) = getType();
     *((uint8_t*)(((Type*)(*destinationBuffer))+1)) = sizeof(int32_t);
     *((int32_t*)(((uint8_t*)(((Type*)(*destinationBuffer))+1))+1)) = wrappedReference;

@@ -1,5 +1,5 @@
 #include "SerializableObjectBuilder.h"
-#include <stdexcept>
+#include "Exceptions/UnknownType.h"
 #include <iostream>
 using namespace std;
 
@@ -20,32 +20,28 @@ SerializableObjectBuilder* SerializableObjectBuilder::operator[](Type builtType)
     }
     else
     {
-        runtime_error unknownType("Cannot build this type.");
-        throw unknownType;
+        throw UnknownType();
         return NULL;
     }
 }
 
 void SerializableObjectBuilder::addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd)
 {
-    //cout << "    BEGIN: SerializableObjectBuilder.addSerializableObjectBuilder(Type, SerializableObjectBuilder)" << endl;
     subSerializableObjectBuilders[builtType] = builderToAdd;
-    //cout << "    END: SerializableObjectBuilder.addSerializableObjectBuilder(Type, SerializableObjectBuilder)" << endl;
 }
 
 void SerializableObjectBuilder::removeSerializableObjectBuilder(Type builtType)
 {
+    delete subSerializableObjectBuilders[builtType];
     subSerializableObjectBuilders.erase(builtType);
 }
 
 int SerializableObjectBuilder::getValueLengthLength(Type receivedType)
 {
-    //cout << "SerializableObjectBuilder: getValueLengthLength" << endl;
     return subSerializableObjectBuilders[receivedType]->getValueLengthLength(receivedType);
 }
 
 SerializableObject* SerializableObjectBuilder::delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
 {
-    //cout << "Verrà delegata la costruzione dell' oggetto con Type: " << typeToBuild << " valueLength: " << valueLength << endl;
     return subSerializableObjectBuilders[typeToBuild]->delegateBuilding(typeToBuild, valueLength, value);
 }

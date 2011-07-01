@@ -5,6 +5,7 @@
 #include "../../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
 #include "../../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
+#include "../../../TcpIpSocket/Exceptions/SocketException.h"
 #include "Stub.h"
 
 Stub::Stub() {}
@@ -90,7 +91,16 @@ void Stub::staticallyBind(string serviceProviderAddressToSet)
     string portString = serviceProviderAddress.substr(serviceProviderAddress.find_first_of(':')+1);
     int port = atoi(portString.c_str());
     //TODO check: e se il socket era stato inizializzato?
-    socket = new TcpIpActiveSocket(ipAddress, port);
+    try
+    {
+        socket = new TcpIpActiveSocket(ipAddress, port);
+    }
+    catch(const SocketException& socketException) //Eccezione in un costruttore:
+    {
+        socket = NULL;// mi accerto di poter fare la delete del socket nel processo di stack-unwinding
+        //(non ho memory leaks non avendo allocazione dinamica)
+        throw socketException;
+    }
 }
 
 void Stub::protocol()
@@ -123,8 +133,8 @@ void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterD
 {
     if(parameterDirection == IN || parameterDirection == INOUT)
     {
-        runtime_error invalidParameterDirection("Invalid parameter direction.");
-        throw invalidParameterDirection;
+        //runtime_error invalidParameterDirection("Invalid parameter direction.");
+        //throw invalidParameterDirection;
     }
     switch(parameterDirection)
     {

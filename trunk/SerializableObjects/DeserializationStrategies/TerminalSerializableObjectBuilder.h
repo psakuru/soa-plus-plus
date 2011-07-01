@@ -13,17 +13,12 @@ class TerminalSerializableObjectBuilder : public SerializableObjectBuilder
 public:
     int getValueLengthLength(Type receivedType)
     {
-        //cout << "TerminalSerializableObjectBuilder: getValueLengthLength(Type)" << endl;
-        //cout << "Istanziazione: T = " << (typeid(T)).name() << endl;
         T dummyT;
-        return dummyT.getValueLengthLength();
+        return dummyT.getValueLengthLength(); //Se T non implementa l' interfaccia Serializable, questo fallisce a compile-time
     }
     SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
     {
-        //TODO controllare che T sia derivato da SerializableObject
-        //cout << "TerminalSerializableObjectBuilder: delegateBuilding(Type)" << endl;
-        //cout << "Istanziazione: T = " << (typeid(T)).name() << endl;
-        SerializableObject* serializableObjectToReturn = new T();
+        SerializableObject* serializableObjectToReturn = new T(); //NB: se T non deriva da SerializableObject, c' è un errore a compile-time
         serializableObjectToReturn->deserialize(valueLength, value);
         free(value);
         cout << "SerializableObjectProdotto: " << (typeid(T)).name() << endl;

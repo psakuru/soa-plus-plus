@@ -3,15 +3,9 @@
 #include <stdlib.h>
 #include <cstddef>
 
-SignalBuilder::SignalBuilder()
-{
-    //ctor
-}
+SignalBuilder::SignalBuilder() {}
 
-SignalBuilder::~SignalBuilder()
-{
-    //dtor
-}
+SignalBuilder::~SignalBuilder() {}
 
 int SignalBuilder::getValueLengthLength(Type receivedType)
 {
@@ -21,6 +15,6 @@ int SignalBuilder::getValueLengthLength(Type receivedType)
 SerializableObject* SignalBuilder::delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
 {
     Type signalType = *((Type*)value);
-    free(value);
+    free(value); //value deve essere stato allocato con la malloc/realloc
     return subSerializableObjectBuilders[signalType]->delegateBuilding(signalType, 0, NULL);
 }

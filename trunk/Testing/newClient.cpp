@@ -38,6 +38,13 @@ public:
 
 int main()
 	{
+     // deve essere dichiarato qui:
+    //tanto in fase di creazione non partono eccezioni, se parte l' eccezione della
+    //connect dentro al costruttore del socket, il costruttore viene interrotto->
+    //il socket non esiste->perstack-unwinding viene richiamato il ~ ->fa la delete su una
+    //cosa a caso. Se invece faccio così, innanzitutto il socket è messo a null,
+    //se poi dovesse esserci un casino nella connect, quando viene lanciata
+    // l' eccezione alla fine fa la delete su NULL, che va bene
 	try{
 	char * memblock;
 //    ifstream::pos_type size;
@@ -61,23 +68,23 @@ int main()
     else cout << "Unable to open file";
     //cout << "File caricato in memoria all' indirizzo " << hex << (void*)memblock << dec << endl;
     ByteArray fileBytes((void*)memblock, size);
-    ParticularServiceStreamStub p;
     //p.staticallyBind("127.0.0.1:3000");
     BadRequestSignal b;
+    ParticularServiceStreamStub p;
     p(43,2.4,"ciao",fileBytes, b);
     delete[] memblock;
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);
     outfile.write((char*)fileBytes.getPointer(),fileBytes.getLength());
     outfile.close();
     }
-    catch(exception& e)
+    catch(const exception& e)
     	{
     	cout << e.what() << endl;
     	}
     catch(...)
-    	{
-    	//cout << "Eccezione ignota" << endl;
-    	}
+    {
+        cout << "ARRIVA QUALCOSA" << endl;
+    }
     return 0;
     }
 

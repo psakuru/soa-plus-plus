@@ -4,13 +4,13 @@
 #include <iostream>
 using namespace std;
 
-RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy(){}
+RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy() {}
 
 RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy(ByteArray& userReferenceToSet)
-: GenericSerializableReferenceLayer<ByteArray>(userReferenceToSet){}
+    : GenericSerializableReferenceLayer<ByteArray>(userReferenceToSet) {}
 
 RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy(ByteArray* userReferenceToSet, bool shared)
-: GenericSerializableReferenceLayer<ByteArray>(userReferenceToSet, shared){}
+    : GenericSerializableReferenceLayer<ByteArray>(userReferenceToSet, shared) {}
 
 Type RawByteBufferSerializationStrategy::getType() const
 {
@@ -27,21 +27,11 @@ uint64_t RawByteBufferSerializationStrategy::serialize(void** destinationBuffer)
     uint64_t bufferSize = sizeof(Type) + sizeof(uint64_t) + wrappedReference.getLength();
     *destinationBuffer = malloc(bufferSize);
     *((Type*)(*destinationBuffer)) = getType();
-    *(
-        (uint64_t*)
-        (
-            (
-                (Type*)
-                (
-                    *destinationBuffer
-                )
-            )+1
-        )
-    ) = wrappedReference.getLength();
+    *((uint64_t*)(((Type*)(*destinationBuffer))+1)) = wrappedReference.getLength();
     //cout << "Serializzazione di RawByteBuffer: ho scritto " << wrappedReference.getLength() << " nel campo length" << endl;
     for(unsigned int i = 0; i < wrappedReference.getLength(); i++)
     {
-        *(((byte*)(*destinationBuffer))+sizeof(Type) + sizeof(uint64_t)+i) = wrappedReference[i];
+        *(((byte*)(*destinationBuffer)) + sizeof(Type) + sizeof(uint64_t) + i) = wrappedReference[i];
     }
     return bufferSize;
 }
