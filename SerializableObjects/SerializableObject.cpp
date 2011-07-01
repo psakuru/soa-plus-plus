@@ -1,5 +1,5 @@
 #include "SerializableObject.h"
 
-SerializableObject::~SerializableObject()
+SerializableObject::~SerializableObject() //Un distruttore virtuale puro abbisogna di una implementazione, in ogni caso
 {
 }
