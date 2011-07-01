@@ -1,7 +1,5 @@
 #include "TcpIpSocket.h"
-#include <string.h>
-#include <errno.h>
-#include <stdexcept>
+#include "Exceptions/SocketException.h"
 using namespace std;
 
 TcpIpSocket::TcpIpSocket()
@@ -9,8 +7,7 @@ TcpIpSocket::TcpIpSocket()
     socketDescriptor = socket(AF_INET, SOCK_STREAM, 0);
     if(socketDescriptor < 0)
     {
-        runtime_error socketException(strerror(errno));
-        throw socketException;
+        throw SocketException();
     }
     //TODO gestione eccezioni
 }

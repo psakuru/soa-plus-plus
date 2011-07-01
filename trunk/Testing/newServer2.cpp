@@ -2,7 +2,7 @@
 #include <fstream>
 #include <list>
 #include <exception>
-#include "../TcpIpSocket/TcpIpPassiveSocket.h"
+#include "../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 #include "../SerializableObjects/SerializableObject.h"
 #include "../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
 #include "../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"

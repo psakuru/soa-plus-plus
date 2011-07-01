@@ -4,7 +4,7 @@
 #include "../Skeleton.h"
 #include "../RegistrableSkeleton/RegistrableSkeleton.h"
 #include "../../CallableService/CallableService.h"
-#include "../../../../TcpIpSocket/TcpIpPassiveSocket.h"
+#include "../../../../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 #include <boost/thread/mutex.hpp>
 
 class RegistrablePoolableCyclicCallableSkeleton : public RegistrableSkeleton, public CallableService<Skeleton>

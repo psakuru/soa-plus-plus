@@ -4,7 +4,7 @@
 #include "../Utilities/PointerList/PointerList.h"
 #include "../../SerializableObjects/SerializableObject.h"
 #include "../../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
-#include "../../TcpIpSocket/TcpIpActiveSocket.h"
+#include "../../TcpIpSocket/TcpIpActiveSocket/TcpIpActiveSocket.h"
 #include <string>
 using namespace std;
 

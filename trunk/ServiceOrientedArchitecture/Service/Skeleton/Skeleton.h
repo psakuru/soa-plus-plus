@@ -2,7 +2,7 @@
 #define SKELETON_H
 
 #include "../Service.h"
-#include "../../../TcpIpSocket/TcpIpPassiveSocket.h"
+#include "../../../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 
 class Skeleton : public Service
 {
