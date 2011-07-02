@@ -5,7 +5,10 @@
 #include "../../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
 #include "../../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
+#include "../../../Utilities/RegularExpressionChecker/RegularExpressionChecker.h"
+#include "../../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../../../TcpIpSocket/Exceptions/SocketException.h"
+#include "../Exceptions/InvalidAddressException.h"
 #include "Stub.h"
 
 Stub::Stub() {}
@@ -20,9 +23,9 @@ Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
 }
 
 Stub::~Stub()
-    {
+{
 
-    }
+}
 
 string Stub::getServiceRegistryAddress()
 {
@@ -57,7 +60,7 @@ void Stub::bind()
         inputParameters.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
     }
     //Liste vuote: vanno riempite con la richiesta di bind al registro
-    outputParameters.push_back(new String(new string("search"), false));
+    outputParameters.push_back(new String(new string("search"), false)); //TODO ripristinare search!
     outputParameters.push_back(new String(new string(serviceID),false));
     inputParameters.push_back(new String); //Per ricevere il service provider!
     staticallyBind(serviceRegistryAddress);
@@ -85,15 +88,26 @@ void Stub::bind()
 void Stub::staticallyBind(string serviceProviderAddressToSet)
 {
     cout << "staticallyBind(" << serviceProviderAddressToSet << ")" << endl;
-    serviceProviderAddress = serviceProviderAddressToSet;
-    //TODO metodino (?) per il parsing degli indirizzi
-    string ipAddress = serviceProviderAddress.substr(0, serviceProviderAddress.find_first_of(':'));
-    string portString = serviceProviderAddress.substr(serviceProviderAddress.find_first_of(':')+1);
-    int port = atoi(portString.c_str());
-    //TODO check: e se il socket era stato inizializzato?
     try
     {
+        RegularExpressionChecker* regexChecker = SingletonObject<RegularExpressionChecker>::getInstance();
+        regexChecker->setRegularExpression("\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b\\:(4915[0-1]|491[0-4]\\d|490\\d\\d|4[0-8]\\d{3}|[1-3]\\d{4}|[2-9]\\d{3}|1[1-9]\\d{2}|10[3-9]\\d|102[4-9])");
+        if(!regexChecker->checkForMatch(serviceProviderAddressToSet))
+        {
+            throw InvalidAddressException();
+        }
+        serviceProviderAddress = serviceProviderAddressToSet;
+        string ipAddress = serviceProviderAddress.substr(0, serviceProviderAddress.find_first_of(':'));
+        string portString = serviceProviderAddress.substr(serviceProviderAddress.find_first_of(':')+1);
+        int port = atoi(portString.c_str());
+        //TODO check: e se il socket era stato inizializzato?
         socket = new TcpIpActiveSocket(ipAddress, port);
+    }
+    catch(const InvalidAddressException& invalidAddressException) //Eccezione in un costruttore:
+    {
+        socket = NULL;// mi accerto di poter fare la delete del socket nel processo di stack-unwinding
+        //(non ho memory leaks non avendo allocazione dinamica)
+        throw invalidAddressException;
     }
     catch(const SocketException& socketException) //Eccezione in un costruttore:
     {
@@ -138,17 +152,17 @@ void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterD
     }
     switch(parameterDirection)
     {
-        case OUT:
-        {
+    case OUT:
+    {
         outputParameters.push_back(parameterToAdd);
-        }
-        break;
-        case OUTIN:
-        {
+    }
+    break;
+    case OUTIN:
+    {
         inputParameters.push_back(parameterToAdd);
-        }
-        break;
-        default:
+    }
+    break;
+    default:
         break; //TODO eccezione?
     }
     parameterDirection = (parameterDirection == OUT)? IN : (parameterDirection == OUTIN)? INOUT : IN;
