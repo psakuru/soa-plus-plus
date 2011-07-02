@@ -48,10 +48,10 @@ protected:
             file.seekg (0, ios::beg);
             file.read (memblock, size);
             file.close();
-            //cout << "the complete file content is in memory, filesize: " << size << endl;
+
         }
         else cout << "Unable to open file";
-        ByteArray* fileBytes = new ByteArray((void*)memblock, size); //TODO Questo è un Memory Leak!
+        ByteArray* fileBytes = new ByteArray((void*)memblock, size);
         free(memblock);
         RawByteBuffer* objectToSend = new RawByteBuffer(fileBytes, false);
         BadRequest* badRequest = new BadRequest();

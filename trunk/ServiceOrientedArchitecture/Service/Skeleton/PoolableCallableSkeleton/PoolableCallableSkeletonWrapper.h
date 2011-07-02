@@ -10,8 +10,8 @@ class PoolableCallableSkeletonWrapper
     public:
         void operator()(boost::mutex* sharedMutex, TcpIpPassiveSocket* sharedListeningSocket)
             {
-                //cout << ">> sharedMutex: " << hex << (void*)sharedMutex << dec << endl;
-                //cout << ">> sharedListeningSocket " << hex << (void*)sharedListeningSocket << dec << endl;
+
+
                 cout << "TID:" << boost::this_thread::get_id() << " PoolableCallableSkeletonWrapper<" << (typeid(T)).name() << ">(sharedMutex: " << (void*)sharedMutex << ", sharedListeningSocket: " << (void*)sharedListeningSocket << ")" << endl;
                 T poolableCallableSkeleton; //Precondizione: il costruttore di default di T deve soddisfare tutti gli antenati
                 poolableCallableSkeleton.shareMutex(sharedMutex); //Può fallire solo a tempo di compilazione!

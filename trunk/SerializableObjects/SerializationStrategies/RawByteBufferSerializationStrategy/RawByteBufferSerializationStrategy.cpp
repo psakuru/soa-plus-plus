@@ -28,7 +28,7 @@ uint64_t RawByteBufferSerializationStrategy::serialize(void** destinationBuffer)
     *destinationBuffer = malloc(bufferSize);
     *((Type*)(*destinationBuffer)) = getType();
     *((uint64_t*)(((Type*)(*destinationBuffer))+1)) = wrappedReference.getLength();
-    //cout << "Serializzazione di RawByteBuffer: ho scritto " << wrappedReference.getLength() << " nel campo length" << endl;
+
     for(unsigned int i = 0; i < wrappedReference.getLength(); i++)
     {
         *(((byte*)(*destinationBuffer)) + sizeof(Type) + sizeof(uint64_t) + i) = wrappedReference[i];

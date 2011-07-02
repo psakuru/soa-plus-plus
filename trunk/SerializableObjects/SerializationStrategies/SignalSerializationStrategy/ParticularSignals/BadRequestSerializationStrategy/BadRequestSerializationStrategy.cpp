@@ -6,7 +6,7 @@ BadRequestSerializationStrategy::BadRequestSerializationStrategy(){}
 
 BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference)
 {
-    //cout << "Costruttore di BadRequestSerializationStrategy" << endl;
+
 }
 
 void BadRequestSerializationStrategy::signalHandler()

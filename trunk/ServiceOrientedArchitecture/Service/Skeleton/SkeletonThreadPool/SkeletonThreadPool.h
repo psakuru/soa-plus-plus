@@ -34,7 +34,8 @@ public:
     {
         //TODO come elimino il socket?
         //TODO come evito i memory leak?
-        pool.interrupt_all();
+        ///TODO  sharedListeningSocket.close???
+        pool.interrupt_all(); //TODO non ha effetto!!!! Sono tutti in zona non interrompibile! sia chi fa accept che chi è bloccato!
     }
 };
 
