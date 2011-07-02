@@ -40,7 +40,7 @@ TcpIpActiveSocket* TcpIpPassiveSocket::acceptConnection()
 
 TcpIpPassiveSocket::~TcpIpPassiveSocket()
 {
-    //cout << "Socket passivo chiuso" << endl;
+
     int error = close(socketDescriptor);
     if(error < 0)
     {

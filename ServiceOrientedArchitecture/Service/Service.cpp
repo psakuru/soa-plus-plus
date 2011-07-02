@@ -1,5 +1,4 @@
 #include "Service.h"
-#include "../../contaTab.h"
 #include "../../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
 #include "../../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
 #include "../../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
@@ -12,64 +11,65 @@
 
 Service::Service()
 {
-    tabs++;
-    //cout << tab() << "BEGIN: Service.Service()" << endl;
+
+
     cout << "Cool!" << endl;
     defaultBuildersHierarchyInit();
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti
-    //cout << tab() << "END: Service.Service()" << endl;
-    tabs--;
+
+
 }
 
 Service::Service(string serviceIDToSet) : serviceID(serviceIDToSet)
 {
-    //cout << "TID:" << boost::this_thread::get_id() << " Service("  << serviceIDToSet << ")" << endl << endl;
-    tabs++;
-    //cout << tab() << "BEGIN: Service.Service(string serviceIDToSet)" << endl;
-    //cout << tab() << "Ho ricevuto il serviceID " << serviceIDToSet << ", lo setto" << endl;
-    //cout << tab() << "Inizializzo la buildersHierarchy" << endl;
+
+
+
+
+
     serviceID.append("()");
     cout << "ServiceID corrente: " << serviceID << endl;
     cout << "Vingilioth:::: vengo richiamato io, maremma cane! serviceID: " << serviceID << " this:" << hex << (void*)this << dec << endl;
     defaultBuildersHierarchyInit();
-    //cout << tab() << "Setto il socket a null: chi mi eredita lo setterà a dovere" << endl;
+
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti
-    //cout << tab() << "END: Service.Service(string serviceIDToSet)" << endl;
-    tabs--;
+
+
 }
 
 Service::~Service()
 {
-    tabs++;
-    //cout << tab() << "BEGIN: Service.~Service()" << endl;
+
+
     delete socket;
-    //cout << tab() << "END: Service.~Service()" << endl;
-    tabs--;
+    socket = NULL;
+
+
 }
 
 void Service::defaultBuildersHierarchyInit()
 {
     cout << "TID:" << boost::this_thread::get_id() << " Service::defaultBuildersHierarchyInit()" << endl << endl;
-    tabs++;
-    //cout << tab() << "BEGIN: Service.defaultBuildersHierarchyInit()" << endl;
+
+
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
     buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
-    //cout << tab() << "END: Service.defaultBuildersHierarchyInit()" << endl;
-    tabs--;
+
+
 }
 
 void Service::sendParameters()
 {
-    tabs++;
-    //cout << tab() << "BEGIN: Service.Service(string serviceIDToSet)" << endl;
-    //cout << tab() << "Prendo la dimensione della lista di input" << endl;
+
+
+
     SerializableObjectList::size_type listSize = outputParameters.size();
     socket->sendMessage(&listSize, sizeof(SerializableObjectList::size_type));
-    //cout << "Dimensione lista inviata" << endl;
+
     SerializableObjectList::iterator i = outputParameters.begin();
     void* serializedObject = NULL;
     for(; i != outputParameters.end(); i++)
@@ -79,8 +79,8 @@ void Service::sendParameters()
         free(serializedObject);
         serializedObject = NULL;
     }
-    //cout << tab() << "END: Service.Service(string serviceIDToSet)" << endl;
-    tabs--;
+
+
 }
 
 SerializableObject* Service::receiveParameter()
@@ -126,7 +126,7 @@ SerializableObject* Service::receiveParameter()
     }
     break;
     }
-    //cout << "Campo length: " << valueLength << endl;
+
     void* value = NULL;
     if(valueLength == 0)
         {
@@ -149,9 +149,9 @@ void Service::receiveParameters()
     free(incomingParametersSizePointer);
     if(incomingParametersSize != inputParametersSize)
     {
-        //cout << "Eccezione: dimensione della lista in arrivo non esatta!" << endl;
-        //cout << "\t dovrebbe essere: " << (int)inputParametersSize << endl;
-        //cout  << "\t e invece è: " << (int)incomingParametersSize << endl;
+
+
+
     }
     for(unsigned int i = 0; i < inputParametersSize; i++)
     {

@@ -3,7 +3,7 @@
 
 SignalSerializationStrategy::SignalSerializationStrategy()
 {
-    //cout << "Costruttore di SignalSerializationStrategy" << endl;
+
 }
 
 Type Signal::getType() const

@@ -29,14 +29,14 @@ ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet) //byteArrayToSe
     byteArray = (byte*)malloc(lengthToSet*sizeof(byte));
     memcpy(byteArray, byteArrayToSet, lengthToSet);
     length = lengthToSet;
-    //cout << "Lunghezza del del byteArray: " << length << endl;
+
 }
 
 ByteArray::~ByteArray()
 {
     free(byteArray); //PROVA! E' UN MEMORY LEAK, QUESTA E' UNA PROVA!
     byteArray = NULL;
-    //cout << "Memoria del ByteArray correttamente rilasciata" << endl;
+
 }
 
 byte& ByteArray::operator[](const uint64_t index)
@@ -46,12 +46,12 @@ byte& ByteArray::operator[](const uint64_t index)
 
 void ByteArray::operator=(const ByteArray& byteArrayToCopy)
     {
-    //cout << "Operatore di assegnamento di ByteArray" << endl;
+
     /* ATTENZIONE: IL SEGUENTE BLOCCO ERA IN if(byteArray != NULL) */
         free(byteArray);
         byteArray = NULL;
         length = 0;
-        //cout << "Libero la memoria del ByteArray destinatario della copia" << endl;
+
     /*                                                             */
     byteArray = (byte*)malloc(byteArrayToCopy.length);
     length = byteArrayToCopy.length;
@@ -68,14 +68,14 @@ void ByteArray::erase()
 void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength)
 {
     byte* temporatyPointer = (byte*)realloc(byteArray, length + fragmentLength);
-    //cout << "ByteArray::append()" <<  endl;
+
     if(temporatyPointer != NULL)
         {
         byteArray = temporatyPointer;
         }
     else
         {
-        //cout << "MEMORY LEAK!!!!" << endl;
+
         }
     memcpy(byteArray + length, &bufferToUse[startingPosition], fragmentLength); //TODO Attenzione, aggiunto +length, dovrebbe essere giusto
     length = length + fragmentLength;

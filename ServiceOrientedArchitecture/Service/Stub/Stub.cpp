@@ -9,6 +9,7 @@
 #include "../../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../../../TcpIpSocket/Exceptions/SocketException.h"
 #include "../Exceptions/InvalidAddressException.h"
+#include "../Exceptions/ParameterDirectionException.h"
 #include "Stub.h"
 
 Stub::Stub() {}
@@ -16,15 +17,15 @@ Stub::Stub() {}
 Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
     : Service(serviceIDToSet)
 {
-    //cout << "  BEGIN: Stub.Stub(string serviceIDToSet, string serviceRegistryAddressToSet)" << endl;
-    //cout << "  Passati i parametri ricevuti al costruttore di Service" << endl;
+
+
     cout << "ServiceID settato su: " << serviceID << endl;
     serviceRegistryAddress = serviceRegistryAddressToSet;
 }
 
 Stub::~Stub()
-{
-
+{//Inizializza un singleton, deve distruggerlo!
+    SingletonObject<RegularExpressionChecker>::destroyInstance();
 }
 
 string Stub::getServiceRegistryAddress()
@@ -39,7 +40,7 @@ void Stub::setServiceRegistryAddress(string serviceRegistryAddressToSet)
 
 void Stub::rebind()
 {
-    //cout << "REBind dello stub!" << endl;
+
     this->bind();
 }
 
@@ -60,13 +61,16 @@ void Stub::bind()
         inputParameters.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
     }
     //Liste vuote: vanno riempite con la richiesta di bind al registro
-    outputParameters.push_back(new String(new string("search"), false)); //TODO ripristinare search!
+    outputParameters.push_back(new String(new string("search"), false));
     outputParameters.push_back(new String(new string(serviceID),false));
     inputParameters.push_back(new String); //Per ricevere il service provider!
     staticallyBind(serviceRegistryAddress);
     protocol();
     delete socket;
-    staticallyBind(*((string*)((inputParameters.front())->getValue())));
+    socket = NULL; //Per non saper né leggere né scrivere
+    string* addressPointer = ((string*)((inputParameters.front())->getValue()));
+    staticallyBind(*addressPointer);
+    delete addressPointer;
     inputParameters.clear();
     outputParameters.clear();
     inputParameters = inputParametersBackup; //copia dei puntatori
@@ -90,9 +94,9 @@ void Stub::staticallyBind(string serviceProviderAddressToSet)
     cout << "staticallyBind(" << serviceProviderAddressToSet << ")" << endl;
     try
     {
-        RegularExpressionChecker* regexChecker = SingletonObject<RegularExpressionChecker>::getInstance();
-        regexChecker->setRegularExpression("\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b\\:(4915[0-1]|491[0-4]\\d|490\\d\\d|4[0-8]\\d{3}|[1-3]\\d{4}|[2-9]\\d{3}|1[1-9]\\d{2}|10[3-9]\\d|102[4-9])");
-        if(!regexChecker->checkForMatch(serviceProviderAddressToSet))
+        RegularExpressionChecker* IPAndPortRegexChecker = SingletonObject<RegularExpressionChecker>::getInstance();
+        IPAndPortRegexChecker->setRegularExpression("\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b\\:(4915[0-1]|491[0-4]\\d|490\\d\\d|4[0-8]\\d{3}|[1-3]\\d{4}|[2-9]\\d{3}|1[1-9]\\d{2}|10[3-9]\\d|102[4-9])");
+        if(!IPAndPortRegexChecker->checkForMatch(serviceProviderAddressToSet))
         {
             throw InvalidAddressException();
         }
@@ -147,8 +151,7 @@ void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterD
 {
     if(parameterDirection == IN || parameterDirection == INOUT)
     {
-        //runtime_error invalidParameterDirection("Invalid parameter direction.");
-        //throw invalidParameterDirection;
+        throw ParameterDirectionException();
     }
     switch(parameterDirection)
     {

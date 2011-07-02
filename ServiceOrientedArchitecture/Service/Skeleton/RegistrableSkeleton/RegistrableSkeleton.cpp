@@ -16,7 +16,7 @@ string RegistrableSkeleton::getRegistrationInfo()
     string registrationInfoToReturn = serviceID;
     registrationInfoToReturn.append("@");
     //registrationInfoToReturn.append(listeningSocket->getAddress());
-    //cout << "Verrà registrato: " << registrationInfoToReturn << endl;*/
+
     //return serviceID@IP:port*/
     return registrationInfoToReturn;
 }

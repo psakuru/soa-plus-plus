@@ -79,9 +79,9 @@ void StreamStub::operator>>(ByteArray& value)
 
 void StreamStub::operator>>(BadRequestSignal& value)
 {
-    //cout << "operator<< : wrapping del BadRequestSignal" << endl;
+
     /*SerializableObject* objectToPushIntoList = new BadRequest(value);
     inputParameters.push_back(objectToPushIntoList);*/
-    //cout << "BadRequestSignal wrappato in BadRequestSerializationStrategy e inserito nella lista out" << endl;
+
     addParameter(new BadRequest(value), OUTIN);
 }
