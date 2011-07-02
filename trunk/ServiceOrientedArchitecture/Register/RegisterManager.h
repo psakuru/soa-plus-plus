@@ -67,7 +67,6 @@ public:
         inputParameters.push_back(new String); //per l' operazione
         for(unsigned int i = 0; i < (incomingParametersSize-1); i++)
         {
-            //TODO controllo sul tipo ritornato dal server!
             inputParameters.push_back(new String);
         }
         for(unsigned int i = 0; i < incomingParametersSize; i++)
