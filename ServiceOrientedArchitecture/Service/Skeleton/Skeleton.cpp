@@ -42,10 +42,14 @@ void Skeleton::bind()
 
 void Skeleton::protocol()
 {
-    //TODO try{
-    receiveParameters();
-    //TODO
-    //TODO catch(badParameters) rispondi BadRequest
+    try
+    {
+        receiveParameters();
+    }
+    catch(...) // Il gestibile è già stato gestito
+    {
+        return;
+    }
     this->doService();
     sendParameters();
     outputParameters.clear();

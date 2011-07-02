@@ -152,10 +152,10 @@ SerializableObject* Service::receiveParameter()
 
 void Service::receiveParameters()
 {
-    SerializableObjectList* incomingParameters = new SerializableObjectList;
     SerializableObjectList::size_type inputParametersSize = inputParameters.size();
     SerializableObjectList::size_type* incomingParametersSizePointer =
         ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
+    SerializableObjectList* incomingParameters = new SerializableObjectList;
     SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
     free(incomingParametersSizePointer);
     if(incomingParametersSize != inputParametersSize)

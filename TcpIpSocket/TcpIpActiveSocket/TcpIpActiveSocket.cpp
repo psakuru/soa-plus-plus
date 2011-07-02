@@ -67,10 +67,12 @@ void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
     uint64_t readBytes = recv(socketDescriptor, bufferToReturn, length, MSG_WAITALL);
-        if(readBytes < length)
-        {
-            throw SocketException();
-        }
+    if(readBytes < length) // Include sia le ricezioni incomplete che gli stati erronei ( < 0)
+    {
+        free(bufferToReturn);
+        bufferToReturn = NULL;
+        throw SocketException();
+    }
     cout << "SOCKET<< " << dec << readBytes << " bytes received" << endl;
     return bufferToReturn;
 }

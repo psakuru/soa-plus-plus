@@ -10,7 +10,7 @@ class ParticularServiceStreamStub : public StreamStub
 {
 public:
     ParticularServiceStreamStub()
-        : StreamStub("redHat", "127.0.0.1:4000")
+        : StreamStub("redHat", "127.0.0.1:4000") //TODO rimettere a posto l' indirizzo!
         {
             //cout << "BEGIN: ParticularServiceStreamStub()" << endl;
             //cout << "Passati i parametri di default al costruttore di StreamStub" << endl;

@@ -35,7 +35,7 @@ class RRFIFOMonitoredExtensibleMap
     }
     void clearElementImplementation(Key selectingKey, Element elementToClear)
     {
-        if(this->dataStructure.find(searchingKey) == this->dataStructure.end()) return;
+        if(this->dataStructure.find(selectingKey) == this->dataStructure.end()) return;
         if(this->dataStructure[selectingKey].second.size() == 0) return;
         typename list<Element>::iterator i = this->dataStructure[selectingKey].second.begin();
         while((i != (this->dataStructure[selectingKey].second.end())) && ((*i).compare(elementToClear) != 0))

@@ -19,7 +19,8 @@ protected:
         if(requestedOperation.compare("publish") == 0) editMap("publish");
         if(requestedOperation.compare("censor") == 0) editMap("censor");
         if(requestedOperation.compare("search") == 0) searchInMap();
-        //TODO droppare la richiesta o rispondere in qualche modo?
+        //Se nessuno di questi if si attiva il registro non fa niente, alla fine risponde lista vuota e tutti contenti
+        inputParameters.clear();
     }
     virtual void editMap(string command)
     {
@@ -36,13 +37,12 @@ protected:
             }
             if(command.compare("censor") == 0)
             {
-            sharedRegister->clearElement(key, element);
+                sharedRegister->clearElement(key, element);
             }
-            //TODO drop?
             sharedRegister->print();
             i++;
         }
-        inputParameters.clear();
+        //inputParameters.clear();
     }
     virtual void searchInMap()
     {
@@ -53,17 +53,17 @@ protected:
         cout << "chiave di ricerca:: " << key << endl;
         cout << "risultato della ricerca::" << ((*sharedRegister)[key]) << endl;
         outputParameters.push_back(new String( new string((*sharedRegister)[key]), false ));
-        inputParameters.clear();
+        //inputParameters.clear();
     }
 public:
     RegisterManager() : Skeleton("register"), RegistrablePoolableCyclicCallableSkeleton("register") {}
-    virtual void receiveParameters()
+    virtual void receiveParameters() //throws SocketException, IncompatibleTypes
     {
-        SerializableObjectList* incomingParameters = new SerializableObjectList;
         SerializableObjectList::size_type* incomingParametersSizePointer =
             ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
         SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
         free(incomingParametersSizePointer);
+        SerializableObjectList* incomingParameters = new SerializableObjectList;
         inputParameters.push_back(new String); //per l' operazione
         for(unsigned int i = 0; i < (incomingParametersSize-1); i++)
         {
