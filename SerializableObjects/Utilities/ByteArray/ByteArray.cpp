@@ -77,7 +77,7 @@ void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fr
         {
         //cout << "MEMORY LEAK!!!!" << endl;
         }
-    memcpy(byteArray + length, &bufferToUse[startingPosition], fragmentLength); //TODO Testare byteArray+length!
+    memcpy(byteArray + length, &bufferToUse[startingPosition], fragmentLength); //TODO Attenzione, aggiunto +length, dovrebbe essere giusto
     length = length + fragmentLength;
 }
 

@@ -15,7 +15,7 @@ new RegistrableSkeletonThreadPool
 			RRFIFOMonitoredExtensibleMap
 		>
 	>,
-	1
+	3
 >
 ("127.0.0.1", 4000, SOMAXCONN);
 while(1){}

@@ -1,6 +1,7 @@
 #include "RegistrablePoolableCyclicCallableSkeleton.h"
 #include <boost/thread/thread.hpp>
 #include <boost/pool/detail/guard.hpp>
+#include "../../../../TcpIpSocket/Exceptions/SocketException.h"
 #include <iostream>
 using namespace std;
 
@@ -25,36 +26,27 @@ void RegistrablePoolableCyclicCallableSkeleton::shareMutex(boost::mutex* mutexTo
 
 void RegistrablePoolableCyclicCallableSkeleton::operator()()
 {
-    //try
-    //{
-        while(true)
+    while(true)
+    {
         {
+            boost::this_thread::disable_interruption disableInterruptions;
             {
-                boost::this_thread::disable_interruption disableInterruptions;
-                //cout << ">> PoolableCyclicCallableSkeleton: cerco di fare la accept, se non posso mi blocco" << endl;
+                try
                 {
                     boost::details::pool::guard<boost::mutex> mutexGuard(*sharedMutex);
-                    //TODO try
-                    //{
-                    //cout << ">> PoolableCyclicCallableSkeleton: mi sono sbloccato, faccio la accept" << endl;
                     socket = listeningSocket->acceptConnection();
-                    //cout << ">> Ho fatto la accept" << endl;
-                    //}
-                    //TODO catch(closedSocketException)
-                    //{
-                    //socket = NULL;
-                    //mutex.unlock() non c'è bisogno se usi la guardia
-                    //boost::this_thread::restore_interruption;
-                    //boost::this_thread::interruption_point();
-                    //}
                 }
-                //cout << ">> PoolableCyclicCallableSkeleton: col socket ottenuto esaudisco il protocollo" << endl;
-                protocol();
-                delete socket;
-                socket = NULL;
+                catch(const SocketException& socketException)
+                {
+                    boost::this_thread::restore_interruption restoreInterruptions(disableInterruptions);
+                    boost::this_thread::interruption_point();
+                    break;
+                }
             }
-            boost::this_thread::interruption_point();
+            protocol();
+            delete socket;
+            socket = NULL;
         }
-    //}
-    //catch(...) {}
+        boost::this_thread::interruption_point();
+    }
 }

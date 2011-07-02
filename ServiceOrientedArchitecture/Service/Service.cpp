@@ -85,21 +85,11 @@ void Service::sendParameters()
 
 SerializableObject* Service::receiveParameter()
 {
-    //TODO trovare un modo per fare la receive senza stare a fare la free del puntatore
     Type* receivedTypePointer = ((Type*)socket->receiveMessage(sizeof(Type)));
     Type receivedType = *receivedTypePointer;
     cout << "Tipo ricevuto: " << receivedType << endl;
     free(receivedTypePointer);
     int valueLengthLength = buildersHierarchy.getValueLengthLength(receivedType);
-    //cout << "Lunghezza del campo length da ricevere: " << valueLengthLength << endl;
-    /*
-    uint64_t valueLength =
-        (valueLengthLength == 0)? 0:
-        (valueLengthLength == sizeof(uint8_t ))? *((uint8_t*)socket->receiveMessage(sizeof(uint8_t))) :
-        (valueLengthLength == sizeof(uint16_t))? *((uint16_t*)socket->receiveMessage(sizeof(uint16_t))) :
-        (valueLengthLength == sizeof(uint32_t))? *((uint32_t*)socket->receiveMessage(sizeof(uint32_t))) :
-        (valueLengthLength == sizeof(uint64_t))? *((uint64_t*)socket->receiveMessage(sizeof(uint64_t))) : 0;
-    */
     uint64_t valueLength = 0;
     switch(valueLengthLength)
     {
@@ -127,7 +117,6 @@ SerializableObject* Service::receiveParameter()
         valueLength = *valueLengthPointer32bit;
         free(valueLengthPointer32bit);
     }
-
     break;
     case 8: //TODO mettere delle define da qualche parte per i sizeof! E usarla qui al posto di 8!
     {
