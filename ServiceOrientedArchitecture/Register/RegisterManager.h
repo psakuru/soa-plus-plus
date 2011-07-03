@@ -52,8 +52,8 @@ protected:
         SerializableObjectList::iterator i = inputParameters.begin();
         string key = *((string*)(*i)->getValue());
         cout << "chiave di ricerca:: " << key << endl;
-        cout << "risultato della ricerca::" << ((*sharedRegister)[key]) << endl;
-        outputParameters.push_back(new String( new string((*sharedRegister)[key]), false ));
+        string* searchResult = new string((*sharedRegister)[key]);
+        outputParameters.push_back(new String(searchResult, false));
         //inputParameters.clear();
     }
 public:

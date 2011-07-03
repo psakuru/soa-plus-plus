@@ -25,12 +25,16 @@ protected:
         {
             i++;
         }
-        this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%this->dataStructure[searchingKey].second.size();
+        this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
+        cout << "Nuovo first: "<< this->dataStructure[searchingKey].first << endl;
         return *i;
     }
     void insertElementImplementation(Key searchingKey, Element elementToInsert)
     {
-        if(this->dataStructure[searchingKey].second.empty()) this->dataStructure[searchingKey].first = 0;
+        if(this->dataStructure[searchingKey].second.empty())
+        {
+            this->dataStructure[searchingKey].first = 0;
+        }
         this->dataStructure[searchingKey].second.push_back(elementToInsert);
     }
     void clearElementImplementation(Key selectingKey, Element elementToClear)
