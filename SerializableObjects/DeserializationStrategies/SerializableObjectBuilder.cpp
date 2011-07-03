@@ -7,9 +7,9 @@ SerializableObjectBuilder::~SerializableObjectBuilder()
 {
     map<Type, SerializableObjectBuilder*>::iterator i = subSerializableObjectBuilders.begin();
     for(; i != subSerializableObjectBuilders.end(); i++)
-        {
-            delete (*i).second;
-        }
+    {
+        delete (*i).second;
+    }
 }
 
 SerializableObjectBuilder* SerializableObjectBuilder::operator[](Type builtType)

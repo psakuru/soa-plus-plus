@@ -6,7 +6,7 @@
 class Stub : public Service
 {
 protected:
-	string serviceProviderAddress;
+    string serviceProviderAddress;
     virtual void bind();
     void protocol();
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);

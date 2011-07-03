@@ -8,15 +8,15 @@
 
 class RawByteBufferSerializationStrategy : public GenericSerializableReferenceLayer<ByteArray>
 {
-    public:
-        RawByteBufferSerializationStrategy();
-        RawByteBufferSerializationStrategy(ByteArray& userReferenceToSet);
-        RawByteBufferSerializationStrategy(ByteArray* userReferenceToSet, bool shared);
-        Type getType() const;
-        int getValueLengthLength();
-        uint64_t serialize(void** destinationBuffer);
-        void deserialize(uint64_t length, void* bufferToUse);
-        string getValueTypeStringRepresentation();
+public:
+    RawByteBufferSerializationStrategy();
+    RawByteBufferSerializationStrategy(ByteArray& userReferenceToSet);
+    RawByteBufferSerializationStrategy(ByteArray* userReferenceToSet, bool shared);
+    Type getType() const;
+    int getValueLengthLength();
+    uint64_t serialize(void** destinationBuffer);
+    void deserialize(uint64_t length, void* bufferToUse);
+    string getValueTypeStringRepresentation();
 };
 
 typedef RawByteBufferSerializationStrategy RawByteBuffer;

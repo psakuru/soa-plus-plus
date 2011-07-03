@@ -2,8 +2,6 @@
 #define BADREQUESTSIGNAL_H
 
 
-class BadRequestSignal
-{
-};
+class BadRequestSignal {};
 
 #endif // BADREQUESTSIGNAL_H

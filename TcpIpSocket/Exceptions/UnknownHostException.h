@@ -6,10 +6,10 @@
 
 class UnknownHostException : public exception
 {
-    public:
+public:
     virtual const char* what() const throw()
     {
-    return "Cannot retrieve host from the specified URL/IP address.";
+        return "Cannot retrieve host from the specified URL/IP address.";
     }
 };
 

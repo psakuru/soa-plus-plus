@@ -7,20 +7,20 @@
 
 class StreamStub : public Stub
 {
-    public:
-        StreamStub();
-        StreamStub(string serviceIDToSet, string serviceRegistryAddressToSet);
-        virtual ~StreamStub();
-        virtual void operator<<(int& value);
-        virtual void operator<<(double& value);
-        virtual void operator<<(string& value);
-        virtual void operator<<(ByteArray& value);
-        virtual void operator<<(BadRequestSignal& value);
-        virtual void operator>>(int& value);
-        virtual void operator>>(double& value);
-        virtual void operator>>(string& value);
-        virtual void operator>>(ByteArray& value);
-        virtual void operator>>(BadRequestSignal& value);
+public:
+    StreamStub();
+    StreamStub(string serviceIDToSet, string serviceRegistryAddressToSet);
+    virtual ~StreamStub();
+    virtual void operator<<(int& value);
+    virtual void operator<<(double& value);
+    virtual void operator<<(string& value);
+    virtual void operator<<(ByteArray& value);
+    virtual void operator<<(BadRequestSignal& value);
+    virtual void operator>>(int& value);
+    virtual void operator>>(double& value);
+    virtual void operator>>(string& value);
+    virtual void operator>>(ByteArray& value);
+    virtual void operator>>(BadRequestSignal& value);
 };
 
 #endif // STREAMSTUB_H

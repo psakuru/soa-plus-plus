@@ -8,10 +8,10 @@
 
 class SocketException : public exception
 {
-    public:
+public:
     virtual const char* what() const throw()
     {
-    return strerror(errno);
+        return strerror(errno);
     }
 };
 

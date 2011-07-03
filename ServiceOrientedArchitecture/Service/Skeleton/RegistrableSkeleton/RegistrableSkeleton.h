@@ -6,7 +6,7 @@
 
 class RegistrableSkeleton : public RegistrableObject, virtual public Skeleton
 {
-    public:
+public:
     RegistrableSkeleton();
     RegistrableSkeleton(string serviceIDToSet);
     RegistrableSkeleton(string serviceIDToSet, TcpIpPassiveSocket* listeningSocketToShare);

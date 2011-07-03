@@ -5,11 +5,11 @@
 
 class SignalBuilder : public SerializableObjectBuilder
 {
-    public:
-    	SignalBuilder();
-    	virtual ~SignalBuilder();
-    	int getValueLengthLength(Type receivedType);
-        virtual SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value);
+public:
+    SignalBuilder();
+    virtual ~SignalBuilder();
+    int getValueLengthLength(Type receivedType);
+    virtual SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value);
 };
 
 #endif // SIGNALBUILDER_H

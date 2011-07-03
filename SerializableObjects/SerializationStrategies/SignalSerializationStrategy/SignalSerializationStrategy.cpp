@@ -7,9 +7,9 @@ SignalSerializationStrategy::SignalSerializationStrategy()
 }
 
 Type Signal::getType() const
-    {
+{
     return SERIALIZABLE_SIGNAL;
-    }
+}
 
 uint64_t Signal::serialize(void** destinationBuffer)
 {
@@ -23,7 +23,7 @@ uint64_t Signal::serialize(void** destinationBuffer)
 
 void Signal::deserialize(uint64_t length, void* bufferToUse)
 {
-	this->signalHandler();
+    this->signalHandler();
 }
 
 string SignalSerializationStrategy::getValueTypeStringRepresentation()
