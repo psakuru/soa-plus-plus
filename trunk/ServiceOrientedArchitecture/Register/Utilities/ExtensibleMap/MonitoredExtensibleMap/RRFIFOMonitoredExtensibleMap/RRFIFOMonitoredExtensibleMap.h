@@ -7,9 +7,9 @@ using namespace std;
 
 template <typename Key, typename Element>
 class RRFIFOMonitoredExtensibleMap
-: public MonitoredExtensibleMap<Key, int, Element>
+    : public MonitoredExtensibleMap<Key, int, Element>
 {
-    protected:
+protected:
     Element selectionOperatorImplementation(Key searchingKey)
     {
         if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
