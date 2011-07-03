@@ -7,6 +7,8 @@
 #include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalSerializationStrategy.h"
+#include "Exceptions/InvalidLengthLength.h"
+#include "Exceptions/InvalidParameterListSize.h"
 #include <boost/thread/thread.hpp>
 
 Service::Service()
@@ -67,22 +69,30 @@ SerializableObject* Service::receiveParameter()
     uint64_t valueLength = 0;
     switch(valueLengthLength)
     {
-    case 0: /*TODO throw exception???: la deve prendere la receiveParameters, fare il flush e ritornare*/break;
-    case 1: valueLengthReader<uint8_t>(valueLength); break;
-    case 2: valueLengthReader<uint16_t>(valueLength); break;
-    case 4: valueLengthReader<uint32_t>(valueLength); break;
-    case 8: valueLengthReader<uint64_t>(valueLength); break;
-    default: /*TODO throw exception: la deve prendere la receiveParameters, fare il flush e ritornare*/break;
+    case 0:
+        throw InvalidLengthLength();
+        break;
+    case 1:
+        valueLengthReader<uint8_t>(valueLength);
+        break;
+    case 2:
+        valueLengthReader<uint16_t>(valueLength);
+        break;
+    case 4:
+        valueLengthReader<uint32_t>(valueLength);
+        break;
+    case 8:
+        valueLengthReader<uint64_t>(valueLength);
+        break;
+    default:
+        throw InvalidLengthLength();
+        break;
     }
     void* value = NULL;
-    if(valueLength == 0)
-        {
-        //TODO: throw exception??
-        }
-    else
-        {
-            value = socket->receiveMessage(valueLength);
-        }
+    if(valueLength != 0)
+    {
+        value = socket->receiveMessage(valueLength);
+    }
     return buildersHierarchy.delegateBuilding(receivedType, valueLength, value); //NB: il builder foglia deve fare la free del value
 }
 
@@ -96,22 +106,27 @@ void Service::receiveParameters()
     free(incomingParametersSizePointer);
     if(incomingParametersSize != inputParametersSize)
     {
-
-
-
+        throw InvalidParameterListSize();
     }
     for(unsigned int i = 0; i < inputParametersSize; i++)
     {
-        //TODO controllo sul tipo ritornato dal server!
         incomingParameters->push_back(receiveParameter());
     }
     SerializableObjectList::iterator i = inputParameters.begin();
     SerializableObjectList::iterator j = incomingParameters->begin();
-    while(i != inputParameters.end())
+    try
     {
-        *(*i) = *(*j);
-        i++;
-        j++;
+        while(i != inputParameters.end())
+        {
+            *(*i) = *(*j);
+            i++;
+            j++;
+        }
+    }
+    catch(const exception& caughtException)
+    {
+    delete incomingParameters;
+    throw caughtException;
     }
     delete incomingParameters;
 }
@@ -120,33 +135,33 @@ void Service::updateServiceID(SerializableObject* parameterToAdd, Direction para
 {
     string directionString;
     switch(parameterDirection)
-        {
-            case IN:
-                {
-                    directionString = " IN: ";
-                }
-            break;
-            case OUT:
-                {
-                    directionString = " OUT: ";
-                }
-            break;
-            case INOUT:
-                {
-                    directionString = " INOUT: ";
-                }
-            break;
-            case OUTIN:
-                {
-                    directionString = " OUTIN: ";
-                }
-            break;
-            default:
-                {
-                    directionString = " <unknown direction>: ";
-                }
-            break;
-        }
+    {
+    case IN:
+    {
+        directionString = " IN: ";
+    }
+    break;
+    case OUT:
+    {
+        directionString = " OUT: ";
+    }
+    break;
+    case INOUT:
+    {
+        directionString = " INOUT: ";
+    }
+    break;
+    case OUTIN:
+    {
+        directionString = " OUTIN: ";
+    }
+    break;
+    default:
+    {
+        directionString = " <unknown direction>: ";
+    }
+    break;
+    }
     directionString.append(parameterToAdd->getValueTypeStringRepresentation()).append(")");
     cout << "ServiceID prima della replace: " << serviceID << endl;
     serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
