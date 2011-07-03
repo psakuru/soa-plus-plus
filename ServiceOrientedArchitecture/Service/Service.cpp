@@ -11,65 +11,41 @@
 
 Service::Service()
 {
-
-
     cout << "Cool!" << endl;
     defaultBuildersHierarchyInit();
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti
-
-
 }
 
 Service::Service(string serviceIDToSet) : serviceID(serviceIDToSet)
 {
-
-
-
-
-
     serviceID.append("()");
     cout << "ServiceID corrente: " << serviceID << endl;
     cout << "Vingilioth:::: vengo richiamato io, maremma cane! serviceID: " << serviceID << " this:" << hex << (void*)this << dec << endl;
     defaultBuildersHierarchyInit();
-
     socket = NULL; //Il socket va inizializzato ai livelli sottostanti
-
-
 }
 
 Service::~Service()
 {
-
-
     delete socket;
     socket = NULL;
-
-
 }
 
 void Service::defaultBuildersHierarchyInit()
 {
     cout << "TID:" << boost::this_thread::get_id() << " Service::defaultBuildersHierarchyInit()" << endl << endl;
-
-
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
     buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
-
-
 }
 
 void Service::sendParameters()
 {
-
-
-
     SerializableObjectList::size_type listSize = outputParameters.size();
     socket->sendMessage(&listSize, sizeof(SerializableObjectList::size_type));
-
     SerializableObjectList::iterator i = outputParameters.begin();
     void* serializedObject = NULL;
     for(; i != outputParameters.end(); i++)
@@ -79,8 +55,6 @@ void Service::sendParameters()
         free(serializedObject);
         serializedObject = NULL;
     }
-
-
 }
 
 SerializableObject* Service::receiveParameter()
@@ -93,47 +67,13 @@ SerializableObject* Service::receiveParameter()
     uint64_t valueLength = 0;
     switch(valueLengthLength)
     {
-    case 0: break;
+    case 0: /*TODO throw exception???: la deve prendere la receiveParameters, fare il flush e ritornare*/break;
     case 1: valueLengthReader<uint8_t>(valueLength); break;
     case 2: valueLengthReader<uint16_t>(valueLength); break;
     case 4: valueLengthReader<uint32_t>(valueLength); break;
     case 8: valueLengthReader<uint64_t>(valueLength); break;
+    default: /*TODO throw exception: la deve prendere la receiveParameters, fare il flush e ritornare*/break;
     }
-    /*switch(valueLengthLength)
-    {
-        //TODO templatizzare questo switch o comunque trovare un modo per non ripetere il codice
-    case 0:
-        //TODO throw exception?
-        break;
-    case 1: //TODO mettere delle define da qualche parte per i sizeof! E usarla qui al posto di 1!
-    {
-        uint8_t* valueLengthPointer8bit = (uint8_t*)socket->receiveMessage(sizeof(uint8_t));
-        valueLength = *valueLengthPointer8bit;
-        free(valueLengthPointer8bit);
-    }
-    break;
-    case 2: //TODO mettere delle define da qualche parte per i sizeof! E usarla qui al posto di 2!
-    {
-        uint16_t* valueLengthPointer16bit = (uint16_t*)socket->receiveMessage(sizeof(uint16_t));
-        valueLength = *valueLengthPointer16bit;
-        free(valueLengthPointer16bit);
-    }
-    break;
-    case 4: //TODO mettere delle define da qualche parte per i sizeof! E usarla qui al posto di 4!
-    {
-        uint32_t* valueLengthPointer32bit = (uint32_t*)socket->receiveMessage(sizeof(uint32_t));
-        valueLength = *valueLengthPointer32bit;
-        free(valueLengthPointer32bit);
-    }
-    break;
-    case 8: //TODO mettere delle define da qualche parte per i sizeof! E usarla qui al posto di 8!
-    {
-        uint64_t* valueLengthPointer64bit = (uint64_t*)socket->receiveMessage(sizeof(uint64_t));
-        valueLength = *valueLengthPointer64bit;
-        free(valueLengthPointer64bit);
-    }
-    break;
-    }*/
     void* value = NULL;
     if(valueLength == 0)
         {
@@ -143,7 +83,7 @@ SerializableObject* Service::receiveParameter()
         {
             value = socket->receiveMessage(valueLength);
         }
-    return buildersHierarchy.delegateBuilding(receivedType, valueLength, value); //NB: la guild deve fare la free del value
+    return buildersHierarchy.delegateBuilding(receivedType, valueLength, value); //NB: il builder foglia deve fare la free del value
 }
 
 void Service::receiveParameters()
