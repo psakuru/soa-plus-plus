@@ -4,6 +4,7 @@
 #include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "Utilities/ExtensibleMap/MonitoredExtensibleMap/RRFIFOMonitoredExtensibleMap/RRFIFOMonitoredExtensibleMap.h"
 #include "../Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "../Service/Skeleton/Exceptions/DOSAttackInProgress.h"
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include <string>
 using namespace std;
@@ -63,9 +64,13 @@ public:
             ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
         SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
         free(incomingParametersSizePointer);
+        if((int)incomingParametersSize > 1024 || (int)incomingParametersSize <= 0)
+        {
+            cout << "DOS ATTACK!" << endl;
+            throw DOSAttackInProgress();
+        }
         SerializableObjectList* incomingParameters = new SerializableObjectList;
-        inputParameters.push_back(new String); //per l' operazione
-        for(unsigned int i = 0; i < (incomingParametersSize-1); i++)
+        for(unsigned int i = 0; i < (incomingParametersSize); i++)
         {
             inputParameters.push_back(new String);
         }

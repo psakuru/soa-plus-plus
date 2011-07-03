@@ -46,8 +46,9 @@ void Skeleton::protocol()
     {
         receiveParameters();
     }
-    catch(...) // Il gestibile è già stato gestito
+    catch(const exception& caughtException) // Il gestibile è già stato gestito
     {
+        cout << caughtException.what() << endl;
         return;
     }
     this->doService();
