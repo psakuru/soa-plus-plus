@@ -93,6 +93,14 @@ SerializableObject* Service::receiveParameter()
     uint64_t valueLength = 0;
     switch(valueLengthLength)
     {
+    case 0: break;
+    case 1: valueLengthReader<uint8_t>(valueLength); break;
+    case 2: valueLengthReader<uint16_t>(valueLength); break;
+    case 4: valueLengthReader<uint32_t>(valueLength); break;
+    case 8: valueLengthReader<uint64_t>(valueLength); break;
+    }
+    /*switch(valueLengthLength)
+    {
         //TODO templatizzare questo switch o comunque trovare un modo per non ripetere il codice
     case 0:
         //TODO throw exception?
@@ -125,8 +133,7 @@ SerializableObject* Service::receiveParameter()
         free(valueLengthPointer64bit);
     }
     break;
-    }
-
+    }*/
     void* value = NULL;
     if(valueLength == 0)
         {

@@ -15,6 +15,15 @@ enum Direction {IN, OUT, INOUT, OUTIN};
 
 class Service
 {
+private:
+    template <typename IntegralFixedSizedType>
+    void valueLengthReader(uint64_t& valueLength)
+    {
+        IntegralFixedSizedType* valueLengthPointer =
+            (IntegralFixedSizedType*)socket->receiveMessage(sizeof(IntegralFixedSizedType));
+        valueLength = *valueLengthPointer;
+        free(valueLengthPointer);
+    }
 protected:
     SerializableObjectList inputParameters;
     SerializableObjectList outputParameters;
@@ -31,9 +40,10 @@ protected:
     virtual void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection) = 0;
     void updateServiceID(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
-	Service();
+    Service();
     Service(string serviceIDToSet);
     virtual ~Service();
 };
 
 #endif // SERVICE_H
+
