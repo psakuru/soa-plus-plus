@@ -21,5 +21,5 @@ Type BadRequestSerializationStrategy::getSignalType() const
 
 int BadRequestSerializationStrategy::getValueLengthLength()
 {
-    return 0;
+    return sizeof(Type);
 }

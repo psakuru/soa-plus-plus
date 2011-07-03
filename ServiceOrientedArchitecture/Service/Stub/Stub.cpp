@@ -11,6 +11,8 @@
 #include "../Exceptions/InvalidAddressException.h"
 #include "../Exceptions/ParameterDirectionException.h"
 #include "Stub.h"
+#include <iostream>
+using namespace std;
 
 Stub::Stub() {}
 
@@ -144,7 +146,7 @@ void Stub::protocol()
     advance(i, outputParametersSize);
     SerializableObjectList::iterator j = outputParameters.end();
     inputParameters.splice(inputParameters.begin(), outputParameters, i, j);
-    receiveParameters();
+    receiveParameters(); // sullo stub non faccio il try: è giusto che collassi se qualcosa non va
 }
 
 void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterDirection)
