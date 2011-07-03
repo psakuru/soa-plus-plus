@@ -125,8 +125,8 @@ void Service::receiveParameters()
     }
     catch(const exception& caughtException)
     {
-    delete incomingParameters;
-    throw caughtException;
+        delete incomingParameters;
+        throw caughtException;
     }
     delete incomingParameters;
 }
@@ -136,31 +136,21 @@ void Service::updateServiceID(SerializableObject* parameterToAdd, Direction para
     string directionString;
     switch(parameterDirection)
     {
-    case IN:
-    {
+    case     IN   :
         directionString = " IN: ";
-    }
-    break;
-    case OUT:
-    {
+        break;
+    case     OUT  :
         directionString = " OUT: ";
-    }
-    break;
-    case INOUT:
-    {
+        break;
+    case     INOUT:
         directionString = " INOUT: ";
-    }
-    break;
-    case OUTIN:
-    {
+        break;
+    case     OUTIN:
         directionString = " OUTIN: ";
-    }
-    break;
+        break;
     default:
-    {
         directionString = " <unknown direction>: ";
-    }
-    break;
+        break;
     }
     directionString.append(parameterToAdd->getValueTypeStringRepresentation()).append(")");
     cout << "ServiceID prima della replace: " << serviceID << endl;
