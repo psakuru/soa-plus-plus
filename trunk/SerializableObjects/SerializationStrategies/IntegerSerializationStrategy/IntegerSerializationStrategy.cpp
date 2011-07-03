@@ -3,13 +3,13 @@
 #include <stdlib.h>
 using namespace std;
 
-IntegerSerializationStrategy::IntegerSerializationStrategy(){}
+IntegerSerializationStrategy::IntegerSerializationStrategy() {}
 
 IntegerSerializationStrategy::IntegerSerializationStrategy(int32_t& userReferenceToSet)
-: GenericSerializableReferenceLayer<int32_t>(userReferenceToSet){}
+    : GenericSerializableReferenceLayer<int32_t>(userReferenceToSet) {}
 
 IntegerSerializationStrategy::IntegerSerializationStrategy(int32_t* userReferenceToSet, bool shared)
-: GenericSerializableReferenceLayer<int32_t>(userReferenceToSet, shared){}
+    : GenericSerializableReferenceLayer<int32_t>(userReferenceToSet, shared) {}
 
 Type IntegerSerializationStrategy::getType() const
 {
@@ -18,7 +18,7 @@ Type IntegerSerializationStrategy::getType() const
 
 int IntegerSerializationStrategy::getValueLengthLength()
 {
-	return sizeof(uint8_t);
+    return sizeof(uint8_t);
 }
 
 uint64_t IntegerSerializationStrategy::serialize(void** destinationBuffer)

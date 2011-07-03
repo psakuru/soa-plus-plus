@@ -89,7 +89,8 @@ public:
         delete incomingParameters;
     }
     ~RegisterManager()
-    {//Elimina l' istanza Singleton
+    {
+        //Elimina l' istanza Singleton
         SingletonObject< RegisterMap<string, string> >::destroyInstance();
     }
 };

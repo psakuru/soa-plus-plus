@@ -9,7 +9,7 @@ class InvalidLengthLength : public exception
 public:
     virtual const char* what() const throw()
     {
-    return "Invalid length length.";
+        return "Invalid length length.";
     }
 };
 

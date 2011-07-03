@@ -10,12 +10,12 @@ using namespace std;
 class TcpIpSocket
 {
 protected:
-        int socketDescriptor;
+    int socketDescriptor;
 public:
-        TcpIpSocket();
-        TcpIpSocket(int NOP);
-        virtual ~TcpIpSocket();
-        virtual string getAddress() = 0;
+    TcpIpSocket();
+    TcpIpSocket(int NOP);
+    virtual ~TcpIpSocket();
+    virtual string getAddress() = 0;
 };
 
 #endif // TCPIPSOCKET_H

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-BadRequestSerializationStrategy::BadRequestSerializationStrategy(){}
+BadRequestSerializationStrategy::BadRequestSerializationStrategy() {}
 
 BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference)
 {

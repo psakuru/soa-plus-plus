@@ -26,7 +26,8 @@ Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
 }
 
 Stub::~Stub()
-{//Inizializza un singleton, deve distruggerlo!
+{
+    //Inizializza un singleton, deve distruggerlo!
     SingletonObject<RegularExpressionChecker>::destroyInstance();
 }
 

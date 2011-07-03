@@ -12,11 +12,11 @@ ByteArray::ByteArray()
 }
 
 ByteArray::ByteArray(const ByteArray& byteArrayToCopy)
-    {
+{
     length = byteArrayToCopy.length;
     byteArray = (byte*)malloc(length*sizeof(byte));
     memcpy(byteArray, byteArrayToCopy.byteArray, length);
-    }
+}
 
 ByteArray::ByteArray(uint64_t length)
 {
@@ -40,28 +40,28 @@ ByteArray::~ByteArray()
 }
 
 byte& ByteArray::operator[](const uint64_t index)
-    {
+{
     return byteArray[index];
-    }
+}
 
 void ByteArray::operator=(const ByteArray& byteArrayToCopy)
-    {
+{
 
     /* ATTENZIONE: IL SEGUENTE BLOCCO ERA IN if(byteArray != NULL) */
-        free(byteArray);
-        byteArray = NULL;
-        length = 0;
+    free(byteArray);
+    byteArray = NULL;
+    length = 0;
 
     /*                                                             */
     byteArray = (byte*)malloc(byteArrayToCopy.length);
     length = byteArrayToCopy.length;
     memcpy(byteArray, byteArrayToCopy.byteArray, length);
-    }
+}
 
 void ByteArray::erase()
 {
-        free(byteArray);
-        byteArray = NULL;
+    free(byteArray);
+    byteArray = NULL;
     length = 0;
 }
 
@@ -70,13 +70,13 @@ void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fr
     byte* temporatyPointer = (byte*)realloc(byteArray, length + fragmentLength);
 
     if(temporatyPointer != NULL)
-        {
+    {
         byteArray = temporatyPointer;
-        }
+    }
     else
-        {
+    {
 
-        }
+    }
     memcpy(byteArray + length, &bufferToUse[startingPosition], fragmentLength); //TODO Attenzione, aggiunto +length, dovrebbe essere giusto
     length = length + fragmentLength;
 }
@@ -87,6 +87,6 @@ uint64_t ByteArray::getLength()
 }
 
 const byte* ByteArray::getPointer()
-    {
+{
     return byteArray;
-    }
+}

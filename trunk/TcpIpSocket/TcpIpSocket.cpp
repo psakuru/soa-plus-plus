@@ -19,5 +19,5 @@ TcpIpSocket::TcpIpSocket(int NOP)
 }
 
 TcpIpSocket::~TcpIpSocket()
-    {
-    }
+{
+}

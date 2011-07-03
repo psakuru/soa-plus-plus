@@ -3,10 +3,10 @@
 #include <iostream>
 using namespace std;
 
-StringSerializationStrategy::StringSerializationStrategy(){}
+StringSerializationStrategy::StringSerializationStrategy() {}
 
 StringSerializationStrategy::StringSerializationStrategy(string& userReferenceToSet)
-: GenericSerializableReferenceLayer<string>(userReferenceToSet){}
+    : GenericSerializableReferenceLayer<string>(userReferenceToSet) {}
 
 Type StringSerializationStrategy::getType() const
 {
@@ -14,7 +14,7 @@ Type StringSerializationStrategy::getType() const
 }
 
 StringSerializationStrategy::StringSerializationStrategy(string* userReferenceToSet, bool shared)
-: GenericSerializableReferenceLayer<string>(userReferenceToSet, shared){}
+    : GenericSerializableReferenceLayer<string>(userReferenceToSet, shared) {}
 
 int StringSerializationStrategy::getValueLengthLength()
 {

@@ -24,7 +24,10 @@ Skeleton::Skeleton(string serviceIDToSet, string IPAddress, int port, int backlo
 
 Skeleton::~Skeleton()
 {
-    if(!sharedListeningSocket) {delete listeningSocket;}
+    if(!sharedListeningSocket)
+    {
+        delete listeningSocket;
+    }
 }
 
 void Skeleton::shareListeningSocket(TcpIpPassiveSocket* listeningSocketToShare)
