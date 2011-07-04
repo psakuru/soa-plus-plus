@@ -94,21 +94,18 @@ public:
         }
     }
 	/**
-	 * Costruttore. Assegna al riferimento wrappato il parametro referenceToWrap.
-	 * Inoltre setta il flag sharedReference secondo il parametro shared.
-	 * Si utilizza per decidere esplicitamente se lasciare all' oggetto serializzabile l' ownership del riferimento.
+	 * Operatore di assegnamento. Prima di effettuare la copia dell' oggetto passato come parametro, si confrontano i tipi. 
+	 * Se objectToCopy è di un tipo differente dall' oggetto serializzabile sul quale viene invocato l' operatore, viene lanciata un' eccezione di tipo IncompatibleTypes.
 	 *
-	 * @param referenceToWrap 
-	 * @param shared
+	 * @param objectToCopy
+	 *
+	 * @pre Il parametro objectToCopy deve avere lo stesso tipo dell' oggetto serializzabile sul quale viene invocato l' operatore.
      */
-	
     void operator=(const SerializableObject& objectToCopy)
     {
         if(this->getType() == objectToCopy.getType())
         {
-            const GenericSerializableReferenceLayer* castReference =
-                dynamic_cast<const GenericSerializableReferenceLayer*>(&objectToCopy);
-            cout << "Stesso tipo! " << (typeid(wrappedReference)).name() << "==" << (typeid(castReference->wrappedReference)).name() << endl;
+            const GenericSerializableReferenceLayer* castReference = dynamic_cast<const GenericSerializableReferenceLayer*>(&objectToCopy);
             wrappedReference = castReference->wrappedReference;
         }
         else
@@ -116,6 +113,14 @@ public:
             throw IncompatibleTypes();
         }
     }
+	/**
+	 * Operatore di assegnamento. Prima di effettuare la copia dell' oggetto passato come parametro, si confrontano i tipi. 
+	 * Se objectToCopy è di un tipo differente dall' oggetto serializzabile sul quale viene invocato l' operatore, viene lanciata un' eccezione di tipo IncompatibleTypes.
+	 *
+	 * @param objectToCopy
+	 *
+	 * @pre Il parametro objectToCopy deve avere lo stesso tipo dell' oggetto serializzabile sul quale viene invocato l' operatore.
+     */
     void setValue(void* valueToSet)
     {
         wrappedReference = *((T*)(valueToSet));
