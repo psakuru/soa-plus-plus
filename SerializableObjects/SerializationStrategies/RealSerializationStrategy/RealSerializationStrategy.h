@@ -1,7 +1,7 @@
 #ifndef REAL_SERIALIZATION_STRATEGY_H
 #define REAL_SERIALIZATION_STRATEGY_H
 
-#include "../../SerializableObject.h"
+#include "../../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../TypeConstants.h"
 #include "../../GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h"
 

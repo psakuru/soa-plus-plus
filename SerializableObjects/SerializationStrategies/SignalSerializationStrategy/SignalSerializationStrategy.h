@@ -1,7 +1,7 @@
 #ifndef SIGNAL_SERIALIZATION_STRATEGY_H
 #define SIGNAL_SERIALIZATION_STRATEGY_H
 
-#include "../../SerializableObject.h"
+#include "../../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../TypeConstants.h"
 #include "SignalTypeConstants.h"
 #include "../../GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h"

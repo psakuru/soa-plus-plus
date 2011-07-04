@@ -3,7 +3,7 @@
 #include <list>
 #include <exception>
 #include "../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
-#include "../SerializableObjects/SerializableObject.h"
+#include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
 #include "../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
 #include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
