@@ -1,9 +1,3 @@
-#ifndef REGISTRABLEOBJECT_H
-#define REGISTRABLEOBJECT_H
-
-#include <string>
-using namespace std;
-
 /**
  * @file RegistrableObject.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
@@ -23,18 +17,28 @@ using namespace std;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @section DESCRIPTION
- *
+ */
+
+#ifndef REGISTRABLEOBJECT_H
+#define REGISTRABLEOBJECT_H
+
+#include <string>
+using namespace std;
+
+/**
+ * @class RegistrableObject
+ * 
+ * @brief Intefaccia per oggetti registrabili.
+ * 
  * L' interfaccia RegistrableObject fornisce, alle classi che la implementano, il metodo "getRegistrationInfo()".
+ *
  */
 
 class RegistrableObject
 {
 public:
     /**
-	 * Il metodo consente di ottenere dalla classe che implementa l'interfaccia le informazioni relative alla registrazione.
-     * 
-     * @param  
+	 * Il metodo consente di ottenere dalla classe che implementa l'interfaccia le informazioni relative alla registrazione. 
      * 
      * @return Informazioni relative alla registrazione.
      */

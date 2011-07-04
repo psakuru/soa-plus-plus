@@ -1,6 +1,3 @@
-#ifndef CALLABLEOBJECT_H
-#define CALLABLEOBJECT_H
-
 /**
  * @file CallableObject.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
@@ -20,11 +17,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @section DESCRIPTION
+ */
+
+#ifndef CALLABLEOBJECT_H
+#define CALLABLEOBJECT_H
+ 
+/**
+ * @class CallableObject
+ *
+ * @brief Interfaccia per oggetti invocabili.
  *
  * L' interfaccia CallableObject fornisce, alle classi che la implementano, l'operatore di chiamata "()".
  */
- 
+
 class CallableObject
 {
 public:

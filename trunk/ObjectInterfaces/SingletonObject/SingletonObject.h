@@ -25,11 +25,10 @@
 #include <boost/thread/mutex.hpp>
 #include <boost/pool/detail/guard.hpp>
 
-
 /**
  * @class SingletonObject
  *
- * @brief Le classi che implementano l' interfaccia SingletonObject possono essere istanziate una sola volta, secondo il design pattern Singleton.
+ * @brief Interfaccia template per singoletti.
  *
  * Le classi che implementano l' interfaccia SingletonObject possono essere istanziate una sola volta, secondo il design pattern Singleton.
  */
@@ -40,15 +39,33 @@ class SingletonObject
 private:
     static T* instance;
     static boost::mutex lifecycleControl;
+	/**
+	 * Costruttore privato: non è possibile istanziare direttamente oggetti di classi che implementano l'interfaccia SingletonObject.
+     */
     SingletonObject() {}
+	/**
+	 * Distruttore privato: non è possibile distruggere direttamente oggetti di classi che implementano l'interfaccia SingletonObject.
+     */
     ~SingletonObject() {}
 public:
+	
+	/**
+	 * Crea un' istanza statica della classe desiderata, se non ne esiste già una, e la ritorna al chiamante.
+     * La creazione è protetta da una guardia di mutua esclusione.
+     * 
+     * @return Puntatore alla istanza singleton della classe desiderata.
+     */
     static T* getInstance()
     {
         boost::details::pool::guard<boost::mutex> lifecycleGuard(lifecycleControl);
         if(instance == NULL) instance = new T();
         return instance;
     }
+	
+	/**
+	 * Distrugge l'istanza singleton. 
+	 * La distruzione è protetta da una guardia di mutua esclusione.
+     */
     static void destroyInstance()
     {
         boost::details::pool::guard<boost::mutex> lifecycleGuard(lifecycleControl);
@@ -57,6 +74,7 @@ public:
     }
 };
 
+/* Inizializzazione membri statici. */
 template <typename T> T* SingletonObject<T>::instance = NULL;
 template <typename T> boost::mutex SingletonObject<T>::lifecycleControl;
 

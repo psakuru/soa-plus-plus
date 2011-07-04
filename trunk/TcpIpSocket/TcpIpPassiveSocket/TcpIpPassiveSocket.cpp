@@ -38,16 +38,6 @@ TcpIpActiveSocket* TcpIpPassiveSocket::acceptConnection()
     return socketToReturn;
 }
 
-TcpIpPassiveSocket::~TcpIpPassiveSocket()
-{
-
-    int error = close(socketDescriptor);
-    if(error < 0)
-    {
-        throw SocketException();
-    }
-}
-
 string TcpIpPassiveSocket::getAddress()
 {
     string address;
