@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include "../../TypeConstants.h"
-#include "../../SerializableObject.h"
+#include "../../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h"
 
 

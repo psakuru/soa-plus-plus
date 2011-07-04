@@ -1,7 +1,7 @@
 #ifndef RAWBYTEBUFFER_SERIALIZATION_STRATEGY_H
 #define RAWBYTEBUFFER_SERIALIZATION_STRATEGY_H
 
-#include "../../SerializableObject.h"
+#include "../../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../Utilities/ByteArray/ByteArray.h"
 #include "../../TypeConstants.h"
 #include "../../GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h"

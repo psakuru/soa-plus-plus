@@ -2,7 +2,7 @@
 #define SERIALIZABLEOBJECTBUILDER_H
 
 #include <map>
-#include "../SerializableObject.h"
+#include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../TypeConstants.h"
 using namespace std;
 

@@ -21,7 +21,7 @@
 
 #ifndef GENERIC_SERIALIZABLE_REFERENCE_LAYER_H
 #define GENERIC_SERIALIZABLE_REFERENCE_LAYER_H
-#include "../SerializableObject.h"
+#include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include <iostream>
 #include "../DeserializationStrategies/Exceptions/IncompatibleTypes.h"
 using namespace std;
@@ -30,7 +30,7 @@ using namespace std;
  * @class GenericSerializableRefenceLayer
  *
  * @brief Classe template che implementa parte dei metodi esposti dall' intefaccia SerializableObject.
- * 
+ *
  * Il layer è pensato per rendere serializzabili dei riferimenti ad oggetti locali.
  * I metodi esposti da SerializableObject ed implementati dal layer sono indipendenti dal particolare tipo del riferimento gestito.
  * I rimanenti, che invece dipendono dal particolare tipo, verranno implementati da classi derivate dal layer secondo strategie opportune.
@@ -42,7 +42,7 @@ class GenericSerializableReferenceLayer : public SerializableObject
 {
 protected:
 	/**
-	 * Riferimento gestito. 
+	 * Riferimento gestito.
 	 */
     T& wrappedReference;
 	/**
@@ -61,7 +61,7 @@ public:
 	 * Costruttore. Assegna al riferimento wrappato il parametro referenceToWrap.
 	 * Inoltre setta il flag sharedReference, lasciando l' ownership del riferimento al chiamante.
 	 *
-	 * @param referenceToWrap 
+	 * @param referenceToWrap
      */
     GenericSerializableReferenceLayer(T& referenceToWrap) : wrappedReference(referenceToWrap)
     {
@@ -75,7 +75,7 @@ public:
 	 * @param referenceToWrap
 	 * @param shared
 	 *
-	 * @pre Il parametro referenceToWrap deve essere stato creato attraverso l'operatore new altrimenti durante 
+	 * @pre Il parametro referenceToWrap deve essere stato creato attraverso l'operatore new altrimenti durante
 	 * l' esecuzione del distruttore potrebbe verificarsi segmentation fault.
      */
     GenericSerializableReferenceLayer(T* referenceToWrap, bool shared) : wrappedReference(*referenceToWrap)
@@ -93,7 +93,7 @@ public:
         }
     }
 	/**
-	 * Operatore di assegnamento. Prima di effettuare la copia dell' oggetto passato come parametro, si confrontano i tipi. 
+	 * Operatore di assegnamento. Prima di effettuare la copia dell' oggetto passato come parametro, si confrontano i tipi.
 	 * Se objectToCopy è di un tipo differente dall' oggetto serializzabile sul quale viene invocato l' operatore, viene lanciata un' eccezione di tipo IncompatibleTypes.
 	 *
 	 * @param objectToCopy
@@ -119,7 +119,7 @@ public:
 	 *
 	 * @pre Il parametro valueToSet deve essere dello stesso tipo dell' oggetto riferito.
      */
-    void setValue(void* valueToSet) // Il parametro deve essere void* poiché nell' interfaccia 
+    void setValue(void* valueToSet) // Il parametro deve essere void* poiché nell' interfaccia
 	// SerializableObject (dove è dichiarata la funzione) non si può conoscere il tipo dell' oggetto.
     {
         wrappedReference = *((T*)(valueToSet));
@@ -127,13 +127,13 @@ public:
 	/**
 	 * Ritorna il valore dell' oggetto riferito.
 	 *
-	 * @return Puntatore ad una zona di memoria allocata dinamicamente contente una copia dell' oggetto riferito. 
+	 * @return Puntatore ad una zona di memoria allocata dinamicamente contente una copia dell' oggetto riferito.
 	 *
 	 * @post Il chiamante ha il compito di deallocare la memoria dinamica quando l' oggetto non sarà più necessario.
      */
     void* getValue()
     {
-		// E' necessario convertire a void* poiché nell' interfaccia SerializableObject 
+		// E' necessario convertire a void* poiché nell' interfaccia SerializableObject
 		// (dove è dichiarata la funzione) non si può conoscere il tipo dell' oggetto.
         return new T(wrappedReference);
     }

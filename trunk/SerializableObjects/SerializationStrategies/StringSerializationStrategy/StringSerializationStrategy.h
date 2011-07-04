@@ -1,7 +1,7 @@
 #ifndef STRING_SERIALIZATION_STRATEGY_H
 #define STRING_SERIALIZATION_STRATEGY_H
 
-#include "../../SerializableObject.h"
+#include "../../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include <string>
 #include "../../TypeConstants.h"
 #include "../../GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h"
