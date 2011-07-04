@@ -114,16 +114,28 @@ public:
         }
     }
 	/**
-	 * Assegna al riferimento il valore passato come parametro.
+	 * Assegna all' oggetto riferito il valore passato come parametro.
 	 *
 	 * @param valueToSet
+	 *
+	 * @pre Il parametro valueToSet deve essere dello stesso tipo dell' oggetto riferito.
      */
-    void setValue(T valueToSet)
+    void setValue(void* valueToSet) // Il parametro deve essere void* poiché nell' interfaccia 
+	// SerializableObject (dove è dichiarata la funzione) non si può conoscere il tipo dell' oggetto.
     {
-        wrappedReference = valueToSet;
+        wrappedReference = *((T*)(valueToSet));
     }
+	/**
+	 * Ritorna il valore dell' oggetto riferito.
+	 *
+	 * @return Puntatore ad una zona di memoria allocata dinamicamente contente una copia dell' oggetto riferito. 
+	 *
+	 * @post Il chiamante ha il compito di deallocare la memoria dinamica quando l' oggetto non sarà più necessario.
+     */
     void* getValue()
     {
+		// E' necessario convertire a void* poiché nell' interfaccia SerializableObject 
+		// (dove è dichiarata la funzione) non si può conoscere il tipo dell' oggetto.
         return new T(wrappedReference);
     }
 };
