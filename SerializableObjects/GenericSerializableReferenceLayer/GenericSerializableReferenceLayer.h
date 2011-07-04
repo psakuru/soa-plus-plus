@@ -114,16 +114,13 @@ public:
         }
     }
 	/**
-	 * Operatore di assegnamento. Prima di effettuare la copia dell' oggetto passato come parametro, si confrontano i tipi. 
-	 * Se objectToCopy è di un tipo differente dall' oggetto serializzabile sul quale viene invocato l' operatore, viene lanciata un' eccezione di tipo IncompatibleTypes.
+	 * Assegna al riferimento il valore passato come parametro.
 	 *
-	 * @param objectToCopy
-	 *
-	 * @pre Il parametro objectToCopy deve avere lo stesso tipo dell' oggetto serializzabile sul quale viene invocato l' operatore.
+	 * @param valueToSet
      */
-    void setValue(void* valueToSet)
+    void setValue(T valueToSet)
     {
-        wrappedReference = *((T*)(valueToSet));
+        wrappedReference = valueToSet;
     }
     void* getValue()
     {
