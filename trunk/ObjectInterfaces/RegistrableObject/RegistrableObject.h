@@ -27,17 +27,16 @@ using namespace std;
  *
  * L' interfaccia RegistrableObject fornisce, alle classi che la implementano, il metodo "getRegistrationInfo()".
  */
- 
+
 class RegistrableObject
 {
 public:
     /**
-     * Constructor that sets the time to a given value.
+	 * Il metodo consente di ottenere dalla classe che implementa l'interfaccia le informazioni relative alla registrazione.
      * 
-     * @param timemillis Number of milliseconds 
-     *        passed since Jan 1, 1970.
-     *
-     * @return
+     * @param  
+     * 
+     * @return Informazioni relative alla registrazione.
      */
     virtual string getRegistrationInfo() = 0;
 };
