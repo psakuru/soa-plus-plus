@@ -44,15 +44,6 @@ TcpIpActiveSocket::TcpIpActiveSocket(int listeningSocketDescriptor) : TcpIpSocke
     }
 }
 
-TcpIpActiveSocket::~TcpIpActiveSocket()
-{
-    int error = close(socketDescriptor);
-    if(error < 0)
-    {
-        //throw SocketException();//NO! Per il problema dello stack-unwinding!
-    }
-}
-
 void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
 {
     int error = send(socketDescriptor, buffer, length, 0);

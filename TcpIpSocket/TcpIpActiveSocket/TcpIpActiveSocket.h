@@ -17,7 +17,6 @@ public:
     TcpIpActiveSocket();
     TcpIpActiveSocket(string serverIPorURL, int port);
     TcpIpActiveSocket(int listeningSocketDescriptor);
-    ~TcpIpActiveSocket();
     string getAddress();
     void sendMessage(void* buffer, uint64_t length);
     void* receiveMessage(uint64_t length);

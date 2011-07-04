@@ -14,7 +14,6 @@ protected:
 public:
     TcpIpPassiveSocket();
     TcpIpPassiveSocket(string IPAddress, int listeningPort, int backlog);
-    ~TcpIpPassiveSocket();
     TcpIpActiveSocket* acceptConnection();
     string getAddress();
 };
