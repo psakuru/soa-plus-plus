@@ -70,15 +70,40 @@ public:
 	/**
 	 * Effettua la serializzazione secondo il protocollo. 
      *
-	 * @param destinationBuffer  
+	 * @param destinationBuffer Puntatore al buffer di destinazione.  
 	 *
-	 * @return Lunghezza del campo length.
+	 * @return Lunghezza del buffer.
      */
     virtual uint64_t serialize(void** destinationBuffer) = 0; //TODO fare tutta sta roba (x cosimo: serializzazione del tipo e della lunghezza) 
 															  // quì invece che nelle derivate, tanto è sempre uguale
+	/**
+	 * Effettua la deserializzazione secondo il protocollo. 
+     *
+	 * @param length
+	 * @param bufferToUse
+	 *
+     */	
     virtual void deserialize(uint64_t length, void* bufferToUse) = 0;
+	/**
+	 * Setta il valore dell' oggetto serializzabile. 
+     *
+	 * @param valueToSet
+	 *
+     */	
     virtual void setValue(void* valueToSet) = 0;
+	/**
+	 * Ritorna il valore dell' oggetto serializzabile. 
+     *
+	 * @return Valore dell' oggetto serializzabile.
+	 *
+     */	
     virtual void* getValue() = 0;
+	/**
+	 * Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile. 
+     *
+	 * @return Rappresentazione human readable del tipo dell' oggetto.
+	 *
+     */		
     virtual string getValueTypeStringRepresentation() = 0;
 };
 
