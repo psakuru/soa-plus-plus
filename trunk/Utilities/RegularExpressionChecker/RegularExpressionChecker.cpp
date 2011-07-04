@@ -12,7 +12,7 @@ void RegularExpressionChecker::setRegularExpression(string regularExpressionToSe
 {
     if(unset)
     {
-        regularExpression = regularExpressionToSet;
+        regularExpression = regularExpressionToSet; //OK
         unset = false;
     }
 }
