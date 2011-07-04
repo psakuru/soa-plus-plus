@@ -11,11 +11,6 @@
 #include <arpa/inet.h>
 using namespace std;
 
-TcpIpActiveSocket::TcpIpActiveSocket()
-{
-    //ctor
-}
-
 TcpIpActiveSocket::TcpIpActiveSocket(string serverIPorURL, int port)
 {
     hostent* server = gethostbyname(serverIPorURL.c_str());
