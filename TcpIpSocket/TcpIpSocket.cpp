@@ -9,13 +9,11 @@ TcpIpSocket::TcpIpSocket()
     {
         throw SocketException();
     }
-    //TODO gestione eccezioni
 }
 
 TcpIpSocket::TcpIpSocket(int NOP)
 {
     socketDescriptor = 0;
-    //TODO gestione eccezioni
 }
 
 TcpIpSocket::~TcpIpSocket()
