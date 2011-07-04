@@ -1,3 +1,3 @@
 #include "SerializableObject.h"
 
-SerializableObject::~SerializableObject() {} //Un distruttore virtuale puro abbisogna di una implementazione, in ogni caso
+SerializableObject::~SerializableObject() {} //Un distruttore virtuale puro abbisogna di una implementazione
