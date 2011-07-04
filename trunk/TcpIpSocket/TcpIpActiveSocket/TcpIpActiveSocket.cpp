@@ -39,6 +39,14 @@ TcpIpActiveSocket::TcpIpActiveSocket(int listeningSocketDescriptor) : TcpIpSocke
     }
 }
 
+string TcpIpActiveSocket::getAddress()
+{
+    string address;
+	//lexical_cast<string> converte a stringa l'unsigned int ritornato da ntohs
+    address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
+    return address;
+}
+
 void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
 {
     int error = send(socketDescriptor, buffer, length, 0);
@@ -53,6 +61,9 @@ void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
     uint64_t readBytes = recv(socketDescriptor, bufferToReturn, length, MSG_WAITALL);
+	//MSG_WAITALL fa in modo che la funzione recv attenda la completa ricezione di length byte. 
+	//La funzione recv può ritornare prima della ricezione completa di length byte se è risvegliata da un segnale,
+	//se la connessione è terminata, o se è avvenuto un errore relativo al socket.	
     if(readBytes < length) // Include sia le ricezioni incomplete che gli stati erronei ( < 0)
     {
         free(bufferToReturn);
@@ -61,11 +72,4 @@ void* TcpIpActiveSocket::receiveMessage(uint64_t length)
     }
     cout << "SOCKET<< " << dec << readBytes << " bytes received" << endl;
     return bufferToReturn;
-}
-
-string TcpIpActiveSocket::getAddress()
-{
-    string address;
-    address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
-    return address;
 }

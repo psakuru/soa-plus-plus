@@ -37,6 +37,7 @@ using namespace std;
  *
  * La classe TcpIpActiveSocket mantiene un descrittore di file relativo al socket attivo gestito.
  * Un socket attivo è un socket su cui si effettua una comunicazione attiva, a differenza di quanto accade quando si effettua l' operazione di listen.
+ * Socket attivi sono socket su cui si fa la connect e socket ritornati dalla accept.
  */
 
 class TcpIpActiveSocket : public TcpIpSocket
@@ -44,11 +45,40 @@ class TcpIpActiveSocket : public TcpIpSocket
 protected:
     sockaddr_in serverAddress;
 public:
+	/**
+	 * Costruttore. Chiama la funzione connect sul socket.
+	 *
+	 * @param serverIPorURL
+	 * @param port
+     */
     TcpIpActiveSocket(string serverIPorURL, int port);
-    TcpIpActiveSocket(int listeningSocketDescriptor);
-    string getAddress();
-    void sendMessage(void* buffer, uint64_t length);
-    void* receiveMessage(uint64_t length);
+    /**
+	 * Costruttore. Inizializza il socket attivo utilizzando il descrittore di file ritornato dalla funzione accept effettuata sul socket passivo passato come parametro.
+	 *
+     * @param listeningSocketDescriptor
+	 */
+	TcpIpActiveSocket(int listeningSocketDescriptor);
+    /**
+	 * Ritorna una rappresentazione human readable dell' indirizzo IP e della porta nel formato ip:porta.
+	 *
+	 * @return Stringa che rappresenta l' indirizzo IP e la porta sui quali il socket agisce.
+     */
+	string getAddress();
+    /**
+	 * Chiama la funzione send sul socket.
+	 *
+	 * @param buffer Buffer da inviare.
+	 * @param length Lunghezza del buffer da inviare.
+     */
+	void sendMessage(void* buffer, uint64_t length);
+    /**
+	 * Chiama la funzione receive sul socket.
+	 *
+	 * @param length Lunghezza del buffer di ricezione.
+	 *
+	 * @return Buffer che ospita i byte ricevuti.
+     */
+	void* receiveMessage(uint64_t length);
 };
 
 #endif // TCPIPACTIVESOCKET_H

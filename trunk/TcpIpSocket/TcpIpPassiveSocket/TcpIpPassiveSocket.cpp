@@ -8,11 +8,6 @@
 #include <boost/lexical_cast.hpp>
 using namespace std;
 
-TcpIpPassiveSocket::TcpIpPassiveSocket()
-{
-    //ctor
-}
-
 TcpIpPassiveSocket::TcpIpPassiveSocket(string IPAddress, int listeningPort, int backlog)
 {
     bzero((char *) &serverAddress, sizeof(serverAddress));
@@ -24,7 +19,6 @@ TcpIpPassiveSocket::TcpIpPassiveSocket(string IPAddress, int listeningPort, int 
     {
         throw SocketException();
     }
-    //TODO eccezioni
     error = listen(socketDescriptor,backlog);
     if(error < 0)
     {
@@ -41,7 +35,7 @@ TcpIpActiveSocket* TcpIpPassiveSocket::acceptConnection()
 string TcpIpPassiveSocket::getAddress()
 {
     string address;
-    address.append(inet_ntoa(serverAddress.sin_addr));
-    address.append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
+	//lexical_cast<string> converte a stringa l'unsigned int ritornato da ntohs
+    address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
     return address;
 }

@@ -47,6 +47,8 @@ public:
     TcpIpSocket();
 	/**
 	 * Costruttore fittizio. Non istanzia alcun socket.
+	 *
+	 * @param NOP Prametro fittizio.
      */
     TcpIpSocket(int NOP);
 	/**
