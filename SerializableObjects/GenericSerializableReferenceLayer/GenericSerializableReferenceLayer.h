@@ -23,7 +23,6 @@
 #define GENERIC_SERIALIZABLE_REFERENCE_LAYER_H
 #include "../SerializableObject.h"
 #include <iostream>
-#include <typeinfo>
 #include "../DeserializationStrategies/Exceptions/IncompatibleTypes.h"
 using namespace std;
 
