@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_stub.html#a0b760af7a22ec4ad5a347b7bc5544a1d" title="Stub::protocol" alt="" coords="234,56,337,83"/>
-<area shape="rect" id="node11" href="$class_skeleton.html#aaa30ab743dfcd9c6dfcdb7cdbe1088ec" title="Skeleton::protocol" alt="" coords="222,107,349,133"/>
-<area shape="rect" id="node5" href="$class_stub.html#aa88973d8e2e253b2fa2c9e0e71a5149b" title="Stub::bind" alt="" coords="523,5,605,32"/>
-<area shape="rect" id="node9" href="$class_publisher.html#af67d54ec9b32cc80e506b3ed1f2bb670" title="Publisher::operator()" alt="" coords="495,56,633,83"/>
-<area shape="rect" id="node7" href="$class_stub.html#af4becfbab3eaa0e486ab8293a51d505c" title="Stub::rebind" alt="" coords="779,5,871,32"/>
-<area shape="rect" id="node13" href="$class_skeleton.html#a51c8c7996f2f50a7d5bc85118d52f2b0" title="Skeleton::bind" alt="" coords="511,107,617,133"/>
-<area shape="rect" id="node15" href="$class_registrable_poolable_cyclic_callable_skeleton.html#a078475f96c280ff5a8eacb6f502868ce" title="RegistrablePoolableCyclicCallableSkeleton::operator()" alt="" coords="397,157,731,184"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node5" href="$class_callable_service.html" title="CallableService\&lt; Stub \&gt;" alt="" coords="5,155,165,181"/>
-<area shape="rect" id="node9" href="$class_stream_stub.html" title="StreamStub" alt="" coords="193,155,284,181"/>
-<area shape="rect" id="node2" href="$class_service.html" title="Service" alt="" coords="128,5,192,32"/>
-<area shape="rect" id="node7" href="$class_publisher.html" title="Publisher" alt="" coords="46,229,121,256"/>
-<area shape="rect" id="node11" href="$class_particular_service_stream_stub.html" title="ParticularServiceStreamStub" alt="" coords="146,229,333,256"/>
-</map>

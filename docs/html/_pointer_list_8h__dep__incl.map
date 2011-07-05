@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$_service_8h.html" title="soa&#45;plus&#45;plus/ServiceOrientedArchitecture/Service/Service.h" alt="" coords="307,80,673,107"/>
-<area shape="rect" id="node5" href="$_callable_service_8h.html" title="soa&#45;plus&#45;plus/ServiceOrientedArchitecture/Service/CallableService/CallableService.h" alt="" coords="5,155,509,181"/>
-<area shape="rect" id="node11" href="$_service_8cpp.html" title="soa&#45;plus&#45;plus/ServiceOrientedArchitecture/Service/Service.cpp" alt="" coords="535,155,916,181"/>
-<area shape="rect" id="node7" href="$_publisher_8h.html" title="soa&#45;plus&#45;plus/ServiceOrientedArchitecture/Publisher/Publisher.h" alt="" coords="62,229,452,256"/>
-<area shape="rect" id="node9" href="$_publisher_8cpp.html" title="soa&#45;plus&#45;plus/ServiceOrientedArchitecture/Publisher/Publisher.cpp" alt="" coords="55,304,460,331"/>
-</map>

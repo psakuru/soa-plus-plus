@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_skel.html" title="Skel" alt="" coords="97,80,145,107"/>
-<area shape="rect" id="node5" href="$class_cal_serv.html" title="CalServ\&lt; Skel \&gt;" alt="" coords="5,155,120,181"/>
-<area shape="rect" id="node11" href="$class_reg_skel.html" title="RegSkel" alt="" coords="145,155,215,181"/>
-<area shape="rect" id="node7" href="$class_reg_cal_skel.html" title="RegCalSkel" alt="" coords="76,229,167,256"/>
-<area shape="rect" id="node9" href="$class_part_reg_cal_skel.html" title="PartRegCalSkel" alt="" coords="64,304,179,331"/>
-</map>
