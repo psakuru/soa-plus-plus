@@ -126,22 +126,8 @@ void Stub::staticallyBind(string serviceProviderAddressToSet)
 
 void Stub::protocol()
 {
-    /*SerializableObjectList::iterator i = inputParameters.begin();
-    for(; i != inputParameters.end(); i++)
-        {
-        outputParameters.push_back(&(*i));
-        }*/
     int outputParametersSize = (int)outputParameters.size();
     outputParameters.splice(outputParameters.end(), inputParameters);
-
-
-    /*SerializableObjectList::iterator k = outputParameters.begin();
-    for(; k != outputParameters.end(); k++)
-    {
-        cout << "Modification:" << *((string*)((*k)->getValue())) << endl;
-    }*/
-
-
     sendParameters();
     SerializableObjectList::iterator i = outputParameters.begin();
     advance(i, outputParametersSize);
