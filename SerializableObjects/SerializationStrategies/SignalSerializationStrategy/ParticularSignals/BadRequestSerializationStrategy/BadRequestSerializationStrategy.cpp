@@ -7,7 +7,7 @@ BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSigna
 
 void BadRequestSerializationStrategy::signalHandler()
 {
-    throw exception;
+    throw exception(); //TODO fare una eccezione a modo!
 }
 
 Type BadRequestSerializationStrategy::getSignalType() const
