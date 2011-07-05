@@ -6,13 +6,13 @@ using namespace std;
 StringSerializationStrategy::StringSerializationStrategy(string& userReferenceToSet)
     : GenericSerializableReferenceLayer<string>(userReferenceToSet) {}
 
+StringSerializationStrategy::StringSerializationStrategy(string* userReferenceToSet, bool shared)
+    : GenericSerializableReferenceLayer<string>(userReferenceToSet, shared) {}
+
 Type StringSerializationStrategy::getType() const
 {
     return SERIALIZABLE_STRING;
 }
-
-StringSerializationStrategy::StringSerializationStrategy(string* userReferenceToSet, bool shared)
-    : GenericSerializableReferenceLayer<string>(userReferenceToSet, shared) {}
 
 int StringSerializationStrategy::getValueLengthLength()
 {
