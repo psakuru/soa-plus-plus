@@ -1,6 +1,8 @@
 #include "StringSerializationStrategy.h"
 #include <stdlib.h>
 
+StringSerializationStrategy::StringSerializationStrategy() {}
+
 StringSerializationStrategy::StringSerializationStrategy(string& userReferenceToSet)
     : GenericSerializableReferenceLayer<string>(userReferenceToSet) {}
 

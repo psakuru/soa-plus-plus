@@ -1,6 +1,8 @@
 #include "RealSerializationStrategy.h"
 #include <stdlib.h>
 
+RealSerializationStrategy::RealSerializationStrategy() {}
+
 RealSerializationStrategy::RealSerializationStrategy(double& userReferenceToSet)
     : GenericSerializableReferenceLayer<double>(userReferenceToSet) {}
 

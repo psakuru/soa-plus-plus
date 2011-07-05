@@ -39,6 +39,7 @@
 class RawByteBufferSerializationStrategy : public GenericSerializableReferenceLayer<ByteArray>
 {
 public:
+	RawByteBufferSerializationStrategy();
     RawByteBufferSerializationStrategy(ByteArray& userReferenceToSet);
     RawByteBufferSerializationStrategy(ByteArray* userReferenceToSet, bool shared);
     Type getType() const;

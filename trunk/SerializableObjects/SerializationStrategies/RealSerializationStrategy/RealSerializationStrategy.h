@@ -38,6 +38,7 @@
 class RealSerializationStrategy : public GenericSerializableReferenceLayer<double>
 {
 public:
+	RealSerializationStrategy();
     RealSerializationStrategy(double& userReferenceToSet);
     RealSerializationStrategy(double* userReferenceToSet, bool shared);
     Type getType() const;
