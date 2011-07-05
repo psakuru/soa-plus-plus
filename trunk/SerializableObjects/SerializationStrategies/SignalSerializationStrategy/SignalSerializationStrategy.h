@@ -41,6 +41,9 @@ typedef int Fake;
 class SignalSerializationStrategy : public GenericSerializableReferenceLayer<Fake>
 {
 protected:
+	/**
+	 * Gestisce le conseguenze dell' arrivo di un segnale.
+	 */
     virtual void signalHandler() = 0;
 public:
     SignalSerializationStrategy();
@@ -48,6 +51,9 @@ public:
     virtual Type getSignalType() const = 0;
     int getValueLengthLength() = 0;
     uint64_t serialize(void** destinationBuffer);
+	/**
+	 * La deserializzazione, in questo caso, maschera l' invocazione dell' handler.
+	 */
     void deserialize(uint64_t length, void* bufferToUse);
     string getValueTypeStringRepresentation();
 };
