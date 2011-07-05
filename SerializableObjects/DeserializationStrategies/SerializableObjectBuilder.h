@@ -88,9 +88,12 @@ public:
 	 * Questo, a sua volta, può delegare la costruzione di tali oggetti al builder ancora più specializzato 
 	 * che si trova in un livello inferiore della gerarchia dei builder, e così via...
 	 * 
-	 * @param builtType 
+	 * @param typeToBuild 
+	 * @param valueLength 
 	 *
-	 * @return SerializableObject richiesto.
+ 	 * @return Puntatore ad un oggetto derivato da SerializableObject allocato in memoria dinamica.
+	 *
+	 * @post Il chiamante diventa owner dell' oggetto ritornato. Deve quindi occuparsi di liberare la memoria dinamica occupata quando opportuno.
 	 */
     virtual SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value);
 };
