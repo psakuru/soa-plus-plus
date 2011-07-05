@@ -1,0 +1,11 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_stub.html#a976cc7ddd3742ee8b00867ccfb537926" title="Stub::addParameter" alt="" coords="231,132,369,159"/>
+<area shape="rect" id="node20" href="$class_skeleton.html#acb875d125918849c652b6f8fe0fb5eea" title="Skeleton::addParameter" alt="" coords="219,183,381,209"/>
+<area shape="rect" id="node5" href="$class_publisher.html#aab8d87a3185375b398873b45647e4be2" title="Publisher::addObjectToPublish" alt="" coords="430,5,629,32"/>
+<area shape="rect" id="node9" href="$class_publisher.html#af67d54ec9b32cc80e506b3ed1f2bb670" title="Publisher::operator()" alt="" coords="460,56,599,83"/>
+<area shape="rect" id="node11" href="$class_stream_stub.html#acf604ee788b96883244a31cc3be9239c" title="StreamStub::operator\&lt;\&lt;" alt="" coords="448,107,611,133"/>
+<area shape="rect" id="node13" href="$class_stream_stub.html#ac5391c6c1ae0ea166e780384a5eb6238" title="StreamStub::operator\&gt;\&gt;" alt="" coords="448,157,611,184"/>
+<area shape="rect" id="node15" href="$class_publisher.html#a0b4b73f8fabab27b1a522414bc01f3de" title="Publisher::Publisher" alt="" coords="460,208,599,235"/>
+<area shape="rect" id="node17" href="$class_publisher.html#a9f059875d59f0f40dc097142fbfa8450" title="Publisher::setPublishingMode" alt="" coords="432,259,627,285"/>
+<area shape="rect" id="node7" href="$new_server_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="677,132,728,159"/>
+</map>

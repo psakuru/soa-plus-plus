@@ -1,0 +1,58 @@
+\hypertarget{class_singleton_object}{
+\section{SingletonObject$<$ T $>$ Class Template Reference}
+\label{class_singleton_object}\index{SingletonObject@{SingletonObject}}
+}
+
+
+Interfaccia template per singoletti.  
+
+
+
+
+{\ttfamily \#include $<$SingletonObject.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static T $\ast$ \hyperlink{class_singleton_object_a7f2d6cfb89b33f7610f26081f54f2c58}{getInstance} ()
+\item 
+static void \hyperlink{class_singleton_object_a9a47611170156db4e0a70ba5fee69eb4}{destroyInstance} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$class SingletonObject$<$ T $>$}
+
+Interfaccia template per singoletti. 
+
+Le classi che implementano l' interfaccia \hyperlink{class_singleton_object}{SingletonObject} possono essere istanziate una sola volta, secondo il design pattern Singleton. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_singleton_object_a9a47611170156db4e0a70ba5fee69eb4}{
+\index{SingletonObject@{SingletonObject}!destroyInstance@{destroyInstance}}
+\index{destroyInstance@{destroyInstance}!SingletonObject@{SingletonObject}}
+\subsubsection[{destroyInstance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ static void {\bf SingletonObject}$<$ T $>$::destroyInstance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_singleton_object_a9a47611170156db4e0a70ba5fee69eb4}
+Distrugge l'istanza singleton. La distruzione è protetta da una guardia di mutua esclusione. \hypertarget{class_singleton_object_a7f2d6cfb89b33f7610f26081f54f2c58}{
+\index{SingletonObject@{SingletonObject}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!SingletonObject@{SingletonObject}}
+\subsubsection[{getInstance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ static T$\ast$ {\bf SingletonObject}$<$ T $>$::getInstance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, static\mbox{]}}}}
+\label{class_singleton_object_a7f2d6cfb89b33f7610f26081f54f2c58}
+Crea un' istanza statica della classe desiderata, se non ne esiste già una, e la ritorna al chiamante. La creazione è protetta da una guardia di mutua esclusione.
+
+\begin{DoxyReturn}{Returns}
+Puntatore alla istanza singleton della classe desiderata. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/ObjectInterfaces/SingletonObject/\hyperlink{_singleton_object_8h}{SingletonObject.h}\end{DoxyCompactItemize}

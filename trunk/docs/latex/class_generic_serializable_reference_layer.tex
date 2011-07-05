@@ -1,0 +1,195 @@
+\hypertarget{class_generic_serializable_reference_layer}{
+\section{GenericSerializableReferenceLayer$<$ T $>$ Class Template Reference}
+\label{class_generic_serializable_reference_layer}\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+}
+
+
+Inheritance diagram for GenericSerializableReferenceLayer$<$ T $>$:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{class_generic_serializable_reference_layer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for GenericSerializableReferenceLayer$<$ T $>$:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{class_generic_serializable_reference_layer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_generic_serializable_reference_layer_aa9ff163af2fd2222ef78a88fce1adbae}{GenericSerializableReferenceLayer} ()
+\item 
+\hyperlink{class_generic_serializable_reference_layer_ac692a2ade9c16d62f9f46d87e37174ae}{GenericSerializableReferenceLayer} (T \&referenceToWrap)
+\item 
+\hyperlink{class_generic_serializable_reference_layer_a26b972cb59bae4c7efd696440df92bd0}{GenericSerializableReferenceLayer} (T $\ast$referenceToWrap, bool shared)
+\item 
+\hyperlink{class_generic_serializable_reference_layer_aecc6c89a7c87e3ae977d8ac19b1b3748}{$\sim$GenericSerializableReferenceLayer} ()
+\item 
+void \hyperlink{class_generic_serializable_reference_layer_a9f13cd98ed1d2009853324a421c1734f}{operator=} (const \hyperlink{class_serializable_object}{SerializableObject} \&objectToCopy)
+\item 
+void \hyperlink{class_generic_serializable_reference_layer_aece870dcf7dae45f8fd1c43f6949571d}{setValue} (void $\ast$valueToSet)
+\item 
+void $\ast$ \hyperlink{class_generic_serializable_reference_layer_a47fe0a407cfb0bf963a2d8355e2a162c}{getValue} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \& \hyperlink{class_generic_serializable_reference_layer_a7d3c38c131eec2f749565fe837964d38}{wrappedReference}
+\item 
+bool \hyperlink{class_generic_serializable_reference_layer_ac27eb631cf3a02ab76c8ffee0c62fe05}{sharedReference}
+\end{DoxyCompactItemize}
+\subsubsection*{template$<$typename T$>$ class GenericSerializableReferenceLayer$<$ T $>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_generic_serializable_reference_layer_aa9ff163af2fd2222ef78a88fce1adbae}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{GenericSerializableReferenceLayer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ {\bf GenericSerializableReferenceLayer}$<$ T $>$::{\bf GenericSerializableReferenceLayer} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_aa9ff163af2fd2222ef78a88fce1adbae}
+Costruttore di default. Crea un oggetto del tipo opportuno e setta a false il flag sharedReference. \hypertarget{class_generic_serializable_reference_layer_ac692a2ade9c16d62f9f46d87e37174ae}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{GenericSerializableReferenceLayer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ {\bf GenericSerializableReferenceLayer}$<$ T $>$::{\bf GenericSerializableReferenceLayer} (
+\begin{DoxyParamCaption}
+\item[{T \&}]{referenceToWrap}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_ac692a2ade9c16d62f9f46d87e37174ae}
+Costruttore. Assegna al riferimento wrappato il parametro referenceToWrap. Inoltre setta il flag sharedReference, lasciando l' ownership del riferimento al chiamante.
+
+
+\begin{DoxyParams}{Parameters}
+{\em referenceToWrap} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_generic_serializable_reference_layer_a26b972cb59bae4c7efd696440df92bd0}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{GenericSerializableReferenceLayer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ {\bf GenericSerializableReferenceLayer}$<$ T $>$::{\bf GenericSerializableReferenceLayer} (
+\begin{DoxyParamCaption}
+\item[{T $\ast$}]{referenceToWrap, }
+\item[{bool}]{shared}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_a26b972cb59bae4c7efd696440df92bd0}
+Costruttore. Assegna al riferimento wrappato il parametro referenceToWrap. Inoltre setta il flag sharedReference secondo il parametro shared. Si utilizza per decidere esplicitamente se lasciare all' oggetto serializzabile l' ownership del riferimento.
+
+
+\begin{DoxyParams}{Parameters}
+{\em referenceToWrap} & \\
+\hline
+{\em shared} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Il parametro referenceToWrap deve essere stato creato attraverso l'operatore new altrimenti durante l' esecuzione del distruttore potrebbe verificarsi segmentation fault. 
+\end{DoxyPrecond}
+\hypertarget{class_generic_serializable_reference_layer_aecc6c89a7c87e3ae977d8ac19b1b3748}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!$\sim$GenericSerializableReferenceLayer@{$\sim$GenericSerializableReferenceLayer}}
+\index{$\sim$GenericSerializableReferenceLayer@{$\sim$GenericSerializableReferenceLayer}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{$\sim$GenericSerializableReferenceLayer}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ {\bf GenericSerializableReferenceLayer}$<$ T $>$::$\sim${\bf GenericSerializableReferenceLayer} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_aecc6c89a7c87e3ae977d8ac19b1b3748}
+Distruttore. Se il riferimento wrappato non è condiviso, la memoria da esso occupata viene liberata. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_generic_serializable_reference_layer_a47fe0a407cfb0bf963a2d8355e2a162c}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!getValue@{getValue}}
+\index{getValue@{getValue}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{getValue}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ void$\ast$ {\bf GenericSerializableReferenceLayer}$<$ T $>$::getValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_a47fe0a407cfb0bf963a2d8355e2a162c}
+Ritorna il valore dell' oggetto riferito.
+
+\begin{DoxyReturn}{Returns}
+Puntatore ad una zona di memoria allocata dinamicamente contente una copia dell' oggetto riferito.
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+Il chiamante ha il compito di deallocare la memoria dinamica quando l' oggetto non sarà più necessario. 
+\end{DoxyPostcond}
+
+
+Implements \hyperlink{class_serializable_object_ad096d43507c2a903f5e17a9536b125ee}{SerializableObject}.
+
+\hypertarget{class_generic_serializable_reference_layer_a9f13cd98ed1d2009853324a421c1734f}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!operator=@{operator=}}
+\index{operator=@{operator=}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ void {\bf GenericSerializableReferenceLayer}$<$ T $>$::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf SerializableObject} \&}]{objectToCopy}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_a9f13cd98ed1d2009853324a421c1734f}
+Operatore di assegnamento. Prima di effettuare la copia dell' oggetto passato come parametro, si confrontano i tipi. Se objectToCopy è di un tipo differente dall' oggetto serializzabile sul quale viene invocato l' operatore, viene lanciata un' eccezione di tipo \hyperlink{class_incompatible_types}{IncompatibleTypes}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em objectToCopy} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Il parametro objectToCopy deve avere lo stesso tipo dell' oggetto serializzabile sul quale viene invocato l' operatore. 
+\end{DoxyPrecond}
+
+
+Implements \hyperlink{class_serializable_object_a94985a4c4221671eaf7b41ff6517d947}{SerializableObject}.
+
+\hypertarget{class_generic_serializable_reference_layer_aece870dcf7dae45f8fd1c43f6949571d}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!setValue@{setValue}}
+\index{setValue@{setValue}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{setValue}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ void {\bf GenericSerializableReferenceLayer}$<$ T $>$::setValue (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{valueToSet}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_aece870dcf7dae45f8fd1c43f6949571d}
+Assegna all' oggetto riferito il valore passato come parametro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em valueToSet} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Il parametro valueToSet deve essere dello stesso tipo dell' oggetto riferito. 
+\end{DoxyPrecond}
+
+
+Implements \hyperlink{class_serializable_object_adf52c5c2bff1dbac9555adafdc2a6755}{SerializableObject}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_generic_serializable_reference_layer_ac27eb631cf3a02ab76c8ffee0c62fe05}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!sharedReference@{sharedReference}}
+\index{sharedReference@{sharedReference}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{sharedReference}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ bool {\bf GenericSerializableReferenceLayer}$<$ T $>$::{\bf sharedReference}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_ac27eb631cf3a02ab76c8ffee0c62fe05}
+Indica se il riferimento è condiviso. In caso negativo, il riferimento può essere cancellato dal distruttore. \hypertarget{class_generic_serializable_reference_layer_a7d3c38c131eec2f749565fe837964d38}{
+\index{GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}!wrappedReference@{wrappedReference}}
+\index{wrappedReference@{wrappedReference}!GenericSerializableReferenceLayer@{GenericSerializableReferenceLayer}}
+\subsubsection[{wrappedReference}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T$>$ T\& {\bf GenericSerializableReferenceLayer}$<$ T $>$::{\bf wrappedReference}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{class_generic_serializable_reference_layer_a7d3c38c131eec2f749565fe837964d38}
+Riferimento gestito. 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/SerializableObjects/GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h\end{DoxyCompactItemize}

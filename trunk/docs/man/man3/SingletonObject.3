@@ -1,0 +1,45 @@
+.TH "SingletonObject" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SingletonObject \- 
+.PP
+Interfaccia template per singoletti.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SingletonObject.h>\fP
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static T * \fBgetInstance\fP ()"
+.br
+.ti -1c
+.RI "static void \fBdestroyInstance\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<typename T>class SingletonObject< T >"
+Interfaccia template per singoletti. 
+
+Le classi che implementano l' interfaccia \fBSingletonObject\fP possono essere istanziate una sola volta, secondo il design pattern Singleton. 
+.SH "Member Function Documentation"
+.PP 
+.SS "template<typename T> static void \fBSingletonObject\fP< T >::destroyInstance ()\fC [inline, static]\fP"Distrugge l'istanza singleton. La distruzione è protetta da una guardia di mutua esclusione. 
+.SS "template<typename T> static T* \fBSingletonObject\fP< T >::getInstance ()\fC [inline, static]\fP"Crea un' istanza statica della classe desiderata, se non ne esiste già una, e la ritorna al chiamante. La creazione è protetta da una guardia di mutua esclusione.
+.PP
+\fBReturns:\fP
+.RS 4
+Puntatore alla istanza singleton della classe desiderata. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

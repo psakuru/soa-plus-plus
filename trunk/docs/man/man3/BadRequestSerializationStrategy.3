@@ -1,0 +1,59 @@
+.TH "BadRequestSerializationStrategy" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BadRequestSerializationStrategy \- 
+.PP
+Esempio di Signal.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <BadRequestSerializationStrategy.h>\fP
+.PP
+Inherits \fBSignalSerializationStrategy\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBBadRequestSerializationStrategy\fP (\fBBadRequestSignal\fP &userReference)"
+.br
+.ti -1c
+.RI "Type \fBgetSignalType\fP () const "
+.br
+.ti -1c
+.RI "int \fBgetValueLengthLength\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Esempio di Signal. 
+
+La classe specializza il segnale di 'bad request', un esempio di come trattare i segnali. 
+.SH "Member Function Documentation"
+.PP 
+.SS "Type BadRequestSerializationStrategy::getSignalType () const\fC [virtual]\fP"Ritorna il tipo del particolare segnale.
+.PP
+\fBReturns:\fP
+.RS 4
+Tipo del particolare segnale. 
+.RE
+.PP
+
+.PP
+Implements \fBSignalSerializationStrategy\fP.
+.SS "int BadRequestSerializationStrategy::getValueLengthLength ()\fC [virtual]\fP"Ritorna la lunghezza del campo length (lunghezza del campo value).
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del campo length. 
+.RE
+.PP
+
+.PP
+Implements \fBSignalSerializationStrategy\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

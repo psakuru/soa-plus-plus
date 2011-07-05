@@ -1,0 +1,160 @@
+\hypertarget{class_tcp_ip_active_socket}{
+\section{TcpIpActiveSocket Class Reference}
+\label{class_tcp_ip_active_socket}\index{TcpIpActiveSocket@{TcpIpActiveSocket}}
+}
+
+
+Socket TCP/IP per comunicazione attiva.  
+
+
+
+
+{\ttfamily \#include $<$TcpIpActiveSocket.h$>$}
+
+
+
+Inheritance diagram for TcpIpActiveSocket:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_tcp_ip_active_socket__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for TcpIpActiveSocket:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_tcp_ip_active_socket__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tcp_ip_active_socket_ab9cc81d079fc72277df1b9e898a13fd6}{TcpIpActiveSocket} (string serverIPorURL, int port)
+\item 
+\hyperlink{class_tcp_ip_active_socket_a8ff972c78aa7000ef57fac5347e5d7da}{TcpIpActiveSocket} (int listeningSocketDescriptor)
+\item 
+string \hyperlink{class_tcp_ip_active_socket_aef67199e2016b6c0d39c7c4a0b7ea639}{getAddress} ()
+\item 
+void \hyperlink{class_tcp_ip_active_socket_a498afb4575c1beb4d7de9b2297c03f30}{sendMessage} (void $\ast$buffer, uint64\_\-t length)
+\item 
+void $\ast$ \hyperlink{class_tcp_ip_active_socket_aff67cf14e0d23412ea0dcc50f063bb64}{receiveMessage} (uint64\_\-t length)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tcp_ip_active_socket_aaf0d1bc2f0bc9e4552f773fe146c4b4d}{
+sockaddr\_\-in {\bfseries serverAddress}}
+\label{class_tcp_ip_active_socket_aaf0d1bc2f0bc9e4552f773fe146c4b4d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Socket TCP/IP per comunicazione attiva. 
+
+La classe \hyperlink{class_tcp_ip_active_socket}{TcpIpActiveSocket} mantiene un descrittore di file relativo al socket attivo gestito. Un socket attivo è un socket su cui si effettua una comunicazione attiva, a differenza di quanto accade quando si effettua l' operazione di listen. Socket attivi sono socket su cui si fa la connect e socket ritornati dalla accept. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_tcp_ip_active_socket_ab9cc81d079fc72277df1b9e898a13fd6}{
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\subsubsection[{TcpIpActiveSocket}]{\setlength{\rightskip}{0pt plus 5cm}TcpIpActiveSocket::TcpIpActiveSocket (
+\begin{DoxyParamCaption}
+\item[{string}]{serverIPorURL, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}
+\label{class_tcp_ip_active_socket_ab9cc81d079fc72277df1b9e898a13fd6}
+Costruttore. Chiama la funzione connect sul socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em serverIPorURL} & \\
+\hline
+{\em port} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tcp_ip_active_socket_a8ff972c78aa7000ef57fac5347e5d7da}{
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\subsubsection[{TcpIpActiveSocket}]{\setlength{\rightskip}{0pt plus 5cm}TcpIpActiveSocket::TcpIpActiveSocket (
+\begin{DoxyParamCaption}
+\item[{int}]{listeningSocketDescriptor}
+\end{DoxyParamCaption}
+)}}
+\label{class_tcp_ip_active_socket_a8ff972c78aa7000ef57fac5347e5d7da}
+Costruttore. Inizializza il socket attivo utilizzando il descrittore di file ritornato dalla funzione accept effettuata sul socket passivo passato come parametro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em listeningSocketDescriptor} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tcp_ip_active_socket_aef67199e2016b6c0d39c7c4a0b7ea639}{
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!getAddress@{getAddress}}
+\index{getAddress@{getAddress}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\subsubsection[{getAddress}]{\setlength{\rightskip}{0pt plus 5cm}string TcpIpActiveSocket::getAddress (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_tcp_ip_active_socket_aef67199e2016b6c0d39c7c4a0b7ea639}
+Ritorna una rappresentazione human readable dell' indirizzo IP e della porta nel formato ip:porta.
+
+\begin{DoxyReturn}{Returns}
+Stringa che rappresenta l' indirizzo IP e la porta sui quali il socket agisce. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_tcp_ip_socket_aac9c414dbb371341bb3683df39ec5021}{TcpIpSocket}.
+
+\hypertarget{class_tcp_ip_active_socket_aff67cf14e0d23412ea0dcc50f063bb64}{
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!receiveMessage@{receiveMessage}}
+\index{receiveMessage@{receiveMessage}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\subsubsection[{receiveMessage}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ TcpIpActiveSocket::receiveMessage (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}
+\label{class_tcp_ip_active_socket_aff67cf14e0d23412ea0dcc50f063bb64}
+Chiama la funzione receive sul socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & Lunghezza del buffer di ricezione.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Buffer che ospita i byte ricevuti. 
+\end{DoxyReturn}
+\hypertarget{class_tcp_ip_active_socket_a498afb4575c1beb4d7de9b2297c03f30}{
+\index{TcpIpActiveSocket@{TcpIpActiveSocket}!sendMessage@{sendMessage}}
+\index{sendMessage@{sendMessage}!TcpIpActiveSocket@{TcpIpActiveSocket}}
+\subsubsection[{sendMessage}]{\setlength{\rightskip}{0pt plus 5cm}void TcpIpActiveSocket::sendMessage (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{buffer, }
+\item[{uint64\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}
+\label{class_tcp_ip_active_socket_a498afb4575c1beb4d7de9b2297c03f30}
+Chiama la funzione send sul socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & Buffer da inviare. \\
+\hline
+{\em length} & Lunghezza del buffer da inviare. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/TcpIpSocket/TcpIpActiveSocket/\hyperlink{_tcp_ip_active_socket_8h}{TcpIpActiveSocket.h}\item 
+soa-\/plus-\/plus/TcpIpSocket/TcpIpActiveSocket/TcpIpActiveSocket.cpp\end{DoxyCompactItemize}

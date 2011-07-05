@@ -1,0 +1,105 @@
+.TH "TcpIpActiveSocket" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TcpIpActiveSocket \- 
+.PP
+Socket TCP/IP per comunicazione attiva.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <TcpIpActiveSocket.h>\fP
+.PP
+Inherits \fBTcpIpSocket\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTcpIpActiveSocket\fP (string serverIPorURL, int port)"
+.br
+.ti -1c
+.RI "\fBTcpIpActiveSocket\fP (int listeningSocketDescriptor)"
+.br
+.ti -1c
+.RI "string \fBgetAddress\fP ()"
+.br
+.ti -1c
+.RI "void \fBsendMessage\fP (void *buffer, uint64_t length)"
+.br
+.ti -1c
+.RI "void * \fBreceiveMessage\fP (uint64_t length)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "sockaddr_in \fBserverAddress\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Socket TCP/IP per comunicazione attiva. 
+
+La classe \fBTcpIpActiveSocket\fP mantiene un descrittore di file relativo al socket attivo gestito. Un socket attivo è un socket su cui si effettua una comunicazione attiva, a differenza di quanto accade quando si effettua l' operazione di listen. Socket attivi sono socket su cui si fa la connect e socket ritornati dalla accept. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "TcpIpActiveSocket::TcpIpActiveSocket (stringserverIPorURL, intport)"Costruttore. Chiama la funzione connect sul socket.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIserverIPorURL\fP 
+.br
+\fIport\fP 
+.RE
+.PP
+
+.SS "TcpIpActiveSocket::TcpIpActiveSocket (intlisteningSocketDescriptor)"Costruttore. Inizializza il socket attivo utilizzando il descrittore di file ritornato dalla funzione accept effettuata sul socket passivo passato come parametro.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlisteningSocketDescriptor\fP 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "string TcpIpActiveSocket::getAddress ()\fC [virtual]\fP"Ritorna una rappresentazione human readable dell' indirizzo IP e della porta nel formato ip:porta.
+.PP
+\fBReturns:\fP
+.RS 4
+Stringa che rappresenta l' indirizzo IP e la porta sui quali il socket agisce. 
+.RE
+.PP
+
+.PP
+Implements \fBTcpIpSocket\fP.
+.SS "void * TcpIpActiveSocket::receiveMessage (uint64_tlength)"Chiama la funzione receive sul socket.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlength\fP Lunghezza del buffer di ricezione.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Buffer che ospita i byte ricevuti. 
+.RE
+.PP
+
+.SS "void TcpIpActiveSocket::sendMessage (void *buffer, uint64_tlength)"Chiama la funzione send sul socket.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuffer\fP Buffer da inviare. 
+.br
+\fIlength\fP Lunghezza del buffer da inviare. 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

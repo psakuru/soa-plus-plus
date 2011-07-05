@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_registrable_skeleton.html" title="RegistrableSkeleton" alt="" coords="987,89,1125,116"/>
+<area shape="rect" id="node4" href="$class_registrable_object.html" title="Intefaccia per oggetti registrabili." alt="" coords="787,64,912,91"/>
+<area shape="rect" id="node6" href="$class_skeleton.html" title="Skeleton" alt="" coords="813,115,886,141"/>
+<area shape="rect" id="node25" href="$class_callable_service.html" title="CallableService\&lt; Skeleton \&gt;" alt="" coords="963,140,1149,167"/>
+<area shape="rect" id="node8" href="$class_service.html" title="Service" alt="" coords="659,76,723,103"/>
+<area shape="rect" id="node10" href="$class_pointer_list.html" title="PointerList\&lt; SerializableObject * \&gt;" alt="" coords="235,60,458,87"/>
+<area shape="rect" id="node12" href="$classlist.html" title="list\&lt;SerializableObject * \&gt;" alt="" coords="8,28,181,55"/>
+<area shape="rect" id="node14" href="$classlist.html" title="list\&lt; SerializableObject * \&gt;" alt="" coords="6,79,183,105"/>
+<area shape="rect" id="node16" href="$class_tcp_ip_active_socket.html" title="Socket TCP/IP per comunicazione attiva." alt="" coords="283,111,411,137"/>
+<area shape="rect" id="node18" href="$class_tcp_ip_socket.html" title="Socket TCP/IP." alt="" coords="48,145,141,172"/>
+<area shape="rect" id="node22" href="$class_tcp_ip_passive_socket.html" title="Socket TCP/IP che accetta richieste di connessione." alt="" coords="483,159,621,185"/>
+<area shape="rect" id="node20" href="$class_serializable_object_builder.html" title="Classe base del sistema di costruzione di SerializableObject." alt="" coords="263,5,430,32"/>
+<area shape="rect" id="node27" href="$class_callable_object.html" title="Interfaccia per oggetti invocabili." alt="" coords="796,165,903,192"/>
+</map>

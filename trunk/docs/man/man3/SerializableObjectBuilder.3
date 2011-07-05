@@ -1,0 +1,124 @@
+.TH "SerializableObjectBuilder" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SerializableObjectBuilder \- 
+.PP
+Classe base del sistema di costruzione di \fBSerializableObject\fP.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SerializableObjectBuilder.h>\fP
+.PP
+Inherited by \fBSignalBuilder\fP, and \fBTerminalSerializableObjectBuilder< T >\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBSerializableObjectBuilder\fP * \fBoperator[]\fP (Type builtType)"
+.br
+.ti -1c
+.RI "virtual void \fBaddSerializableObjectBuilder\fP (Type builtType, \fBSerializableObjectBuilder\fP *builderToAdd)"
+.br
+.ti -1c
+.RI "virtual void \fBremoveSerializableObjectBuilder\fP (Type builtType)"
+.br
+.ti -1c
+.RI "virtual int \fBgetValueLengthLength\fP (Type receivedType)"
+.br
+.ti -1c
+.RI "virtual \fBSerializableObject\fP * \fBdelegateBuilding\fP (Type typeToBuild, uint64_t valueLength, void *value)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "map< Type, \fBSerializableObjectBuilder\fP * > \fBsubSerializableObjectBuilders\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Classe base del sistema di costruzione di \fBSerializableObject\fP. 
+
+Classe base del sistema di costruzione di \fBSerializableObject\fP a partire dalla loro rappresentazione serializzata.
+.PP
+\fBSerializableObjectBuilder\fP | | TerminalSerializableObjectBuilder<Integer> ... \fBSignalBuilder\fP | TerminalSerializableObjectBuilder<BadRequestSignalBuilder> 
+.SH "Member Function Documentation"
+.PP 
+.SS "void SerializableObjectBuilder::addSerializableObjectBuilder (TypebuiltType, \fBSerializableObjectBuilder\fP *builderToAdd)\fC [virtual]\fP"Aggiunge un builder alla mappa.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuiltType\fP 
+.br
+\fIbuilderToAdd\fP 
+.RE
+.PP
+
+.SS "\fBSerializableObject\fP * SerializableObjectBuilder::delegateBuilding (TypetypeToBuild, uint64_tvalueLength, void *value)\fC [virtual]\fP"Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro. Questo, a sua volta, può delegare la costruzione di tali oggetti al builder ancora più specializzato che si trova in un livello inferiore della gerarchia dei builder, e così via...
+.PP
+\fBParameters:\fP
+.RS 4
+\fItypeToBuild\fP 
+.br
+\fIvalueLength\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Puntatore ad un oggetto derivato da \fBSerializableObject\fP allocato in memoria dinamica.
+.RE
+.PP
+\fBPostcondition:\fP
+.RS 4
+Il chiamante diventa owner dell' oggetto ritornato. Deve quindi occuparsi di liberare la memoria dinamica occupata quando opportuno. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBSignalBuilder\fP, and \fBTerminalSerializableObjectBuilder< T >\fP.
+.SS "int SerializableObjectBuilder::getValueLengthLength (TypereceivedType)\fC [virtual]\fP"Ritorna la lunghezza del campo length relativa alla rappresentazione serializzata del tipo da costruire. Tale informazione viene recuperata, in generale, richiedendola al builder più specializzato che si trova in un livello inferiore della gerarchia dei builder, il quale potrebbe richiederla al livello sottostante, e così via...
+.PP
+\fBParameters:\fP
+.RS 4
+\fIreceivedType\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del campo length. 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBSignalBuilder\fP, and \fBTerminalSerializableObjectBuilder< T >\fP.
+.SS "\fBSerializableObjectBuilder\fP * SerializableObjectBuilder::operator[] (TypebuiltType)\fC [virtual]\fP"Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuiltType\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "void SerializableObjectBuilder::removeSerializableObjectBuilder (TypebuiltType)\fC [virtual]\fP"Rimuove un builder dalla mappa.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbuiltType\fP 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "map< Type, \fBSerializableObjectBuilder\fP* > \fBSerializableObjectBuilder::subSerializableObjectBuilders\fP\fC [protected]\fP"Un builder mantiene una mappa che gli permette di delegare la costruzione di un \fBSerializableObject\fP a builder più specializzati. I puntatori sono collegamenti a nodi sottostanti. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

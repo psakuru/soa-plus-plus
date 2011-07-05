@@ -1,0 +1,87 @@
+\hypertarget{class_skeleton}{
+\section{Skeleton Class Reference}
+\label{class_skeleton}\index{Skeleton@{Skeleton}}
+}
+
+
+Inheritance diagram for Skeleton:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{class_skeleton__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Skeleton:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{class_skeleton__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_skeleton_a8758c6676828d80f99a7bc8cb6c4c836}{
+{\bfseries Skeleton} (string serviceIDToSet)}
+\label{class_skeleton_a8758c6676828d80f99a7bc8cb6c4c836}
+
+\item 
+\hypertarget{class_skeleton_a724b77f83f1461c95fc2b3def5e26400}{
+{\bfseries Skeleton} (string serviceIDToSet, \hyperlink{class_tcp_ip_passive_socket}{TcpIpPassiveSocket} $\ast$listeningSocketToShare)}
+\label{class_skeleton_a724b77f83f1461c95fc2b3def5e26400}
+
+\item 
+\hypertarget{class_skeleton_a6205920dbd84d42b00c8552280d1f13a}{
+{\bfseries Skeleton} (string serviceIDToSet, string IPAddress, int port, int backlog)}
+\label{class_skeleton_a6205920dbd84d42b00c8552280d1f13a}
+
+\item 
+\hypertarget{class_skeleton_ad51826bee524a8e2cd0afb54d855240e}{
+void {\bfseries shareListeningSocket} (\hyperlink{class_tcp_ip_passive_socket}{TcpIpPassiveSocket} $\ast$listeningSocketToShare)}
+\label{class_skeleton_ad51826bee524a8e2cd0afb54d855240e}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_skeleton_a51c8c7996f2f50a7d5bc85118d52f2b0}{
+void {\bfseries bind} ()}
+\label{class_skeleton_a51c8c7996f2f50a7d5bc85118d52f2b0}
+
+\item 
+\hypertarget{class_skeleton_aaa30ab743dfcd9c6dfcdb7cdbe1088ec}{
+void {\bfseries protocol} ()}
+\label{class_skeleton_aaa30ab743dfcd9c6dfcdb7cdbe1088ec}
+
+\item 
+\hypertarget{class_skeleton_abdafb95c2aacd31d8f4c3b009080129f}{
+virtual void {\bfseries doService} ()=0}
+\label{class_skeleton_abdafb95c2aacd31d8f4c3b009080129f}
+
+\item 
+\hypertarget{class_skeleton_acb875d125918849c652b6f8fe0fb5eea}{
+void {\bfseries addParameter} (\hyperlink{class_serializable_object}{SerializableObject} $\ast$parameterToAdd, Direction parameterDirection)}
+\label{class_skeleton_acb875d125918849c652b6f8fe0fb5eea}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_skeleton_a5000048b11afd3950929444979627e14}{
+\hyperlink{class_tcp_ip_passive_socket}{TcpIpPassiveSocket} $\ast$ {\bfseries listeningSocket}}
+\label{class_skeleton_a5000048b11afd3950929444979627e14}
+
+\item 
+\hypertarget{class_skeleton_adc7f1757aa86603d94d7bd8b83eec4db}{
+bool {\bfseries sharedListeningSocket}}
+\label{class_skeleton_adc7f1757aa86603d94d7bd8b83eec4db}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/ServiceOrientedArchitecture/Service/Skeleton/Skeleton.h\item 
+soa-\/plus-\/plus/ServiceOrientedArchitecture/Service/Skeleton/Skeleton.cpp\end{DoxyCompactItemize}

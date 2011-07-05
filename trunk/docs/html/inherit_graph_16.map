@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$class_serializable_object_builder.html" title="Classe base del sistema di costruzione di SerializableObject." alt="" coords="6,31,173,57"/>
+<area shape="rect" id="node3" href="$class_signal_builder.html" title="Classe intermedia del sistema di costruzione di SerializableObject." alt="" coords="296,5,395,32"/>
+<area shape="rect" id="node5" href="$class_terminal_serializable_object_builder.html" title="Classe terminale template del sistema di costruzione di SerializableObject." alt="" coords="222,56,469,83"/>
+</map>

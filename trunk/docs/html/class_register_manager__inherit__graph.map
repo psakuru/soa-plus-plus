@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$class_registrable_poolable_cyclic_callable_skeleton.html" title="RegistrablePoolableCyclicCallableSkeleton" alt="" coords="51,229,321,256"/>
+<area shape="rect" id="node4" href="$class_registrable_skeleton.html" title="RegistrableSkeleton" alt="" coords="24,155,163,181"/>
+<area shape="rect" id="node6" href="$class_registrable_object.html" title="Intefaccia per oggetti registrabili." alt="" coords="5,80,131,107"/>
+<area shape="rect" id="node8" href="$class_skeleton.html" title="Skeleton" alt="" coords="155,80,228,107"/>
+<area shape="rect" id="node12" href="$class_callable_service.html" title="CallableService\&lt; Skeleton \&gt;" alt="" coords="187,155,372,181"/>
+<area shape="rect" id="node10" href="$class_service.html" title="Service" alt="" coords="160,5,224,32"/>
+<area shape="rect" id="node14" href="$class_callable_object.html" title="Interfaccia per oggetti invocabili." alt="" coords="253,80,360,107"/>
+</map>

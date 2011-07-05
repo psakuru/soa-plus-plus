@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$class_callable_service.html" title="CallableService\&lt; Skeleton \&gt;" alt="" coords="241,5,426,32"/>
+<area shape="rect" id="node15" href="$class_registrable_skeleton.html" title="RegistrableSkeleton" alt="" coords="264,56,403,83"/>
+<area shape="rect" id="node2" href="$class_service.html" title="Service" alt="" coords="5,31,69,57"/>
+<area shape="rect" id="node7" href="$class_registrable_poolable_cyclic_callable_skeleton.html" title="RegistrablePoolableCyclicCallableSkeleton" alt="" coords="475,31,746,57"/>
+<area shape="rect" id="node9" href="$class_particular_registrable_poolable_cyclic_callable_skeleton.html" title="ParticularRegistrablePoolableCyclicCallableSkeleton" alt="" coords="795,31,1120,57"/>
+<area shape="rect" id="node13" href="$class_register_manager.html" title="RegisterManager\&lt; RegisterMap \&gt;" alt="" coords="849,81,1066,108"/>
+</map>

@@ -1,0 +1,168 @@
+\hypertarget{class_integer_serialization_strategy}{
+\section{IntegerSerializationStrategy Class Reference}
+\label{class_integer_serialization_strategy}\index{IntegerSerializationStrategy@{IntegerSerializationStrategy}}
+}
+
+
+Serializzazione di un intero.  
+
+
+
+
+{\ttfamily \#include $<$IntegerSerializationStrategy.h$>$}
+
+
+
+Inheritance diagram for IntegerSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{class_integer_serialization_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for IntegerSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{class_integer_serialization_strategy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_integer_serialization_strategy_ae141aa24aec4665ba0bad91d46d19ff7}{
+{\bfseries IntegerSerializationStrategy} (int32\_\-t \&valueToSet)}
+\label{class_integer_serialization_strategy_ae141aa24aec4665ba0bad91d46d19ff7}
+
+\item 
+\hypertarget{class_integer_serialization_strategy_a66091ffab5c0b2eaa94429307304d91b}{
+{\bfseries IntegerSerializationStrategy} (int32\_\-t $\ast$userReferenceToSet, bool shared)}
+\label{class_integer_serialization_strategy_a66091ffab5c0b2eaa94429307304d91b}
+
+\item 
+Type \hyperlink{class_integer_serialization_strategy_a06e6e5d78022e90f15576fdded78c3b9}{getType} () const 
+\item 
+int \hyperlink{class_integer_serialization_strategy_a8f1e79770a9c3a9591d380a3dcc27961}{getValueLengthLength} ()
+\item 
+uint64\_\-t \hyperlink{class_integer_serialization_strategy_aab13f80cdcc784a03ae4c78f421f4ad1}{serialize} (void $\ast$$\ast$destinationBuffer)
+\item 
+void \hyperlink{class_integer_serialization_strategy_ac097be13dc735f0b5a1b5e264ec22cd2}{deserialize} (uint64\_\-t length, void $\ast$bufferToUse)
+\item 
+string \hyperlink{class_integer_serialization_strategy_a6a0c31140732e39c69928f8a75a87735}{getValueTypeStringRepresentation} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serializzazione di un intero. 
+
+La classe specializza il layer per trattare gli interi. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_integer_serialization_strategy_ac097be13dc735f0b5a1b5e264ec22cd2}{
+\index{IntegerSerializationStrategy@{IntegerSerializationStrategy}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!IntegerSerializationStrategy@{IntegerSerializationStrategy}}
+\subsubsection[{deserialize}]{\setlength{\rightskip}{0pt plus 5cm}void IntegerSerializationStrategy::deserialize (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{length, }
+\item[{void $\ast$}]{bufferToUse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_integer_serialization_strategy_ac097be13dc735f0b5a1b5e264ec22cd2}
+Effettua la deserializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+{\em bufferToUse} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_serializable_object_a3f99c7957c0ac8e5edf5f2a5593f4d78}{SerializableObject}.
+
+\hypertarget{class_integer_serialization_strategy_a06e6e5d78022e90f15576fdded78c3b9}{
+\index{IntegerSerializationStrategy@{IntegerSerializationStrategy}!getType@{getType}}
+\index{getType@{getType}!IntegerSerializationStrategy@{IntegerSerializationStrategy}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}Type IntegerSerializationStrategy::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_integer_serialization_strategy_a06e6e5d78022e90f15576fdded78c3b9}
+Ritorna il tipo dell' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Tipo di oggetto serializzabile. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_a64441fc2428eed4b1a3aab9130ec2a31}{SerializableObject}.
+
+\hypertarget{class_integer_serialization_strategy_a8f1e79770a9c3a9591d380a3dcc27961}{
+\index{IntegerSerializationStrategy@{IntegerSerializationStrategy}!getValueLengthLength@{getValueLengthLength}}
+\index{getValueLengthLength@{getValueLengthLength}!IntegerSerializationStrategy@{IntegerSerializationStrategy}}
+\subsubsection[{getValueLengthLength}]{\setlength{\rightskip}{0pt plus 5cm}int IntegerSerializationStrategy::getValueLengthLength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_integer_serialization_strategy_a8f1e79770a9c3a9591d380a3dcc27961}
+Ritorna la lunghezza del campo length (lunghezza del campo value).
+
+\begin{DoxyReturn}{Returns}
+Lunghezza del campo length. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ac7f7f52078aa957078bf0583faf39ebf}{SerializableObject}.
+
+\hypertarget{class_integer_serialization_strategy_a6a0c31140732e39c69928f8a75a87735}{
+\index{IntegerSerializationStrategy@{IntegerSerializationStrategy}!getValueTypeStringRepresentation@{getValueTypeStringRepresentation}}
+\index{getValueTypeStringRepresentation@{getValueTypeStringRepresentation}!IntegerSerializationStrategy@{IntegerSerializationStrategy}}
+\subsubsection[{getValueTypeStringRepresentation}]{\setlength{\rightskip}{0pt plus 5cm}string IntegerSerializationStrategy::getValueTypeStringRepresentation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_integer_serialization_strategy_a6a0c31140732e39c69928f8a75a87735}
+Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Rappresentazione human readable del tipo dell' oggetto. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_af3cf94b6fb07b1a06e6cbac100994592}{SerializableObject}.
+
+\hypertarget{class_integer_serialization_strategy_aab13f80cdcc784a03ae4c78f421f4ad1}{
+\index{IntegerSerializationStrategy@{IntegerSerializationStrategy}!serialize@{serialize}}
+\index{serialize@{serialize}!IntegerSerializationStrategy@{IntegerSerializationStrategy}}
+\subsubsection[{serialize}]{\setlength{\rightskip}{0pt plus 5cm}uint64\_\-t IntegerSerializationStrategy::serialize (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{destinationBuffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_integer_serialization_strategy_aab13f80cdcc784a03ae4c78f421f4ad1}
+Effettua la serializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destinationBuffer} & Puntatore al buffer di destinazione.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lunghezza del buffer. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ad9c873bfdba9fdfea311d61675cc6e2d}{SerializableObject}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/\hyperlink{_integer_serialization_strategy_8h}{IntegerSerializationStrategy.h}\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.cpp\end{DoxyCompactItemize}

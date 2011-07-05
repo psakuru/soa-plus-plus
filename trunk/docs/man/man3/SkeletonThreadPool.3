@@ -1,0 +1,52 @@
+.TH "SkeletonThreadPool" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SkeletonThreadPool \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBRegistrableSkeletonThreadPool< T, poolSize >\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSkeletonThreadPool\fP (string IPAddress, int listeningPort, int backlog)"
+.br
+.ti -1c
+.RI "virtual \fB~SkeletonThreadPool\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "boost::mutex \fBsharedMutex\fP"
+.br
+.ti -1c
+.RI "\fBTcpIpPassiveSocket\fP \fBsharedListeningSocket\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "boost::thread_group \fBpool\fP"
+.br
+.ti -1c
+.RI "\fBlist\fP< boost::thread * > \fBthreadReferences\fP"
+.br
+.in -1c
+
+.SS "template<typename T, int poolSize> class SkeletonThreadPool< T, poolSize >"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<typename T , int poolSize> virtual \fBSkeletonThreadPool\fP< T, poolSize >::~\fBSkeletonThreadPool\fP ()\fC [inline, virtual]\fP"
+.PP
+TODO sharedListeningSocket.close??? 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.
