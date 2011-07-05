@@ -30,9 +30,9 @@
 /**
  * @class RawByteBufferSerializationStrategy
  *
- * @brief Serializzazione di un' array di byte.
+ * @brief Serializzazione di array di byte.
  *
- * La classe specializza il layer per trattare le array di byte.
+ * La classe specializza il layer per trattare array di byte.
  *
  */
 
