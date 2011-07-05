@@ -4,8 +4,6 @@
 #include <iostream>
 using namespace std;
 
-RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy() {}
-
 RawByteBufferSerializationStrategy::RawByteBufferSerializationStrategy(ByteArray& userReferenceToSet)
     : GenericSerializableReferenceLayer<ByteArray>(userReferenceToSet) {}
 
