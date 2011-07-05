@@ -33,12 +33,16 @@ using namespace std;
  * @brief Classe base del sistema di costruzione di SerializableObject.
  *
  * Classe base del sistema di costruzione di SerializableObject a partire dalla loro rappresentazione serializzata. 
+ * 
  *
  */
 
 class SerializableObjectBuilder
 {
 protected:
+	/**
+	 * 
+	 */
     map< Type, SerializableObjectBuilder* > subSerializableObjectBuilders;
 public:
     virtual ~SerializableObjectBuilder();
