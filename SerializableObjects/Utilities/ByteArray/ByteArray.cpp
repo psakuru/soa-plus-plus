@@ -48,7 +48,7 @@ void ByteArray::operator=(const ByteArray& byteArrayToCopy)
 {
 
     /* ATTENZIONE: IL SEGUENTE BLOCCO ERA IN if(byteArray != NULL) */
-    free(byteArray);
+    free(byteArray); //MEMORY LEAK?
     byteArray = NULL;
     length = 0;
 
@@ -60,7 +60,7 @@ void ByteArray::operator=(const ByteArray& byteArrayToCopy)
 
 void ByteArray::erase()
 {
-    free(byteArray);
+    free(byteArray); //MEMORY LEAK?
     byteArray = NULL;
     length = 0;
 }
