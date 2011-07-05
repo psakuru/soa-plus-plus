@@ -1,4 +1,3 @@
-// Include il ReferenceSerializationLayer
 #include "RawByteBufferSerializationStrategy.h"
 #include <stdlib.h>
 #include <iostream>
