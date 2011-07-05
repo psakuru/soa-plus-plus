@@ -65,7 +65,7 @@ public:
 	 */
     uint64_t serialize(void** destinationBuffer);
 	/**
-	 * La deserializzazione, in questo caso, maschera l' invocazione dell' handler.
+	 * La deserializzazione, in questo caso, comporta l' invocazione dell' handler associato al segnale.
 	 *
 	 * @param bufferToUse Parametro muto.
 	 * @param length Parametro muto.
