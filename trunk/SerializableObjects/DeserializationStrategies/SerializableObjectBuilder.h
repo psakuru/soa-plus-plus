@@ -30,9 +30,9 @@ using namespace std;
 /**
  * @class SerializableObjectBuilder
  *
- * @brief Classe base del sistema di building.
+ * @brief Classe base del sistema di costruzione di SerializableObject.
  *
- * Classe base del sistema di building per la costruzione di SerializableObject a partire dalla loro rappresentazione serializzata. 
+ * Classe base del sistema di costruzione di SerializableObject a partire dalla loro rappresentazione serializzata. 
  *
  */
 
