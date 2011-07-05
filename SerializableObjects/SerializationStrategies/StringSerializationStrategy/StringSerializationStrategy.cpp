@@ -3,8 +3,6 @@
 #include <iostream>
 using namespace std;
 
-StringSerializationStrategy::StringSerializationStrategy() {}
-
 StringSerializationStrategy::StringSerializationStrategy(string& userReferenceToSet)
     : GenericSerializableReferenceLayer<string>(userReferenceToSet) {}
 
