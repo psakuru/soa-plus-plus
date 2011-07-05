@@ -15,11 +15,12 @@ class RegisterManager : public RegistrablePoolableCyclicCallableSkeleton
 protected:
     void doService()
     {
-        string requestedOperation(*((string*)(inputParameters.front())->getValue()));
+        string* requestedOperation = (string*)(inputParameters.front())->getValue();
         inputParameters.pop_front();
-        if(requestedOperation.compare("publish") == 0) editMap("publish");
-        if(requestedOperation.compare("censor") == 0) editMap("censor");
-        if(requestedOperation.compare("search") == 0) searchInMap();
+        if(requestedOperation->compare("publish") == 0) editMap("publish");
+        if(requestedOperation->compare("censor") == 0) editMap("censor");
+        if(requestedOperation->compare("search") == 0) searchInMap();
+        delete requestedOperation;
         //Se nessuno di questi if si attiva il registro non fa niente, alla fine risponde lista vuota e tutti contenti
         inputParameters.clear();
     }
@@ -29,9 +30,9 @@ protected:
         SerializableObjectList::iterator i = inputParameters.begin();
         while(i != inputParameters.end())
         {
-            string entry = *((string*)(*i)->getValue());
-            string key = entry.substr(0, entry.find_first_of('@'));
-            string element = entry.substr(entry.find_first_of('@')+1);
+            string* entry = (string*)(*i)->getValue();
+            string key = entry->substr(0, entry.find_first_of('@'));
+            string element = entry->substr(entry.find_first_of('@')+1);
             if(command.compare("publish") == 0)
             {
                 sharedRegister->insertElement(key, element);
@@ -41,6 +42,7 @@ protected:
                 sharedRegister->clearElement(key, element);
             }
             sharedRegister->print();
+            delete entry;
             i++;
         }
         //inputParameters.clear();
