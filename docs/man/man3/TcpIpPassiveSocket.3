@@ -1,0 +1,78 @@
+.TH "TcpIpPassiveSocket" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TcpIpPassiveSocket \- 
+.PP
+Socket TCP/IP che accetta richieste di connessione.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <TcpIpPassiveSocket.h>\fP
+.PP
+Inherits \fBTcpIpSocket\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTcpIpPassiveSocket\fP (string IPAddress, int listeningPort, int backlog)"
+.br
+.ti -1c
+.RI "\fBTcpIpActiveSocket\fP * \fBacceptConnection\fP ()"
+.br
+.ti -1c
+.RI "string \fBgetAddress\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "sockaddr_in \fBserverAddress\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Socket TCP/IP che accetta richieste di connessione. 
+
+La classe \fBTcpIpPassiveSocket\fP mantiene un descrittore di file relativo al socket passivo gestito. Un socket passivo è un socket su cui si effettua l' operazione di listen. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "TcpIpPassiveSocket::TcpIpPassiveSocket (stringIPAddress, intlisteningPort, intbacklog)"Costruttore. Effettua la listen sul socket.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIIPAddress\fP 
+.br
+\fIlisteningPort\fP 
+.br
+\fIbacklog\fP Numero massimo di connessioni pendenti. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBTcpIpActiveSocket\fP * TcpIpPassiveSocket::acceptConnection ()"Ritorna il socket attivo (su cui è stata eseguita la accept).
+.PP
+\fBReturns:\fP
+.RS 4
+Socket attivo (il cui costruttore ha eseguito la accept). 
+.RE
+.PP
+
+.SS "string TcpIpPassiveSocket::getAddress ()\fC [virtual]\fP"Ritorna una rappresentazione human readable dell' indirizzo IP e della porta nel formato ip:porta.
+.PP
+\fBReturns:\fP
+.RS 4
+Stringa che rappresenta l' indirizzo IP e la porta sui quali il socket agisce. 
+.RE
+.PP
+
+.PP
+Implements \fBTcpIpSocket\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

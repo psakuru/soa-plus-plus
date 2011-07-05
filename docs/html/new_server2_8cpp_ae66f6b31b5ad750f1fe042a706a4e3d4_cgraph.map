@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_publisher.html#aab8d87a3185375b398873b45647e4be2" title="Publisher::addObjectToPublish" alt="" coords="105,56,303,83"/>
+<area shape="rect" id="node13" href="$class_publisher.html#a9f059875d59f0f40dc097142fbfa8450" title="Publisher::setPublishingMode" alt="" coords="107,107,301,133"/>
+<area shape="rect" id="node5" href="$class_stub.html#a976cc7ddd3742ee8b00867ccfb537926" title="Stub::addParameter" alt="" coords="403,56,541,83"/>
+<area shape="rect" id="node11" href="$class_registrable_object.html#a169173e1eebfea365e310137e98f1b83" title="RegistrableObject::getRegistrationInfo" alt="" coords="352,5,592,32"/>
+<area shape="rect" id="node7" href="$class_service.html#aa533d97fd7b54495cf644fb7fc06cdc2" title="Service::updateServiceID" alt="" coords="640,56,805,83"/>
+<area shape="rect" id="node9" href="$class_serializable_object.html#af3cf94b6fb07b1a06e6cbac100994592" title="SerializableObject::getValueTypeStringRepresentation" alt="" coords="854,56,1189,83"/>
+<area shape="rect" id="node16" href="$class_pointer_list.html#aa9dceb63dc29c81d055cae67c1529d7b" title="PointerList::clear" alt="" coords="412,107,532,133"/>
+<area shape="rect" id="node18" href="$class_publisher.html#ae019dccb5c700521d213fb566f45b4c9" title="Publisher::publishingModeToString" alt="" coords="361,157,583,184"/>
+</map>

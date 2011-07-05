@@ -1,0 +1,71 @@
+.TH "Service" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Service \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBSkeleton\fP, and \fBStub\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBService\fP (string serviceIDToSet)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBdefaultBuildersHierarchyInit\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBsendParameters\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBreceiveParameters\fP ()"
+.br
+.ti -1c
+.RI "\fBSerializableObject\fP * \fBreceiveParameter\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBprotocol\fP ()=0"
+.br
+.ti -1c
+.RI "virtual void \fBbind\fP ()=0"
+.br
+.ti -1c
+.RI "virtual void \fBaddParameter\fP (\fBSerializableObject\fP *parameterToAdd, Direction parameterDirection)=0"
+.br
+.ti -1c
+.RI "void \fBupdateServiceID\fP (\fBSerializableObject\fP *parameterToAdd, Direction parameterDirection)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSerializableObjectList\fP \fBinputParameters\fP"
+.br
+.ti -1c
+.RI "\fBSerializableObjectList\fP \fBoutputParameters\fP"
+.br
+.ti -1c
+.RI "string \fBserviceID\fP"
+.br
+.ti -1c
+.RI "string \fBserviceRegistryAddress\fP"
+.br
+.ti -1c
+.RI "\fBTcpIpActiveSocket\fP * \fBsocket\fP"
+.br
+.ti -1c
+.RI "\fBSerializableObjectBuilder\fP \fBbuildersHierarchy\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

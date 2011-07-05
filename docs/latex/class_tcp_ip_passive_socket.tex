@@ -1,0 +1,119 @@
+\hypertarget{class_tcp_ip_passive_socket}{
+\section{TcpIpPassiveSocket Class Reference}
+\label{class_tcp_ip_passive_socket}\index{TcpIpPassiveSocket@{TcpIpPassiveSocket}}
+}
+
+
+Socket TCP/IP che accetta richieste di connessione.  
+
+
+
+
+{\ttfamily \#include $<$TcpIpPassiveSocket.h$>$}
+
+
+
+Inheritance diagram for TcpIpPassiveSocket:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_tcp_ip_passive_socket__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for TcpIpPassiveSocket:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{class_tcp_ip_passive_socket__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tcp_ip_passive_socket_abbfbfbfee533e19b5f5013b41193497a}{TcpIpPassiveSocket} (string IPAddress, int listeningPort, int backlog)
+\item 
+\hyperlink{class_tcp_ip_active_socket}{TcpIpActiveSocket} $\ast$ \hyperlink{class_tcp_ip_passive_socket_ac8253b2b30e5c6fd0dc551f096a4e622}{acceptConnection} ()
+\item 
+string \hyperlink{class_tcp_ip_passive_socket_ab7f3e7d14e408ad4e3ab5c12a63644c7}{getAddress} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tcp_ip_passive_socket_abae9e82d4bca0abc89e8107695f2e118}{
+sockaddr\_\-in {\bfseries serverAddress}}
+\label{class_tcp_ip_passive_socket_abae9e82d4bca0abc89e8107695f2e118}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Socket TCP/IP che accetta richieste di connessione. 
+
+La classe \hyperlink{class_tcp_ip_passive_socket}{TcpIpPassiveSocket} mantiene un descrittore di file relativo al socket passivo gestito. Un socket passivo è un socket su cui si effettua l' operazione di listen. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_tcp_ip_passive_socket_abbfbfbfee533e19b5f5013b41193497a}{
+\index{TcpIpPassiveSocket@{TcpIpPassiveSocket}!TcpIpPassiveSocket@{TcpIpPassiveSocket}}
+\index{TcpIpPassiveSocket@{TcpIpPassiveSocket}!TcpIpPassiveSocket@{TcpIpPassiveSocket}}
+\subsubsection[{TcpIpPassiveSocket}]{\setlength{\rightskip}{0pt plus 5cm}TcpIpPassiveSocket::TcpIpPassiveSocket (
+\begin{DoxyParamCaption}
+\item[{string}]{IPAddress, }
+\item[{int}]{listeningPort, }
+\item[{int}]{backlog}
+\end{DoxyParamCaption}
+)}}
+\label{class_tcp_ip_passive_socket_abbfbfbfee533e19b5f5013b41193497a}
+Costruttore. Effettua la listen sul socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em IPAddress} & \\
+\hline
+{\em listeningPort} & \\
+\hline
+{\em backlog} & Numero massimo di connessioni pendenti. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tcp_ip_passive_socket_ac8253b2b30e5c6fd0dc551f096a4e622}{
+\index{TcpIpPassiveSocket@{TcpIpPassiveSocket}!acceptConnection@{acceptConnection}}
+\index{acceptConnection@{acceptConnection}!TcpIpPassiveSocket@{TcpIpPassiveSocket}}
+\subsubsection[{acceptConnection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TcpIpActiveSocket} $\ast$ TcpIpPassiveSocket::acceptConnection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{class_tcp_ip_passive_socket_ac8253b2b30e5c6fd0dc551f096a4e622}
+Ritorna il socket attivo (su cui è stata eseguita la accept).
+
+\begin{DoxyReturn}{Returns}
+Socket attivo (il cui costruttore ha eseguito la accept). 
+\end{DoxyReturn}
+\hypertarget{class_tcp_ip_passive_socket_ab7f3e7d14e408ad4e3ab5c12a63644c7}{
+\index{TcpIpPassiveSocket@{TcpIpPassiveSocket}!getAddress@{getAddress}}
+\index{getAddress@{getAddress}!TcpIpPassiveSocket@{TcpIpPassiveSocket}}
+\subsubsection[{getAddress}]{\setlength{\rightskip}{0pt plus 5cm}string TcpIpPassiveSocket::getAddress (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_tcp_ip_passive_socket_ab7f3e7d14e408ad4e3ab5c12a63644c7}
+Ritorna una rappresentazione human readable dell' indirizzo IP e della porta nel formato ip:porta.
+
+\begin{DoxyReturn}{Returns}
+Stringa che rappresenta l' indirizzo IP e la porta sui quali il socket agisce. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_tcp_ip_socket_aac9c414dbb371341bb3683df39ec5021}{TcpIpSocket}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/TcpIpSocket/TcpIpPassiveSocket/\hyperlink{_tcp_ip_passive_socket_8h}{TcpIpPassiveSocket.h}\item 
+soa-\/plus-\/plus/TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.cpp\end{DoxyCompactItemize}

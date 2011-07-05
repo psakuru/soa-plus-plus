@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$class_generic_serializable_reference_layer.html" title="GenericSerializableReferenceLayer\&lt; T \&gt;" alt="" coords="207,5,462,32"/>
+<area shape="rect" id="node5" href="$class_generic_serializable_reference_layer.html" title="GenericSerializableReferenceLayer\&lt; ByteArray \&gt;" alt="" coords="181,56,488,83"/>
+<area shape="rect" id="node9" href="$class_generic_serializable_reference_layer.html" title="GenericSerializableReferenceLayer\&lt; double \&gt;" alt="" coords="191,107,478,133"/>
+<area shape="rect" id="node13" href="$class_generic_serializable_reference_layer.html" title="GenericSerializableReferenceLayer\&lt; Fake \&gt;" alt="" coords="196,157,473,184"/>
+<area shape="rect" id="node19" href="$class_generic_serializable_reference_layer.html" title="GenericSerializableReferenceLayer\&lt; int32_t \&gt;" alt="" coords="191,208,478,235"/>
+<area shape="rect" id="node23" href="$class_generic_serializable_reference_layer.html" title="GenericSerializableReferenceLayer\&lt; string \&gt;" alt="" coords="195,259,475,285"/>
+<area shape="rect" id="node7" href="$class_raw_byte_buffer_serialization_strategy.html" title="Serializzazione di array di byte." alt="" coords="536,56,763,83"/>
+<area shape="rect" id="node11" href="$class_real_serialization_strategy.html" title="Serializzazione di un double." alt="" coords="565,107,733,133"/>
+<area shape="rect" id="node15" href="$class_signal_serialization_strategy.html" title="Serializzazione di un segnale." alt="" coords="560,157,739,184"/>
+<area shape="rect" id="node17" href="$class_bad_request_serialization_strategy.html" title="Esempio di Signal." alt="" coords="811,157,1024,184"/>
+<area shape="rect" id="node21" href="$class_integer_serialization_strategy.html" title="Serializzazione di un intero." alt="" coords="559,208,740,235"/>
+<area shape="rect" id="node25" href="$class_string_serialization_strategy.html" title="Serializzazione di una stringa." alt="" coords="561,259,737,285"/>
+</map>

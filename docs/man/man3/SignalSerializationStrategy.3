@@ -1,0 +1,127 @@
+.TH "SignalSerializationStrategy" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SignalSerializationStrategy \- 
+.PP
+Serializzazione di un segnale.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <SignalSerializationStrategy.h>\fP
+.PP
+Inherits \fBGenericSerializableReferenceLayer< Fake >\fP.
+.PP
+Inherited by \fBBadRequestSerializationStrategy\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "Type \fBgetType\fP () const "
+.br
+.ti -1c
+.RI "virtual Type \fBgetSignalType\fP () const =0"
+.br
+.ti -1c
+.RI "int \fBgetValueLengthLength\fP ()=0"
+.br
+.ti -1c
+.RI "uint64_t \fBserialize\fP (void **destinationBuffer)"
+.br
+.ti -1c
+.RI "void \fBdeserialize\fP (uint64_t length, void *bufferToUse)"
+.br
+.ti -1c
+.RI "string \fBgetValueTypeStringRepresentation\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBsignalHandler\fP ()=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Serializzazione di un segnale. 
+
+La classe specializza il layer per trattare i segnali. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void Signal::deserialize (uint64_tlength, void *bufferToUse)\fC [virtual]\fP"La deserializzazione, in questo caso, comporta l' invocazione dell' handler associato al segnale.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIbufferToUse\fP Parametro muto. 
+.br
+\fIlength\fP Parametro muto. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "virtual Type SignalSerializationStrategy::getSignalType () const\fC [pure virtual]\fP"Ritorna il tipo del particolare segnale.
+.PP
+\fBReturns:\fP
+.RS 4
+Tipo del particolare segnale. 
+.RE
+.PP
+
+.PP
+Implemented in \fBBadRequestSerializationStrategy\fP.
+.SS "Type Signal::getType () const\fC [virtual]\fP"Ritorna il tipo dell' oggetto serializzabile.
+.PP
+\fBReturns:\fP
+.RS 4
+Tipo di oggetto serializzabile. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "int SignalSerializationStrategy::getValueLengthLength ()\fC [pure virtual]\fP"Ritorna la lunghezza del campo length (lunghezza del campo value).
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del campo length. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.PP
+Implemented in \fBBadRequestSerializationStrategy\fP.
+.SS "string SignalSerializationStrategy::getValueTypeStringRepresentation ()\fC [virtual]\fP"Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+.PP
+\fBReturns:\fP
+.RS 4
+Rappresentazione human readable del tipo dell' oggetto. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "uint64_t Signal::serialize (void **destinationBuffer)\fC [virtual]\fP"La serializzazione produce un buffer con la seguente struttura: | Type | Length | Value = tipo del particular signal |
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdestinationBuffer\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del buffer. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "virtual void SignalSerializationStrategy::signalHandler ()\fC [protected, pure virtual]\fP"Handler associato al particolare segnale. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

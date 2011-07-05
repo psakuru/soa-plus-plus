@@ -1,0 +1,168 @@
+\hypertarget{class_real_serialization_strategy}{
+\section{RealSerializationStrategy Class Reference}
+\label{class_real_serialization_strategy}\index{RealSerializationStrategy@{RealSerializationStrategy}}
+}
+
+
+Serializzazione di un double.  
+
+
+
+
+{\ttfamily \#include $<$RealSerializationStrategy.h$>$}
+
+
+
+Inheritance diagram for RealSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{class_real_serialization_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for RealSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{class_real_serialization_strategy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_real_serialization_strategy_a4731d1b12e817ebe82cc3b9085516cec}{
+{\bfseries RealSerializationStrategy} (double \&userReferenceToSet)}
+\label{class_real_serialization_strategy_a4731d1b12e817ebe82cc3b9085516cec}
+
+\item 
+\hypertarget{class_real_serialization_strategy_a1542ef27c2f74fe3a788e917d8a11496}{
+{\bfseries RealSerializationStrategy} (double $\ast$userReferenceToSet, bool shared)}
+\label{class_real_serialization_strategy_a1542ef27c2f74fe3a788e917d8a11496}
+
+\item 
+Type \hyperlink{class_real_serialization_strategy_a2a099003e86b8d5601894a6c0200a816}{getType} () const 
+\item 
+int \hyperlink{class_real_serialization_strategy_af0d00e6a3a4317ad88308b8a8b0873d5}{getValueLengthLength} ()
+\item 
+uint64\_\-t \hyperlink{class_real_serialization_strategy_a31afb9b78619e20f4b449e6a6930847c}{serialize} (void $\ast$$\ast$destinationBuffer)
+\item 
+void \hyperlink{class_real_serialization_strategy_a7974c597dbfdab1a4b4c0356b6d98d87}{deserialize} (uint64\_\-t length, void $\ast$bufferToUse)
+\item 
+string \hyperlink{class_real_serialization_strategy_a8b64f0636016003f23d4e9474222cb5a}{getValueTypeStringRepresentation} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serializzazione di un double. 
+
+La classe specializza il layer per trattare i double. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_real_serialization_strategy_a7974c597dbfdab1a4b4c0356b6d98d87}{
+\index{RealSerializationStrategy@{RealSerializationStrategy}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!RealSerializationStrategy@{RealSerializationStrategy}}
+\subsubsection[{deserialize}]{\setlength{\rightskip}{0pt plus 5cm}void RealSerializationStrategy::deserialize (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{length, }
+\item[{void $\ast$}]{bufferToUse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_real_serialization_strategy_a7974c597dbfdab1a4b4c0356b6d98d87}
+Effettua la deserializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+{\em bufferToUse} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_serializable_object_a3f99c7957c0ac8e5edf5f2a5593f4d78}{SerializableObject}.
+
+\hypertarget{class_real_serialization_strategy_a2a099003e86b8d5601894a6c0200a816}{
+\index{RealSerializationStrategy@{RealSerializationStrategy}!getType@{getType}}
+\index{getType@{getType}!RealSerializationStrategy@{RealSerializationStrategy}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}Type RealSerializationStrategy::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_real_serialization_strategy_a2a099003e86b8d5601894a6c0200a816}
+Ritorna il tipo dell' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Tipo di oggetto serializzabile. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_a64441fc2428eed4b1a3aab9130ec2a31}{SerializableObject}.
+
+\hypertarget{class_real_serialization_strategy_af0d00e6a3a4317ad88308b8a8b0873d5}{
+\index{RealSerializationStrategy@{RealSerializationStrategy}!getValueLengthLength@{getValueLengthLength}}
+\index{getValueLengthLength@{getValueLengthLength}!RealSerializationStrategy@{RealSerializationStrategy}}
+\subsubsection[{getValueLengthLength}]{\setlength{\rightskip}{0pt plus 5cm}int RealSerializationStrategy::getValueLengthLength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_real_serialization_strategy_af0d00e6a3a4317ad88308b8a8b0873d5}
+Ritorna la lunghezza del campo length (lunghezza del campo value).
+
+\begin{DoxyReturn}{Returns}
+Lunghezza del campo length. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ac7f7f52078aa957078bf0583faf39ebf}{SerializableObject}.
+
+\hypertarget{class_real_serialization_strategy_a8b64f0636016003f23d4e9474222cb5a}{
+\index{RealSerializationStrategy@{RealSerializationStrategy}!getValueTypeStringRepresentation@{getValueTypeStringRepresentation}}
+\index{getValueTypeStringRepresentation@{getValueTypeStringRepresentation}!RealSerializationStrategy@{RealSerializationStrategy}}
+\subsubsection[{getValueTypeStringRepresentation}]{\setlength{\rightskip}{0pt plus 5cm}string RealSerializationStrategy::getValueTypeStringRepresentation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_real_serialization_strategy_a8b64f0636016003f23d4e9474222cb5a}
+Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Rappresentazione human readable del tipo dell' oggetto. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_af3cf94b6fb07b1a06e6cbac100994592}{SerializableObject}.
+
+\hypertarget{class_real_serialization_strategy_a31afb9b78619e20f4b449e6a6930847c}{
+\index{RealSerializationStrategy@{RealSerializationStrategy}!serialize@{serialize}}
+\index{serialize@{serialize}!RealSerializationStrategy@{RealSerializationStrategy}}
+\subsubsection[{serialize}]{\setlength{\rightskip}{0pt plus 5cm}uint64\_\-t RealSerializationStrategy::serialize (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{destinationBuffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_real_serialization_strategy_a31afb9b78619e20f4b449e6a6930847c}
+Effettua la serializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destinationBuffer} & Puntatore al buffer di destinazione.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lunghezza del buffer. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ad9c873bfdba9fdfea311d61675cc6e2d}{SerializableObject}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/RealSerializationStrategy/\hyperlink{_real_serialization_strategy_8h}{RealSerializationStrategy.h}\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/RealSerializationStrategy/RealSerializationStrategy.cpp\end{DoxyCompactItemize}

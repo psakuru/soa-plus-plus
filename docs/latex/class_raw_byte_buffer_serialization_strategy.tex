@@ -1,0 +1,168 @@
+\hypertarget{class_raw_byte_buffer_serialization_strategy}{
+\section{RawByteBufferSerializationStrategy Class Reference}
+\label{class_raw_byte_buffer_serialization_strategy}\index{RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}}
+}
+
+
+Serializzazione di array di byte.  
+
+
+
+
+{\ttfamily \#include $<$RawByteBufferSerializationStrategy.h$>$}
+
+
+
+Inheritance diagram for RawByteBufferSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{class_raw_byte_buffer_serialization_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for RawByteBufferSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{class_raw_byte_buffer_serialization_strategy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_raw_byte_buffer_serialization_strategy_ae459329f56f3e9ce51eec63aa3a01f23}{
+{\bfseries RawByteBufferSerializationStrategy} (\hyperlink{class_byte_array}{ByteArray} \&userReferenceToSet)}
+\label{class_raw_byte_buffer_serialization_strategy_ae459329f56f3e9ce51eec63aa3a01f23}
+
+\item 
+\hypertarget{class_raw_byte_buffer_serialization_strategy_aa44e40ca41e275aa99de5c2bda656436}{
+{\bfseries RawByteBufferSerializationStrategy} (\hyperlink{class_byte_array}{ByteArray} $\ast$userReferenceToSet, bool shared)}
+\label{class_raw_byte_buffer_serialization_strategy_aa44e40ca41e275aa99de5c2bda656436}
+
+\item 
+Type \hyperlink{class_raw_byte_buffer_serialization_strategy_aaf19cb582054a6c17b492f69732c6c0c}{getType} () const 
+\item 
+int \hyperlink{class_raw_byte_buffer_serialization_strategy_a5193462279c9408946b1b0ce8af503cd}{getValueLengthLength} ()
+\item 
+uint64\_\-t \hyperlink{class_raw_byte_buffer_serialization_strategy_a84d4f5c8e6f6c1c209760826429a1935}{serialize} (void $\ast$$\ast$destinationBuffer)
+\item 
+void \hyperlink{class_raw_byte_buffer_serialization_strategy_a67ee1121c936b2df0d68d8ff39f5ac00}{deserialize} (uint64\_\-t length, void $\ast$bufferToUse)
+\item 
+string \hyperlink{class_raw_byte_buffer_serialization_strategy_a1dd7c0237ad5b9caef4daa9166308376}{getValueTypeStringRepresentation} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serializzazione di array di byte. 
+
+La classe specializza il layer per trattare array di byte. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_raw_byte_buffer_serialization_strategy_a67ee1121c936b2df0d68d8ff39f5ac00}{
+\index{RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}}
+\subsubsection[{deserialize}]{\setlength{\rightskip}{0pt plus 5cm}void RawByteBufferSerializationStrategy::deserialize (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{length, }
+\item[{void $\ast$}]{bufferToUse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_raw_byte_buffer_serialization_strategy_a67ee1121c936b2df0d68d8ff39f5ac00}
+Effettua la deserializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+{\em bufferToUse} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_serializable_object_a3f99c7957c0ac8e5edf5f2a5593f4d78}{SerializableObject}.
+
+\hypertarget{class_raw_byte_buffer_serialization_strategy_aaf19cb582054a6c17b492f69732c6c0c}{
+\index{RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}!getType@{getType}}
+\index{getType@{getType}!RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}Type RawByteBufferSerializationStrategy::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_raw_byte_buffer_serialization_strategy_aaf19cb582054a6c17b492f69732c6c0c}
+Ritorna il tipo dell' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Tipo di oggetto serializzabile. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_a64441fc2428eed4b1a3aab9130ec2a31}{SerializableObject}.
+
+\hypertarget{class_raw_byte_buffer_serialization_strategy_a5193462279c9408946b1b0ce8af503cd}{
+\index{RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}!getValueLengthLength@{getValueLengthLength}}
+\index{getValueLengthLength@{getValueLengthLength}!RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}}
+\subsubsection[{getValueLengthLength}]{\setlength{\rightskip}{0pt plus 5cm}int RawByteBufferSerializationStrategy::getValueLengthLength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_raw_byte_buffer_serialization_strategy_a5193462279c9408946b1b0ce8af503cd}
+Ritorna la lunghezza del campo length (lunghezza del campo value).
+
+\begin{DoxyReturn}{Returns}
+Lunghezza del campo length. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ac7f7f52078aa957078bf0583faf39ebf}{SerializableObject}.
+
+\hypertarget{class_raw_byte_buffer_serialization_strategy_a1dd7c0237ad5b9caef4daa9166308376}{
+\index{RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}!getValueTypeStringRepresentation@{getValueTypeStringRepresentation}}
+\index{getValueTypeStringRepresentation@{getValueTypeStringRepresentation}!RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}}
+\subsubsection[{getValueTypeStringRepresentation}]{\setlength{\rightskip}{0pt plus 5cm}string RawByteBufferSerializationStrategy::getValueTypeStringRepresentation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_raw_byte_buffer_serialization_strategy_a1dd7c0237ad5b9caef4daa9166308376}
+Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Rappresentazione human readable del tipo dell' oggetto. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_af3cf94b6fb07b1a06e6cbac100994592}{SerializableObject}.
+
+\hypertarget{class_raw_byte_buffer_serialization_strategy_a84d4f5c8e6f6c1c209760826429a1935}{
+\index{RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}!serialize@{serialize}}
+\index{serialize@{serialize}!RawByteBufferSerializationStrategy@{RawByteBufferSerializationStrategy}}
+\subsubsection[{serialize}]{\setlength{\rightskip}{0pt plus 5cm}uint64\_\-t RawByteBufferSerializationStrategy::serialize (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{destinationBuffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_raw_byte_buffer_serialization_strategy_a84d4f5c8e6f6c1c209760826429a1935}
+Effettua la serializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destinationBuffer} & Puntatore al buffer di destinazione.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lunghezza del buffer. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ad9c873bfdba9fdfea311d61675cc6e2d}{SerializableObject}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/\hyperlink{_raw_byte_buffer_serialization_strategy_8h}{RawByteBufferSerializationStrategy.h}\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.cpp\end{DoxyCompactItemize}

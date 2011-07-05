@@ -1,0 +1,108 @@
+.TH "StringSerializationStrategy" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+StringSerializationStrategy \- 
+.PP
+Serializzazione di una stringa.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <StringSerializationStrategy.h>\fP
+.PP
+Inherits \fBGenericSerializableReferenceLayer< string >\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBStringSerializationStrategy\fP (string &valueToSet)"
+.br
+.ti -1c
+.RI "\fBStringSerializationStrategy\fP (string *valueToSet, bool shared)"
+.br
+.ti -1c
+.RI "Type \fBgetType\fP () const "
+.br
+.ti -1c
+.RI "int \fBgetValueLengthLength\fP ()"
+.br
+.ti -1c
+.RI "uint64_t \fBserialize\fP (void **destinationBuffer)"
+.br
+.ti -1c
+.RI "void \fBdeserialize\fP (uint64_t length, void *bufferToUse)"
+.br
+.ti -1c
+.RI "string \fBgetValueTypeStringRepresentation\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Serializzazione di una stringa. 
+
+La classe specializza il layer per trattare le stringe. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void StringSerializationStrategy::deserialize (uint64_tlength, void *bufferToUse)\fC [virtual]\fP"Effettua la deserializzazione secondo il protocollo.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlength\fP 
+.br
+\fIbufferToUse\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "Type StringSerializationStrategy::getType () const\fC [virtual]\fP"Ritorna il tipo dell' oggetto serializzabile.
+.PP
+\fBReturns:\fP
+.RS 4
+Tipo di oggetto serializzabile. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "int StringSerializationStrategy::getValueLengthLength ()\fC [virtual]\fP"Ritorna la lunghezza del campo length (lunghezza del campo value).
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del campo length. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "string StringSerializationStrategy::getValueTypeStringRepresentation ()\fC [virtual]\fP"Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+.PP
+\fBReturns:\fP
+.RS 4
+Rappresentazione human readable del tipo dell' oggetto. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "uint64_t StringSerializationStrategy::serialize (void **destinationBuffer)\fC [virtual]\fP"Effettua la serializzazione secondo il protocollo.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdestinationBuffer\fP Puntatore al buffer di destinazione.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del buffer. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

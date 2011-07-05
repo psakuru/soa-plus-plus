@@ -1,0 +1,81 @@
+\hypertarget{class_skeleton_thread_pool}{
+\section{SkeletonThreadPool$<$ T, poolSize $>$ Class Template Reference}
+\label{class_skeleton_thread_pool}\index{SkeletonThreadPool@{SkeletonThreadPool}}
+}
+
+
+Inheritance diagram for SkeletonThreadPool$<$ T, poolSize $>$:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{class_skeleton_thread_pool__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for SkeletonThreadPool$<$ T, poolSize $>$:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{class_skeleton_thread_pool__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_skeleton_thread_pool_ada7b89da50e6100ff4dd51047d345ca2}{
+{\bfseries SkeletonThreadPool} (string IPAddress, int listeningPort, int backlog)}
+\label{class_skeleton_thread_pool_ada7b89da50e6100ff4dd51047d345ca2}
+
+\item 
+virtual \hyperlink{class_skeleton_thread_pool_abaa75a52e08a43b3d6a5065bc2efc9ef}{$\sim$SkeletonThreadPool} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_skeleton_thread_pool_a6b68ddecd0fd9dc5eccf65ffa84f48f7}{
+boost::mutex {\bfseries sharedMutex}}
+\label{class_skeleton_thread_pool_a6b68ddecd0fd9dc5eccf65ffa84f48f7}
+
+\item 
+\hypertarget{class_skeleton_thread_pool_a2650a6c748cd548c54c5e6e1b3c7ee46}{
+\hyperlink{class_tcp_ip_passive_socket}{TcpIpPassiveSocket} {\bfseries sharedListeningSocket}}
+\label{class_skeleton_thread_pool_a2650a6c748cd548c54c5e6e1b3c7ee46}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_skeleton_thread_pool_a23bf2d823f35040e3758597888e45b4c}{
+boost::thread\_\-group {\bfseries pool}}
+\label{class_skeleton_thread_pool_a23bf2d823f35040e3758597888e45b4c}
+
+\item 
+\hypertarget{class_skeleton_thread_pool_a551185dfee4d684b9aabac9469577139}{
+\hyperlink{classlist}{list}$<$ boost::thread $\ast$ $>$ {\bfseries threadReferences}}
+\label{class_skeleton_thread_pool_a551185dfee4d684b9aabac9469577139}
+
+\end{DoxyCompactItemize}
+\subsubsection*{template$<$typename T, int poolSize$>$ class SkeletonThreadPool$<$ T, poolSize $>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_skeleton_thread_pool_abaa75a52e08a43b3d6a5065bc2efc9ef}{
+\index{SkeletonThreadPool@{SkeletonThreadPool}!$\sim$SkeletonThreadPool@{$\sim$SkeletonThreadPool}}
+\index{$\sim$SkeletonThreadPool@{$\sim$SkeletonThreadPool}!SkeletonThreadPool@{SkeletonThreadPool}}
+\subsubsection[{$\sim$SkeletonThreadPool}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T , int poolSize$>$ virtual {\bf SkeletonThreadPool}$<$ T, poolSize $>$::$\sim${\bf SkeletonThreadPool} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}}
+\label{class_skeleton_thread_pool_abaa75a52e08a43b3d6a5065bc2efc9ef}
+
+
+TODO sharedListeningSocket.close??? 
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/SkeletonThreadPool.h\end{DoxyCompactItemize}

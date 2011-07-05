@@ -1,0 +1,168 @@
+\hypertarget{class_string_serialization_strategy}{
+\section{StringSerializationStrategy Class Reference}
+\label{class_string_serialization_strategy}\index{StringSerializationStrategy@{StringSerializationStrategy}}
+}
+
+
+Serializzazione di una stringa.  
+
+
+
+
+{\ttfamily \#include $<$StringSerializationStrategy.h$>$}
+
+
+
+Inheritance diagram for StringSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{class_string_serialization_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for StringSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{class_string_serialization_strategy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_string_serialization_strategy_a357222998f019b636e83dbb227ff0a58}{
+{\bfseries StringSerializationStrategy} (string \&valueToSet)}
+\label{class_string_serialization_strategy_a357222998f019b636e83dbb227ff0a58}
+
+\item 
+\hypertarget{class_string_serialization_strategy_acaaaa5fa5c29a60cb662b84f71c660a5}{
+{\bfseries StringSerializationStrategy} (string $\ast$valueToSet, bool shared)}
+\label{class_string_serialization_strategy_acaaaa5fa5c29a60cb662b84f71c660a5}
+
+\item 
+Type \hyperlink{class_string_serialization_strategy_a46f4f7f5d3ff5422a3167c0a1b41443d}{getType} () const 
+\item 
+int \hyperlink{class_string_serialization_strategy_ace7b81781e94b30ff63e300570f7661c}{getValueLengthLength} ()
+\item 
+uint64\_\-t \hyperlink{class_string_serialization_strategy_a17a716d8afc1f185b2e6576872bfe4d2}{serialize} (void $\ast$$\ast$destinationBuffer)
+\item 
+void \hyperlink{class_string_serialization_strategy_aaf2bf370860b4a956f8fe83b7af16ed2}{deserialize} (uint64\_\-t length, void $\ast$bufferToUse)
+\item 
+string \hyperlink{class_string_serialization_strategy_a1119c0a44a081e92482308c5fe1efd20}{getValueTypeStringRepresentation} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serializzazione di una stringa. 
+
+La classe specializza il layer per trattare le stringe. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_string_serialization_strategy_aaf2bf370860b4a956f8fe83b7af16ed2}{
+\index{StringSerializationStrategy@{StringSerializationStrategy}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!StringSerializationStrategy@{StringSerializationStrategy}}
+\subsubsection[{deserialize}]{\setlength{\rightskip}{0pt plus 5cm}void StringSerializationStrategy::deserialize (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{length, }
+\item[{void $\ast$}]{bufferToUse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_string_serialization_strategy_aaf2bf370860b4a956f8fe83b7af16ed2}
+Effettua la deserializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em length} & \\
+\hline
+{\em bufferToUse} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_serializable_object_a3f99c7957c0ac8e5edf5f2a5593f4d78}{SerializableObject}.
+
+\hypertarget{class_string_serialization_strategy_a46f4f7f5d3ff5422a3167c0a1b41443d}{
+\index{StringSerializationStrategy@{StringSerializationStrategy}!getType@{getType}}
+\index{getType@{getType}!StringSerializationStrategy@{StringSerializationStrategy}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}Type StringSerializationStrategy::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_string_serialization_strategy_a46f4f7f5d3ff5422a3167c0a1b41443d}
+Ritorna il tipo dell' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Tipo di oggetto serializzabile. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_a64441fc2428eed4b1a3aab9130ec2a31}{SerializableObject}.
+
+\hypertarget{class_string_serialization_strategy_ace7b81781e94b30ff63e300570f7661c}{
+\index{StringSerializationStrategy@{StringSerializationStrategy}!getValueLengthLength@{getValueLengthLength}}
+\index{getValueLengthLength@{getValueLengthLength}!StringSerializationStrategy@{StringSerializationStrategy}}
+\subsubsection[{getValueLengthLength}]{\setlength{\rightskip}{0pt plus 5cm}int StringSerializationStrategy::getValueLengthLength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_string_serialization_strategy_ace7b81781e94b30ff63e300570f7661c}
+Ritorna la lunghezza del campo length (lunghezza del campo value).
+
+\begin{DoxyReturn}{Returns}
+Lunghezza del campo length. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ac7f7f52078aa957078bf0583faf39ebf}{SerializableObject}.
+
+\hypertarget{class_string_serialization_strategy_a1119c0a44a081e92482308c5fe1efd20}{
+\index{StringSerializationStrategy@{StringSerializationStrategy}!getValueTypeStringRepresentation@{getValueTypeStringRepresentation}}
+\index{getValueTypeStringRepresentation@{getValueTypeStringRepresentation}!StringSerializationStrategy@{StringSerializationStrategy}}
+\subsubsection[{getValueTypeStringRepresentation}]{\setlength{\rightskip}{0pt plus 5cm}string StringSerializationStrategy::getValueTypeStringRepresentation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_string_serialization_strategy_a1119c0a44a081e92482308c5fe1efd20}
+Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Rappresentazione human readable del tipo dell' oggetto. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_af3cf94b6fb07b1a06e6cbac100994592}{SerializableObject}.
+
+\hypertarget{class_string_serialization_strategy_a17a716d8afc1f185b2e6576872bfe4d2}{
+\index{StringSerializationStrategy@{StringSerializationStrategy}!serialize@{serialize}}
+\index{serialize@{serialize}!StringSerializationStrategy@{StringSerializationStrategy}}
+\subsubsection[{serialize}]{\setlength{\rightskip}{0pt plus 5cm}uint64\_\-t StringSerializationStrategy::serialize (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{destinationBuffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_string_serialization_strategy_a17a716d8afc1f185b2e6576872bfe4d2}
+Effettua la serializzazione secondo il protocollo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em destinationBuffer} & Puntatore al buffer di destinazione.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lunghezza del buffer. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ad9c873bfdba9fdfea311d61675cc6e2d}{SerializableObject}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/StringSerializationStrategy/\hyperlink{_string_serialization_strategy_8h}{StringSerializationStrategy.h}\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+.TH "RawByteBufferSerializationStrategy" 3 "Tue Jul 5 2011" "soa-plus-plus" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+RawByteBufferSerializationStrategy \- 
+.PP
+Serializzazione di array di byte.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <RawByteBufferSerializationStrategy.h>\fP
+.PP
+Inherits \fBGenericSerializableReferenceLayer< ByteArray >\fP.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBRawByteBufferSerializationStrategy\fP (\fBByteArray\fP &userReferenceToSet)"
+.br
+.ti -1c
+.RI "\fBRawByteBufferSerializationStrategy\fP (\fBByteArray\fP *userReferenceToSet, bool shared)"
+.br
+.ti -1c
+.RI "Type \fBgetType\fP () const "
+.br
+.ti -1c
+.RI "int \fBgetValueLengthLength\fP ()"
+.br
+.ti -1c
+.RI "uint64_t \fBserialize\fP (void **destinationBuffer)"
+.br
+.ti -1c
+.RI "void \fBdeserialize\fP (uint64_t length, void *bufferToUse)"
+.br
+.ti -1c
+.RI "string \fBgetValueTypeStringRepresentation\fP ()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Serializzazione di array di byte. 
+
+La classe specializza il layer per trattare array di byte. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void RawByteBufferSerializationStrategy::deserialize (uint64_tlength, void *bufferToUse)\fC [virtual]\fP"Effettua la deserializzazione secondo il protocollo.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIlength\fP 
+.br
+\fIbufferToUse\fP 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "Type RawByteBufferSerializationStrategy::getType () const\fC [virtual]\fP"Ritorna il tipo dell' oggetto serializzabile.
+.PP
+\fBReturns:\fP
+.RS 4
+Tipo di oggetto serializzabile. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "int RawByteBufferSerializationStrategy::getValueLengthLength ()\fC [virtual]\fP"Ritorna la lunghezza del campo length (lunghezza del campo value).
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del campo length. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "string RawByteBufferSerializationStrategy::getValueTypeStringRepresentation ()\fC [virtual]\fP"Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+.PP
+\fBReturns:\fP
+.RS 4
+Rappresentazione human readable del tipo dell' oggetto. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+.SS "uint64_t RawByteBufferSerializationStrategy::serialize (void **destinationBuffer)\fC [virtual]\fP"Effettua la serializzazione secondo il protocollo.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdestinationBuffer\fP Puntatore al buffer di destinazione.
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Lunghezza del buffer. 
+.RE
+.PP
+
+.PP
+Implements \fBSerializableObject\fP.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for soa-plus-plus from the source code.

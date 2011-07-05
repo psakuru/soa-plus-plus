@@ -1,0 +1,196 @@
+\hypertarget{class_signal_serialization_strategy}{
+\section{SignalSerializationStrategy Class Reference}
+\label{class_signal_serialization_strategy}\index{SignalSerializationStrategy@{SignalSerializationStrategy}}
+}
+
+
+Serializzazione di un segnale.  
+
+
+
+
+{\ttfamily \#include $<$SignalSerializationStrategy.h$>$}
+
+
+
+Inheritance diagram for SignalSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{class_signal_serialization_strategy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for SignalSerializationStrategy:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{class_signal_serialization_strategy__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Type \hyperlink{class_signal_serialization_strategy_af13aa61e77fe28a3bafec6686221edbc}{getType} () const 
+\item 
+virtual Type \hyperlink{class_signal_serialization_strategy_a76deaf1f302850a3952ed059dfc39093}{getSignalType} () const =0
+\item 
+int \hyperlink{class_signal_serialization_strategy_a6b2b290670195d9777f783ee7dbed9b0}{getValueLengthLength} ()=0
+\item 
+uint64\_\-t \hyperlink{class_signal_serialization_strategy_ad309e41df968106c274ce2a3aa6d569d}{serialize} (void $\ast$$\ast$destinationBuffer)
+\item 
+void \hyperlink{class_signal_serialization_strategy_ad62ab074772d584398d8fd22027f4522}{deserialize} (uint64\_\-t length, void $\ast$bufferToUse)
+\item 
+string \hyperlink{class_signal_serialization_strategy_a263eaab194e4743da3090f413d822b3f}{getValueTypeStringRepresentation} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{class_signal_serialization_strategy_a8db65e6ddc5bd41bfc047f198a88bcaf}{signalHandler} ()=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serializzazione di un segnale. 
+
+La classe specializza il layer per trattare i segnali. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_signal_serialization_strategy_ad62ab074772d584398d8fd22027f4522}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{deserialize}]{\setlength{\rightskip}{0pt plus 5cm}void Signal::deserialize (
+\begin{DoxyParamCaption}
+\item[{uint64\_\-t}]{length, }
+\item[{void $\ast$}]{bufferToUse}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_ad62ab074772d584398d8fd22027f4522}
+La deserializzazione, in questo caso, comporta l' invocazione dell' handler associato al segnale.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bufferToUse} & Parametro muto. \\
+\hline
+{\em length} & Parametro muto. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{class_serializable_object_a3f99c7957c0ac8e5edf5f2a5593f4d78}{SerializableObject}.
+
+\hypertarget{class_signal_serialization_strategy_a76deaf1f302850a3952ed059dfc39093}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!getSignalType@{getSignalType}}
+\index{getSignalType@{getSignalType}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{getSignalType}]{\setlength{\rightskip}{0pt plus 5cm}virtual Type SignalSerializationStrategy::getSignalType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_a76deaf1f302850a3952ed059dfc39093}
+Ritorna il tipo del particolare segnale.
+
+\begin{DoxyReturn}{Returns}
+Tipo del particolare segnale. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_bad_request_serialization_strategy_a400bc8813e0415cc47a853593a59c8ad}{BadRequestSerializationStrategy}.
+
+\hypertarget{class_signal_serialization_strategy_af13aa61e77fe28a3bafec6686221edbc}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!getType@{getType}}
+\index{getType@{getType}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{getType}]{\setlength{\rightskip}{0pt plus 5cm}Type Signal::getType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_af13aa61e77fe28a3bafec6686221edbc}
+Ritorna il tipo dell' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Tipo di oggetto serializzabile. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_a64441fc2428eed4b1a3aab9130ec2a31}{SerializableObject}.
+
+\hypertarget{class_signal_serialization_strategy_a6b2b290670195d9777f783ee7dbed9b0}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!getValueLengthLength@{getValueLengthLength}}
+\index{getValueLengthLength@{getValueLengthLength}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{getValueLengthLength}]{\setlength{\rightskip}{0pt plus 5cm}int SignalSerializationStrategy::getValueLengthLength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_a6b2b290670195d9777f783ee7dbed9b0}
+Ritorna la lunghezza del campo length (lunghezza del campo value).
+
+\begin{DoxyReturn}{Returns}
+Lunghezza del campo length. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ac7f7f52078aa957078bf0583faf39ebf}{SerializableObject}.
+
+
+
+Implemented in \hyperlink{class_bad_request_serialization_strategy_a25067defa9681ed10619c2a62e54df2d}{BadRequestSerializationStrategy}.
+
+\hypertarget{class_signal_serialization_strategy_a263eaab194e4743da3090f413d822b3f}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!getValueTypeStringRepresentation@{getValueTypeStringRepresentation}}
+\index{getValueTypeStringRepresentation@{getValueTypeStringRepresentation}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{getValueTypeStringRepresentation}]{\setlength{\rightskip}{0pt plus 5cm}string SignalSerializationStrategy::getValueTypeStringRepresentation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_a263eaab194e4743da3090f413d822b3f}
+Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+
+\begin{DoxyReturn}{Returns}
+Rappresentazione human readable del tipo dell' oggetto. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_af3cf94b6fb07b1a06e6cbac100994592}{SerializableObject}.
+
+\hypertarget{class_signal_serialization_strategy_ad309e41df968106c274ce2a3aa6d569d}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!serialize@{serialize}}
+\index{serialize@{serialize}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{serialize}]{\setlength{\rightskip}{0pt plus 5cm}uint64\_\-t Signal::serialize (
+\begin{DoxyParamCaption}
+\item[{void $\ast$$\ast$}]{destinationBuffer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_ad309e41df968106c274ce2a3aa6d569d}
+La serializzazione produce un buffer con la seguente struttura: $|$ Type $|$ Length $|$ Value = tipo del particular signal $|$
+
+
+\begin{DoxyParams}{Parameters}
+{\em destinationBuffer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Lunghezza del buffer. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_serializable_object_ad9c873bfdba9fdfea311d61675cc6e2d}{SerializableObject}.
+
+\hypertarget{class_signal_serialization_strategy_a8db65e6ddc5bd41bfc047f198a88bcaf}{
+\index{SignalSerializationStrategy@{SignalSerializationStrategy}!signalHandler@{signalHandler}}
+\index{signalHandler@{signalHandler}!SignalSerializationStrategy@{SignalSerializationStrategy}}
+\subsubsection[{signalHandler}]{\setlength{\rightskip}{0pt plus 5cm}virtual void SignalSerializationStrategy::signalHandler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, pure virtual\mbox{]}}}}
+\label{class_signal_serialization_strategy_a8db65e6ddc5bd41bfc047f198a88bcaf}
+Handler associato al particolare segnale. 
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/SignalSerializationStrategy/\hyperlink{_signal_serialization_strategy_8h}{SignalSerializationStrategy.h}\item 
+soa-\/plus-\/plus/SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalSerializationStrategy.cpp\end{DoxyCompactItemize}
