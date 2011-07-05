@@ -14,18 +14,18 @@ Type StringSerializationStrategy::getType() const
 
 int StringSerializationStrategy::getValueLengthLength()
 {
-    return sizeof(size_t);
+    return sizeof(uint64_t);
 }
 
 uint64_t StringSerializationStrategy::serialize(void** destinationBuffer)
 {
-    uint64_t size = sizeof(Type) + sizeof(size_t) + wrappedReference.length()*sizeof(char);
+    uint64_t size = sizeof(Type) + sizeof(uint64_t) + wrappedReference.length()*sizeof(char);
     *destinationBuffer = malloc(size);
     *((Type*)(*destinationBuffer)) = getType();
-    *((size_t*)(((Type*)(*destinationBuffer))+1)) = wrappedReference.length();
+    *((uint64_t*)(((Type*)(*destinationBuffer))+1)) = wrappedReference.length();
     for(unsigned int i = 0; i < wrappedReference.length(); i++)
     {
-        *((char*)(((uint8_t*)(*destinationBuffer)) + sizeof(Type) + sizeof(size_t) + i)) = wrappedReference.at(i);
+        *((char*)(((uint8_t*)(*destinationBuffer)) + sizeof(Type) + sizeof(uint64_t) + i)) = wrappedReference.at(i);
     }
     return size;
 }
