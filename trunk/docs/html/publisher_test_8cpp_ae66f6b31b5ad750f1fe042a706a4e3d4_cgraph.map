@@ -1,7 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_publisher.html#aab8d87a3185375b398873b45647e4be2" title="Publisher::addObjectToPublish" alt="" coords="105,31,303,57"/>
-<area shape="rect" id="node5" href="$class_stub.html#a976cc7ddd3742ee8b00867ccfb537926" title="Stub::addParameter" alt="" coords="403,5,541,32"/>
-<area shape="rect" id="node11" href="$class_registrable_object.html#a169173e1eebfea365e310137e98f1b83" title="RegistrableObject::getRegistrationInfo" alt="" coords="352,56,592,83"/>
-<area shape="rect" id="node7" href="$class_service.html#aa533d97fd7b54495cf644fb7fc06cdc2" title="Service::updateServiceID" alt="" coords="640,5,805,32"/>
-<area shape="rect" id="node9" href="$class_serializable_object.html#af3cf94b6fb07b1a06e6cbac100994592" title="SerializableObject::getValueTypeStringRepresentation" alt="" coords="854,5,1189,32"/>
-</map>

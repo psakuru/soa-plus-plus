@@ -1,8 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$regex_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="373,5,424,32"/>
-<area shape="rect" id="node5" href="$class_stub.html#aea5748e84f5918effce318909cd08379" title="Stub::staticallyBind" alt="" coords="331,56,466,83"/>
-<area shape="rect" id="node7" href="$class_stub.html#aa88973d8e2e253b2fa2c9e0e71a5149b" title="Stub::bind" alt="" coords="529,31,610,57"/>
-<area shape="rect" id="node11" href="$class_publisher.html#a585eb4f0833adf2d57ee35aff43887f8" title="Publisher::bind" alt="" coords="515,81,623,108"/>
-<area shape="rect" id="node9" href="$class_stub.html#af4becfbab3eaa0e486ab8293a51d505c" title="Stub::rebind" alt="" coords="695,31,787,57"/>
-<area shape="rect" id="node13" href="$class_publisher.html#a0b4b73f8fabab27b1a522414bc01f3de" title="Publisher::Publisher" alt="" coords="672,81,811,108"/>
-</map>

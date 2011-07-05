@@ -1,9 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$class_stub.html#a976cc7ddd3742ee8b00867ccfb537926" title="Stub::addParameter" alt="" coords="192,5,331,32"/>
-<area shape="rect" id="node9" href="$class_publisher.html#a585eb4f0833adf2d57ee35aff43887f8" title="Publisher::bind" alt="" coords="207,56,315,83"/>
-<area shape="rect" id="node5" href="$class_service.html#aa533d97fd7b54495cf644fb7fc06cdc2" title="Service::updateServiceID" alt="" coords="379,5,544,32"/>
-<area shape="rect" id="node7" href="$class_serializable_object.html#af3cf94b6fb07b1a06e6cbac100994592" title="SerializableObject::getValueTypeStringRepresentation" alt="" coords="593,5,927,32"/>
-<area shape="rect" id="node11" href="$class_stub.html#aea5748e84f5918effce318909cd08379" title="Stub::staticallyBind" alt="" coords="394,56,529,83"/>
-<area shape="rect" id="node13" href="$class_regular_expression_checker.html#ad3486224650616fa0cb1d4ad9143651f" title="RegularExpressionChecker::checkForMatch" alt="" coords="621,56,899,83"/>
-<area shape="rect" id="node15" href="$class_regular_expression_checker.html#a5d2bb0272900da08db4d3cc529fd09d8" title="RegularExpressionChecker::setRegularExpression" alt="" coords="603,107,917,133"/>
-</map>

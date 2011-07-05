@@ -1,5 +1,0 @@
-<map id="G" name="G">
-<area shape="rect" id="node1" href="$class_tcp_ip_socket.html" title="Socket TCP/IP." alt="" coords="5,31,99,57"/>
-<area shape="rect" id="node3" href="$class_tcp_ip_active_socket.html" title="Socket TCP/IP per comunicazione attiva." alt="" coords="152,5,280,32"/>
-<area shape="rect" id="node5" href="$class_tcp_ip_passive_socket.html" title="Socket TCP/IP che accetta richieste di connessione." alt="" coords="147,56,285,83"/>
-</map>
