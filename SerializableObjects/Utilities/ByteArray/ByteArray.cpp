@@ -24,7 +24,7 @@ ByteArray::ByteArray(uint64_t length)
     this->length = length;
 }
 
-ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet) //byteArrayToSet deve essere stato fatto con la malloc!
+ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet)
 {
     byteArray = (byte*)malloc(lengthToSet*sizeof(byte));
     memcpy(byteArray, byteArrayToSet, lengthToSet);
