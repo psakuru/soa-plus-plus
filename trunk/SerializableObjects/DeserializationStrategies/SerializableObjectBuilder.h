@@ -46,8 +46,8 @@ class SerializableObjectBuilder
 {
 protected:
 	/**
-	 * Un builder mantiene una mappa che gli permette, in caso di necessità, di delegare la costruzione di un SerializableObject a builder più specializzati.
-	 * I puntatori sono collegamenti a nodi sottostanti, ovvero rami dell' albero.
+	 * Un builder mantiene una mappa che gli permette di delegare la costruzione di un SerializableObject a builder più specializzati.
+	 * I puntatori sono collegamenti a nodi sottostanti.
 	 */
     map< Type, SerializableObjectBuilder* > subSerializableObjectBuilders;
 public:
