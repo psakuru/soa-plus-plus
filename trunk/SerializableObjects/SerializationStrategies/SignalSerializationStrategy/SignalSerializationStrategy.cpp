@@ -20,6 +20,7 @@ uint64_t Signal::serialize(void** destinationBuffer)
 
 void Signal::deserialize(uint64_t length, void* bufferToUse)
 {
+	// Il campo value viene già gestito nel builder
     this->signalHandler();
 }
 

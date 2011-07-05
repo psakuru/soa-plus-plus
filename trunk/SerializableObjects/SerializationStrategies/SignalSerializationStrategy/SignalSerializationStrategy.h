@@ -48,11 +48,27 @@ protected:
 public:
     SignalSerializationStrategy();
     Type getType() const;
+	/**
+	 * Ritorna il tipo del particolare segnale.
+	 *
+	 * @return Tipo del particolare segnale.
+	 */
     virtual Type getSignalType() const = 0;
     int getValueLengthLength() = 0;
+	/**
+	 * La serializzazione produce un buffer con la seguente
+	 * struttura: | Type | Length | Value = tipo del particular signal |
+	 *
+	 * @param destinationBuffer 
+	 *
+	 * @return Lunghezza del buffer.
+	 */
     uint64_t serialize(void** destinationBuffer);
 	/**
 	 * La deserializzazione, in questo caso, maschera l' invocazione dell' handler.
+	 *
+	 * @param bufferToUse Parametro muto.
+	 * @param length Parametro muto.
 	 */
     void deserialize(uint64_t length, void* bufferToUse);
     string getValueTypeStringRepresentation();
