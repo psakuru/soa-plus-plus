@@ -33,7 +33,12 @@ using namespace std;
  * @brief Classe base del sistema di costruzione di SerializableObject.
  *
  * Classe base del sistema di costruzione di SerializableObject a partire dalla loro rappresentazione serializzata. 
- * 
+ *
+ *												SerializableObjectBuilder
+ *												|					 |
+ *               TerminalSerializableObjectBuilder<Integer>	...	 SignalBuilder
+ *																	 |
+ *												TerminalSerializableObjectBuilder<BadRequestSignalBuilder>
  *
  */
 
@@ -41,7 +46,8 @@ class SerializableObjectBuilder
 {
 protected:
 	/**
-	 * 
+	 * Un builder mantiene una mappa che gli permette, in caso di necessità, di delegare la costruzione di un SerializableObject a builder più specializzati.
+	 * I puntatori sono collegamenti a nodi sottostanti, ovvero rami dell' albero.
 	 */
     map< Type, SerializableObjectBuilder* > subSerializableObjectBuilders;
 public:
