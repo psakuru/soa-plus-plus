@@ -56,7 +56,7 @@ class Service
 {
 private:
 	/**
-	 * Metodo template che riceve dal socket la lunghezza del campo valore e la assegna al parametro valueLength.
+	 * Metodo template che riceve dal socket il campo length (la lunghezza del campo value) e lo assegna al parametro valueLength.
 	 * 
 	 * @param valueLength
 	 */
@@ -69,10 +69,26 @@ private:
         free(valueLengthPointer);
     }
 protected:
+	/**
+	 * Lista dei parametri di input.
+	 */
     SerializableObjectList inputParameters;
+	/**
+	 * Lista dei parametri di output.
+	 */
     SerializableObjectList outputParameters;
+	/**
+	 * Identificatore del servizio.
+	 * Il formato è il seguente: serviceID; serviceID:={baseId(opt list parameter)}; parameter:={direction:type}; direction:={oneof IN, OUT, INOUT, OUTIN}; 
+	 */
     string serviceID;
+	/**
+	 * Indirizzo del Service Registry.
+	 */
     string serviceRegistryAddress;
+	/**
+	 * Socket su cui opera il servizio.
+	 */
     TcpIpActiveSocket* socket;
     SerializableObjectBuilder buildersHierarchy;
     void defaultBuildersHierarchyInit();
