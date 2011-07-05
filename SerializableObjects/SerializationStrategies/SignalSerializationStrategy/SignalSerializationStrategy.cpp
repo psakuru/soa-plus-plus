@@ -1,10 +1,7 @@
 #include "SignalSerializationStrategy.h"
 #include <stdlib.h>
 
-SignalSerializationStrategy::SignalSerializationStrategy()
-{
-
-}
+SignalSerializationStrategy::SignalSerializationStrategy() {}
 
 Type Signal::getType() const
 {
