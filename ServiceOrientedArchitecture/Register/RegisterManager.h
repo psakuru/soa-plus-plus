@@ -62,6 +62,7 @@ public:
     RegisterManager() : Skeleton("register"), RegistrablePoolableCyclicCallableSkeleton("register") {}
     virtual void receiveParameters() //throws SocketException, IncompatibleTypes
     {
+        //TODO non size_type ma qualcos'altro!
         SerializableObjectList::size_type* incomingParametersSizePointer =
             ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
         SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
