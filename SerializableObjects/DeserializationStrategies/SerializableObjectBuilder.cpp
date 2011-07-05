@@ -1,7 +1,5 @@
 #include "SerializableObjectBuilder.h"
 #include "Exceptions/UnknownType.h"
-#include <iostream>
-using namespace std;
 
 SerializableObjectBuilder::~SerializableObjectBuilder()
 {
@@ -27,7 +25,11 @@ SerializableObjectBuilder* SerializableObjectBuilder::operator[](Type builtType)
 
 void SerializableObjectBuilder::addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd)
 {
-    subSerializableObjectBuilders[builtType] = builderToAdd;
+	if(subSerializableObjectBuilders.empty() || (subSerializableObjectBuilders.find(builtType) == subSerializableObjectBuilders.end()))
+    {
+        subSerializableObjectBuilders[builtType] = builderToAdd;    
+	}
+    
 }
 
 void SerializableObjectBuilder::removeSerializableObjectBuilder(Type builtType)
