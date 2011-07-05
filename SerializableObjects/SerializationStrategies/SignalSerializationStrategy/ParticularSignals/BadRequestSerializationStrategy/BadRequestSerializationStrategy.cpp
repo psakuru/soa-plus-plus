@@ -1,17 +1,13 @@
 #include "BadRequestSerializationStrategy.h"
-#include <iostream>
-using namespace std;
+#include <exception>
 
 BadRequestSerializationStrategy::BadRequestSerializationStrategy() {}
 
-BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference)
-{
-
-}
+BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference) {} // Per uniformità con gli altri SerializableObject.
 
 void BadRequestSerializationStrategy::signalHandler()
 {
-    cout << "Sono il signalHandler: prostratevi a me, e veneratemi come un dio." << endl;
+    throw exception;
 }
 
 Type BadRequestSerializationStrategy::getSignalType() const
