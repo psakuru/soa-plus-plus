@@ -31,8 +31,8 @@ protected:
         while(i != inputParameters.end())
         {
             string* entry = (string*)(*i)->getValue();
-            string key = entry->substr(0, entry.find_first_of('@'));
-            string element = entry->substr(entry.find_first_of('@')+1);
+            string key = entry->substr(0, entry->find_first_of('@'));
+            string element = entry->substr(entry->find_first_of('@')+1);
             if(command.compare("publish") == 0)
             {
                 sharedRegister->insertElement(key, element);
