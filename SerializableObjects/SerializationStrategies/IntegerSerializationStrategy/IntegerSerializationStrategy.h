@@ -39,6 +39,7 @@
 class IntegerSerializationStrategy : public GenericSerializableReferenceLayer<int32_t>
 {
 public:
+	IntegerSerializationStrategy();
     IntegerSerializationStrategy(int32_t& valueToSet);
     IntegerSerializationStrategy(int32_t* userReferenceToSet, bool shared);
     Type getType() const;

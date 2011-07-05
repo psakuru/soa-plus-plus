@@ -40,6 +40,7 @@ using namespace std;
 class StringSerializationStrategy : public GenericSerializableReferenceLayer<string>
 {
 public:
+	StringSerializationStrategy();
     StringSerializationStrategy(string& valueToSet);
     StringSerializationStrategy(string* valueToSet, bool shared);
     Type getType() const;

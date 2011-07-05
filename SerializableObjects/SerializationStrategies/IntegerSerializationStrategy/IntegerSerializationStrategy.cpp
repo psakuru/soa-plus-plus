@@ -3,6 +3,8 @@
 #include <stdlib.h>
 using namespace std;
 
+IntegerSerializationStrategy::IntegerSerializationStrategy() {}
+
 IntegerSerializationStrategy::IntegerSerializationStrategy(int32_t& userReferenceToSet)
     : GenericSerializableReferenceLayer<int32_t>(userReferenceToSet) {}
 
