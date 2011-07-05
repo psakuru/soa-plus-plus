@@ -3,6 +3,8 @@
 #include <string.h>
 #include <errno.h>
 #include <iostream>
+#include <exception>
+
 using namespace std;
 
 ByteArray::ByteArray()
@@ -26,17 +28,14 @@ ByteArray::ByteArray(uint64_t length)
 
 ByteArray::ByteArray(void* byteArrayToSet, uint64_t lengthToSet)
 {
+	length = lengthToSet;
     byteArray = (byte*)malloc(lengthToSet*sizeof(byte));
     memcpy(byteArray, byteArrayToSet, lengthToSet);
-    length = lengthToSet;
-
 }
 
 ByteArray::~ByteArray()
 {
-    free(byteArray); //PROVA! E' UN MEMORY LEAK, QUESTA E' UNA PROVA!
-    byteArray = NULL;
-
+    erase();
 }
 
 byte& ByteArray::operator[](const uint64_t index)
@@ -46,39 +45,32 @@ byte& ByteArray::operator[](const uint64_t index)
 
 void ByteArray::operator=(const ByteArray& byteArrayToCopy)
 {
-
-    /* ATTENZIONE: IL SEGUENTE BLOCCO ERA IN if(byteArray != NULL) */
-    free(byteArray); //MEMORY LEAK?
-    byteArray = NULL;
-    length = 0;
-
-    /*                                                             */
-    byteArray = (byte*)malloc(byteArrayToCopy.length);
+	erase();                                                       
     length = byteArrayToCopy.length;
-    memcpy(byteArray, byteArrayToCopy.byteArray, length);
-}
+    byteArray = (byte*)malloc(length*sizeof(byte));
+    memcpy(byteArray, byteArrayToCopy.byteArray, length);}
 
 void ByteArray::erase()
 {
-    free(byteArray); //MEMORY LEAK?
+    free(byteArray);
     byteArray = NULL;
     length = 0;
 }
 
 void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength)
 {
-    byte* temporatyPointer = (byte*)realloc(byteArray, length + fragmentLength);
-
-    if(temporatyPointer != NULL)
+    byte* temporaryPointer = (byte*)realloc(byteArray, length + fragmentLength);
+    if(temporaryPointer != NULL)
     {
-        byteArray = temporatyPointer;
+        byteArray = temporaryPointer;
+		memcpy(byteArray + length, &bufferToUse[startingPosition], fragmentLength);
+		length = length + fragmentLength;
     }
-    else
-    {
-
-    }
-    memcpy(byteArray + length, &bufferToUse[startingPosition], fragmentLength); //TODO Attenzione, aggiunto +length, dovrebbe essere giusto
-    length = length + fragmentLength;
+	else
+	{
+		throw exception(); //TODO ECCEZIONE GIUSTA
+	}
+    
 }
 
 uint64_t ByteArray::getLength()

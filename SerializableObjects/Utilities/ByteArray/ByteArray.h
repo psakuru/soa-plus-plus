@@ -56,7 +56,7 @@ public:
 	 */
     ByteArray(uint64_t length);
 	/*
-	 * Costruttore. Costruisce un byte array copiando il contenuto del byte array passato come parametro per una lunghezza pari a length.
+	 * Costruttore. Costruisce un byte array di lunghezza length copiando il contenuto di byteArrayToSet.
 	 *
 	 * @param byteArrayToSet
 	 * @param lengthToSet
@@ -68,7 +68,7 @@ public:
 	 * @param index
 	 * @return Byte richiesto per riferimento.
 	 */
-    byte& operator[](const uint64_t index); // Viola l' incapsulamento
+    byte& operator[](const uint64_t index);
 	/*
 	 * Operatore assegnamento. Fa una copia del contenuto del byte array passato come parametro.
 	 *
@@ -80,7 +80,7 @@ public:
 	 */
     void erase();
 	/*
-	 * Aggiunge in append all' array i byte del buffer passato come parametro a partire dalla startingPosition per fragmentLength byte.
+	 * Aggiunge in append all' array i byte del bufferToUse passato come parametro a partire da startingPosition per fragmentLength byte.
 	 */
     void append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength);
     /*
