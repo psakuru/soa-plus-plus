@@ -48,11 +48,18 @@ enum Direction {IN, OUT, INOUT, OUTIN};
  *
  * @brief Generico servizio.
  *
+ * Un Service rappresenta un generico servizio.
+ *
  */
 
 class Service
 {
 private:
+	/**
+	 * Metodo template che riceve dal socket la lunghezza del campo valore e la assegna al parametro valueLength.
+	 * 
+	 * @param valueLength
+	 */
     template <typename IntegralFixedSizedType>
     void valueLengthReader(uint64_t& valueLength)
     {
