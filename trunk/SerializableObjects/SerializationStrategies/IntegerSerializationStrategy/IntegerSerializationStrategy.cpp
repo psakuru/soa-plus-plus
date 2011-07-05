@@ -3,8 +3,6 @@
 #include <stdlib.h>
 using namespace std;
 
-IntegerSerializationStrategy::IntegerSerializationStrategy() {}
-
 IntegerSerializationStrategy::IntegerSerializationStrategy(int32_t& userReferenceToSet)
     : GenericSerializableReferenceLayer<int32_t>(userReferenceToSet) {}
 
@@ -24,7 +22,7 @@ int IntegerSerializationStrategy::getValueLengthLength()
 uint64_t IntegerSerializationStrategy::serialize(void** destinationBuffer)
 {
     int bufferSize = sizeof(Type) + sizeof(uint8_t) + sizeof(int32_t); // | Type | valueLength | value |
-    *destinationBuffer = malloc(bufferSize); //TODO malloc exception?
+    *destinationBuffer = malloc(bufferSize);
     *((Type*)(*destinationBuffer)) = getType();
     *((uint8_t*)(((Type*)(*destinationBuffer))+1)) = sizeof(int32_t);
     *((int32_t*)(((uint8_t*)(((Type*)(*destinationBuffer))+1))+1)) = wrappedReference;
