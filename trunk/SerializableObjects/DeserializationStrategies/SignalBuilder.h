@@ -53,8 +53,8 @@ public:
 	 */	
     int getValueLengthLength(Type receivedType);
 	/**
-	 * Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro.
-	 * Questo, a sua volta, può delegare la costruzione di tali oggetti al builder ancora più specializzato 
+	 * Seleziona il builder specializzato nella costruzione di segnali del tipo passato attraverso il parametro value.
+	 * Questo, a sua volta, può delegare la costruzione di tali segnali al builder ancora più specializzato 
 	 * che si trova in un livello inferiore della gerarchia dei builder, e così via...
 	 * 
 	 * @param typeToBuild 
