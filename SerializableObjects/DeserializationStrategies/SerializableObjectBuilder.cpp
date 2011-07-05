@@ -29,7 +29,6 @@ void SerializableObjectBuilder::addSerializableObjectBuilder(Type builtType, Ser
     {
         subSerializableObjectBuilders[builtType] = builderToAdd;    
 	}
-    
 }
 
 void SerializableObjectBuilder::removeSerializableObjectBuilder(Type builtType)
@@ -40,10 +39,10 @@ void SerializableObjectBuilder::removeSerializableObjectBuilder(Type builtType)
 
 int SerializableObjectBuilder::getValueLengthLength(Type receivedType)
 {
-    return subSerializableObjectBuilders[receivedType]->getValueLengthLength(receivedType);
+    return subSerializableObjectBuilders[receivedType]->getValueLengthLength(receivedType); // Richiedo ad uno dei nodi a livello inferiore la lunghezza della lunghezza.
 }
 
 SerializableObject* SerializableObjectBuilder::delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value)
 {
-    return subSerializableObjectBuilders[typeToBuild]->delegateBuilding(typeToBuild, valueLength, value);
+    return subSerializableObjectBuilders[typeToBuild]->delegateBuilding(typeToBuild, valueLength, value); // Richiedo ad uno dei nodi a livello inferiore di costruire il serializable object.
 }
