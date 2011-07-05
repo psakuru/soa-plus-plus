@@ -27,14 +27,14 @@
 #include "SignalTypeConstants.h"
 #include "../../GenericSerializableReferenceLayer/GenericSerializableReferenceLayer.h"
 
-typedef int Fake;
+typedef int Fake; // E' un semplice segnale, quindi non necessita di una wrappedReference.
 
 /**
  * @class SignalSerializationStrategy
  *
  * @brief Serializzazione di un segnale.
  *
- * 
+ * La classe specializza il layer per trattare i segnali.
  *
  */
 
@@ -42,7 +42,7 @@ class SignalSerializationStrategy : public GenericSerializableReferenceLayer<Fak
 {
 protected:
 	/**
-	 * Gestisce le conseguenze dell' arrivo di un segnale.
+	 * Handler associato al particolare segnale.
 	 */
     virtual void signalHandler() = 0;
 public:
