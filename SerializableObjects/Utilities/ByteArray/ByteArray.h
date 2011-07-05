@@ -31,7 +31,7 @@ typedef uint8_t byte;
  *
  * @brief Array di byte.
  *
- * ByteArray gestisce un' array di byte.
+ * ByteArray gestisce array di byte.
  *
  */
 
