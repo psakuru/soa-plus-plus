@@ -42,11 +42,39 @@ private:
     uint64_t length;
 public:
     ByteArray();
+	virtual ~ByteArray();
+	/*
+	 * Costruttore. Costruisce un byte array copiando il contenuto del byte array passato come parametro.
+	 *
+	 * @param byteArrayToCopy
+	 */
     ByteArray(const ByteArray& byteArrayToCopy);
+	/*
+	 * Costruttore. Costruisce un byte array vuoto di lunghezza length.
+	 *
+	 * @param length
+	 */
     ByteArray(uint64_t length);
+	/*
+	 * Costruttore. Costruisce un byte array copiando il contenuto del byte array passato come parametro per una lunghezza pari a length.
+	 *
+	 * @param byteArrayToSet
+	 * @param lengthToSet
+	 */
     ByteArray(void* byteArrayToSet, uint64_t lengthToSet);
-    virtual ~ByteArray();
-    byte& operator[](const uint64_t index); //Viola l' incapsulamento
+	/*
+	 * Ritorna il byte alla posizione index.
+	 *
+	 * @param index
+	 * @return Byte richiesto per riferimento.
+	 */
+    byte& operator[](const uint64_t index); // Viola l' incapsulamento
+	/*
+	 * Ritorna il byte alla posizione index.
+	 *
+	 * @param index
+	 * @return Byte richiesto per riferimento.
+	 */
     void operator=(const ByteArray& byteArrayToCopy);
     void erase();
     void append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength);
