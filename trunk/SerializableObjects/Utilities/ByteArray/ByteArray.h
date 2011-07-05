@@ -31,7 +31,7 @@ typedef uint8_t byte;
  *
  * @brief Array di byte.
  *
- * ByteArray gestisce array di byte.
+ * La classe ByteArray gestisce array di byte.
  *
  */
 
@@ -70,16 +70,31 @@ public:
 	 */
     byte& operator[](const uint64_t index); // Viola l' incapsulamento
 	/*
-	 * Ritorna il byte alla posizione index.
+	 * Operatore assegnamento. Fa una copia del contenuto del byte array passato come parametro.
 	 *
-	 * @param index
-	 * @return Byte richiesto per riferimento.
+	 * @param byteArrayToCopy
 	 */
     void operator=(const ByteArray& byteArrayToCopy);
+	/*
+	 * Libera la memoria dinamica occupata dal byte array.
+	 */
     void erase();
+	/*
+	 * Aggiunge in append all' array i byte del buffer passato come parametro a partire dalla startingPosition per fragmentLength byte.
+	 */
     void append(byte* bufferToUse, uint64_t startingPosition, uint64_t fragmentLength);
-    uint64_t getLength();
-    const byte* getPointer();
+    /*
+	 * Ritorna la lunghezza dell' array.
+	 *
+	 * @return Lunghezza dell' array.
+	 */
+	uint64_t getLength();
+	/*
+	 * Ritorna il puntatore all' array.
+	 *
+	 * @return Puntatore all' array.
+	 */
+	const byte* getPointer();
 };
 
 #endif // BYTEARRAY_H
