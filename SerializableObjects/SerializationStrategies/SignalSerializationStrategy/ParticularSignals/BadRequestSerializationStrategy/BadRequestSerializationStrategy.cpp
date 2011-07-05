@@ -1,5 +1,7 @@
 #include "BadRequestSerializationStrategy.h"
 #include <exception>
+#include <iostream>
+using namespace std;
 
 BadRequestSerializationStrategy::BadRequestSerializationStrategy() {}
 
@@ -7,7 +9,8 @@ BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSigna
 
 void BadRequestSerializationStrategy::signalHandler()
 {
-    throw exception(); //TODO fare una eccezione a modo!
+    cout << "Andromalius" << endl;
+    //throw exception(); //TODO fare una eccezione a modo!
 }
 
 Type BadRequestSerializationStrategy::getSignalType() const
