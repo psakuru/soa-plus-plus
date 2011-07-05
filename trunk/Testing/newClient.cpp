@@ -61,11 +61,11 @@ int main()
     else cout << "Unable to open file";
 
     ByteArray fileBytes((void*)memblock, size);
+    delete[] memblock;
     //p.staticallyBind("127.0.0.1:3000");
     BadRequestSignal b;
     ParticularServiceStreamStub p;
     p(43,2.4,"ciao",fileBytes, b);
-    delete[] memblock;
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);
     outfile.write((char*)fileBytes.getPointer(),fileBytes.getLength());
     outfile.close();

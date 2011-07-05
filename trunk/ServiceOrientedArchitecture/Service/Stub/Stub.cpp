@@ -71,9 +71,10 @@ void Stub::bind()
     protocol();
     delete socket;
     socket = NULL; //Per non saper né leggere né scrivere
-    string* addressPointer = ((string*)((inputParameters.front())->getValue()));
-    staticallyBind(*addressPointer);
+    string* addressPointer = (string*)(inputParameters.front())->getValue();
+    string address(*addressPointer);
     delete addressPointer;
+    staticallyBind(address);
     inputParameters.clear();
     outputParameters.clear();
     inputParameters = inputParametersBackup; //copia dei puntatori
@@ -155,8 +156,9 @@ void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterD
     }
     break;
     default:
-        break; //TODO eccezione?
+        parameterDirection = OUT; // soluzione di default
+        break;
     }
     parameterDirection = (parameterDirection == OUT)? IN : (parameterDirection == OUTIN)? INOUT : IN;
-    updateServiceID(parameterToAdd, parameterDirection); //TODO Continua a mettere roba per aggiornare la firma nello StreamStub e nella roba di Skeleton
+    updateServiceID(parameterToAdd, parameterDirection);
 }
