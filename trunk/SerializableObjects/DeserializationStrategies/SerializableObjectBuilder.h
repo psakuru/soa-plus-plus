@@ -52,10 +52,46 @@ protected:
     map< Type, SerializableObjectBuilder* > subSerializableObjectBuilders;
 public:
     virtual ~SerializableObjectBuilder();
+	/**
+	 * Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro.
+	 *
+	 * @param builtType 
+	 *
+	 * @return 
+	 */
     virtual SerializableObjectBuilder* operator[](Type builtType);
+	/**
+	 * Aggiunge un builder alla mappa.
+	 * 
+	 * @param builtType 
+	 * @param builderToAdd
+	 */
     virtual void addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd);
+	/**
+	 * Rimuove un builder dalla mappa.
+	 * 
+	 * @param builtType 
+	 */
     virtual void removeSerializableObjectBuilder(Type builtType);
+	/**
+	 * Ritorna la lunghezza del campo length relativa alla rappresentazione serializzata del tipo da costruire.
+	 * Tale informazione viene recuperata, in generale, richiedendola al builder più specializzato 
+	 * che si trova in un livello inferiore della gerarchia dei builder, il quale potrebbe richiederla
+	 * al livello sottostante, e così via...
+	 * 
+	 * @param receivedType 
+	 * @return Lunghezza del campo length.
+	 */
     virtual int getValueLengthLength(Type receivedType);
+	/**
+	 * Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro.
+	 * Questo, a sua volta, può delegare la costruzione di tali oggetti al builder ancora più specializzato 
+	 * che si trova in un livello inferiore della gerarchia dei builder, e così via...
+	 * 
+	 * @param builtType 
+	 *
+	 * @return SerializableObject richiesto.
+	 */
     virtual SerializableObject* delegateBuilding(Type typeToBuild, uint64_t valueLength, void* value);
 };
 
