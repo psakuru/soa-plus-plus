@@ -66,7 +66,7 @@ public:
      *
 	 * @return Tipo di oggetto serializzabile.
      */
-    virtual Type getType() const = 0;
+    virtual Type getType() const = 0; // const perché lavora su un serializableObject const (quello passato con l' assegnamento).
 	/**
 	 * Effettua la serializzazione secondo il protocollo.
      *
@@ -74,8 +74,7 @@ public:
 	 *
 	 * @return Lunghezza del buffer.
      */
-    virtual uint64_t serialize(void** destinationBuffer) = 0; //TODO fare tutta sta roba (x cosimo: serializzazione del tipo e della lunghezza)
-															  // quì invece che nelle derivate, tanto è sempre uguale
+    virtual uint64_t serialize(void** destinationBuffer) = 0; 
 	/**
 	 * Effettua la deserializzazione secondo il protocollo.
      *
