@@ -24,10 +24,13 @@ void RegistrablePoolableCyclicCallableSkeleton::operator()()
                 try
                 {
                     boost::details::pool::guard<boost::mutex> mutexGuard(*sharedMutex);
+					socket = NULL;
                     socket = listeningSocket->acceptConnection();
                 }
                 catch(const SocketException& socketException)
                 {
+					delete socket;
+					socket = NULL;
                     boost::this_thread::restore_interruption restoreInterruptions(disableInterruptions);
                     boost::this_thread::interruption_point();
                     return;
