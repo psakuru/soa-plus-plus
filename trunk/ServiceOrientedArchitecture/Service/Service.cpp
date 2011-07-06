@@ -13,18 +13,15 @@
 
 Service::Service()
 {
-    cout << "Cool!" << endl;
-    defaultBuildersHierarchyInit();
-    socket = NULL; //Il socket va inizializzato ai livelli sottostanti
+	defaultBuildersHierarchyInit();
+    socket = NULL; // Il socket va inizializzato ai livelli sottostanti
 }
 
 Service::Service(string serviceIDToSet) : serviceID(serviceIDToSet)
 {
     serviceID.append("()");
-    cout << "ServiceID corrente: " << serviceID << endl;
-    cout << "Vingilioth:::: vengo richiamato io, maremma cane! serviceID: " << serviceID << " this:" << hex << (void*)this << dec << endl;
-    defaultBuildersHierarchyInit();
-    socket = NULL; //Il socket va inizializzato ai livelli sottostanti
+	defaultBuildersHierarchyInit();
+    socket = NULL; // Il socket va inizializzato ai livelli sottostanti
 }
 
 Service::~Service()
@@ -35,8 +32,7 @@ Service::~Service()
 
 void Service::defaultBuildersHierarchyInit()
 {
-    cout << "TID:" << boost::this_thread::get_id() << " Service::defaultBuildersHierarchyInit()" << endl << endl;
-    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
+	buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
@@ -64,8 +60,7 @@ SerializableObject* Service::receiveParameter()
 {
     Type* receivedTypePointer = ((Type*)socket->receiveMessage(sizeof(Type)));
     Type receivedType = *receivedTypePointer;
-    cout << "Tipo ricevuto: " << receivedType << endl;
-    free(receivedTypePointer);
+	free(receivedTypePointer);
     int valueLengthLength = buildersHierarchy.getValueLengthLength(receivedType);
     uint64_t valueLength = 0;
     switch(valueLengthLength)
