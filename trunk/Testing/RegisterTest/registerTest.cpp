@@ -1,6 +1,6 @@
 #include "../../ServiceOrientedArchitecture/Register/RegisterManager.h"
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
-#include "../../ServiceOrientedArchitecture/Service/Skeleton/PoolableCallableSkeleton/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
 #include "../../ServiceOrientedArchitecture/Register/Utilities/ExtensibleMap/MonitoredExtensibleMap/RRFIFOMonitoredExtensibleMap/RRFIFOMonitoredExtensibleMap.h"
 
 int main()
