@@ -42,6 +42,9 @@ public:
     RegistrableSkeleton();
     RegistrableSkeleton(string serviceIDToSet);
     RegistrableSkeleton(string serviceIDToSet, TcpIpPassiveSocket* listeningSocketToShare);
+	/**
+	 * Le informazioni di registrazione hanno il seguente formato: "serviceID@IP:port"
+	 */
     string getRegistrationInfo();
 };
 
