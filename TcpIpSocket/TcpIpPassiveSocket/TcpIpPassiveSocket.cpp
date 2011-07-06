@@ -39,3 +39,8 @@ string TcpIpPassiveSocket::getAddress()
     address.append(inet_ntoa(serverAddress.sin_addr)).append(":").append(boost::lexical_cast<string>(ntohs(serverAddress.sin_port)));
     return address;
 }
+
+void TcpIpPassiveSocket::closeSocket()
+{
+	close(socketDescriptor);
+}

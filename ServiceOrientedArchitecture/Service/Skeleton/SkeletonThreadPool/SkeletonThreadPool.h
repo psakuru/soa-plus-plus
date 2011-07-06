@@ -68,11 +68,8 @@ public:
     }
     virtual ~SkeletonThreadPool()
     {
-		
-		pool.interruptAll(); // Interrompo tutti i thread poiché sto cancellando il pool.
-        //TODO come elimino il socket?
-        //TODO come evito i memory leak?
-        ///TODO  sharedListeningSocket.close???
+		sharedListeningSocket.closeSocket(); // Se i thread stavano utilizzando il socket, viene lanciata una eccezione e quindi vengono riabilitate le interruzioni.
+		pool.joinAll(); // Attendo che tutti i thread abbiano terminato.
 	}
 };
 

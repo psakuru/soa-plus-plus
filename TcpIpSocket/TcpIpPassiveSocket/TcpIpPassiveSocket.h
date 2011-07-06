@@ -63,6 +63,10 @@ public:
 	 * @return Stringa che rappresenta l' indirizzo IP e la porta sui quali il socket agisce.
      */
     string getAddress();
+	/**
+	 * Chiude il socket.
+	 */
+	void closeSocket();
 };
 
 #endif // TCPIPPASSIVESOCKET_H
