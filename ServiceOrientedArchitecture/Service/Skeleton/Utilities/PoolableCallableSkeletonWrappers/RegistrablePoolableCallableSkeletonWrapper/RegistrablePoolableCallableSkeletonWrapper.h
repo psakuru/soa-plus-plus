@@ -2,7 +2,7 @@
 #define REGISTRABLEPOOLABLECALLABLESKELETONWRAPPER_H
 
 #include "../PoolableCallableSkeletonWrapper.h"
-#include "../../../../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../../../../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 
 template <typename T>
 class RegistrablePoolableCallableSkeletonWrapper : public RegistrableObject, public PoolableCallableSkeletonWrapper<T>
