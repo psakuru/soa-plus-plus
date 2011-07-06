@@ -33,10 +33,11 @@ using namespace std;
  * @brief Pool di thread specializzato nella gestione di skeleton.
  *
  * Uno SkeletonThreadPool gestisce un gruppo di skeleton che condividono un mutex ed un socket di listening.
+ * E' una classe template rispetto alla dimensione del pool ed al tipo di CallableObject.
  *
  */
 
-template <typename T, int poolSize> //T è un PoolableCallableSkeletonWrapper
+template <typename T, int poolSize>
 class SkeletonThreadPool
 {
 protected:
@@ -48,34 +49,31 @@ protected:
 	 * Lista di puntatori ai thread del pool.
 	 */
     list<boost::thread*> threadReferences;
+	boost::mutex sharedMutex; //TODO orrore!!! Un membro dati pubblico!!! Rimediare!!!! CHANGED
+    TcpIpPassiveSocket sharedListeningSocket; //TODO orrore!!! Un membro dati pubblico!!! Rimediare!!!! CHANGED
 public:
 	/**
-	 * Lista di puntatori ai thread del pool.
+	 * Crea i thread, li inserisce nel pool e inserisce il puntatore al nuovo thread creato nella lista threadReferences.
 	 */
-    boost::mutex sharedMutex; //TODO orrore!!! Un membro dati pubblico!!! Rimediare!!!!
-    TcpIpPassiveSocket sharedListeningSocket; //TODO orrore!!! Un membro dati pubblico!!! Rimediare!!!!
     SkeletonThreadPool(string IPAddress, int listeningPort, int backlog)
         : sharedListeningSocket(IPAddress, listeningPort, backlog)
     {
-        cout << "SkeletonThreadPool<" << (typeid(T)).name() << ", " << poolSize << ">(" << listeningPort << ", " << backlog << ")" << endl;
-        T callableObject;
+		T callableObject;
         for(int i = 0; i < poolSize; i++)
         {
-            threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket));
-            //Inserimento in O(1), la list non diventa owner del thread
-            pool.add_thread(threadReferences.front());
-            //Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
-            //TODO il precedente statement viola l' incapsulamento. Un workaround?
-            //NB: il pool prende ownership sul new thread, posso stare tranquillo per la delete
+            threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket)); // Inserimento in O(1), 
+																												  // la list non diventa owner del thread
+            pool.add_thread(threadReferences.front()); // Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
         }
     }
     virtual ~SkeletonThreadPool()
     {
+		
+		pool.interruptAll(); // Interrompo tutti i thread poiché sto cancellando il pool.
         //TODO come elimino il socket?
         //TODO come evito i memory leak?
         ///TODO  sharedListeningSocket.close???
-        pool.interrupt_all(); //TODO non ha effetto!!!! Sono tutti in zona non interrompibile! sia chi fa accept che chi è bloccato!
-    }
+	}
 };
 
 #endif // SKELETONTHREADPOOL_H
