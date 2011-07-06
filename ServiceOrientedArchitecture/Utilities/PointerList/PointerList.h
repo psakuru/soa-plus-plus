@@ -28,7 +28,7 @@ public:
     }
 	virtual void popPointers()
 	{
-		int iterationsToEmptyList = (int)size();
+		int iterationsToEmptyList = (int)(this->size());
 		for(int i = 0; i < iterationsToEmptyList; i++)
 		{
 			this->pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
