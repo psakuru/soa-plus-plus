@@ -66,10 +66,13 @@ public:
             pool.add_thread(threadReferences.front()); // Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
         }
     }
+	/**
+	 * Chiude il socket ed attende tutti i thread (la chiusura del socket comporta il lancio di una eccezione e la terminazione del thread).
+	 */
     virtual ~SkeletonThreadPool()
     {
 		sharedListeningSocket.closeSocket(); // Se i thread stavano utilizzando il socket, viene lanciata una eccezione e quindi vengono riabilitate le interruzioni.
-		pool.joinAll(); // Attendo che tutti i thread abbiano terminato.
+		pool.join_all(); // Attendo che tutti i thread abbiano terminato.
 	}
 };
 
