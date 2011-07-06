@@ -54,28 +54,21 @@ protected:
 	 * Protocollo di comunicazione di un servente.
 	 * Riceve i parametri in ingresso, effettuando un controllo sul numero e sui tipi,
 	 * effettua quindi il servizio richiamando doService() ed infine invia i parametri in uscita.
-	 * 
 	 */	
     void protocol();
 	/**
-	 * Socket passivo su cui il servente sta in ascolto.
+	 * Metodo virtuale puro destinato ad essere implementato con lo specifico servizio offerto.
 	 */	
     virtual void doService() = 0;
-	/**
-	 * Socket passivo su cui il servente sta in ascolto.
-	 */	
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Skeleton();
     Skeleton(string serviceIDToSet);
     Skeleton(string serviceIDToSet, TcpIpPassiveSocket* listeningSocketToShare);
-	/**
-	 * Socket passivo su cui il servente sta in ascolto.
-	 */	
     Skeleton(string serviceIDToSet, string IPAddress, int port, int backlog);
     virtual ~Skeleton();
 	/**
-	 * Socket passivo su cui il servente sta in ascolto.
+	 * Metodo che consente di condividere il socket di ascolto con altri serventi.
 	 */	
     void shareListeningSocket(TcpIpPassiveSocket* listeningSocketToShare);
 };

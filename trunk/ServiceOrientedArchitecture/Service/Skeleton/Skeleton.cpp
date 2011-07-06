@@ -1,6 +1,7 @@
 #include "Skeleton.h"
 #include <cstddef>
 #include <iostream>
+#include "../Exceptions/ParameterDirectionException.h"
 using namespace std;
 
 Skeleton::Skeleton() : listeningSocket(NULL), sharedListeningSocket(false) {}
@@ -64,8 +65,7 @@ void Skeleton::addParameter(SerializableObject* parameterToAdd, Direction parame
 {
     if(parameterDirection == OUT || parameterDirection == OUTIN)
     {
-        runtime_error invalidParameterDirection("Invalid parameter direction.");
-        throw invalidParameterDirection;
+        throw ParameterDirectionException();
     }
     inputParameters.push_back(parameterToAdd);
     updateServiceID(parameterToAdd, parameterDirection);
