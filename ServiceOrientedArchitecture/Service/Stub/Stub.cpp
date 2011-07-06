@@ -46,48 +46,28 @@ void Stub::rebind()
 
 void Stub::bind()
 {
-    cout << "eseguita la giusta bind" << endl;
-    SerializableObjectList outputParametersBackup(outputParameters);
-    SerializableObjectList inputParametersBackup(inputParameters);
-    // Non è una deep copy, vengono copiati i puntatori!
-    int iterationsToEmptyList = (int)outputParameters.size();
-    for(int i = 0; i < iterationsToEmptyList; i++)
-    {
-        outputParameters.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
-    }
-    iterationsToEmptyList = (int)inputParameters.size();
-    for(int i = 0; i < iterationsToEmptyList; i++)
-    {
-        inputParameters.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
-    }
-    //Liste vuote: vanno riempite con la richiesta di bind al registro
+    SerializableObjectList outputParametersBackup(outputParameters); // Non è una deep copy, vengono copiati i puntatori.
+    SerializableObjectList inputParametersBackup(inputParameters); // Non è una deep copy, vengono copiati i puntatori.
+    outputParameters.popPointers();
+    inputParameters.popPointers();
+    // Ora le liste sono vuote e si possono riempire con la richiesta al Register.
     outputParameters.push_back(new String(new string("search"), false));
     outputParameters.push_back(new String(new string(serviceID),false));
-    inputParameters.push_back(new String); //Per ricevere il service provider!
+    inputParameters.push_back(new String); // Ospita l' indirizzo del ServiceProvider che mi aspetto di ricevere.
     staticallyBind(serviceRegistryAddress);
     protocol();
     delete socket;
-    socket = NULL; //Per non saper né leggere né scrivere
+    socket = NULL;
     string* addressPointer = (string*)(inputParameters.front())->getValue();
     string address(*addressPointer);
     delete addressPointer;
     staticallyBind(address);
     inputParameters.clear();
     outputParameters.clear();
-    inputParameters = inputParametersBackup; //copia dei puntatori
-    outputParameters = outputParametersBackup; //copia dei puntatori
-    cout << "dopo il protocollo di bind, ripristino le liste: inputParameters.size(): " << (int)inputParameters.size() << endl;
-    cout << "dopo il protocollo di bind, ripristino le liste: outputParameters.size(): " << (int)outputParameters.size() << endl;
-    iterationsToEmptyList = (int)inputParametersBackup.size();
-    for(int i = 0; i < iterationsToEmptyList; i++)
-    {
-        inputParametersBackup.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
-    }
-    iterationsToEmptyList = (int)outputParametersBackup.size();
-    for(int i = 0; i < iterationsToEmptyList; i++)
-    {
-        outputParametersBackup.pop_front(); //pop di un puntatore, non viene eliminato l' oggetto puntato!
-    }
+    inputParameters = inputParametersBackup; // Non è una deep copy, vengono copiati i puntatori.
+    outputParameters = outputParametersBackup; // Non è una deep copy, vengono copiati i puntatori.
+	inputParametersBackup.popPointers();
+    outputParametersBackup.popPointers();
 }
 
 void Stub::staticallyBind(string serviceProviderAddressToSet)
@@ -104,18 +84,21 @@ void Stub::staticallyBind(string serviceProviderAddressToSet)
         string ipAddress = serviceProviderAddress.substr(0, serviceProviderAddress.find_first_of(':'));
         string portString = serviceProviderAddress.substr(serviceProviderAddress.find_first_of(':')+1);
         int port = atoi(portString.c_str());
-        //TODO check: e se il socket era stato inizializzato?
+        delete socket;
+		socket = NULL;
         socket = new TcpIpActiveSocket(ipAddress, port);
     }
-    catch(const InvalidAddressException& invalidAddressException) //Eccezione in un costruttore:
+    catch(const InvalidAddressException& invalidAddressException)
     {
-        socket = NULL;// mi accerto di poter fare la delete del socket nel processo di stack-unwinding
+		delete socket;
+        socket = NULL;// Mi accerto di poter fare la delete del socket nel processo di stack-unwinding
         //(non ho memory leaks non avendo allocazione dinamica)
         throw invalidAddressException;
     }
-    catch(const SocketException& socketException) //Eccezione in un costruttore:
+    catch(const SocketException& socketException)
     {
-        socket = NULL;// mi accerto di poter fare la delete del socket nel processo di stack-unwinding
+        delete socket;
+		socket = NULL;// Mi accerto di poter fare la delete del socket nel processo di stack-unwinding
         //(non ho memory leaks non avendo allocazione dinamica)
         throw socketException;
     }

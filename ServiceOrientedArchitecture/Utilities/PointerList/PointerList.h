@@ -21,11 +21,19 @@ public:
         typename list<T>::iterator i = this->begin();
         while(i != this->end())
         {
-            delete (*i); //Fa la delete di ciò che è puntato
+            delete (*i); // Elimina l' oggetto puntato.
             i++;
-            this->pop_front(); //Fa fuori il puntatore in lista
+            pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
         }
     }
+	virtual void pointerClean()
+	{
+		int iterationsToEmptyList = (int)size();
+		for(int i = 0; i < iterationsToEmptyList; i++)
+		{
+			pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
+		}
+	}
 };
 
 #endif // POINTERLIST_H
