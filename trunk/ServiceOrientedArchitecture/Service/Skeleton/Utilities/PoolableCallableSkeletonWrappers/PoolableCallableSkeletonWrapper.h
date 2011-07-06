@@ -26,11 +26,11 @@
 #include <boost/thread/thread.hpp>
 
 /**
- * @class Skeleton
+ * @class PoolableCallableSkeletonWrapper
  *
- * @brief Scheletro.
+ * @brief 
  *
- * Uno Skeleton contiene le funzionalità di base che un servente deve possedere.
+ * TODO
  *
  */
 
