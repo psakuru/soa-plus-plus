@@ -37,11 +37,20 @@ class Stub : public Service
 {
 protected:
     string serviceProviderAddress;
+	/**
+	 *
+	 *
+	 */
     virtual void bind();
 	/**
 	 *
+	 *
 	 */
     void protocol();
+	/**
+	 *
+	 *
+	 */
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Stub();
@@ -49,8 +58,16 @@ public:
     virtual ~Stub();
     string getServiceRegistryAddress();
     void setServiceRegistryAddress(string serviceRegistryAddressToSet);
-    void rebind(); //Rifà la bind: è disponibile solo in caso di
-    //emergenza al client
+	/**
+	 * Rieffettua la bind.
+	 * Necessaria in caso di modifiche al serviceRegistryAddress.
+	 */
+    void rebind(); 
+	/**
+	 * Consente di impostare staticamente l' indirizzo del serviceProvider, evitando il protocollo di richiesta al Register.
+	 *
+	 * @parameter serviceProviderAddressToSet
+	 */
     void staticallyBind(string serviceProviderAddressToSet);
 };
 

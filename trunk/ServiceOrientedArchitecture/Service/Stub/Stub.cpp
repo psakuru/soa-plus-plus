@@ -19,15 +19,13 @@ Stub::Stub() {}
 Stub::Stub(string serviceIDToSet, string serviceRegistryAddressToSet)
     : Service(serviceIDToSet)
 {
-
-
-    cout << "ServiceID settato su: " << serviceID << endl;
     serviceRegistryAddress = serviceRegistryAddressToSet;
 }
 
 Stub::~Stub()
 {
-    //Inizializza un singleton, deve distruggerlo!
+    // Se è stata fatta la bind esiste l' istanza singleton e quindi deve essere distrutta.
+	// In caso non esistesse la destroyInstance() non fa nulla.
     SingletonObject<RegularExpressionChecker>::destroyInstance();
 }
 
@@ -43,7 +41,6 @@ void Stub::setServiceRegistryAddress(string serviceRegistryAddressToSet)
 
 void Stub::rebind()
 {
-
     this->bind();
 }
 
@@ -95,7 +92,6 @@ void Stub::bind()
 
 void Stub::staticallyBind(string serviceProviderAddressToSet)
 {
-    cout << "staticallyBind(" << serviceProviderAddressToSet << ")" << endl;
     try
     {
         RegularExpressionChecker* IPAndPortRegexChecker = SingletonObject<RegularExpressionChecker>::getInstance();
