@@ -65,9 +65,6 @@ SerializableObject* Service::receiveParameter()
     uint64_t valueLength = 0;
     switch(valueLengthLength)
     {
-    case 0:
-        throw InvalidLengthLength();
-        break;
     case 1:
         valueLengthReader<uint8_t>(valueLength);
         break;
@@ -89,19 +86,19 @@ SerializableObject* Service::receiveParameter()
     {
         value = socket->receiveMessage(valueLength);
     }
-    return buildersHierarchy.delegateBuilding(receivedType, valueLength, value); //NB: il builder foglia deve fare la free del value
+    return buildersHierarchy.delegateBuilding(receivedType, valueLength, value);
 }
 
 void Service::receiveParameters()
 {
-    //TODO non size_type ma qualcos'altro!
+    //TODO non size_type ma qualcos'altro!	
     SerializableObjectList::size_type inputParametersSize = inputParameters.size();
     SerializableObjectList::size_type* incomingParametersSizePointer =
         ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
     SerializableObjectList* incomingParameters = new SerializableObjectList;
     SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
     free(incomingParametersSizePointer);
-    if(incomingParametersSize != inputParametersSize)
+    if(incomingParametersSize != inputParametersSize) // Confronto del numero dei parametri.
     {
         throw InvalidParameterListSize();
     }
@@ -115,7 +112,7 @@ void Service::receiveParameters()
     {
         while(i != inputParameters.end())
         {
-            *(*i) = *(*j);
+            *(*i) = *(*j); // Confronto fra i tipi dei parametri. In caso non coincidessero viene lanciata un' eccezione.
             i++;
             j++;
         }
@@ -150,7 +147,5 @@ void Service::updateServiceID(SerializableObject* parameterToAdd, Direction para
         break;
     }
     directionString.append(parameterToAdd->getValueTypeStringRepresentation()).append(")");
-    cout << "ServiceID prima della replace: " << serviceID << endl;
-    serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
-    cout << "ServiceID corrente: " << serviceID << endl;
+	serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
 }
