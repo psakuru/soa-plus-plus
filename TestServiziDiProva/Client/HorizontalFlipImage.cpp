@@ -1,9 +1,3 @@
-/*
- * ImageManipulator.cpp
- *
- *  Created on: 03/lug/2011
- *      Author: davidesilvestri
- */
 #include "../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
 
 class HorizontalFlipImage: public StreamStub {
@@ -19,8 +13,5 @@ public:
 		(*this) >> img2;
 
 		bind();
-
-		protocol();
-
 	}
 };

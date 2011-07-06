@@ -10,9 +10,9 @@ RegularExpressionChecker::RegularExpressionChecker(string regularExpressionToSet
 
 void RegularExpressionChecker::setRegularExpression(string regularExpressionToSet)
 {
-    if(unset)
+    if(unset) //TODO se non è unset digli che non hai settato.
     {
-        regularExpression = regularExpressionToSet; //OK
+        regularExpression = regularExpressionToSet;
         unset = false;
     }
 }

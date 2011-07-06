@@ -12,7 +12,7 @@ private:
 protected:
 	void doService() {
 		string requestedOperation(
-				*((string*) (inputParameters.front())->getValue()));
+				*((string*) (inputParameters.front())->getValue())); //E LA FREE??????
 		inputParameters.pop_front();
 		if (requestedOperation.compare("storeImage") == 0)
 			storeImage();
@@ -27,7 +27,7 @@ protected:
 		SerializableObjectList::iterator i = inputParameters.begin();
 		i++;//NON VA FATTO COS“ ANCHE NEL REGISTER??
 		SerializableObject* d = (*i);
-		string name = (String)(d->getValue());
+		string name = *(String*)(d->getValue());// E LA FREE????
 		//TODO ECCEZIONE IN CASO DI IMMAGINE GIA ESISTENTE + CONTROLLI SULL'IMMAGINE?? (jpg ecc..)
 		i++;
 		SerializableObject* r = (*i);
@@ -39,17 +39,17 @@ protected:
 		delete pb;
 		//MODO PIU' EFFICIENTE? TIPO UNA HASHMAP?
 		imageList.push_front(name);
-		//inputParameters.clear();//LO FA GIA?
+		//inputParameters.clear();????
 	}
 	void getImage() {
 		SerializableObjectList::iterator i = inputParameters.begin();
-		i++;//NON VA FATTO COS“ ANCHE NEL REGISTER??
+		i++;//TODO NON VA FATTO COS“ ANCHE NEL REGISTER??
 		SerializableObject* d = (*i);
-		string name = (String)(d->getValue());
+		string name = *(String*)(d->getValue());// E LA FREE????
 		//TODO ECCEZIONE IN CASO DI IMMAGINE NON ESISTENTE
 		//MODO PIU' EFFICIENTE? TIPO UNA HASHMAP?
 		imageList.erase(name);
-		//inputParameters.clear();
+		//inputParameters.clear();????
 		char * memblock;
 		uint64_t size = 0;
 		ifstream file(name, ios::in | ios::binary | ios::ate);
@@ -67,9 +67,7 @@ protected:
 		free(memblock);
 		remove(name);
 		RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
-		//  BadRequest* badRequest = new BadRequest();
-		outputParameters.push_back(objectToBeSent); //Tanto poi ci pensa la lista boost a fare la delete!
-		//  outputParameters.push_back(badRequest);
+		outputParameters.push_back(objectToBeSent); 
 	}
 	void getList(){
 		string app;
@@ -78,14 +76,14 @@ protected:
 			app.append('\n');
 		}
 		String* listToBeReturned  = new String(app);
-		outputParameters.push_back(listToBeReturned); //Tanto poi ci pensa la lista boost a fare la delete!
+		outputParameters.push_back(listToBeReturned); 
 	}
 public:
 	ImageRegister() :
 		Skeleton("ImageRegister"),
 				RegistrablePoolableCyclicCallableSkeleton("ImageRegister") {
 	}
-	void receiveParameters() //throws SocketException, IncompatibleTypes
+	void receiveParameters()
 	{
 		SerializableObjectList::size_type* incomingParametersSizePointer =
 				((SerializableObjectList::size_type*) socket->receiveMessage(
@@ -93,7 +91,6 @@ public:
 		SerializableObjectList::size_type incomingParametersSize =
 				*incomingParametersSizePointer;
 		free(incomingParametersSizePointer);
-		//PERCHE' SERVE QUESTA LISTA DI APPOGGIO??
 		SerializableObjectList* incomingParameters = new SerializableObjectList;
 		inputParameters.push_back(new String); //per l' operazione
 		for (unsigned int i = 0; i < (incomingParametersSize - 1); i++) {
