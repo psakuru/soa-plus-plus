@@ -23,7 +23,7 @@
 #define REGISTRABLESKELETONTHREADPOOL_H
 
 #include "../SkeletonThreadPool.h"
-#include "../../Exception/EmptyPoolException.h"
+#include "../../Exceptions/EmptyPoolException.h"
 #include <iostream>
 using namespace std;
 
