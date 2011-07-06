@@ -100,6 +100,7 @@ protected:
     void defaultBuildersHierarchyInit();
 	/**
 	 * Invio dei parametri contenuti nella lista di output.
+	 * Messaggio inviato: | lunghezza della lista di output | oggetti serializzati |
 	 */
     virtual void sendParameters();
 	/**
