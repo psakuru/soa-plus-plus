@@ -52,7 +52,8 @@ protected:
     void bind();
 	/**
 	 * Protocollo di comunicazione di un servente.
-	 * Riceve i parametri in ingresso, effettuando un controllo sul numero e sui tipi.
+	 * Riceve i parametri in ingresso, effettuando un controllo sul numero e sui tipi,
+	 * effettua quindi il servizio richiamando doService() ed infine invia i parametri in uscita.
 	 * 
 	 */	
     void protocol();
