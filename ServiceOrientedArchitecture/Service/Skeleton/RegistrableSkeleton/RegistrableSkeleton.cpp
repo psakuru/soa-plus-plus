@@ -15,7 +15,7 @@ string RegistrableSkeleton::getRegistrationInfo()
 {
     string registrationInfoToReturn = serviceID;
     registrationInfoToReturn.append("@");
-    if(!sharedListeningSocket) // Se il socket è condiviso con altri serventi allora dovrà essere il gestore del pool 
+    if(socket != NULL && !sharedListeningSocket) // Se il socket è inizializzato ed è condiviso con altri serventi allora dovrà essere il gestore del pool 
 							   // ad inserire l' informazione relativa all' indirizzo.
 	{
 	registrationInfoToReturn.append(listeningSocket->getAddress()); //TODO controllare perché ancora non abbiamo controllato neanche quello di prima
