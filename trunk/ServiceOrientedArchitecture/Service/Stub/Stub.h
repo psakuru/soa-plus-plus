@@ -38,19 +38,17 @@ class Stub : public Service
 protected:
     string serviceProviderAddress;
 	/**
-	 *
-	 *
+	 * Richiede al Register l' indirizzo del serviceProvider ed effettua la connessione.
 	 */
     virtual void bind();
 	/**
-	 *
-	 *
-	 */
-    void protocol();
+	 * Protocollo di comunicazione dello Stub.
+	 * Il protocollo consiste nell' invio di entrambe le liste, quella di input e quella di output e nella ricezione dei parametri di output.
+	 */    
+	void protocol();
 	/**
 	 *
-	 *
-	 */
+	 */  
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Stub();
