@@ -33,7 +33,8 @@
  *
  * @brief Aggiunge ulteriori funzionalità all' interfaccia Skeleton.
  *
- * Aggiunge allo Skeleton la possibilità di essere invocato, di registrarsi e di essere inserito in un pool di skeleton. 
+ * Aggiunge allo Skeleton la possibilità di essere invocato, di registrarsi, 
+ * di essere inserito in un pool di skeleton e di effettuare il servizio ciclicamente. 
  *
  */
 
@@ -45,18 +46,15 @@ private:
 	 */ 
     boost::mutex* sharedMutex;
 public:
-    RegistrablePoolableCyclicCallableSkeleton(string serviceIDToSet); // Il ParticularPoolableCyclicCallableSkeleton conosce nel suo
-    //costruttore di default il serviceIDToSet;
+    RegistrablePoolableCyclicCallableSkeleton(string serviceIDToSet); 
     virtual ~RegistrablePoolableCyclicCallableSkeleton();
 	/**
-	 * Assegna a sharedMutex il parametro mutexToShare.
-	 *
-	 * @param mutexToShare
+	 * @param mutexToShare Mutex condiviso con il pool
 	 */ 
     void shareMutex(boost::mutex* mutexToShare);
 	/**
 	 * Operatore di chiamata. 
-	 * Accetta una connessione sul socket ed esegue protocol();
+	 * Ciclicamente, accetta una connessione sul socket ed esegue protocol().
 	 */ 
     virtual void operator()();
 };

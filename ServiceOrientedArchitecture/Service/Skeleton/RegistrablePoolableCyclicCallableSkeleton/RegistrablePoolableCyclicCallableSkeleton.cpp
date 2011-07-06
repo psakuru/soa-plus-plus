@@ -2,27 +2,16 @@
 #include <boost/thread/thread.hpp>
 #include <boost/pool/detail/guard.hpp>
 #include "../../../../TcpIpSocket/Exceptions/SocketException.h"
-#include <iostream>
-using namespace std;
+
+RegistrablePoolableCyclicCallableSkeleton::~RegistrablePoolableCyclicCallableSkeleton() {}
 
 RegistrablePoolableCyclicCallableSkeleton::RegistrablePoolableCyclicCallableSkeleton(string serviceIDToSet)
-    : Skeleton(serviceIDToSet), RegistrableSkeleton(serviceIDToSet), CallableService<Skeleton>(serviceIDToSet)
-{
-    cout << "TID:" << boost::this_thread::get_id() << " RegistrablePoolableCyclicCallableSkeleton(" << serviceIDToSet << ")" << endl << endl;
-}
-
-RegistrablePoolableCyclicCallableSkeleton::~RegistrablePoolableCyclicCallableSkeleton()
-{
-}
+    : Skeleton(serviceIDToSet), RegistrableSkeleton(serviceIDToSet), CallableService<Skeleton>(serviceIDToSet) {}
 
 void RegistrablePoolableCyclicCallableSkeleton::shareMutex(boost::mutex* mutexToShare)
 {
     sharedMutex = mutexToShare;
-    //Non c' è bisogno di flag che mi dicano se il mutex è condiviso o no:
-    //essendo un Poolable... mutex è condiviso per definizione
 }
-
-
 
 void RegistrablePoolableCyclicCallableSkeleton::operator()()
 {
