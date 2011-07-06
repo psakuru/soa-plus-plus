@@ -90,14 +90,49 @@ protected:
 	 * Socket su cui opera il servizio.
 	 */
     TcpIpActiveSocket* socket;
+	/**
+	 * Radice dell' albero dei builder.
+	 */
     SerializableObjectBuilder buildersHierarchy;
+	/**
+	 * Inizializzazione dell' albero dei builder.
+	 */
     void defaultBuildersHierarchyInit();
+	/**
+	 * Invio dei parametri contenuti nella lista di output.
+	 */
     virtual void sendParameters();
+	/**
+	 * Ricezioni dei parametri richiesti dalla lista di input.
+	 */
     virtual void receiveParameters();
+	/**
+	 * Ricezione di un oggetto serializzato.
+	 *
+	 * @return Oggetto ricevuto.
+	 */	
     SerializableObject* receiveParameter();
+	/**
+	 * Protocollo di comunicazione del particolare servizio.
+	 */	
     virtual void protocol() = 0;
+	/**
+	 * Operazioni preliminari per il deploy del servizio.
+	 */	
     virtual void bind() = 0;
+	/**
+	 * Aggiunge parameterToAdd ad una lista in base alla direzione specificata.
+	 *
+	 * @parameter parameterToAdd 
+	 * @parameter parameterDirection
+	 */
     virtual void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection) = 0;
+	/**
+	 * Aggiorna il serviceID in base al parametro parameterToAdd e alla direzione specificata.
+	 *
+	 * @parameter parameterToAdd 
+	 * @parameter parameterDirection
+	 */
     void updateServiceID(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Service();
