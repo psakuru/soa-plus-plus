@@ -30,7 +30,7 @@ void RegistrablePoolableCyclicCallableSkeleton::operator()()
                 {
                     boost::this_thread::restore_interruption restoreInterruptions(disableInterruptions);
                     boost::this_thread::interruption_point();
-                    break;
+                    return;
                 }
             }
             protocol();
