@@ -25,6 +25,7 @@ Skeleton::~Skeleton()
     if(!sharedListeningSocket)
     {
         delete listeningSocket;
+        listeningSocket = NULL;
     }
 }
 
