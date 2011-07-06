@@ -18,7 +18,8 @@ void RegistrablePoolableCyclicCallableSkeleton::operator()()
     while(true)
     {
         {
-            boost::this_thread::disable_interruption disableInterruptions;
+            boost::this_thread::disable_interruption disableInterruptions; // Altrimenti potrebbero verificarsi incoerenze nella gestione del socket
+																		   // e/o nelle strutture dati manipolate in protocol().
             {
                 try
                 {
