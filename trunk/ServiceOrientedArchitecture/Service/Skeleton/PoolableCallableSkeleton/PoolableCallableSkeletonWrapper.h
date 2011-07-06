@@ -30,7 +30,7 @@
  *
  * @brief Estende le funzionalità di uno Skeleton.
  *
- * Estende le funzionalità di uno Skeleton rendendolo invocabile e inseribile in un pool di skeleton.
+ * TODO
  *
  */
 
