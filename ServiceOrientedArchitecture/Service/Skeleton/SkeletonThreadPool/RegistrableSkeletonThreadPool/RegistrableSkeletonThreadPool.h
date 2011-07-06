@@ -23,6 +23,7 @@
 #define REGISTRABLESKELETONTHREADPOOL_H
 
 #include "../SkeletonThreadPool.h"
+#include "../../Exception/EmptyPoolException.h"
 #include <iostream>
 using namespace std;
 
@@ -41,6 +42,11 @@ template <typename T, int poolSize> class RegistrableSkeletonThreadPool
 public:
     RegistrableSkeletonThreadPool(string IPAddress, int listeningPort, int backlog)
         : SkeletonThreadPool<T, poolSize>(IPAddress, listeningPort, backlog) {}
+	/**
+	 * Ritorna le informazioni per la registrazione.
+	 * Viene creato un oggetto del tipo T e vengono recuperate le informazioni di registrazione.
+	 * Ad esse viene appeso l' indirizzo recuperato dal listening socket del thread pool.
+	 */
     string getRegistrationInfo()
     {
 		if(!SkeletonThreadPool<T, poolSize>::threadReferences.empty())
@@ -52,8 +58,7 @@ public:
         }
         else
         {
-            runtime_error emptyPool("The pool is empty, thus it cannot be registrated.");
-            throw emptyPool;
+            throw EmptyPoolException();
         }
         return "<empty>";
     }
