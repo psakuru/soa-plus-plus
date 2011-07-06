@@ -23,15 +23,15 @@ public:
         {
             delete (*i); // Elimina l' oggetto puntato.
             i++;
-            pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
+            this->pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
         }
     }
-	virtual void pointerClean()
+	virtual void popPointers()
 	{
 		int iterationsToEmptyList = (int)size();
 		for(int i = 0; i < iterationsToEmptyList; i++)
 		{
-			pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
+			this->pop_front(); // Pop di un puntatore, non viene eliminato l' oggetto puntato.
 		}
 	}
 };
