@@ -30,25 +30,24 @@ class HorizontalFlipImage : public RegistrablePoolableCyclicCallableSkeleton
 protected:
 	void doService()()
     {
-        cout << "TID:" << boost::this_thread::get_id() << " chiamata ricevuta" << endl << endl;
-        /* ricezione e store */
         SerializableObjectList::iterator i = inputParameters.begin();
         SerializableObject* r = (*i);
         ByteArray* pb = (ByteArray*)(r->getValue());
 
+		/* store */
         //TODO ECCEZIONI!!
         ofstream outfile ("imageReceived.jpg",ofstream::binary | ofstream::out);
         outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
         outfile.close();
         delete pb;
-        /* /ricezione e store */
+        
         /* manipolazione */
         CImg<unsigned char> image;
         image = image.load_jpeg("imageReceived.jpg");
         image.mirror('x');
         image.save_jpeg("imageToBeSent.jpg",90U);
         remove("imageReceived.jpg");
-        /* invio */
+        /* immissione nella lista di invio */
         char * memblock;
         uint64_t size = 0;
         ifstream file ("imageToBeSent.jpg", ios::in|ios::binary|ios::ate);
@@ -68,22 +67,13 @@ protected:
         free(memblock);
         remove("imageToBeSent.jpg");
         RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
-      //  BadRequest* badRequest = new BadRequest();
-        outputParameters.push_back(objectToBeSent); //Tanto poi ci pensa la lista boost a fare la delete!
-      //  outputParameters.push_back(badRequest);
+		outputParameters.push_back(objectToBeSent); 
     }
 public:
 	HorizontalFlipImage()
-        : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage") //Diamond problem fix!
+        : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
     {
-        //cout << "TID:" << boost::this_thread::get_id() << " ParticularPoolableCyclicCallableSkeleton()" << endl << endl;
-    	addParameter(new RawByteBuffer, IN);
+		addParameter(new RawByteBuffer, IN);
     	addParameter(new RawByteBuffer, INOUT);
-        addParameter(new BadRequest, INOUT);
-        /*inputParameters.push_back(new Integer);
-        inputParameters.push_back(new Real);
-        inputParameters.push_back(new String);
-        inputParameters.push_back(new RawByteBuffer);
-        inputParameters.push_back(new BadRequest);*/
     }
 };
