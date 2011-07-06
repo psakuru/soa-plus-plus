@@ -107,13 +107,13 @@ void Stub::staticallyBind(string serviceProviderAddressToSet)
 void Stub::protocol()
 {
     int outputParametersSize = (int)outputParameters.size();
-    outputParameters.splice(outputParameters.end(), inputParameters);
+    outputParameters.splice(outputParameters.end(), inputParameters); // Accoda i parametri di input a quelli di output.
     sendParameters();
     SerializableObjectList::iterator i = outputParameters.begin();
     advance(i, outputParametersSize);
     SerializableObjectList::iterator j = outputParameters.end();
-    inputParameters.splice(inputParameters.begin(), outputParameters, i, j);
-    receiveParameters(); // sullo stub non faccio il try: è giusto che collassi se qualcosa non va
+    inputParameters.splice(inputParameters.begin(), outputParameters, i, j); // Rimette al loro posto i parametri di input.
+    receiveParameters();
 }
 
 void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterDirection)
@@ -135,9 +135,10 @@ void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterD
     }
     break;
     default:
-        parameterDirection = OUT; // soluzione di default
-        break;
+        throw ParameterDirectionException();
+	break;
     }
-    parameterDirection = (parameterDirection == OUT)? IN : (parameterDirection == OUTIN)? INOUT : IN;
+    parameterDirection = (parameterDirection == OUT)? IN : (parameterDirection == OUTIN)? INOUT : IN; // La direzione dei parametri nella firma
+	// del servizio viene sempre riferita al lato server.
     updateServiceID(parameterToAdd, parameterDirection);
 }
