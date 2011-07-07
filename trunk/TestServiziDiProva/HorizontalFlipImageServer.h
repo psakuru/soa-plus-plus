@@ -42,7 +42,7 @@
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
 #include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
-#include "../CImg/CImg.h"
+#include "CImg/CImg.h"
 using namespace std;
 using namespace cimg_library;
 
