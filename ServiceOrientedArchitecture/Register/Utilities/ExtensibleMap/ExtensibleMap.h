@@ -44,13 +44,51 @@ class ExtensibleMap
 protected:
     map<Key, pair<SchedulingInformation, list<Element> > > dataStructure;
 public:
-    virtual Element operator[](Key searchingKey) = 0; //Ridà un elemento nella lista contenuta alla riga specificata secono le politiche di scheduling
+	/**
+	 * L' operatore di selezione analizza le SchedulingInformation relative alla lista
+	 * individuata dalla chiave specificata come parametro e ritorna, quindi, l' elemento
+	 * scelto secondo le politiche di scheduling definite.
+	 *
+	 * @param searchingKey Chiave di ricerca sulla mappa.
+	 *
+	 * return Elemento schedulato.
+	 */
+    virtual Element operator[](Key searchingKey) = 0;
+	/**
+	 * Ritorna la lista individuata dalla chiave passata come parametro.
+	 *
+	 * @param searchingKey Chiave di ricerca sulla mappa.
+	 *
+	 * return Lista corrispondente.
+	 */
     virtual list<Element> getAllElementsIn(Key searchingKey)
     {
         return dataStructure[searchingKey].second;
     }
+	/**
+	 * Inserisce l' elemento elementToInsert nella lista individuata
+	 * dalla chiave specificata, secondo le politiche di inserimento.
+     *	
+	 * @param selectingKey
+	 * @param elementToInsert
+	 *
+	 */
     virtual void insertElement(Key selectingKey, Element elementToInsert) = 0;
+	/**
+	 * Rimuove l' elemento elementToClear nella lista individuata
+	 * dalla chiave specificata.
+	 *
+	 * @param selectingKey
+	 * @param elementToClear
+	 *
+	 */
     virtual void clearElement(Key selectingKey, Element elementToClear) = 0;
+	/**
+	 * Rimuove l' entry individuata dalla chiave di ricerca passata come parametro.
+	 *
+	 * @param selectingKey
+	 *
+	 */
     virtual void clearElementList(Key selectingKey)
     {
         dataStructure.erase(selectingKey);
