@@ -29,15 +29,16 @@
 using namespace std;
 
 /**
- *
- *
+ * Enumerato che definisce le modalità di funzionamento di un Publisher.
+ * La modalità publish permette di registrare un oggetto registrabile su un Register.
+ * La modalità censor permette di cancellare la registrazione effettuata su un Register.
  */
 enum PublishingMode {publish, censor};
 
 /**
- * @class Service
+ * @class Publisher
  *
- * @brief Generico servizio.
+ * @brief Generico pubblicatore.
  *
  * Un Service rappresenta un generico servizio.
  *
