@@ -59,7 +59,8 @@ protected:
         {
             i++;
         }
-        this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
+        this->dataStructure[searchingKey].first =
+        (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
         return *i;
     }
     void insertElementImplementation(Key searchingKey, Element elementToInsert)
