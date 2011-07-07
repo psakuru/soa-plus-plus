@@ -1,3 +1,24 @@
+/**
+ * @file HorizontalFlipImage.h
+ * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
+ *
+ * @section LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 #define cimg_use_jpeg
 #include <iostream>
 #include <fstream>
@@ -33,21 +54,18 @@ protected:
         SerializableObjectList::iterator i = inputParameters.begin();
         SerializableObject* r = (*i);
         ByteArray* pb = (ByteArray*)(r->getValue());
-
-		/* store */
-        //TODO ECCEZIONI!!
+		// Store.
         ofstream outfile ("imageReceived.jpg",ofstream::binary | ofstream::out);
         outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
         outfile.close();
         delete pb;
-        
-        /* manipolazione */
+        // Manipulation.
         CImg<unsigned char> image;
         image = image.load_jpeg("imageReceived.jpg");
         image.mirror('x');
         image.save_jpeg("imageToBeSent.jpg",90U);
         remove("imageReceived.jpg");
-        /* immissione nella lista di invio */
+        // Preparing to send.
         char * memblock;
         uint64_t size = 0;
         ifstream file ("imageToBeSent.jpg", ios::in|ios::binary|ios::ate);
@@ -70,8 +88,7 @@ protected:
 		outputParameters.push_back(objectToBeSent); 
     }
 public:
-	HorizontalFlipImage()
-        : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
+	HorizontalFlipImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
     {
 		addParameter(new RawByteBuffer, IN);
     	addParameter(new RawByteBuffer, INOUT);

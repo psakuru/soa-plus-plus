@@ -89,11 +89,11 @@ protected:
 	 */
     virtual void searchInMap()
     {
-        //TODO cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
+        cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
         RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         string key = *((string*)(*i)->getValue());
-        //TODO cout << "chiave di ricerca:: " << key << endl;
+        cout << "chiave di ricerca:: " << key << endl;
         string* searchResult = new string((*sharedRegister)[key]);
         outputParameters.push_back(new String(searchResult, false));
     }
