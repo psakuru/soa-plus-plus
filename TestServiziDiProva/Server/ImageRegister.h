@@ -25,15 +25,13 @@
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include <string>
 #include <list>
+#include <iostream>
 using namespace std;
 
 class ImageRegister: public RegistrablePoolableCyclicCallableSkeleton {
-private:
-	List<string> imageList;
 protected:
 	void doService() {
-		string requestedOperation(
-				*((string*) (inputParameters.front())->getValue())); //E LA FREE??????
+		string* requestedOperation = ((string*) (inputParameters.front())->getValue()));
 		inputParameters.pop_front();
 		if (requestedOperation.compare("storeImage") == 0)
 			storeImage();
@@ -41,10 +39,11 @@ protected:
 			getImage();
 		if (requestedOperation.compare("getList") == 0)
 			getMap();
-		//Se nessuno di questi if si attiva il registro non fa niente, alla fine risponde lista vuota e tutti contenti
+		delete requestedOperation;
 		inputParameters.clear();
 	}
 	void storeImage() {
+		List<string> imageList = SingletonObject< List <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
@@ -60,26 +59,29 @@ protected:
 		delete entry;
 		//TODO ECCEZIONE IN CASO DI IMMAGINE GIA ESISTENTE + CONTROLLI SULL'IMMAGINE?? (jpg ecc..)
 		i++;
-		SerializableObject* r = (*i);
-		ByteArray* pb = (ByteArray*) (r->getValue());
-		//TODO ECCEZIONI!!
+		ByteArray* pb = (ByteArray*) (*i)->getValue();
 		ofstream outfile(name, ofstream::binary | ofstream::out);
 		outfile.write((char*) (pb->getPointer()), pb->getLength());
 		outfile.close();
 		delete pb;
 		//MODO PIU' EFFICIENTE? TIPO UNA HASHMAP?
 		imageList.push_front(name);
-		//inputParameters.clear();????
 	}
 	void getImage() {
+		List<string> imageList = SingletonObject< List <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
-		i++;//TODO NON VA FATTO COS“ ANCHE NEL REGISTER??
-		SerializableObject* d = (*i);
-		string name = *(String*)(d->getValue());// E LA FREE????
-		//TODO ECCEZIONE IN CASO DI IMMAGINE NON ESISTENTE
-		//MODO PIU' EFFICIENTE? TIPO UNA HASHMAP?
-		imageList.erase(name);
-		//inputParameters.clear();????
+		string* entry = (string*)(*i)->getValue();
+		string name = *entry;
+		if(command.compare("publish") == 0)
+		{
+			sharedRegister->insertElement(key, element);
+		}
+		if(command.compare("censor") == 0)
+		{
+			sharedRegister->clearElement(key, element);
+		}
+		sharedRegister->print();
+		delete entry;
 		char * memblock;
 		uint64_t size = 0;
 		ifstream file(name, ios::in | ios::binary | ios::ate);
@@ -100,18 +102,18 @@ protected:
 		outputParameters.push_back(objectToBeSent); 
 	}
 	void getList(){
+		List<string> imageList = SingletonObject< List <string> >::getInstance(); // Istanza singleton.
 		string app;
-		for(int i=0;!imageList.empty();i++){
-			app.append((string)imageList.push_front());
-			app.append('\n');
-		}
-		String* listToBeReturned  = new String(app);
-		outputParameters.push_back(listToBeReturned); 
+		List<string>::iterator i = imageList.begin();
+		for(; i != imageList.end(); i++)
+        {
+			app.append("[")+app.append(*i)+app.append("]\n");
+        }
+		string* listToBeReturned = new string(app);
+        outputParameters.push_back(new String(listToBeReturned, false));
 	}
 public:
-	ImageRegister() :
-		Skeleton("ImageRegister"),
-				RegistrablePoolableCyclicCallableSkeleton("ImageRegister") {
+	ImageRegister() : Skeleton("ImageRegister"), RegistrablePoolableCyclicCallableSkeleton("ImageRegister") {
 	}
 	void receiveParameters()
 	{
@@ -121,10 +123,15 @@ public:
 		SerializableObjectList::size_type incomingParametersSize =
 				*incomingParametersSizePointer;
 		free(incomingParametersSizePointer);
-		SerializableObjectList* incomingParameters = new SerializableObjectList;
-		inputParameters.push_back(new String); //per l' operazione
-		for (unsigned int i = 0; i < (incomingParametersSize - 1); i++) {
-			inputParameters.push_back(new String);
+		if(incomingParametersSize > 3)
+			//TODO LANCIA ECCEZIONE!
+		SerializableObjectList* incomingParameters = new SerializableObjectList; // Comando
+		inputParameters.push_back(new String);
+		if(incomingParametersSize > 1){
+			inputParameters.push_back(new String); // Nome dell' immagine.
+		}
+		if(incomingParametersSize > 2){
+			inputParameters.push_back(new RawByteBuffer);
 		}
 		for (unsigned int i = 0; i < incomingParametersSize; i++) {
 			incomingParameters->push_back(receiveParameter());
@@ -132,14 +139,13 @@ public:
 		SerializableObjectList::iterator i = inputParameters.begin();
 		SerializableObjectList::iterator j = incomingParameters->begin();
 		while (i != inputParameters.end()) {
-			*(*i) = *(*j);
+			*(*i) = *(*j);  // In caso di type-mismatch lancia un' eccezione.
 			i++;
 			j++;
 		}
 		delete incomingParameters;
 	}
-	~ImageRegister() {//Elimina l' istanza Singleton
-		imageList.clear();//chiama tutti i distruttori
-		imageList = NULL;
+	~ImageRegister() {
+		SingletonObject< List<string> >::destroyInstance();  // Elimina l' istanza Singleton.
 	}
 };
