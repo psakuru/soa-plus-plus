@@ -23,12 +23,11 @@
 #define POOLABLECALLABLESKELETONWRAPPER_H
 
 #include <boost/thread/mutex.hpp>
-#include <boost/thread/thread.hpp>
 
 /**
  * @class PoolableCallableSkeletonWrapper
  *
- * @brief 
+ * @brief Crea un PollableCallableSkeleton, lo inizializza correttamente e gli assegna le risorse condivise.
  *
  * Un PoolableCallableSkeletonWrapper è un oggetto invocabile che crea un PollableCallableSkeleton,
  * lo inizializza correttamente e gli assegna le risorse condivise.
@@ -39,6 +38,9 @@
  * In questo modo, invece, la creazione del PoolableCallableSkeleton è rinviata all' esecuzione del thread,
  * ed effettuata attraverso semplici costruttori.
  * 
+ * @pre Il parametro template T può essere un qualsiasi PoolableCallableSkeleton, con un costruttore di default
+ * che inizializzi corretamente tutta la gerarchia. In particolare, è necessario che richiami il costruttore
+ * con parametro serviceID della classe padre per permettere un' inizializzazione coerente.
  */
 
 template <typename T>
@@ -47,13 +49,10 @@ class PoolableCallableSkeletonWrapper
 public:
     void operator()(boost::mutex* sharedMutex, TcpIpPassiveSocket* sharedListeningSocket)
     {
-        T poolableCallableSkeleton; //Precondizione: il costruttore di default di T deve soddisfare tutti gli antenati
-        poolableCallableSkeleton.shareMutex(sharedMutex); //Può fallire solo a tempo di compilazione!
-        poolableCallableSkeleton.shareListeningSocket(sharedListeningSocket); //Può fallire solo a tempo di compilazione!
-        poolableCallableSkeleton(); //Può fallire solo a tempo di compilazione!*/
-        //Se i precedenti tre statement non falliscono, allora o T è effettivamente figlio di Skeleton
-        //oppure funziona come uno Skeleton, ma...
-        //TODO polimorphic test!
+        T poolableCallableSkeleton;
+        poolableCallableSkeleton.shareMutex(sharedMutex);
+        poolableCallableSkeleton.shareListeningSocket(sharedListeningSocket);
+        poolableCallableSkeleton();
     }
 };
 
