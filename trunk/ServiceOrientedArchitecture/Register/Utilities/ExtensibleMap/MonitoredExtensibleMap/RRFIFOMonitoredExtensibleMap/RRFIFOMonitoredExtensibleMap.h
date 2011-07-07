@@ -43,7 +43,7 @@ class RRFIFOMonitoredExtensibleMap
 protected:
     Element selectionOperatorImplementation(Key searchingKey)
     {
-		boost::unique_lock<boost::shared_mutex> writersLock(mutex);
+		boost::unique_lock<boost::shared_mutex> writersLock(this->mutex);
         if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
         {
             return Element();
@@ -81,16 +81,16 @@ protected:
         }
         if(i != this->dataStructure[selectingKey].second.end()) // Se l' elemento da eliminare esiste.
         {
-            this->dataStructure[selectingKey].second.erase(i); 			
+            this->dataStructure[selectingKey].second.erase(i);
 			// Aggiorno la SchedulingInformation per implementare la politica RR.
 			if(this->dataStructure[selectingKey].first <= j){
-				if(this->dataStructure[selectingKey].first == ((int)(this->dataStructure[selectingKey].second.size())))) 
+				if(this->dataStructure[selectingKey].first == ((int)(this->dataStructure[selectingKey].second.size())))
 				// Se l'elemento cancellato occupava l'ultima posizione della lista ed era selezionato come il prossimo da schedulare,
 				// il prossimo elemento da schedulare dovrà essere quello in posizione 0.
 				{
 					this->dataStructure[selectingKey].first = 0;
 				}
-			} 
+			}
 			else // Se l'elemento cancellato precedeva la posizione del prossimo elemento da schedulare, l' indice relativo al prossimo
 				 // elemento da schedulare dovrà essere aggiornato alla posizione precedente cioè alla nuova posizione assunta dal prossimo
 				 // elemento da schedulare a causa dell' accorciamento della lista.
