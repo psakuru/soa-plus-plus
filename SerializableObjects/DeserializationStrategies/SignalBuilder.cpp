@@ -17,7 +17,7 @@ SerializableObject* SignalBuilder::delegateBuilding(Type typeToBuild, uint64_t v
 {
     Type signalType = *((Type*)value);
     free(value);
-    if(checkType(typeToBuild))
+    if(checkType(signalType))
     {
         return subSerializableObjectBuilders[signalType]->delegateBuilding(signalType, 0, NULL);
     }
