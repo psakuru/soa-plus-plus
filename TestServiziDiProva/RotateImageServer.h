@@ -51,7 +51,6 @@ class RotateImage : public RegistrablePoolableCyclicCallableSkeleton
 protected:
 	void doService()
     {
-        
         SerializableObjectList::iterator i = inputParameters.begin();
         int32_t* directionPointer = (int32_t*)(d->getValue());
 		int32_t direction = *directionPointer;
@@ -69,7 +68,6 @@ protected:
         image.rotate((float)direction,0,1);
         image.save_jpeg("imageToBeSent.jpg",90U);
         remove("imageReceived.jpg");
-       
 		/* metto nella lista di invio */
         char * memblock;
         uint64_t size = 0;
