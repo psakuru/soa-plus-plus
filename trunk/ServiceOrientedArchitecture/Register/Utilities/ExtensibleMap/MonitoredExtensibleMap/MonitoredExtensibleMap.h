@@ -58,7 +58,6 @@ protected:
 public:
     virtual Element operator[](Key searchingKey)
     {
-        //boost::shared_lock<boost::shared_mutex> readersLock(mutex);
         boost::upgrade_lock<boost::shared_mutex> upgradableLock(this->mutex);
         return this->selectionOperatorImplementation(searchingKey, upgradableLock);
     }

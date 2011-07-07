@@ -45,25 +45,22 @@ protected:
     {
         // In questa particolare politica la selezione comporta una modifica delle
         // scheduling information: il mutex va upgradato a unique lock!
-        //boost::upgrade_lock<boost::shared_mutex> upgradableLock(this->mutex);
+        boost::upgrade_to_unique_lock< boost::shared_mutex > uniqueLock(upgradableLock); //TODO: ATTENZIONE!!!! Deadlock???
+        if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
         {
-            boost::upgrade_to_unique_lock< boost::shared_mutex > uniqueLock(upgradableLock); //TODO: ATTENZIONE!!!! Deadlock???
-            if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
-            {
-                return Element();
-            }
-            if(this->dataStructure[searchingKey].second.size() == 0)
-            {
-                return Element();
-            }
-            typename list<Element>::iterator i = this->dataStructure[searchingKey].second.begin();
-            for(int j = 0; j < this->dataStructure[searchingKey].first; j++)
-            {
-                i++;
-            }
-            this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
-            return *i;
+            return Element();
         }
+        if(this->dataStructure[searchingKey].second.size() == 0)
+        {
+            return Element();
+        }
+        typename list<Element>::iterator i = this->dataStructure[searchingKey].second.begin();
+        for(int j = 0; j < this->dataStructure[searchingKey].first; j++)
+        {
+            i++;
+        }
+        this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
+        return *i;
     }
     void insertElementImplementation(Key searchingKey, Element elementToInsert)
     {
