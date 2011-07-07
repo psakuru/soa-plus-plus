@@ -44,7 +44,7 @@ private:
 public:
     RegularExpressionChecker();
     RegularExpressionChecker(string regularExpressionToSet);
-    void setRegularExpression(string regularExpressionToSet);
+    bool setRegularExpression(string regularExpressionToSet);
 	/**
 	 * Controlla se la stringa passata come argomento soddisfa l' espressione regolare regularExpression.
 	 *
