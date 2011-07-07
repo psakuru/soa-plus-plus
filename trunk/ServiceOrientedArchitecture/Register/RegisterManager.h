@@ -33,8 +33,9 @@ using namespace std;
 /**
  * @class RegisterManager
  *
- * @brief PRIMA LE MAPS
+ * @brief Classe template che gestisce un registro.
  *
+ * 
  */
 
 template <template<typename, typename> class RegisterMap> /*devi passarmi una mappa template con 2 parametri Key e Elem, ci penso io a declinarli a string*/
