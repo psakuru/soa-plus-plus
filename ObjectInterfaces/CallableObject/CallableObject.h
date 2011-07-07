@@ -21,7 +21,7 @@
 
 #ifndef CALLABLEOBJECT_H
 #define CALLABLEOBJECT_H
- 
+
 /**
  * @class CallableObject
  *
@@ -34,6 +34,7 @@ class CallableObject
 {
 public:
     virtual void operator()() = 0;
+    virtual ~CallableObject() {}
 };
 
 #endif //CALLABLEOBJECT_H

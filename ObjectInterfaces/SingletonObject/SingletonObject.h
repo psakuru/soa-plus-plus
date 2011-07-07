@@ -48,11 +48,10 @@ private:
      */
     ~SingletonObject() {}
 public:
-	
 	/**
 	 * Crea un' istanza statica della classe desiderata, se non ne esiste già una, e la ritorna al chiamante.
      * La creazione è protetta da una guardia di mutua esclusione.
-     * 
+     *
      * @return Puntatore alla istanza singleton della classe desiderata.
      */
     static T* getInstance()
@@ -61,9 +60,8 @@ public:
         if(instance == NULL) instance = new T();
         return instance;
     }
-	
 	/**
-	 * Distrugge l'istanza singleton. 
+	 * Distrugge l'istanza singleton.
 	 * La distruzione è protetta da una guardia di mutua esclusione.
      */
     static void destroyInstance()

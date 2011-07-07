@@ -27,9 +27,9 @@ using namespace std;
 
 /**
  * @class RegistrableObject
- * 
+ *
  * @brief Intefaccia per oggetti registrabili.
- * 
+ *
  * L' interfaccia RegistrableObject fornisce, alle classi che la implementano, il metodo "getRegistrationInfo()".
  *
  */
@@ -38,11 +38,12 @@ class RegistrableObject
 {
 public:
     /**
-	 * Il metodo consente di ottenere dalla classe che implementa l'interfaccia le informazioni relative alla registrazione. 
-     * 
+	 * Il metodo consente di ottenere dalla classe che implementa l'interfaccia le informazioni relative alla registrazione.
+     *
      * @return Informazioni relative alla registrazione.
      */
     virtual string getRegistrationInfo() = 0;
+    virtual ~RegistrableObject() {}
 };
 
 #endif // REGISTRABLEOBJECT_H
