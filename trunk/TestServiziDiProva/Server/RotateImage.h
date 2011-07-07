@@ -42,6 +42,7 @@
 #include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "../CImg/CImg.h"
+#include "stdint.h"
 using namespace std;
 using namespace cimg_library;
 
@@ -52,10 +53,10 @@ protected:
     {
         
         SerializableObjectList::iterator i = inputParameters.begin();
-        SerializableObject* d = (*i);
-        int direction = *(Integer*)(d->getValue());// E LA FREE???????
+        int32_t* directionPointer = (int32_t*)(d->getValue());
+		int32_t direction = *directionPointer;
+		delete directionPointer;
         i++;
-        SerializableObject* r = (*i);
         ByteArray* pb = (ByteArray*)(r->getValue());
         // Store.
         ofstream outfile ("imageReceived.jpg",ofstream::binary | ofstream::out);
@@ -98,6 +99,5 @@ public:
     	addParameter(new Integer, IN);
     	addParameter(new RawByteBuffer, IN);
     	addParameter(new RawByteBuffer, INOUT);
-		//SIGNAL DI BAD REQUEST IN CASO DI ECCEZIONE SUL SERVER???
-    }
+	}
 };

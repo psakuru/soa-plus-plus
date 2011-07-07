@@ -43,7 +43,7 @@ protected:
 		inputParameters.clear();
 	}
 	void storeImage() {
-		List<string> imageList = SingletonObject< List <string> >::getInstance(); // Istanza singleton.
+		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
@@ -68,7 +68,7 @@ protected:
 		imageList.push_front(name);
 	}
 	void getImage() {
-		List<string> imageList = SingletonObject< List <string> >::getInstance(); // Istanza singleton.
+		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
@@ -102,9 +102,9 @@ protected:
 		outputParameters.push_back(objectToBeSent); 
 	}
 	void getList(){
-		List<string> imageList = SingletonObject< List <string> >::getInstance(); // Istanza singleton.
+		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		string app;
-		List<string>::iterator i = imageList.begin();
+		list<string>::iterator i = imageList.begin();
 		for(; i != imageList.end(); i++)
         {
 			app.append("[")+app.append(*i)+app.append("]\n");
@@ -146,6 +146,6 @@ public:
 		delete incomingParameters;
 	}
 	~ImageRegister() {
-		SingletonObject< List<string> >::destroyInstance();  // Elimina l' istanza Singleton.
+		SingletonObject< list<string> >::destroyInstance();  // Elimina l' istanza Singleton.
 	}
 };
