@@ -63,15 +63,6 @@ protected:
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
-		if(command.compare("publish") == 0)
-		{
-			sharedRegister->insertElement(key, element);
-		}
-		if(command.compare("censor") == 0)
-		{
-			sharedRegister->clearElement(key, element);
-		}
-		sharedRegister->print();
 		delete entry;
 		char * memblock;
 		uint64_t size = 0;
