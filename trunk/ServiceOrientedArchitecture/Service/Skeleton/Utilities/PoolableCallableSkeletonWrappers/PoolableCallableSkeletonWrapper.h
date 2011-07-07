@@ -30,8 +30,15 @@
  *
  * @brief 
  *
- * TODO
- *
+ * Un PoolableCallableSkeletonWrapper è un oggetto invocabile che crea un PollableCallableSkeleton,
+ * lo inizializza correttamente e gli assegna le risorse condivise.
+ * Ciò è reso necessario per ovviare all' inconveniente di dotare un PoolableCallableSkeleton di 
+ * un costruttore di copia, richiamato alla creazione del thread, che sarebbe molto complesso 
+ * e dispendioso: richiederebbe una deep copy di liste di parametri
+ * formate da SerializableObject, copia di Socket con le relative possibili incoerenze etc...
+ * In questo modo, invece, la creazione del PoolableCallableSkeleton è rinviata all' esecuzione del thread,
+ * ed effettuata attraverso semplici costruttori.
+ * 
  */
 
 template <typename T>
@@ -40,9 +47,6 @@ class PoolableCallableSkeletonWrapper
 public:
     void operator()(boost::mutex* sharedMutex, TcpIpPassiveSocket* sharedListeningSocket)
     {
-
-
-        cout << "TID:" << boost::this_thread::get_id() << " PoolableCallableSkeletonWrapper<" << (typeid(T)).name() << ">(sharedMutex: " << (void*)sharedMutex << ", sharedListeningSocket: " << (void*)sharedListeningSocket << ")" << endl;
         T poolableCallableSkeleton; //Precondizione: il costruttore di default di T deve soddisfare tutti gli antenati
         poolableCallableSkeleton.shareMutex(sharedMutex); //Può fallire solo a tempo di compilazione!
         poolableCallableSkeleton.shareListeningSocket(sharedListeningSocket); //Può fallire solo a tempo di compilazione!
