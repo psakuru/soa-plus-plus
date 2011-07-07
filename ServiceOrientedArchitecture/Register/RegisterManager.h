@@ -35,13 +35,20 @@ using namespace std;
  *
  * @brief Classe template che gestisce un registro.
  *
- * 
+ * Il RegisterManager è un RegistrablePoolableCyclicCallableSkeleton il cui servizio consiste nell' effettuare le operazioni di
+ * registrazione e deregistrazione richieste.
+ * Il protocollo di richiesta è : request := {oneof {commandPublish list parameterPublish}, {search parameterSearch}}; commandPublish := {oneof publish, censor};
+ * parameterPublish := {serviceID@IP:port}; parameterSearch := {serviceID}.
+ *
  */
 
-template <template<typename, typename> class RegisterMap> /*devi passarmi una mappa template con 2 parametri Key e Elem, ci penso io a declinarli a string*/
+template <template<typename, typename> class RegisterMap>
 class RegisterManager : public RegistrablePoolableCyclicCallableSkeleton
 {
 protected:
+	/**
+	 * Esegue l' operazione richiesta in base al comando ricevuto.
+	 */
     void doService()
     {
         string* requestedOperation = (string*)(inputParameters.front())->getValue();
@@ -50,12 +57,14 @@ protected:
         if(requestedOperation->compare("censor") == 0) editMap("censor");
         if(requestedOperation->compare("search") == 0) searchInMap();
         delete requestedOperation;
-        //Se nessuno di questi if si attiva il registro non fa niente, alla fine risponde lista vuota e tutti contenti
         inputParameters.clear();
     }
+	/**
+	 * Modifica la mappa in base al parametro command.
+	 */
     virtual void editMap(string command)
     {
-        RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance(); //deve essere singleton!
+        RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         while(i != inputParameters.end())
         {
@@ -74,22 +83,23 @@ protected:
             delete entry;
             i++;
         }
-        //inputParameters.clear();
     }
+	/**
+	 * Ricerca il servizio richiesto nella mappa e lo invia come output.
+	 */
     virtual void searchInMap()
     {
-        cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
-        RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance(); //deve essere singleton!
+        //TODO cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
+        RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         string key = *((string*)(*i)->getValue());
-        cout << "chiave di ricerca:: " << key << endl;
+        //TODO cout << "chiave di ricerca:: " << key << endl;
         string* searchResult = new string((*sharedRegister)[key]);
         outputParameters.push_back(new String(searchResult, false));
-        //inputParameters.clear();
     }
 public:
     RegisterManager() : Skeleton("register"), RegistrablePoolableCyclicCallableSkeleton("register") {}
-    virtual void receiveParameters() //throws SocketException, IncompatibleTypes
+    virtual void receiveParameters()
     {
         //TODO non size_type ma qualcos'altro!
         SerializableObjectList::size_type* incomingParametersSizePointer =
@@ -98,7 +108,7 @@ public:
         free(incomingParametersSizePointer);
         if((int)incomingParametersSize > 1024 || (int)incomingParametersSize <= 0)
         {
-            cout << "DOS ATTACK!" << endl;
+            //cout << "DOS ATTACK!" << endl;
             throw DOSAttackInProgress();
         }
         SerializableObjectList* incomingParameters = new SerializableObjectList;
@@ -114,7 +124,7 @@ public:
         SerializableObjectList::iterator j = incomingParameters->begin();
         while(i != inputParameters.end())
         {
-            *(*i) = *(*j);
+            *(*i) = *(*j); // In caso di type-mismatch lancia un' eccezione.
             i++;
             j++;
         }
@@ -122,8 +132,7 @@ public:
     }
     ~RegisterManager()
     {
-        //Elimina l' istanza Singleton
-        SingletonObject< RegisterMap<string, string> >::destroyInstance();
+        SingletonObject< RegisterMap<string, string> >::destroyInstance();  // Elimina l' istanza Singleton.
     }
 };
 
