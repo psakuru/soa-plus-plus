@@ -1,5 +1,6 @@
 #include "SignalBuilder.h"
 #include "../SerializationStrategies/SignalSerializationStrategy/SignalTypeConstants.h"
+#include "Exceptions/UnknownType.h"
 #include <stdlib.h>
 #include <cstddef>
 
@@ -16,5 +17,10 @@ SerializableObject* SignalBuilder::delegateBuilding(Type typeToBuild, uint64_t v
 {
     Type signalType = *((Type*)value);
     free(value);
-    return subSerializableObjectBuilders[signalType]->delegateBuilding(signalType, 0, NULL);
+    if(checkType(typeToBuild))
+    {
+        return subSerializableObjectBuilders[signalType]->delegateBuilding(signalType, 0, NULL);
+    }
+    throw UnknownType();
+    return NULL;
 }

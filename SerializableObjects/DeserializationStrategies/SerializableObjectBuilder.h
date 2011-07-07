@@ -32,7 +32,7 @@ using namespace std;
  *
  * @brief Classe base del sistema di costruzione di SerializableObject.
  *
- * Classe base del sistema di costruzione di SerializableObject a partire dalla loro rappresentazione serializzata. 
+ * Classe base del sistema di costruzione di SerializableObject a partire dalla loro rappresentazione serializzata.
  *
  *												SerializableObjectBuilder
  *												|					 |
@@ -50,46 +50,50 @@ protected:
 	 * I puntatori sono collegamenti a nodi sottostanti.
 	 */
     map< Type, SerializableObjectBuilder* > subSerializableObjectBuilders;
+    /**
+	 * Metodo di utilità che controlla la presenza nella mappa del tipo specificato come parametro.
+	 */
+    bool checkType(Type typeToCheck);
 public:
     virtual ~SerializableObjectBuilder();
 	/**
 	 * Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro.
 	 *
-	 * @param builtType 
+	 * @param builtType
 	 *
-	 * @return 
+	 * @return
 	 */
     virtual SerializableObjectBuilder* operator[](Type builtType);
 	/**
 	 * Aggiunge un builder alla mappa.
-	 * 
-	 * @param builtType 
+	 *
+	 * @param builtType
 	 * @param builderToAdd
 	 */
     virtual void addSerializableObjectBuilder(Type builtType, SerializableObjectBuilder* builderToAdd);
 	/**
 	 * Rimuove un builder dalla mappa.
-	 * 
-	 * @param builtType 
+	 *
+	 * @param builtType
 	 */
     virtual void removeSerializableObjectBuilder(Type builtType);
 	/**
 	 * Ritorna la lunghezza del campo length relativa alla rappresentazione serializzata del tipo da costruire.
-	 * Tale informazione viene recuperata, in generale, richiedendola al builder più specializzato 
+	 * Tale informazione viene recuperata, in generale, richiedendola al builder più specializzato
 	 * che si trova in un livello inferiore della gerarchia dei builder, il quale potrebbe richiederla
 	 * al livello sottostante, e così via...
-	 * 
-	 * @param receivedType 
+	 *
+	 * @param receivedType
 	 * @return Lunghezza del campo length.
 	 */
     virtual int getValueLengthLength(Type receivedType);
 	/**
 	 * Seleziona il builder specializzato nella costruzione di oggetti del tipo passato come parametro.
-	 * Questo, a sua volta, può delegare la costruzione di tali oggetti al builder ancora più specializzato 
+	 * Questo, a sua volta, può delegare la costruzione di tali oggetti al builder ancora più specializzato
 	 * che si trova in un livello inferiore della gerarchia dei builder, e così via...
-	 * 
-	 * @param typeToBuild 
-	 * @param valueLength 
+	 *
+	 * @param typeToBuild
+	 * @param valueLength
 	 *
  	 * @return Puntatore ad un oggetto derivato da SerializableObject allocato in memoria dinamica.
 	 *

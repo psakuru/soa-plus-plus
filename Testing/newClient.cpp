@@ -16,7 +16,7 @@ public:
 
 
         }
-    void operator()(int i, double d, string s, ByteArray& B, BadRequestSignal& b)
+    void operator()(int i, double d, string s, ByteArray& B, GenericSignalValue& b)
     {
 
 
@@ -63,7 +63,7 @@ int main()
     ByteArray fileBytes((void*)memblock, size);
     delete[] memblock;
     //p.staticallyBind("127.0.0.1:3000");
-    BadRequestSignal b;
+    GenericSignalValue b;
     ParticularServiceStreamStub p;
     p(43,2.4,"ciao",fileBytes, b);
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);
