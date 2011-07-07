@@ -43,8 +43,9 @@ class RRFIFOMonitoredExtensibleMap
 protected:
     Element selectionOperatorImplementation(Key searchingKey)
     {
-
-		boost::upgrade_lock<boost::shared_mutex> writersLock(this->mutex); // YESSS!!!!!! Il mutex viene upgradato al unique_lock!!!!
+        // In questa particolare politica la selezione comporta una modifica delle
+        // scheduling information: il mutex va upgradato a unique lock!
+		boost::upgrade_lock<boost::shared_mutex> writersLock(this->mutex);
         if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
         {
             return Element();
