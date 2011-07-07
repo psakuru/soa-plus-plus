@@ -4,37 +4,8 @@
 #include <errno.h>
 #include <string.h>
 #include <iostream>
+#include "HorizontalFlipImage.h"
 using namespace std;
-
-class ParticularServiceStreamStub : public StreamStub
-{
-public:
-    ParticularServiceStreamStub()
-        : StreamStub("redHat", "127.0.0.1:4000")
-        {
-
-
-
-        }
-    void operator()(int i, double d, string s, ByteArray& B, GenericSignalValue& b)
-    {
-
-
-        (*this) << i;
-
-        (*this) << d;
-
-        (*this) << s;
-
-        (*this) >> B;
-
-        (*this) >> b;
-
-        bind();
-        protocol();
-
-    }
-};
 
 int main()
 	{
@@ -64,10 +35,11 @@ int main()
     delete[] memblock;
     //p.staticallyBind("127.0.0.1:3000");
     GenericSignalValue b;
-    ParticularServiceStreamStub p;
-    p(43,2.4,"ciao",fileBytes, b);
+    HorizontalFlipImage p;
+    ByteArray fileRicevuto;
+    p(fileBytes, fileRicevuto);
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);
-    outfile.write((char*)fileBytes.getPointer(),fileBytes.getLength());
+    outfile.write((char*)fileRicevuto.getPointer(),fileRicevuto.getLength());
     outfile.close();
     }
     catch(const exception& e)
