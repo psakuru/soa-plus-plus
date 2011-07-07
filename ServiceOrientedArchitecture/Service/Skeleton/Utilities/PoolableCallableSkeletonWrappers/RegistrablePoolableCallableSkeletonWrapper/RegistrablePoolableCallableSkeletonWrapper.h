@@ -30,7 +30,8 @@
  *
  * @brief Estende il PoolableCallableSkeletonWrapper rendendolo registrabile.
  *
- * Estende il PoolableCallableSkeletonWrapper rendendolo registrabile utilizzando l' interfaccia offerta da RegistrableObject.
+ * Estende il PoolableCallableSkeletonWrapper rendendolo registrabile utilizzando 
+ * l' interfaccia offerta da RegistrableObject.
  *
  */
 template <typename T>
