@@ -6,6 +6,7 @@
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
+#include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/GenericSignalSerializationStrategy/GenericSignalSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalSerializationStrategy.h"
 #include "Exceptions/InvalidLengthLength.h"
 #include "Exceptions/InvalidParameterListSize.h"
@@ -38,6 +39,7 @@ void Service::defaultBuildersHierarchyInit()
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_SIGNAL, new SignalBuilder());
     buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_BAD_REQUEST, new TerminalSerializableObjectBuilder<BadRequest>());
+    buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_GENERIC, new TerminalSerializableObjectBuilder<GenericSignalWrapper>());
 }
 
 void Service::sendParameters()
@@ -91,7 +93,7 @@ SerializableObject* Service::receiveParameter()
 
 void Service::receiveParameters()
 {
-    //TODO non size_type ma qualcos'altro!	
+    //TODO non size_type ma qualcos'altro!
     SerializableObjectList::size_type inputParametersSize = inputParameters.size();
     SerializableObjectList::size_type* incomingParametersSizePointer =
         ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));

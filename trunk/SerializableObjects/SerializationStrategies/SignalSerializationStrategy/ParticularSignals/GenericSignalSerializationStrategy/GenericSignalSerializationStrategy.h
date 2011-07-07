@@ -23,7 +23,7 @@
 #define GENERICSIGNAL_SERIALIZATION_STRATEGY_H
 
 #include "../../SignalSerializationStrategy.h"
-#include "../../Utilities/GenericSignal/GenericSignal.h"
+#include "../../Utilities/GenericSignalValue/GenericSignalValue.h"
 
 /**
  * @class GenericSignalSerializationStrategy
@@ -40,7 +40,7 @@ private:
     void signalHandler();
 public:
     GenericSignalSerializationStrategy();
-    GenericSignalSerializationStrategy(BadRequestSignal& userReference);
+    GenericSignalSerializationStrategy(GenericSignalValue& userReference);
     Type getSignalType() const;
     int getValueLengthLength();
 };

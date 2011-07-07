@@ -25,6 +25,7 @@
 #include "../Stub.h"
 #include "../../../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
 #include "../../../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
+#include "../../../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/GenericSignalSerializationStrategy/GenericSignalSerializationStrategy.h"
 
 /**
  * @class StreamStub
@@ -33,7 +34,7 @@
  *
  * Aggiunge all' interfaccia Stub degli operatori di bitwise shift che semplificano l' inserimento di parametri consentendo l' uso di tipi base.
  * Inoltre, la direzione degli operatori viene utilizzata per specificare la direzione del parametro.
- * L' utilizzo di tipi semplici consente al programmatore dello stub finale (derivato da StreamStub) e all' utente finale di poter 
+ * L' utilizzo di tipi semplici consente al programmatore dello stub finale (derivato da StreamStub) e all' utente finale di poter
  * ignorare l' esistenza dei SerializableObject.
  *
  */
@@ -49,11 +50,13 @@ public:
     virtual void operator<<(string& value);
     virtual void operator<<(ByteArray& value);
     virtual void operator<<(BadRequestSignal& value);
+    virtual void operator<<(GenericSignalValue& value);
     virtual void operator>>(int& value);
     virtual void operator>>(double& value);
     virtual void operator>>(string& value);
     virtual void operator>>(ByteArray& value);
     virtual void operator>>(BadRequestSignal& value);
+    virtual void operator>>(GenericSignalValue& value);
 };
 
 #endif // STREAMSTUB_H

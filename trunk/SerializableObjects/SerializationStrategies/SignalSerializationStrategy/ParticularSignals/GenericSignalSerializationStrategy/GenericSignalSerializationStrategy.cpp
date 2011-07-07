@@ -5,7 +5,7 @@ using namespace std;
 
 GenericSignalSerializationStrategy::GenericSignalSerializationStrategy() {}
 
-GenericSignalSerializationStrategy::GenericSignalSerializationStrategy(BadRequestSignal& userReference) {} // Per uniformità con gli altri SerializableObject.
+GenericSignalSerializationStrategy::GenericSignalSerializationStrategy(GenericSignalValue& userReference) {} // Per uniformità con gli altri SerializableObject.
 
 void GenericSignalSerializationStrategy::signalHandler()
 {

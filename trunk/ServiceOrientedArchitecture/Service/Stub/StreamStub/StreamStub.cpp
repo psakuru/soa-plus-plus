@@ -36,6 +36,11 @@ void StreamStub::operator<<(BadRequestSignal& value)
 	addParameter(new BadRequest(value), OUT);
 }
 
+void StreamStub::operator<<(GenericSignalValue& value)
+{
+	addParameter(new GenericSignalWrapper(value), OUT);
+}
+
 void StreamStub::operator>>(int& value)
 {
     addParameter(new Integer(value), OUTIN);
@@ -59,4 +64,9 @@ void StreamStub::operator>>(ByteArray& value)
 void StreamStub::operator>>(BadRequestSignal& value)
 {
     addParameter(new BadRequest(value), OUTIN);
+}
+
+void StreamStub::operator>>(GenericSignalValue& value)
+{
+    addParameter(new GenericSignalWrapper(value), OUTIN);
 }
