@@ -20,7 +20,7 @@
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
 #include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
-#include "HorizontalFlipImageServer.h"
+#include "RotateImageServer.h"
 using namespace std;
 
 
@@ -28,7 +28,7 @@ using namespace std;
 int main()
 {
     try{
-    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage>, 3 >("127.0.0.1", 3001, SOMAXCONN);
+    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<RotateImage>, 3 >("127.0.0.1", 3000, SOMAXCONN);
     char a= 'a';
     cin >> a;
     Publisher p("127.0.0.1:4000");

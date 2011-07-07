@@ -41,7 +41,7 @@
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
 #include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
-#include "../CImg/CImg.h"
+#include "CImg/CImg.h"
 #include "stdint.h"
 using namespace std;
 using namespace cimg_library;
@@ -52,11 +52,11 @@ protected:
 	void doService()
     {
         SerializableObjectList::iterator i = inputParameters.begin();
-        int32_t* directionPointer = (int32_t*)(d->getValue());
+        int32_t* directionPointer = (int32_t*)((*i)->getValue());
 		int32_t direction = *directionPointer;
 		delete directionPointer;
         i++;
-        ByteArray* pb = (ByteArray*)(r->getValue());
+        ByteArray* pb = (ByteArray*)((*i)->getValue());
         // Store.
         ofstream outfile ("imageReceived.jpg",ofstream::binary | ofstream::out);
         outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
