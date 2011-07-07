@@ -38,14 +38,25 @@ enum PublishingMode {publish, censor};
 /**
  * @class Publisher
  *
- * @brief Generico pubblicatore.
+ * @brief Servizio invocabile che permette di registrare/deregistrare un generico RegistrableObject.
  *
- * Un Service rappresenta un generico servizio.
+ * Un Publisher è un servizio invocabile che permette di registrare un generico RegistrableObject presso un Register e di deregistrarlo.
+ * La lista degli oggetti da registrare/deregistrare, viene creata dinamicamente attraverso il metodo addObjectToPublish; l' operatore
+ * di chiamata provvede a effettuare la registrazione/deregistrazione in accordo con la modalità di funzionamento settata attraverso
+ * l' utilizzo del metodo setPublishingMode.
+ * Il Publisher è un normale Stub che si riferisce ad un Servizio di registrazione/deregistrazione presente sul Register.
+ * A differenza degli altri Stub, tuttavia, il protocollo di bind è semplificato poiché non c'è bisogno di chiedere al Register
+ * l' indirizzo del ServiceProvider, essendo il Register stesso il ServiceProvider in questione.
  *
  */
 
 class Publisher : public CallableService<Stub>
 {
+private:
+	/**
+	 * Resetta il serviceID dello stub Publisher e ripulisce la lista dei parametri di output.
+	 */
+	void resetStatus();
 protected:
     PublishingMode publishingMode;
     void bind();
