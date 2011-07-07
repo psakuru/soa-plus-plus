@@ -43,7 +43,8 @@ class RRFIFOMonitoredExtensibleMap
 protected:
     Element selectionOperatorImplementation(Key searchingKey)
     {
-		boost::unique_lock<boost::shared_mutex> writersLock(this->mutex);
+
+		boost::upgrade_lock<boost::shared_mutex> writersLock(this->mutex);
         if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
         {
             return Element();
