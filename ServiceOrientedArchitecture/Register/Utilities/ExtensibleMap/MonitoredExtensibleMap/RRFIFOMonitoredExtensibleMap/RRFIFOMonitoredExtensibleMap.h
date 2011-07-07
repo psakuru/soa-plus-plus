@@ -41,26 +41,29 @@ class RRFIFOMonitoredExtensibleMap
     : public MonitoredExtensibleMap<Key, int, Element>
 {
 protected:
-    Element selectionOperatorImplementation(Key searchingKey)
+    Element selectionOperatorImplementation(Key searchingKey, boost::upgrade_lock<boost::shared_mutex> upgradableLock)
     {
         // In questa particolare politica la selezione comporta una modifica delle
         // scheduling information: il mutex va upgradato a unique lock!
-		boost::upgrade_lock<boost::shared_mutex> writersLock(this->mutex);
-        if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
+        //boost::upgrade_lock<boost::shared_mutex> upgradableLock(this->mutex);
         {
-            return Element();
+            boost::upgrade_to_unique_lock< boost::shared_mutex > uniqueLock(upgradableLock); //TODO: ATTENZIONE!!!! Deadlock???
+            if(this->dataStructure.find(searchingKey) == this->dataStructure.end())
+            {
+                return Element();
+            }
+            if(this->dataStructure[searchingKey].second.size() == 0)
+            {
+                return Element();
+            }
+            typename list<Element>::iterator i = this->dataStructure[searchingKey].second.begin();
+            for(int j = 0; j < this->dataStructure[searchingKey].first; j++)
+            {
+                i++;
+            }
+            this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
+            return *i;
         }
-        if(this->dataStructure[searchingKey].second.size() == 0)
-        {
-            return Element();
-        }
-        typename list<Element>::iterator i = this->dataStructure[searchingKey].second.begin();
-        for(int j = 0; j < this->dataStructure[searchingKey].first; j++)
-        {
-            i++;
-        }
-        this->dataStructure[searchingKey].first = (this->dataStructure[searchingKey].first+1)%((int)this->dataStructure[searchingKey].second.size());
-		return *i;
     }
     void insertElementImplementation(Key searchingKey, Element elementToInsert)
     {
@@ -75,30 +78,31 @@ protected:
         if(this->dataStructure.find(selectingKey) == this->dataStructure.end()) return;
         if(this->dataStructure[selectingKey].second.size() == 0) return;
         typename list<Element>::iterator i = this->dataStructure[selectingKey].second.begin();
-		int j = 0;
+        int j = 0;
         while((i != (this->dataStructure[selectingKey].second.end())) && ((*i).compare(elementToClear) != 0))
         {
             i++;
-			j++;
+            j++;
         }
         if(i != this->dataStructure[selectingKey].second.end()) // Se l' elemento da eliminare esiste.
         {
             this->dataStructure[selectingKey].second.erase(i);
-			// Aggiorno la SchedulingInformation per implementare la politica RR.
-			if(this->dataStructure[selectingKey].first <= j){
-				if(this->dataStructure[selectingKey].first == ((int)(this->dataStructure[selectingKey].second.size())))
-				// Se l'elemento cancellato occupava l'ultima posizione della lista ed era selezionato come il prossimo da schedulare,
-				// il prossimo elemento da schedulare dovrà essere quello in posizione 0.
-				{
-					this->dataStructure[selectingKey].first = 0;
-				}
-			}
-			else // Se l'elemento cancellato precedeva la posizione del prossimo elemento da schedulare, l' indice relativo al prossimo
-				 // elemento da schedulare dovrà essere aggiornato alla posizione precedente cioè alla nuova posizione assunta dal prossimo
-				 // elemento da schedulare a causa dell' accorciamento della lista.
-			{
-				this->dataStructure[selectingKey].first --;
-			}
+            // Aggiorno la SchedulingInformation per implementare la politica RR.
+            if(this->dataStructure[selectingKey].first <= j)
+            {
+                if(this->dataStructure[selectingKey].first == ((int)(this->dataStructure[selectingKey].second.size())))
+                    // Se l'elemento cancellato occupava l'ultima posizione della lista ed era selezionato come il prossimo da schedulare,
+                    // il prossimo elemento da schedulare dovrà essere quello in posizione 0.
+                {
+                    this->dataStructure[selectingKey].first = 0;
+                }
+            }
+            else // Se l'elemento cancellato precedeva la posizione del prossimo elemento da schedulare, l' indice relativo al prossimo
+                // elemento da schedulare dovrà essere aggiornato alla posizione precedente cioè alla nuova posizione assunta dal prossimo
+                // elemento da schedulare a causa dell' accorciamento della lista.
+            {
+                this->dataStructure[selectingKey].first --;
+            }
         }
         else return;
     }

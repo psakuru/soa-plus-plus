@@ -46,7 +46,7 @@ protected:
 	/**
 	 * Metodo di implementazione dell' operatore di selezione.
 	 */
-    virtual Element selectionOperatorImplementation(Key searchingKey) = 0;
+    virtual Element selectionOperatorImplementation(Key searchingKey, boost::upgrade_lock<boost::shared_mutex> upgradableLock) = 0;
 	/**
 	 * Metodo di implementazione dell' operazione di inserimento.
 	 */
@@ -58,8 +58,9 @@ protected:
 public:
     virtual Element operator[](Key searchingKey)
     {
-        boost::shared_lock<boost::shared_mutex> readersLock(mutex);
-        return this->selectionOperatorImplementation(searchingKey);
+        //boost::shared_lock<boost::shared_mutex> readersLock(mutex);
+        boost::upgrade_lock<boost::shared_mutex> upgradableLock(this->mutex);
+        return this->selectionOperatorImplementation(searchingKey, upgradableLock);
     }
     virtual list<Element> getAllElementsIn(Key searchingKey)
     {
