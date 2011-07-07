@@ -88,7 +88,7 @@ protected:
 		outputParameters.push_back(objectToBeSent); 
     }
 public:
-	HorizontalFlipImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
+	HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
     {
 		addParameter(new RawByteBuffer, IN);
     	addParameter(new RawByteBuffer, INOUT);
