@@ -2,6 +2,7 @@
 #include <fstream>
 #include <list>
 #include <exception>
+#include <boost/thread/barrier.hpp>
 #include "../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 #include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
@@ -35,7 +36,9 @@ int main()
     p.setPublishingMode(publish);
     p.addObjectToPublish(r);
     p();
-    while(1){}
+    boost::barrier blockingBarrier(2);
+    blockingBarrier.wait();
+    //while(1){}
     }
      catch(exception& e)
     	{
