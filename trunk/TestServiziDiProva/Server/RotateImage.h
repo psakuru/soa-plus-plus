@@ -49,7 +49,7 @@ using namespace cimg_library;
 class RotateImage : public RegistrablePoolableCyclicCallableSkeleton
 {
 protected:
-	void doService()()
+	void doService()
     {
         
         SerializableObjectList::iterator i = inputParameters.begin();
