@@ -8,13 +8,15 @@ RegularExpressionChecker::RegularExpressionChecker(string regularExpressionToSet
     unset = false;
 }
 
-void RegularExpressionChecker::setRegularExpression(string regularExpressionToSet)
+bool RegularExpressionChecker::setRegularExpression(string regularExpressionToSet)
 {
     if(unset) //TODO se non è unset digli che non hai settato.
     {
         regularExpression = regularExpressionToSet;
         unset = false;
+        return true;
     }
+    return false;
 }
 
 bool RegularExpressionChecker::checkForMatch(string stringToCheck)
