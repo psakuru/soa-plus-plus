@@ -44,7 +44,7 @@ private:
 	}
 	bool findString(list<string>* listToSearchIn, string stringToBeSearched){
 		list<string>::iterator i = listToSearchIn->begin();
-		for(;i<listToSearchIn->end();i++){
+		for(;i!=listToSearchIn->end();i++){
 			if(!((*i).compare(stringToBeSearched)))
 				return true;
 		}
