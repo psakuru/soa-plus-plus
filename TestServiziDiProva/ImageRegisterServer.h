@@ -25,6 +25,7 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include <stdio.h>
 using namespace std;
 
 class ImageRegister: public RegistrablePoolableCyclicCallableSkeleton {
