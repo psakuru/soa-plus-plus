@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <boost/foreach.hpp>
 #include <boost/token_functions.hpp>
+#include <time.h>
 #include "../GetImage.h"
 #include "../StoreImage.h"
 #include "../GetList.h"
@@ -55,6 +56,7 @@ int main(int argc, char** argv)
 			cout << entry <<endl;
 		}
 		vector<string> entries(parser.begin(), parser.end());
+		srand( time(NULL) );
 		int random = rand() % entries.size();
 		string nameOfFileToReceive = entries[random];
 		GetImage s;
