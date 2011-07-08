@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <stdlib.h>
+#include <boost/foreach.hpp>
 #include <boost/token_functions.hpp>
 #include "GetImage.h"
 #include "StoreImage.h"
@@ -42,7 +43,7 @@ int main(int argc, char** argv)
 		string lista;
 		z(lista);
 		boost::char_separator<char> separator("\\");
-		boost::tokenizer<char_separator<char>> parser(lista);
+		boost::tokenizer<boost::char_separator<char>> parser(lista);
 		cout << "LISTA: " << endl;
 		BOOST_FOREACH(string entry, parser)
 		{
