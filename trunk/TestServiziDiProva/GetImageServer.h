@@ -22,6 +22,7 @@
 #include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
+#include "ImageRegisterSharedState.h"
 #include <string>
 #include <list>
 #include <iostream>
@@ -34,8 +35,8 @@ private:
     ImageRegisterSharedState* sharedState;
     bool findString(string stringToBeSearched)
     {
-        list<string>::iterator i = sharedState->imageList->begin();
-        for(; i != sharedState->imageList->end(); i++)
+        list<string>::iterator i = sharedState->imageList.begin();
+        for(; i != sharedState->imageList.end(); i++)
         {
             if(((*i).compare(stringToBeSearched)) == 0)
             {
@@ -82,7 +83,7 @@ protected:
 public:
     GetImage() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
     {
-        ImageRegisterSharedState* sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
+        sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
         addParameter(new String, IN);
         addParameter(new RawByteBuffer, INOUT);
     }
