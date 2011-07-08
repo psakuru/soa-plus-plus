@@ -65,6 +65,7 @@ int main(int argc, char** argv)
 		outfile.close();
 		cout << "FILE SALVATO: " << nameOfFileToReceive << endl;
 		random = rand() % 2;
+		cout << "RANDOM MICA TANTO: "<< random << endl;
 		ByteArray fileDaRicevere;
 		if (random == 0)
 		{
