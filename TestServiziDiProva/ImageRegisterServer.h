@@ -38,7 +38,7 @@ protected:
 		if (requestedOperation.compare("getImage") == 0)
 			getImage();
 		if (requestedOperation.compare("getList") == 0)
-			getMap();
+			getList();
 		delete requestedOperation;
 		inputParameters.clear();
 	}
@@ -55,7 +55,6 @@ protected:
 		outfile.write((char*) (pb->getPointer()), pb->getLength());
 		outfile.close();
 		delete pb;
-		//MODO PIU' EFFICIENTE? TIPO UNA HASHMAP?
 		imageList.push_front(name);
 	}
 	void getImage() {
