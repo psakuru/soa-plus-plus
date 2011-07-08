@@ -3,6 +3,7 @@
 #include <exception>
 #include <errno.h>
 #include <string.h>
+#include <boost/tokenizer.hpp>
 #include <iostream>
 #include "GetImage.h"
 #include "StoreImage.h"
@@ -35,8 +36,8 @@ int main(int argc, char** argv)
 		GetList z;
 		string lista;
 		z(lista);
-		char_separator<char> separator("\\");
-		tokenizer<char_separator<char>> parser(lista);
+		boost::char_separator<char> separator("\\");
+		boost::tokenizer<char_separator<char>> parser(lista);
 		cout << "LISTA: " << endl;
 		BOOST_FOREACH(string entry, parser)
 		{
