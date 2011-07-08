@@ -70,7 +70,6 @@ void Stub::bind()
     outputParametersBackup.popPointers();
 	serviceID = serviceID.substr(0, serviceID.find_first_of('(')); //TODO Ripulisco il serviceID.
 	serviceID.append("()");
-	cout << serviceID << endl;
 }
 
 void Stub::staticallyBind(string serviceProviderAddressToSet)
