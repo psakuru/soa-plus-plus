@@ -70,7 +70,6 @@ int main(int argc, char** argv)
 		{
 			HorizontalFlipImage hfi;
 			hfi(fileRicevuto,fileDaRicevere);
-			s(nameOfFileToReceive, fileDaRicevere);
 			ofstream outfile (nameOfFileToReceive.c_str(),ofstream::binary | ofstream::out);
 			outfile.write((char*)fileDaRicevere.getPointer(),fileDaRicevere.getLength());
 			outfile.close();			
