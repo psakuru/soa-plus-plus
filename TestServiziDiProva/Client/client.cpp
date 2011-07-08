@@ -1,4 +1,4 @@
-#include "../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
+#include "../../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
 #include <fstream>
 #include <exception>
 #include <errno.h>
@@ -9,11 +9,11 @@
 #include <stdlib.h>
 #include <boost/foreach.hpp>
 #include <boost/token_functions.hpp>
-#include "GetImage.h"
-#include "StoreImage.h"
-#include "GetList.h"
-#include "RotateImage.h"
-#include "HorizontalFlipImage.h"
+#include "../GetImage.h"
+#include "../StoreImage.h"
+#include "../GetList.h"
+#include "../RotateImage.h"
+#include "../HorizontalFlipImage.h"
 using namespace std;
 
 int main(int argc, char** argv)
