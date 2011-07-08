@@ -53,7 +53,7 @@ protected:
 		list<string>::iterator i = sharedState->imageList.begin();
 		for(; i != sharedState->imageList.end(); i++)
         {
-			stringToReturn.append("[").append(*i).append("]\n");
+			stringToReturn.append(*i).append("\\");
         }
         outputParameters.push_back(new String(new string(stringToReturn), false));
     }
