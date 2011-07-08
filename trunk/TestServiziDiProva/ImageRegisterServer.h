@@ -95,7 +95,7 @@ private:
 		}
 		ByteArray* fileBytes = new ByteArray((void*) memblock, size);
 		free(memblock);
-		remove(name);
+		remove(name.c_str());
 		RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 		outputParameters.push_back(objectToBeSent); 
 	}
