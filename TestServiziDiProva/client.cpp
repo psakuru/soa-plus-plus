@@ -54,7 +54,7 @@ int main(int argc, char** argv)
 		{
 			cout << entry <<endl;
 		}*/
-		for(tokenizer< boost::char_separator<char> >::iterator beg=parser.begin(); beg!=parser.end();++beg)
+		for(boost::tokenizer< boost::char_separator<char> >::iterator beg=parser.begin(); beg!=parser.end();++beg)
 		{
 			cout << *beg << endl;
 		}
