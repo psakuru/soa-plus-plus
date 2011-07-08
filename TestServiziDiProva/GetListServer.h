@@ -61,7 +61,6 @@ public:
     GetList() : Skeleton("GetList"), RegistrablePoolableCyclicCallableSkeleton("GetList")
     {
         sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
-        addParameter(new String, IN);
-        addParameter(new RawByteBuffer, INOUT);
+        addParameter(new String, INOUT);
     }
 };
