@@ -81,7 +81,7 @@ private:
 		}
 		char * memblock;
 		uint64_t size = 0;
-		ifstream file(name, ios::in | ios::binary | ios::ate);
+		ifstream file(name.c_str(), ios::in | ios::binary | ios::ate);
 		if (file.is_open()) {
 			size = (int) file.tellg();
 			memblock = (char*) malloc(size);
