@@ -47,12 +47,12 @@ int main(int argc, char** argv)
 		GetList z;
 		string lista;
 		z(lista);
-		boost::char_separator<char> separator("\\");
+		boost::char_separator<char> separator(";");
 		boost::tokenizer< boost::char_separator<char> > parser(lista);
 		cout << "LISTA: " << endl;
 		BOOST_FOREACH(string entry, parser)
 		{
-			cout << entry << endl;
+			cout << entry;
 		}
 		vector<string> entries(parser.begin(), parser.end());
 		int random = rand() % entries.size();
