@@ -1,5 +1,5 @@
 /**
- * @file ImageRegister.h
+ * @file GetList.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -28,9 +28,39 @@
 #include <stdio.h>
 using namespace std;
 
-class ImageRegisterSharedState
+class GetList : public RegistrablePoolableCyclicCallableSkeleton
 {
+private:
+    ImageRegisterSharedState* sharedState;
+    bool findString(string stringToBeSearched)
+    {
+        list<string>::iterator i = sharedState->imageList->begin();
+        for(; i != sharedState->imageList->end(); i++)
+        {
+            if(((*i).compare(stringToBeSearched)) == 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+protected:
+    void doService()
+    {
+        boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
+		string stringToReturn;
+		list<string>::iterator i = sharedState->imageList->begin();
+		for(; i != sharedState->imageList->end(); i++)
+        {
+			stringToReturn.append("[").append(*i).append("]\n");
+        }
+        outputParameters.push_back(new String(new string(stringToReturn), false));
+    }
 public:
-	boost::shared_mutex sharedMutex;
-	list<string> imageList;
+    GetImage() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
+    {
+        ImageRegisterSharedState* sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
+        addParameter(new String, IN);
+        addParameter(new RawByteBuffer, INOUT);
+    }
 };
