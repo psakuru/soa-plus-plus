@@ -19,6 +19,9 @@
  *
  */
 
+#ifndef IMAGEREGISTERSHAREDSTATE_H
+#define IMAGEREGISTERSHAREDSTATE_H
+
 #include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
@@ -34,3 +37,5 @@ public:
 	boost::shared_mutex sharedMutex;
 	list<string> imageList;
 };
+
+#endif //IMAGEREGISTERSHAREDSTATE_H

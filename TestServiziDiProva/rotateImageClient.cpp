@@ -28,7 +28,7 @@ int main()
     GenericSignalValue b;
    	RotateImage p;
     ByteArray fileRicevuto;
-    p(90, fileBytes, fileRicevuto);
+    p(46, fileBytes, fileRicevuto);
     ofstream outfile ("ruotataDalServer.jpg",ofstream::binary | ofstream::out);
     outfile.write((char*)fileRicevuto.getPointer(),fileRicevuto.getLength());
     outfile.close();
