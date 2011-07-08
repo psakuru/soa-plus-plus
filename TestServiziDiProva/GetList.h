@@ -23,11 +23,10 @@
 
 class GetList: public StreamStub {
 public:
-	GetList() : StreamStub("ImageRegister", "127.0.0.1:4000") {}
+	GetList() : StreamStub("GetList", "127.0.0.1:4000") {}
 	void operator()(string& list) 
 	{
-		string command("getList");
-		(*this) << command; (*this) >> list; 
+		(*this) >> list; 
 		bind();
 		protocol();
 	}

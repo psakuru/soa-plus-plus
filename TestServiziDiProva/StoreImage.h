@@ -23,11 +23,10 @@
 
 class StoreImage: public StreamStub {
 public:
-	StoreImage() : StreamStub("ImageRegister", "127.0.0.1:4000") {}
+	StoreImage() : StreamStub("StoreImage", "127.0.0.1:4000") {}
 	void operator()(string name, ByteArray& img) 
 	{
-		string command("storeImage");
-        (*this) << command; (*this) << name; (*this) << img; 
+		(*this) << name; (*this) << img; 
 		bind();
 		protocol();
 	}
