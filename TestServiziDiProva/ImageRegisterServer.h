@@ -88,7 +88,7 @@ protected:
 		list<string>::iterator i = imageList.begin();
 		for(; i != imageList.end(); i++)
         {
-			app.append("[")+app.append(*i)+app.append("]\n");
+			app.append("[");app.append(*i);app.append("]\n");
         }
 		string* listToBeReturned = new string(app);
         outputParameters.push_back(new String(listToBeReturned, false));
@@ -105,21 +105,27 @@ public:
 				*incomingParametersSizePointer;
 		free(incomingParametersSizePointer);
 		if(incomingParametersSize > 3)
+		{
 			//TODO LANCIA ECCEZIONE!
+		}
 		SerializableObjectList* incomingParameters = new SerializableObjectList; // Comando
 		inputParameters.push_back(new String);
-		if(incomingParametersSize > 1){
+		if(incomingParametersSize > 1)
+		{
 			inputParameters.push_back(new String); // Nome dell' immagine.
 		}
-		if(incomingParametersSize > 2){
+		if(incomingParametersSize > 2)
+		{
 			inputParameters.push_back(new RawByteBuffer);
 		}
-		for (unsigned int i = 0; i < incomingParametersSize; i++) {
+		for (unsigned int i = 0; i < incomingParametersSize; i++) 
+		{
 			incomingParameters->push_back(receiveParameter());
 		}
 		SerializableObjectList::iterator i = inputParameters.begin();
 		SerializableObjectList::iterator j = incomingParameters->begin();
-		while (i != inputParameters.end()) {
+		while (i != inputParameters.end()) 
+		{
 			*(*i) = *(*j);  // In caso di type-mismatch lancia un' eccezione.
 			i++;
 			j++;
