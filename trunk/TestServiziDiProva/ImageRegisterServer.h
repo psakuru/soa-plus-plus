@@ -29,7 +29,8 @@
 using namespace std;
 
 class ImageRegister: public RegistrablePoolableCyclicCallableSkeleton {
-protected:
+private:
+	boost::shared_mutex mutex;
 	void doService() {
 		string* requestedOperation = ((string*) (inputParameters.front())->getValue()));
 		inputParameters.pop_front();
@@ -42,13 +43,14 @@ protected:
 		delete requestedOperation;
 		inputParameters.clear();
 	}
-	void storeImage() {
+	void storeImage() 
+	{
+		boost::unique_lock<boost::shared_mutex> writersLock(mutex);
 		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
 		delete entry;
-		//TODO ECCEZIONE IN CASO DI IMMAGINE GIA ESISTENTE + CONTROLLI SULL'IMMAGINE?? (jpg ecc..)
 		i++;
 		ByteArray* pb = (ByteArray*) (*i)->getValue();
 		ofstream outfile(name, ofstream::binary | ofstream::out);
@@ -57,7 +59,9 @@ protected:
 		delete pb;
 		imageList.push_front(name);
 	}
-	void getImage() {
+	void getImage() 
+	{
+		boost::shared_lock<boost::shared_mutex> readersLock(mutex);
 		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
@@ -82,7 +86,9 @@ protected:
 		RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 		outputParameters.push_back(objectToBeSent); 
 	}
-	void getList(){
+	void getList()
+	{
+		boost::shared_lock<boost::shared_mutex> readersLock(mutex);
 		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		string app;
 		list<string>::iterator i = imageList.begin();
