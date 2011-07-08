@@ -65,6 +65,7 @@ protected:
 		// Manipulation.
         CImg<unsigned char> image;
         image = image.load_jpeg("imageReceived.jpg");
+		direction = direction % 360;
         image.rotate((float)direction,0,1);
         image.save_jpeg("imageToBeSent.jpg",90U);
         remove("imageReceived.jpg");
