@@ -50,9 +50,13 @@ int main(int argc, char** argv)
 		boost::char_separator<char> separator(";");
 		boost::tokenizer< boost::char_separator<char> > parser(lista);
 		cout << "LISTA: " << endl;
-		BOOST_FOREACH(string entry, parser)
+		/*BOOST_FOREACH(string entry, parser)
 		{
-			cout << entry;
+			cout << entry <<endl;
+		}*/
+		for(tokenizer< boost::char_separator<char> >::iterator beg=parser.begin(); beg!=parser.end();++beg)
+		{
+			cout << *beg << endl;
 		}
 		vector<string> entries(parser.begin(), parser.end());
 		int random = rand() % entries.size();
