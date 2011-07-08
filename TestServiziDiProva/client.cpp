@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 		uint64_t size = 0;
 		if(argc < 1)
 		{
-			cout << "client [nome_file].jpg";
+			cout << "client [nome_file_da_inviare].jpg [nome_file_da_salvare].jpg";
 			return 0;
 		}
 		ifstream file (argv[1], ios::in|ios::binary|ios::ate);
@@ -43,7 +43,7 @@ int main(int argc, char** argv)
 		ByteArray fileBytes((void*)memblock, size);
 		delete[] memblock;
 		StoreImage p;
-		p(argv[1], fileBytes);
+		p(argv[2], fileBytes);
 		GetList z;
 		string lista;
 		z(lista);
