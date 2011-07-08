@@ -19,10 +19,9 @@
  *
  */
 
-#include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
-#include "Utilities/ExtensibleMap/MonitoredExtensibleMap/RRFIFOMonitoredExtensibleMap/RRFIFOMonitoredExtensibleMap.h"
-#include "../Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
+#include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
+#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include <string>
 #include <list>
 #include <iostream>
@@ -32,13 +31,13 @@ class ImageRegister: public RegistrablePoolableCyclicCallableSkeleton {
 private:
 	boost::shared_mutex mutex;
 	void doService() {
-		string* requestedOperation = ((string*) (inputParameters.front())->getValue()));
+		string* requestedOperation = ((string*) (inputParameters.front())->getValue());
 		inputParameters.pop_front();
-		if (requestedOperation.compare("storeImage") == 0)
+		if (requestedOperation->compare("storeImage") == 0)
 			storeImage();
-		if (requestedOperation.compare("getImage") == 0)
+		if (requestedOperation->compare("getImage") == 0)
 			getImage();
-		if (requestedOperation.compare("getList") == 0)
+		if (requestedOperation->compare("getList") == 0)
 			getList();
 		delete requestedOperation;
 		inputParameters.clear();
@@ -46,29 +45,29 @@ private:
 	void storeImage() 
 	{
 		boost::unique_lock<boost::shared_mutex> writersLock(mutex);
-		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
+		list<string>* imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
 		delete entry;
 		i++;
 		ByteArray* pb = (ByteArray*) (*i)->getValue();
-		ofstream outfile(name, ofstream::binary | ofstream::out);
+		ofstream outfile(name.c_str(), ofstream::binary | ofstream::out);
 		outfile.write((char*) (pb->getPointer()), pb->getLength());
 		outfile.close();
 		delete pb;
-		if(imageList.find_if(imageList.begin(),imageList.end(),strncmp(name))!=imageList.end())
-			imageList.push_front(name);
+		if((find_if(imageList->begin(), imageList->end(), name.compare)!=imageList->end())
+			imageList->push_front(name);
 	}
 	void getImage() 
 	{
 		boost::shared_lock<boost::shared_mutex> readersLock(mutex);
-		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
+		list<string>* imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
 		delete entry;
-		if(imageList.find_if(imageList.begin(),imageList.end(),strncmp(name))!=imageList.end())
+		if((find_if(imageList->begin(),imageList->end(), name.compare)!=imageList->end())
 		{
 			//TODO ECCEZIONE - il file non esiste o comunque non è stato registrato.
 		}
@@ -94,10 +93,10 @@ private:
 	void getList()
 	{
 		boost::shared_lock<boost::shared_mutex> readersLock(mutex);
-		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
+		list<string>* imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		string app;
-		list<string>::iterator i = imageList.begin();
-		for(; i != imageList.end(); i++)
+		list<string>::iterator i = imageList->begin();
+		for(; i != imageList->end(); i++)
         {
 			app.append("[");app.append(*i);app.append("]\n");
         }
