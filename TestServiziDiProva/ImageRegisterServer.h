@@ -57,11 +57,16 @@ private:
 		outfile.write((char*) (pb->getPointer()), pb->getLength());
 		outfile.close();
 		delete pb;
-		imageList.push_front(name);
+		if(imageList.find_if(imageList.begin(),imageList.end(),strncmp(name))!=imageList.end())
+			imageList.push_front(name);
 	}
 	void getImage() 
 	{
 		boost::shared_lock<boost::shared_mutex> readersLock(mutex);
+		if(imageList.find_if(imageList.begin(),imageList.end(),strncmp(name))!=imageList.end())
+		{
+			//TODO ECCEZIONE - il file non esiste o comunque non è stato registrato.
+		}
 		list<string> imageList = SingletonObject< list <string> >::getInstance(); // Istanza singleton.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
