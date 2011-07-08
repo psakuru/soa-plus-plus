@@ -110,12 +110,13 @@ public:
 		}
 		SerializableObjectList* incomingParameters = new SerializableObjectList; // Comando
 		inputParameters.push_back(new String);
-		if(incomingParametersSize > 1)
+		if(incomingParametersSize == 2) // GetList
 		{
-			inputParameters.push_back(new String); // Nome dell' immagine.
+			inputParameters.push_back(new RawByteBuffer); // Nome dell' immagine.
 		}
-		if(incomingParametersSize > 2)
+		if(incomingParametersSize > 2) // StoreImage, GetImage
 		{
+			inputParameters.push_back(new String);
 			inputParameters.push_back(new RawByteBuffer);
 		}
 		for (unsigned int i = 0; i < incomingParametersSize; i++) 
