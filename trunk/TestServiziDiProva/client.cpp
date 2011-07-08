@@ -11,6 +11,8 @@
 #include "GetImage.h"
 #include "StoreImage.h"
 #include "GetList.h"
+#include "RotateImage.h"
+#include "HorizontalFlipImage.h"
 using namespace std;
 
 int main(int argc, char** argv)
