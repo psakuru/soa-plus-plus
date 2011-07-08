@@ -22,6 +22,11 @@ int main(int argc, char** argv)
 	{
 		char * memblock;
 		uint64_t size = 0;
+		if(argc < 1)
+		{
+			cout << "client [nome_file].jpg";
+			return;
+		}
 		ifstream file (argv[1], ios::in|ios::binary|ios::ate);
 		if (file.is_open())
 		{
