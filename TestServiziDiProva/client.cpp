@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 		if(argc < 1)
 		{
 			cout << "client [nome_file].jpg";
-			return;
+			return 0;
 		}
 		ifstream file (argv[1], ios::in|ios::binary|ios::ate);
 		if (file.is_open())
