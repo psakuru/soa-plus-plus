@@ -66,7 +66,6 @@ int main(int argc, char** argv)
 		outfile.write((char*)fileRicevuto.getPointer(),fileRicevuto.getLength());
 		outfile.close();
 		cout << "FILE SALVATO: " << nameOfFileToReceive << endl;
-		srand( time(NULL) );
 		random = rand() % 2;
 		cout << "RANDOM MICA TANTO: "<< random << endl;
 		ByteArray fileDaRicevere;
@@ -81,8 +80,7 @@ int main(int argc, char** argv)
 		else
 		{
 			RotateImage ri;
-			srand( time(NULL) );
-			random = rand() % 361;
+			random = rand();
 			ri(random,fileRicevuto,fileDaRicevere);
 			ofstream outfile (nameOfFileToReceive.c_str(),ofstream::binary | ofstream::out);
 			outfile.write((char*)fileDaRicevere.getPointer(),fileDaRicevere.getLength());
