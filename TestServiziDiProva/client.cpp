@@ -43,7 +43,7 @@ int main(int argc, char** argv)
 		ByteArray fileBytes((void*)memblock, size);
 		delete[] memblock;
 		StoreImage p;
-		p(argv[2], fileBytes);
+		p(argv[1], fileBytes);
 		GetList z;
 		string lista;
 		z(lista);
