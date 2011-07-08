@@ -42,6 +42,14 @@ private:
 		delete requestedOperation;
 		inputParameters.clear();
 	}
+	bool findString(list<string>* listToSearchIn, string stringToBeSearched){
+		list<string>::iterator i = listToSearchIn->begin();
+		for(;i<listToSearchIn->end();i++){
+			if(!((*i).compare(stringToBeSearched)))
+				return true;
+		}
+		return false;
+	}
 	void storeImage() 
 	{
 		boost::unique_lock<boost::shared_mutex> writersLock(mutex);
@@ -56,7 +64,7 @@ private:
 		outfile.write((char*) (pb->getPointer()), pb->getLength());
 		outfile.close();
 		delete pb;
-		if((find_if(imageList->begin(), imageList->end(), name.compare)!=imageList->end())
+		if(!findString(imageList,name))
 			imageList->push_front(name);
 	}
 	void getImage() 
@@ -67,7 +75,7 @@ private:
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
 		delete entry;
-		if((find_if(imageList->begin(),imageList->end(), name.compare)!=imageList->end())
+		if(!findString(imageList,name))
 		{
 			//TODO ECCEZIONE - il file non esiste o comunque non è stato registrato.
 		}
