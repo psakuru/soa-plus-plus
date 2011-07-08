@@ -6,7 +6,7 @@
 #include <boost/tokenizer.hpp>
 #include <iostream>
 #include <vector>
-#include <rand>
+#include <stdlib.h>
 #include <boost/token_functions.hpp>
 #include "GetImage.h"
 #include "StoreImage.h"
