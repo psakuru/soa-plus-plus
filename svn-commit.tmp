@@ -1,0 +1,6 @@
+Come non detto: non era un memory leak, il SerializableObject diventava comunque owner del new value
+--Questa linea, e quelle sotto di essa, saranno ignorate--
+
+M    TestServiziDiProva/horizontalFlipServer
+M    Testing/RegisterTest/register
+M    ServiceOrientedArchitecture/Register/RegisterManager.h
