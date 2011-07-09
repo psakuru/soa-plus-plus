@@ -29,7 +29,7 @@ using namespace std;
 int main()
 {
     try{
-    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<RotateImage>, 3 >("127.0.0.1", 3000, SOMAXCONN);
+    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<RotateImage> >(3, "127.0.0.1", 3000, SOMAXCONN);
     char a= 'a';
     cin >> a;
     Publisher p("127.0.0.1:4000");

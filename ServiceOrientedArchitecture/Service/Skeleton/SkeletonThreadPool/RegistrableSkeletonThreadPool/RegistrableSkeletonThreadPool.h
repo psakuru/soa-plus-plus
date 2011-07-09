@@ -36,12 +36,12 @@ using namespace std;
  *
  */
 
-template <typename T, int poolSize> class RegistrableSkeletonThreadPool
-    : public RegistrableObject, public SkeletonThreadPool<T, poolSize>
+template <typename T> class RegistrableSkeletonThreadPool
+    : public RegistrableObject, public SkeletonThreadPool<T>
 {
 public:
-    RegistrableSkeletonThreadPool(string IPAddress, int listeningPort, int backlog)
-        : SkeletonThreadPool<T, poolSize>(IPAddress, listeningPort, backlog) {}
+    RegistrableSkeletonThreadPool(int poolSize, string IPAddress, int listeningPort, int backlog)
+        : SkeletonThreadPool<T>(poolSize, IPAddress, listeningPort, backlog) {}
 	/**
 	 * Ritorna le informazioni per la registrazione.
 	 * Viene creato un oggetto del tipo T e vengono recuperate le informazioni di registrazione.
@@ -49,11 +49,11 @@ public:
 	 */
     string getRegistrationInfo()
     {
-		if(!SkeletonThreadPool<T, poolSize>::threadReferences.empty())
+		if(!SkeletonThreadPool<T>::threadReferences.empty())
         {
             T dummyT;
             string registrationInfoToReturn = dummyT.getRegistrationInfo();
-            registrationInfoToReturn.append(SkeletonThreadPool<T, poolSize>::sharedListeningSocket.getAddress());
+            registrationInfoToReturn.append(SkeletonThreadPool<T>::sharedListeningSocket.getAddress());
 			return registrationInfoToReturn;
         }
         else
