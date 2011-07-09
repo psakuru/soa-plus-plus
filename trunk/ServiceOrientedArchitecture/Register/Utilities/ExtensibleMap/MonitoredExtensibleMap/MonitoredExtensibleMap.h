@@ -42,18 +42,18 @@ class MonitoredExtensibleMap
     : public ExtensibleMap<Key, SchedulingInformation, Element>
 {
 protected:
-	boost::shared_mutex mutex;
-	/**
-	 * Metodo di implementazione dell' operatore di selezione.
-	 */
+    boost::shared_mutex mutex;
+    /**
+     * Metodo di implementazione dell' operatore di selezione.
+     */
     virtual Element selectionOperatorImplementation(Key searchingKey, boost::upgrade_lock<boost::shared_mutex> upgradableLock) = 0;
-	/**
-	 * Metodo di implementazione dell' operazione di inserimento.
-	 */
+    /**
+     * Metodo di implementazione dell' operazione di inserimento.
+     */
     virtual void insertElementImplementation(Key selectingKey, Element elementToInsert) = 0;
-	/**
-	 * Metodo di implementazione dell' operazione di cancellazione.
-	 */
+    /**
+     * Metodo di implementazione dell' operazione di cancellazione.
+     */
     virtual void clearElementImplementation(Key selectingKey, Element elementToClear) = 0;
 public:
     virtual Element operator[](Key searchingKey)
@@ -81,9 +81,9 @@ public:
         boost::unique_lock<boost::shared_mutex> writersLock(mutex);
         this->dataStructure.erase(selectingKey);
     }
-	/**
-	 * Stampa la mappa.
-	 */
+    /**
+     * Stampa la mappa.
+     */
     void print()
     {
         typename map<Key, pair<SchedulingInformation, list<Element> > >::iterator i = this->dataStructure.begin();

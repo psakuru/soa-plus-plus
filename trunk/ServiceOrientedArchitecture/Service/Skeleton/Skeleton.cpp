@@ -17,7 +17,7 @@ Skeleton::Skeleton(string serviceIDToSet, string IPAddress, int port, int backlo
 {
 	sharedListeningSocket = false;
 	listeningSocket = NULL;
-    listeningSocket = new TcpIpPassiveSocket(IPAddress, port, backlog);    
+    listeningSocket = new TcpIpPassiveSocket(IPAddress, port, backlog);
 }
 
 Skeleton::~Skeleton()
@@ -25,8 +25,8 @@ Skeleton::~Skeleton()
     if(!sharedListeningSocket)
     {
         delete listeningSocket;
-        listeningSocket = NULL;
     }
+    listeningSocket = NULL; //Così il distruttore di Service non distrugge il socket condiviso
 }
 
 void Skeleton::shareListeningSocket(TcpIpPassiveSocket* listeningSocketToShare)

@@ -44,7 +44,7 @@ protected:
     sockaddr_in serverAddress;
 public:
 	/**
-	 * Costruttore. Effettua la listen sul socket. 
+	 * Costruttore. Effettua la listen sul socket.
 	 *
 	 * @param IPAddress
 	 * @param listeningPort
@@ -66,7 +66,7 @@ public:
 	/**
 	 * Chiude il socket.
 	 */
-	void closeSocket();
+	void shutdownSocket();
 };
 
 #endif // TCPIPPASSIVESOCKET_H
