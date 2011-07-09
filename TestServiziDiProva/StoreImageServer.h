@@ -20,8 +20,15 @@
  */
 
 #include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
+#include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
+#include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
+#include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
+#include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
+#include "../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
+#include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
+#include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "ImageRegisterSharedState.h"
 #include <string>
 #include <list>
