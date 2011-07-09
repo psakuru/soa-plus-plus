@@ -43,5 +43,5 @@ void Publisher::resetStatus()
 {
 	outputParameters.clear();
 	serviceID = "Publisher()";
-	addParameter(new String(new string(publishingModeToString(publishingMode)), false), OUT);	
+	addParameter(new String(new string(publishingModeToString(publishingMode)), false), OUT);
 }

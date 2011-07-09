@@ -118,6 +118,14 @@ void Stub::protocol()
     receiveParameters();
 }
 
+void Stub::remoteProcedureCall()
+{
+	bind();
+	protocol();
+	inputParameters.clear();
+	outputParameters.clear();
+}
+
 void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterDirection)
 {
     if(parameterDirection == IN || parameterDirection == INOUT)

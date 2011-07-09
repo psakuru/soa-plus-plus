@@ -18,8 +18,8 @@ public:
         }
     void operator()(int i, double d, string s, ByteArray& B, GenericSignalValue& b)
     {
-
-
+    	cout << "Dimensione input iniziale: " << (int)inputParameters.size() << endl;
+    	cout << "Dimensione output iniziale: " << (int)outputParameters.size() << endl;
         (*this) << i;
 
         (*this) << d;
@@ -29,10 +29,10 @@ public:
         (*this) >> B;
 
         (*this) >> b;
-
-        bind();
-        protocol();
-
+        remoteProcedureCall();
+        //ATTENZIONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE:
+        cout << "Dimensione input finale: " << (int)inputParameters.size() << endl;
+        cout << "Dimensione output finale: " << (int)outputParameters.size() << endl;
     }
 };
 
@@ -65,6 +65,8 @@ int main()
     //p.staticallyBind("127.0.0.1:3000");
     GenericSignalValue b;
     ParticularServiceStreamStub p;
+    p(43,2.4,"ciao",fileBytes, b);
+    p(43,2.4,"ciao",fileBytes, b);
     p(43,2.4,"ciao",fileBytes, b);
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);
     outfile.write((char*)fileBytes.getPointer(),fileBytes.getLength());
