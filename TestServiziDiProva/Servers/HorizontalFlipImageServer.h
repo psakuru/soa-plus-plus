@@ -24,15 +24,15 @@
 #include <fstream>
 #include <list>
 #include <exception>
-#include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
-#include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
-#include "../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
-#include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
-#include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
-#include "CImg/CImg.h"
+#include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
+#include "../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
+#include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
+#include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../CImg/CImg.h"
 using namespace std;
 using namespace cimg_library;
 
