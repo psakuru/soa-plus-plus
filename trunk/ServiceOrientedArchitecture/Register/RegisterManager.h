@@ -136,8 +136,8 @@ public:
     }
     ~RegisterManager()
     {
-        SingletonObject< RegisterMap<string, string> >::destroyInstance();  // Elimina l' istanza Singleton.
-        SingletonObject<RegularExpressionChecker>::destroyInstance();  // Elimina l' istanza Singleton.
+        //SingletonObject< RegisterMap<string, string> >::destroyInstance();  // Elimina l' istanza Singleton.
+        //SingletonObject<RegularExpressionChecker>::destroyInstance();  // Elimina l' istanza Singleton.
     }
 };
 

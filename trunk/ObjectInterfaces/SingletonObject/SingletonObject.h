@@ -24,6 +24,7 @@
 
 #include <boost/thread/mutex.hpp>
 #include <boost/pool/detail/guard.hpp>
+#include <cstdlib>
 
 /**
  * @class SingletonObject
@@ -32,6 +33,9 @@
  *
  * Le classi che implementano l' interfaccia SingletonObject possono essere istanziate una sola volta, secondo il design pattern Singleton.
  */
+
+template <typename T>
+void singletonMemoryHandler();
 
 template <typename T>
 class SingletonObject
@@ -50,14 +54,20 @@ private:
 public:
 	/**
 	 * Crea un' istanza statica della classe desiderata, se non ne esiste già una, e la ritorna al chiamante.
-     * La creazione è protetta da una guardia di mutua esclusione.
+     * La creazione è protetta da una guardia di mutua esclusione. Inoltre, viene registrato un handler
+     * che provvederà a liberare la memoria dinamica occupata dal singleton in
+     * conseguenza dell' invocazione di void exit(int status).
      *
      * @return Puntatore alla istanza singleton della classe desiderata.
      */
     static T* getInstance()
     {
         boost::details::pool::guard<boost::mutex> lifecycleGuard(lifecycleControl);
-        if(instance == NULL) instance = new T();
+        if(instance == NULL)
+        {
+            instance = new T();
+            atexit(singletonMemoryHandler<T>);
+        }
         return instance;
     }
 	/**
@@ -71,6 +81,12 @@ public:
         instance = NULL;
     }
 };
+
+template <typename T>
+void singletonMemoryHandler()
+{
+    SingletonObject<T>::destroyInstance();
+}
 
 /* Inizializzazione membri statici. */
 template <typename T> T* SingletonObject<T>::instance = NULL;
