@@ -82,7 +82,7 @@ protected:
 			RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 			outputParameters.push_back(objectToBeSent);
 			ImageNotFound* signal = new ImageNotFound();
-			outputParameters.push_back(signal);<#statements#>
+			outputParameters.push_back(signal);
 		}
 
     }
