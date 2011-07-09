@@ -1,0 +1,13 @@
+#ifndef BASH_SHELL_COLOR_ESCAPE_SEQUENCES
+#define BASH_SHELL_COLOR_ESCAPE_SEQUENCES
+#define RED_TXT "\033[1;31m"
+#define GREEN_TXT "\033[1;32m"
+#define YELLOW_TXT "\033[1;33m"
+#define BLUE_TXT "\033[1;34m"
+#define WHITE_TXT "\033[1;37m"
+#define GREEN_BKG "\033[42m"
+#define RED_BKG "\033[41m"
+#define BLUE_BKG "\033[44m"
+#define DEFAULT "\033[0m"
+#endif //BASH_SHELL_COLOR_ESCAPE_SEQUENCES
+

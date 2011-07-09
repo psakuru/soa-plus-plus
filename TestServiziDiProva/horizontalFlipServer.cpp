@@ -2,22 +2,29 @@
 #include <fstream>
 #include <exception>
 #include "HorizontalFlipImageServer.h"
+#include <string>
 using namespace std;
 
 int main(int argc, char** argv)
 {
-	if(argc < 1)
+	if(argc < 2)
 	{
 		cout << "Necessita del parametro [ip:porta] riferendosi all'indirizzo del Register.";
 		return 0;
-	}	
-	try 
+	}
+	try
 	{
-		RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >(3, "127.0.0.1", 3001, SOMAXCONN);
-		Publisher p(argv[1]);
-		p.setPublishingMode(publish);
-		p.addObjectToPublish(r);
-		p();
+		RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >*
+		serviceThreadPool =
+		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >
+		(3, "127.0.0.1", 3001, SOMAXCONN);
+		Publisher servicePublisher(argv[1]);
+		servicePublisher.setPublishingMode(publish);
+		servicePublisher.addObjectToPublish(serviceThreadPool);
+		servicePublisher();
+		string shutdown;
+		while(shutdown.compare("shutdown") != 0) cin >> shutdown;
+		delete serviceThreadPool; //Graceful shutdown
     }
 	catch(exception& e)
 	{
