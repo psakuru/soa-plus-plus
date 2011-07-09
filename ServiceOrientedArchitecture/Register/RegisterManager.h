@@ -94,26 +94,25 @@ protected:
      */
     virtual void searchInMap()
     {
-        cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
+        cout << "Ricevuta una richiesta di ricerca: " << endl;
         RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         string key = *((string*)(*i)->getValue());
-        cout << "chiave di ricerca:: " << key << endl;
+        cout << "Chiave di ricerca:: " << key << endl;
         string* searchResult = new string((*sharedRegister)[key]);
+        cout << "Risultato della ricerca:: " << *searchResult << endl;
         outputParameters.push_back(new String(searchResult, false));
     }
 public:
     RegisterManager() : Skeleton("register"), RegistrablePoolableCyclicCallableSkeleton("register") {}
     virtual void receiveParameters()
     {
-        //TODO non size_type ma qualcos'altro!
         uint32_t* incomingParametersSizePointer =
             ((uint32_t*)socket->receiveMessage(sizeof(uint32_t)));
         uint32_t incomingParametersSize = *incomingParametersSizePointer;
         free(incomingParametersSizePointer);
         if((int)incomingParametersSize > 1024 || (int)incomingParametersSize <= 0)
         {
-            //cout << "DOS ATTACK!" << endl;
             throw DOSAttackInProgress();
         }
         SerializableObjectList* incomingParameters = new SerializableObjectList;
