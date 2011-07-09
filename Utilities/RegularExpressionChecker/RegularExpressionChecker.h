@@ -50,6 +50,7 @@ public:
 	 *
 	 */
     bool checkForMatch(string stringToCheck);
+    ~RegularExpressionChecker();
 };
 
 #endif // REGULAREXPRESSIONCHECKER_H

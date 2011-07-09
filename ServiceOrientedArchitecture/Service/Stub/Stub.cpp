@@ -26,7 +26,7 @@ Stub::~Stub()
 {
     // Se è stata fatta la bind esiste l' istanza singleton e quindi deve essere distrutta.
 	// In caso non esistesse la destroyInstance() non fa nulla.
-    SingletonObject<RegularExpressionChecker>::destroyInstance();
+    //SingletonObject<RegularExpressionChecker>::destroyInstance();
 }
 
 string Stub::getServiceRegistryAddress()

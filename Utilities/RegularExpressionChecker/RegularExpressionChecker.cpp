@@ -1,3 +1,4 @@
+#include <iostream>
 #include "RegularExpressionChecker.h"
 
 RegularExpressionChecker::RegularExpressionChecker() : unset(true) {}
@@ -22,4 +23,9 @@ bool RegularExpressionChecker::setRegularExpression(string regularExpressionToSe
 bool RegularExpressionChecker::checkForMatch(string stringToCheck)
 {
     return (unset)? false : boost::regex_match(stringToCheck, regularExpression);
+}
+
+RegularExpressionChecker::~RegularExpressionChecker()
+{
+    cout << "Distruttore di RegularExpressionChecker" << endl;
 }
