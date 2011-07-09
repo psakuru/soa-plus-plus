@@ -30,11 +30,11 @@ using namespace std;
 /**
  * @class ExtensibleMap
  *
- * @brief Interfaccia template per una generica mappa di liste template con gestione esplicita delle politiche di accesso agli elementi.
+ * @brief Interfaccia template per mappe di liste di elementi schedulabili.
  *
  * Interfaccia template per una generica mappa di liste template con gestione esplicita delle politiche di accesso agli elementi.
  * L' operatore di selezione è pensato per implementare una politica di scheduling da definire nelle classi implementanti l' interfaccia.
- * La mappa a tal fine si compone di elementi generici. Chiave e valore, infatti, vengono realizzati attraverso tipi template. 
+ * La mappa a tal fine si compone di elementi generici. Chiave e valore, infatti, vengono realizzati attraverso tipi template.
  * Il valore è una coppia formata da una lista di elementi e dalle informazioni necessarie alla loro schedulazione.
  *
  */
@@ -68,7 +68,7 @@ public:
 	/**
 	 * Inserisce l' elemento elementToInsert nella lista individuata
 	 * dalla chiave specificata, secondo le politiche di inserimento.
-     *	
+     *
 	 * @param selectingKey
 	 * @param elementToInsert
 	 *
