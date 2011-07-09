@@ -1,5 +1,5 @@
 /**
- * @file GetList.h
+ * @file GetListServer.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -32,7 +32,9 @@ using namespace std;
 class GetList : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
+	// Stato condiviso fra i thread del pool.
     ImageRegisterSharedState* sharedState;
+	// Funzione di utilità per la ricerca di una stringa in una lista di stringhe.
     bool findString(string stringToBeSearched)
     {
         list<string>::iterator i = sharedState->imageList.begin();
@@ -48,7 +50,9 @@ private:
 protected:
     void doService()
     {
+		// Acquisisco il lock sulla lista.
         boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
+		// Inserisco la lista nei parametri di output.
 		string stringToReturn;
 		list<string>::iterator i = sharedState->imageList.begin();
 		for(; i != sharedState->imageList.end(); i++)
@@ -60,7 +64,9 @@ protected:
 public:
     GetList() : Skeleton("GetList"), RegistrablePoolableCyclicCallableSkeleton("GetList")
     {
+		// Stato condiviso fra i thread del pool. E' un'istanza singleton.
         sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
+		// Aggiungo i parametri che mi aspetto di ricevere al serviceID e alla lista di input.
         addParameter(new String, INOUT);
     }
 };
