@@ -1,46 +1,27 @@
 #include <iostream>
 #include <fstream>
-#include <list>
 #include <exception>
-#include "../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
-#include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
-#include "../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
-#include "../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
-#include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
-#include "../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/RealSerializationStrategy/RealSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalSerializationStrategy.h"
-#include "../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalTypeConstants.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
-#include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
-#include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "HorizontalFlipImageServer.h"
 using namespace std;
-
-
-
-int main()
+int main(int argc, char** argv)
 {
-    try{
-    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >(3, "127.0.0.1", 3001, SOMAXCONN);
-    char a= 'a';
-    cin >> a;
-    Publisher p("127.0.0.1:4000");
-    p.setPublishingMode(publish);
-    p.addObjectToPublish(r);
-    p();
-    while(1){}
+	if(argc < 1)
+	{
+		cout << "Necessita del parametro [ip:porta] riferendosi all'indirizzo del Register.";
+		return 0;
+	}	
+	try 
+	{
+		RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >(3, "127.0.0.1", 3001, SOMAXCONN);
+		Publisher p(argv[1]);
+		p.setPublishingMode(publish);
+		p.addObjectToPublish(r);
+		p();
     }
-     catch(exception& e)
-    	{
+	catch(exception& e)
+	{
     	cout << e.what() << endl;
-    	}
+	}
     return 0;
 }
 

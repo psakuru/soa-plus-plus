@@ -21,21 +21,8 @@
 
 #include <iostream>
 #include <fstream>
-#include <list>
-#include <exception>
-#include "../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 #include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
-#include "../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
-#include "../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
 #include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
-#include "../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/RealSerializationStrategy/RealSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalSerializationStrategy.h"
-#include "../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalTypeConstants.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
@@ -52,6 +39,7 @@ class RotateImage : public RegistrablePoolableCyclicCallableSkeleton
 protected:
 	void doService()
     {
+		// Recupero i parametri di input.
         SerializableObjectList::iterator i = inputParameters.begin();
         int32_t* directionPointer = (int32_t*)((*i)->getValue());
 		int32_t direction = *directionPointer;

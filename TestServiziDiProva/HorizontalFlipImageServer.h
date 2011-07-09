@@ -1,5 +1,5 @@
 /**
- * @file HorizontalFlipImage.h
+ * @file HorizontalFlipImageServer.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -24,19 +24,10 @@
 #include <fstream>
 #include <list>
 #include <exception>
-#include "../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 #include "../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../SerializableObjects/DeserializationStrategies/SerializableObjectBuilder.h"
 #include "../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
 #include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
-#include "../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/RealSerializationStrategy/RealSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalSerializationStrategy.h"
-#include "../SerializableObjects/DeserializationStrategies/SignalBuilder.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/SignalTypeConstants.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/BadRequestSerializationStrategy/BadRequestSerializationStrategy.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
@@ -51,45 +42,41 @@ class HorizontalFlipImage : public RegistrablePoolableCyclicCallableSkeleton
 protected:
 	void doService()
     {
+		// Recupero i parametri di input.
         SerializableObjectList::iterator i = inputParameters.begin();
         SerializableObject* r = (*i);
         ByteArray* pb = (ByteArray*)(r->getValue());
-		// Store.
-        ofstream outfile ("imageReceived.jpg",ofstream::binary | ofstream::out);
+		// Salvo l'immagine ricevuta.
+		string name = (string)boost::this_thread::get_id();
+		name.append(".jpg");
+        ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
         outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
         outfile.close();
         delete pb;
-        // Manipulation.
+        // Eseguo il flip.
         CImg<unsigned char> image;
-        image = image.load_jpeg("imageReceived.jpg");
+        image = image.load_jpeg(name.c_str());
         image.mirror('x');
-        image.save_jpeg("imageToBeSent.jpg",90U);
-        remove("imageReceived.jpg");
-        // Preparing to send.
+        image.save_jpeg(name.c_str(),90U);
+        // Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
         char * memblock;
         uint64_t size = 0;
-        ifstream file ("imageToBeSent.jpg", ios::in|ios::binary|ios::ate);
-        if (file.is_open())
-        {
-            size = (int)file.tellg();
-            memblock = (char*)malloc(size);
-            file.seekg (0, ios::beg);
-            file.read (memblock, size);
-            file.close();
-
-        }
-        else {
-        	//TODO ECCEZIONE - fare un try chatch con un robo che comunque faccia a remove del file
-        }
+        ifstream file (name.c_str(), ios::in|ios::binary|ios::ate);
+        size = (int)file.tellg();
+		memblock = (char*)malloc(size);
+		file.seekg (0, ios::beg);
+		file.read (memblock, size);
+		file.close();
         ByteArray* fileBytes = new ByteArray((void*)memblock, size);
         free(memblock);
-        remove("imageToBeSent.jpg");
+        remove(name.c_str());
         RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 		outputParameters.push_back(objectToBeSent); 
     }
 public:
 	HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
     {
+		// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 		addParameter(new RawByteBuffer, IN);
     	addParameter(new RawByteBuffer, INOUT);
     }

@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 		uint64_t size = 0;
 		if(argc < 1)
 		{
-			cout << "client [nome_file_da_inviare].jpg";
+			cout << "Necessita del parametro [nome_file_da_inviare].jpg";
 			return 0;
 		}
 		ifstream file (argv[1], ios::in|ios::binary|ios::ate);
