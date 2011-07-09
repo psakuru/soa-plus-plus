@@ -14,14 +14,14 @@
 
 Service::Service()
 {
-	defaultBuildersHierarchyInit();
+    defaultBuildersHierarchyInit();
     socket = NULL; // Il socket va inizializzato ai livelli sottostanti
 }
 
 Service::Service(string serviceIDToSet) : serviceID(serviceIDToSet)
 {
     serviceID.append("()");
-	defaultBuildersHierarchyInit();
+    defaultBuildersHierarchyInit();
     socket = NULL; // Il socket va inizializzato ai livelli sottostanti
 }
 
@@ -33,7 +33,7 @@ Service::~Service()
 
 void Service::defaultBuildersHierarchyInit()
 {
-	buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
+    buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_INTEGER, new TerminalSerializableObjectBuilder<Integer>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_REAL, new TerminalSerializableObjectBuilder<Real>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_STRING, new TerminalSerializableObjectBuilder<String>());
     buildersHierarchy.addSerializableObjectBuilder(SERIALIZABLE_RAW_BYTE_BUFFER, new TerminalSerializableObjectBuilder<RawByteBuffer>());
@@ -62,26 +62,16 @@ SerializableObject* Service::receiveParameter()
 {
     Type* receivedTypePointer = ((Type*)socket->receiveMessage(sizeof(Type)));
     Type receivedType = *receivedTypePointer;
-	free(receivedTypePointer);
+    free(receivedTypePointer);
     int valueLengthLength = buildersHierarchy.getValueLengthLength(receivedType);
     uint64_t valueLength = 0;
     switch(valueLengthLength)
     {
-    case 1:
-        valueLengthReader<uint8_t>(valueLength);
-        break;
-    case 2:
-        valueLengthReader<uint16_t>(valueLength);
-        break;
-    case 4:
-        valueLengthReader<uint32_t>(valueLength);
-        break;
-    case 8:
-        valueLengthReader<uint64_t>(valueLength);
-        break;
-    default:
-        throw InvalidLengthLength();
-        break;
+    case 1: valueLengthReader<uint8_t>(valueLength); break;
+    case 2: valueLengthReader<uint16_t>(valueLength); break;
+    case 4: valueLengthReader<uint32_t>(valueLength); break;
+    case 8: valueLengthReader<uint64_t>(valueLength); break;
+    default: throw InvalidLengthLength(); break;
     }
     void* value = NULL;
     if(valueLength != 0)
@@ -132,22 +122,12 @@ void Service::updateServiceID(SerializableObject* parameterToAdd, Direction para
     string directionString;
     switch(parameterDirection)
     {
-    case     IN   :
-        directionString = " IN: ";
-        break;
-    case     OUT  :
-        directionString = " OUT: ";
-        break;
-    case     INOUT:
-        directionString = " INOUT: ";
-        break;
-    case     OUTIN:
-        directionString = " OUTIN: ";
-        break;
-    default:
-        directionString = " <unknown direction>: ";
-        break;
+    case     IN   : directionString = " IN: ";                  break;
+    case     OUT  : directionString = " OUT: ";                 break;
+    case     INOUT: directionString = " INOUT: ";               break;
+    case     OUTIN: directionString = " OUTIN: ";               break;
+    default       : directionString = " <unknown direction>: "; break;
     }
     directionString.append(parameterToAdd->getValueTypeStringRepresentation()).append(")");
-	serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
+    serviceID.replace(serviceID.find_last_of(')'), 1, directionString);
 }
