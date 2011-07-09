@@ -28,6 +28,7 @@
 #include "../Service/Skeleton/Exceptions/DOSAttackInProgress.h"
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../Utilities/RegularExpressionChecker/RegularExpressionChecker.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -70,13 +71,7 @@ protected:
         while(i != inputParameters.end())
         {
             RegularExpressionChecker* serviceIDRegexChecker = SingletonObject<RegularExpressionChecker>::getInstance();
-            serviceIDRegexChecker->setRegularExpression
-            (
-                "\\w*\\((\\s(IN|INOUT)\\:\\s\\w*)*\\)\
-                \\@\
-                \\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b\
-                \\:(4915[0-1]|491[0-4]\\d|490\\d\\d|4[0-8]\\d{3}|[1-3]\\d{4}|[2-9]\\d{3}|1[1-9]\\d{2}|10[3-9]\\d|102[4-9])"
-            ); //Matcha con serviceID( IN: int ... INOUT: double)@IP:port
+            serviceIDRegexChecker->setRegularExpression("\\w*\\((\\s(IN|INOUT)\\:\\s\\w*)*\\)\\@\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b\\:(4915[0-1]|491[0-4]\\d|490\\d\\d|4[0-8]\\d{3}|[1-3]\\d{4}|[2-9]\\d{3}|1[1-9]\\d{2}|10[3-9]\\d|102[4-9])"); //Matcha con serviceID( IN: int ... INOUT: double)@IP:port
             string* entry = (string*)(*i)->getValue();
             if(!serviceIDRegexChecker->checkForMatch(*entry)) return;
             string key = entry->substr(0, entry->find_first_of('@'));
@@ -106,6 +101,7 @@ protected:
         cout << "chiave di ricerca:: " << key << endl;
         string* searchResult = new string((*sharedRegister)[key]);
         outputParameters.push_back(new String(searchResult, false));
+        delete searchResult; //Poniamo rimedio ad un memory leak!
     }
 public:
     RegisterManager() : Skeleton("register"), RegistrablePoolableCyclicCallableSkeleton("register") {}
