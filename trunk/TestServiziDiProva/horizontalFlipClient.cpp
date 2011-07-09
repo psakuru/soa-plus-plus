@@ -7,13 +7,18 @@
 #include "HorizontalFlipImage.h"
 using namespace std;
 
-int main()
+int main(int argc, char** argv)
+{
+	if(argc < 1)
 	{
+		cout << "Necessita del parametro [file].jpg";
+		return 0;
+	}	
 	try{
 	char * memblock;
 //    ifstream::pos_type size;
 	uint64_t size = 0;
-    ifstream file ("daInviareAlServer.jpg", ios::in|ios::binary|ios::ate);
+    ifstream file (argv[1], ios::in|ios::binary|ios::ate);
     if (file.is_open())
         {
         size = file.tellg();
