@@ -47,7 +47,10 @@ protected:
         i++;
         ByteArray* pb = (ByteArray*)((*i)->getValue());
         // Salvo l'immagine ricevuta.
-		string name = (string)boost::this_thread::get_id();
+		string name;
+		stringstream threadIDToStringConverter;
+		threadIDToStringConverter << boost::this_thread::get_id();
+		threadIDToStringConverter >> name;
 		name.append(".jpg");
         ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
         outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
