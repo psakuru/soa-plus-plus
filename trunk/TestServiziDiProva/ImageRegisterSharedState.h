@@ -1,5 +1,5 @@
 /**
- * @file ImageRegister.h
+ * @file ImageRegisterSharedState.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -22,13 +22,10 @@
 #ifndef IMAGEREGISTERSHAREDSTATE_H
 #define IMAGEREGISTERSHAREDSTATE_H
 
-#include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include <string>
 #include <list>
-#include <iostream>
 #include <stdio.h>
+#include <boost/thread/mutex.hpp>
 using namespace std;
 
 class ImageRegisterSharedState
