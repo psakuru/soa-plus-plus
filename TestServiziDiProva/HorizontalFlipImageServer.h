@@ -29,6 +29,7 @@
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "CImg/CImg.h"
