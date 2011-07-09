@@ -45,8 +45,8 @@ void Service::defaultBuildersHierarchyInit()
 void Service::sendParameters()
 {
     //TODO non size_type ma qualcos'altro!
-    SerializableObjectList::size_type listSize = outputParameters.size();
-    socket->sendMessage(&listSize, sizeof(SerializableObjectList::size_type));
+    uint32_t listSize = (uint32_t)outputParameters.size();
+    socket->sendMessage(&listSize, sizeof(uint32_t));
     SerializableObjectList::iterator i = outputParameters.begin();
     void* serializedObject = NULL;
     for(; i != outputParameters.end(); i++)
@@ -84,17 +84,16 @@ SerializableObject* Service::receiveParameter()
 void Service::receiveParameters()
 {
     //TODO non size_type ma qualcos'altro!
-    SerializableObjectList::size_type inputParametersSize = inputParameters.size();
-    SerializableObjectList::size_type* incomingParametersSizePointer =
-        ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
+    uint32_t inputParametersSize = (uint32_t)inputParameters.size();
+    uint32_t* incomingParametersSizePointer = ((uint32_t*)socket->receiveMessage(sizeof(uint32_t)));
     SerializableObjectList* incomingParameters = new SerializableObjectList;
-    SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
+    uint32_t incomingParametersSize = *incomingParametersSizePointer;
     free(incomingParametersSizePointer);
     if(incomingParametersSize != inputParametersSize) // Confronto del numero dei parametri.
     {
         throw InvalidParameterListSize();
     }
-    for(unsigned int i = 0; i < inputParametersSize; i++)
+    for(uint32_t i = 0; i < inputParametersSize; i++)
     {
         incomingParameters->push_back(receiveParameter());
     }
