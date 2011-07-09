@@ -27,7 +27,7 @@
 /**
  * @class Stub
  *
- * @brief Stub.
+ * @brief Stub per un servizio.
  *
  * Uno stub è un' interfaccia locale che rappresenta un servizio remoto presso il client.
  *
@@ -43,7 +43,7 @@ protected:
     virtual void bind();
 	/**
 	 * Protocollo di comunicazione dello Stub.
-	 * Il protocollo consiste nell' invio di entrambe le liste, quella di input e quella di output e nella ricezione dei parametri di output.
+	 * Il protocollo consiste nell' invio di entrambe le liste, quella di input e quella di output, e nella ricezione dei parametri di output.
 	 */
 	void protocol();
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);

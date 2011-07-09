@@ -49,8 +49,8 @@ protected:
 	 * Lista di puntatori ai thread del pool.
 	 */
     list<boost::thread*> threadReferences;
-	boost::mutex sharedMutex; //TODO orrore!!! Un membro dati pubblico!!! Rimediare!!!! CHANGED
-    TcpIpPassiveSocket sharedListeningSocket; //TODO orrore!!! Un membro dati pubblico!!! Rimediare!!!! CHANGED
+	boost::mutex sharedMutex;
+    TcpIpPassiveSocket sharedListeningSocket;
 public:
 	/**
 	 * Crea i thread, li inserisce nel pool e inserisce il puntatore al nuovo thread creato nella lista threadReferences.
@@ -61,9 +61,10 @@ public:
 		T callableObject;
         for(int i = 0; i < poolSize; i++)
         {
-            threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket)); // Inserimento in O(1),
-																												  // la list non diventa owner del thread
-            pool.add_thread(threadReferences.front()); // Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
+            // Inserimento in O(1), // la list non diventa owner del thread
+            threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket));
+             // Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
+            pool.add_thread(threadReferences.front());
         }
     }
 	/**
@@ -71,7 +72,8 @@ public:
 	 */
     virtual ~SkeletonThreadPool()
     {
-		sharedListeningSocket.closeSocket(); // Se i thread stavano utilizzando il socket, viene lanciata una eccezione e quindi vengono riabilitate le interruzioni.
+
+		sharedListeningSocket.shutdownSocket(); // Se i thread stavano utilizzando il socket, viene lanciata una eccezione e quindi vengono riabilitate le interruzioni.
 		pool.join_all(); // Attendo che tutti i thread abbiano terminato.
 	}
 };

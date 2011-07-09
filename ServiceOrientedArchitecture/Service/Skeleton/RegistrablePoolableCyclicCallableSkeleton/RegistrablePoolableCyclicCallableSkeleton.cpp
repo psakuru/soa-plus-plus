@@ -2,6 +2,8 @@
 #include <boost/thread/thread.hpp>
 #include <boost/pool/detail/guard.hpp>
 #include "../../../../TcpIpSocket/Exceptions/SocketException.h"
+#include <iostream>
+using namespace std;
 
 RegistrablePoolableCyclicCallableSkeleton::~RegistrablePoolableCyclicCallableSkeleton() {}
 
@@ -29,10 +31,11 @@ void RegistrablePoolableCyclicCallableSkeleton::operator()()
                 }
                 catch(const SocketException& socketException)
                 {
-					delete socket;
-					socket = NULL;
-                    boost::this_thread::restore_interruption restoreInterruptions(disableInterruptions);
-                    boost::this_thread::interruption_point();
+                    //boost::this_thread::restore_interruption restoreInterruptions(disableInterruptions);
+                    //boost::this_thread::interruption_point();
+                    cout << "entro nel catch" << endl;
+                    delete socket;
+                    socket = NULL;
                     return;
                 }
             }

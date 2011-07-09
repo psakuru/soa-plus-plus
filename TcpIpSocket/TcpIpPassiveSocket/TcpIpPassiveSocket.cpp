@@ -40,7 +40,8 @@ string TcpIpPassiveSocket::getAddress()
     return address;
 }
 
-void TcpIpPassiveSocket::closeSocket()
+void TcpIpPassiveSocket::shutdownSocket()
 {
-	close(socketDescriptor);
+	//close(socketDescriptor);
+	shutdown(socketDescriptor, SHUT_RDWR);
 }
