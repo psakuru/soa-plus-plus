@@ -1,5 +1,5 @@
 /**
- * @file ImageRegister.h
+ * @file ImageRegisterServer.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -19,12 +19,8 @@
  *
  */
 
-#include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include <string>
 #include <list>
-#include <iostream>
 #include <stdio.h>
 using namespace std;
 
