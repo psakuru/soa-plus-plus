@@ -28,7 +28,7 @@ using namespace std;
 int main()
 {
     try{
-    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage>, 3 >("127.0.0.1", 3001, SOMAXCONN);
+    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >(3, "127.0.0.1", 3001, SOMAXCONN);
     char a= 'a';
     cin >> a;
     Publisher p("127.0.0.1:4000");

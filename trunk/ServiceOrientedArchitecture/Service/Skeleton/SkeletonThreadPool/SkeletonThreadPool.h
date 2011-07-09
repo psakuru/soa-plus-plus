@@ -37,7 +37,7 @@ using namespace std;
  *
  */
 
-template <typename T, int poolSize>
+template <typename T>
 class SkeletonThreadPool
 {
 protected:
@@ -55,13 +55,13 @@ public:
 	/**
 	 * Crea i thread, li inserisce nel pool e inserisce il puntatore al nuovo thread creato nella lista threadReferences.
 	 */
-    SkeletonThreadPool(string IPAddress, int listeningPort, int backlog)
+    SkeletonThreadPool(int poolSize, string IPAddress, int listeningPort, int backlog)
         : sharedListeningSocket(IPAddress, listeningPort, backlog)
     {
 		T callableObject;
         for(int i = 0; i < poolSize; i++)
         {
-            threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket)); // Inserimento in O(1), 
+            threadReferences.push_front(new boost::thread(callableObject, &sharedMutex, &sharedListeningSocket)); // Inserimento in O(1),
 																												  // la list non diventa owner del thread
             pool.add_thread(threadReferences.front()); // Inserimento in O(1), il pool diventa owner del thread e ne farà la delete.
         }

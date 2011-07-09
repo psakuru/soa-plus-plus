@@ -14,9 +14,9 @@ int main()
     		<
     		RRFIFOMonitoredExtensibleMap
     		>
-    	>, 3
+    	>
     >
-    ("127.0.0.1", 4000, SOMAXCONN);
+    (3, "127.0.0.1", 4000, SOMAXCONN);
     while(1) {}
     delete r;
     return 0;

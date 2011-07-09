@@ -31,9 +31,9 @@ using namespace std;
 int main()
 {
     try{
-    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<StoreImage>, 3 >("127.0.0.1", 5000, SOMAXCONN);
-    RegistrableObject* s = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<GetImage>, 3 >("127.0.0.1", 5001, SOMAXCONN);
-    RegistrableObject* t = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<GetList>, 3 >("127.0.0.1", 5002, SOMAXCONN);
+    RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<StoreImage> >(3, "127.0.0.1", 5000, SOMAXCONN);
+    RegistrableObject* s = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<GetImage> >(3, "127.0.0.1", 5001, SOMAXCONN);
+    RegistrableObject* t = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<GetList> >(3, "127.0.0.1", 5002, SOMAXCONN);
     char a= 'a';
     cin >> a;
     Publisher p("127.0.0.1:4000");
