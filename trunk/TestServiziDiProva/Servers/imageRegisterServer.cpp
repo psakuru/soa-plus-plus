@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
-#include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
-#include "../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
-#include "../ServiceOrientedArchitecture/Publisher/Publisher.h"
-#include "../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
+#include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "StoreImageServer.h"
 #include "GetImageServer.h"
 #include "GetListServer.h"

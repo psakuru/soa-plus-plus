@@ -46,7 +46,6 @@ public:
         }
         return false;
     }
-	
 };
 
 #endif //IMAGEREGISTERSHAREDSTATE_H
