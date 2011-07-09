@@ -46,6 +46,7 @@ protected:
 	 * Il protocollo consiste nell' invio di entrambe le liste, quella di input e quella di output, e nella ricezione dei parametri di output.
 	 */
 	void protocol();
+	void remoteProcedureCall();
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Stub();
