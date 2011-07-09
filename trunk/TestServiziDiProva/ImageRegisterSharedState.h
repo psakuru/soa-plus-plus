@@ -33,6 +33,20 @@ class ImageRegisterSharedState
 public:
 	boost::shared_mutex sharedMutex;
 	list<string> imageList;
+	// Funzione di utilità per la ricerca di una stringa in una lista di stringhe.
+    bool findString(string stringToBeSearched)
+    {
+        list<string>::iterator i = imageList.begin();
+        for(; i != imageList.end(); i++)
+        {
+            if(((*i).compare(stringToBeSearched)) == 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+	
 };
 
 #endif //IMAGEREGISTERSHAREDSTATE_H

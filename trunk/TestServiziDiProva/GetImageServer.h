@@ -1,5 +1,5 @@
 /**
- * @file GetImage.h
+ * @file GetImageServer.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -33,27 +33,18 @@ class GetImage : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
     ImageRegisterSharedState* sharedState;
-    bool findString(string stringToBeSearched)
-    {
-        list<string>::iterator i = sharedState->imageList.begin();
-        for(; i != sharedState->imageList.end(); i++)
-        {
-            if(((*i).compare(stringToBeSearched)) == 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 protected:
     void doService()
     {
+		// Acquisisco il lock sulla lista.
         boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
+		// Recupero i parametri di input.
 		SerializableObjectList::iterator i = inputParameters.begin();
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
 		delete entry;
-		if(!findString(name))
+		//TODO Se l'immagine non è presente??
+		if(!sharedState->findString(name))
 		{
 		    return;
 			//TODO ECCEZIONE - il file non esiste o comunque non è stato registrato.
@@ -74,6 +65,7 @@ protected:
 		{
 			//TODO ECCEZIONE - fare un try chatch con un robo che comunque faccia a remove del file
 		}
+		// Inserisco l'immagine nei parametri di output.
 		ByteArray* fileBytes = new ByteArray((void*)memblock, size);
 		free(memblock);
 		remove(name.c_str());

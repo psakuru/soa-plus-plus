@@ -1,5 +1,5 @@
 /**
- * @file StoreImage.h
+ * @file StoreImageServer.h
  * @author  Sacco Cosimo <cosimosacco@gmail.com>, Silvestri Davide <davidesil.web@gmail.com>
  *
  * @section LICENSE
@@ -33,22 +33,12 @@ class StoreImage : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
     ImageRegisterSharedState* sharedState;
-    bool findString(string stringToBeSearched)
-    {
-        list<string>::iterator i = sharedState->imageList.begin();
-        for(; i != sharedState->imageList.end(); i++)
-        {
-            if(((*i).compare(stringToBeSearched)) == 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 protected:
     void doService()
     {
+		// Acquisisco il lock sulla lista.
         boost::unique_lock<boost::shared_mutex> writersLock(sharedState->sharedMutex);
+		// Recupero i parametri di input.
         SerializableObjectList::iterator i = inputParameters.begin();
         string* entry = (string*)((*i)->getValue());
         string name = *entry;
@@ -59,7 +49,8 @@ protected:
         outfile.write((char*) (receivedImage->getPointer()), receivedImage->getLength());
         outfile.close();
         delete receivedImage;
-        if(!findString(name))
+		// Inserisco il nome dell'immagine nella lista solamente se non è già presente.
+        if(!sharedState->findString(name))
         {
             sharedState->imageList.push_front(name);
         }

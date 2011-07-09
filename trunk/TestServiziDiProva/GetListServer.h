@@ -34,19 +34,6 @@ class GetList : public RegistrablePoolableCyclicCallableSkeleton
 private:
 	// Stato condiviso fra i thread del pool.
     ImageRegisterSharedState* sharedState;
-	// Funzione di utilità per la ricerca di una stringa in una lista di stringhe.
-    bool findString(string stringToBeSearched)
-    {
-        list<string>::iterator i = sharedState->imageList.begin();
-        for(; i != sharedState->imageList.end(); i++)
-        {
-            if(((*i).compare(stringToBeSearched)) == 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 protected:
     void doService()
     {
