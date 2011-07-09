@@ -1,21 +1,21 @@
 #include "ImageNotFoundSerializationStrategy.h"
 
-BadRequestSerializationStrategy::BadRequestSerializationStrategy() {}
+ImageNotFoundSerializationStrategy::ImageNotFoundSerializationStrategy() {}
 
-BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSignal& userReference) {} // Per uniformità con gli altri SerializableObject.
+ImageNotFoundSerializationStrategy::ImageNotFoundSerializationStrategy(ImageNotFoundSignal& userReference) {} // Per uniformità con gli altri SerializableObject.
 
-void BadRequestSerializationStrategy::signalHandler()
+void ImageNotFoundSerializationStrategy::signalHandler()
 {
     
     throw ImageNotFoundException();
 }
 
-Type BadRequestSerializationStrategy::getSignalType() const
+Type ImageNotFoundSerializationStrategy::getSignalType() const
 {
     return SIGNAL_IMAGENOTFOUND;
 }
 
-int BadRequestSerializationStrategy::getValueLengthLength()
+int ImageNotFoundSerializationStrategy::getValueLengthLength()
 {
     return sizeof(Type);
 }
