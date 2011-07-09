@@ -77,10 +77,7 @@ protected:
 		{
 			// Alla deserializzazione del segnale verrà richiamato il suo handler che gestirà
 			// la situazione di errore (immagine non presente sul server).
-			ByteArray* fileBytes = new ByteArray((void*)memblock, size);
-			free(memblock);
-			remove(name.c_str());
-			RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
+			RawByteBuffer* objectToBeSent = new RawByteBuffer();
 			outputParameters.push_back(objectToBeSent);
 			ImageNotFound* signal = new ImageNotFound();
 			outputParameters.push_back(signal);
