@@ -101,7 +101,6 @@ protected:
         cout << "chiave di ricerca:: " << key << endl;
         string* searchResult = new string((*sharedRegister)[key]);
         outputParameters.push_back(new String(searchResult, false));
-        delete searchResult; //Poniamo rimedio ad un memory leak!
     }
 public:
     RegisterManager() : Skeleton("register"), RegistrablePoolableCyclicCallableSkeleton("register") {}
