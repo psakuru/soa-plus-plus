@@ -22,6 +22,7 @@
 #include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
+#include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../SerializableObjects/Utilities/ByteArray/ByteArray.h"
 #include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/GenericSignalSerializationStrategy/GenericSignalSerializationStrategy.h"
 #include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/ImageNotFoundSerializationStrategy/ImageNotFoundSerializationStrategy.h"
