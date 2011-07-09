@@ -20,13 +20,15 @@
  */
 
 #include "../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
+#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/Utilities/GenericSignalValue.h"
 
 class GetImage: public StreamStub {
 public:
 	GetImage() : StreamStub("GetImage", "127.0.0.1:4000") {}
 	void operator()(string name, ByteArray& img) 
 	{
-		(*this) << name; (*this) >> img; 
+		GenericSignalValue signal; // Lo invio per gestire il caso in cui l'immagine non sia presente sul server.
+		(*this) << name; (*this) >> img; (*this) >> signal;
 		bind();
 		protocol();
 	}

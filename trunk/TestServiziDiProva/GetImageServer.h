@@ -22,6 +22,8 @@
 #include "../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
+#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/GenericSignalSerializationStrategy.h"
+#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/ImageNotFoundSerializationStrategy.h"
 #include "ImageRegisterSharedState.h"
 #include <string>
 #include <list>
@@ -43,34 +45,39 @@ protected:
 		string* entry = (string*)(*i)->getValue();
 		string name = *entry;
 		delete entry;
-		//TODO Se l'immagine non è presente??
-		if(!sharedState->findString(name))
+		if(sharedState->findString(name))
 		{
-		    return;
-			//TODO ECCEZIONE - il file non esiste o comunque non è stato registrato.
-		}
 		char* memblock;
 		uint64_t size = 0;
 		ifstream file(name.c_str(), ios::in | ios::binary | ios::ate);
-		if (file.is_open())
-		{
+	
 			size = (int) file.tellg();
 			memblock = (char*) malloc(size);
 			file.seekg(0, ios::beg);
 			file.read(memblock, size);
 			file.close();
-
-		}
-		else
-		{
-			//TODO ECCEZIONE - fare un try chatch con un robo che comunque faccia a remove del file
-		}
 		// Inserisco l'immagine nei parametri di output.
 		ByteArray* fileBytes = new ByteArray((void*)memblock, size);
 		free(memblock);
 		remove(name.c_str());
 		RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 		outputParameters.push_back(objectToBeSent);
+		GenericSignalWrapper* signal = new GenericSignalWrapper();
+		outputParameters.push_back(signal);
+		}
+		else 
+		{
+			// Alla deserializzazione del segnale verrà richiamato il suo handler che gestirà
+			// la situazione di errore (immagine non presente sul server).
+			ByteArray* fileBytes = new ByteArray((void*)memblock, size);
+			free(memblock);
+			remove(name.c_str());
+			RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
+			outputParameters.push_back(objectToBeSent);
+			ImageNotFound* signal = new ImageNotFound();
+			outputParameters.push_back(signal);<#statements#>
+		}
+
     }
 public:
     GetImage() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
@@ -78,5 +85,6 @@ public:
         sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
         addParameter(new String, IN);
         addParameter(new RawByteBuffer, INOUT);
+		addParameter(new GenericSignalWrapper, INOUT);
     }
 };
