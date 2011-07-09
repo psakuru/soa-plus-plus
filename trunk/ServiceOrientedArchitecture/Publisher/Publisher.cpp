@@ -6,7 +6,7 @@ Publisher::Publisher(string RegistryAddress)
 {
     publishingMode = publish;
     addParameter(new String(new string("publish"), false), OUT);
-    this->bind();
+//    this->bind();
 }
 
 Publisher::~Publisher() {}
@@ -34,6 +34,7 @@ void Publisher::addObjectToPublish(RegistrableObject* objectToPublish)
 
 void Publisher::operator()()
 {
+    this->bind();
     protocol();
     resetStatus();
 }

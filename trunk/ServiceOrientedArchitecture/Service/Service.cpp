@@ -44,7 +44,6 @@ void Service::defaultBuildersHierarchyInit()
 
 void Service::sendParameters()
 {
-    //TODO non size_type ma qualcos'altro!
     uint32_t listSize = (uint32_t)outputParameters.size();
     socket->sendMessage(&listSize, sizeof(uint32_t));
     SerializableObjectList::iterator i = outputParameters.begin();
@@ -83,7 +82,6 @@ SerializableObject* Service::receiveParameter()
 
 void Service::receiveParameters()
 {
-    //TODO non size_type ma qualcos'altro!
     uint32_t inputParametersSize = (uint32_t)inputParameters.size();
     uint32_t* incomingParametersSizePointer = ((uint32_t*)socket->receiveMessage(sizeof(uint32_t)));
     SerializableObjectList* incomingParameters = new SerializableObjectList;
