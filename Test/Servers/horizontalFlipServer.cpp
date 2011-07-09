@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 	if(argc < 2)
 	{
 		cout << "Necessita del parametro [ip:porta] riferendosi all'indirizzo del Register.";
-		return 0;
+		return 1;
 	}
 	try
 	{
@@ -24,6 +24,9 @@ int main(int argc, char** argv)
 		servicePublisher();
 		string shutdown;
 		while(shutdown.compare("shutdown") != 0) cin >> shutdown;
+		servicePublisher.setPublishingMode(censor);
+		servicePublisher.addObjectToPublish(serviceThreadPool);
+		servicePublisher();
 		delete serviceThreadPool; //Graceful shutdown
     }
 	catch(exception& e)
