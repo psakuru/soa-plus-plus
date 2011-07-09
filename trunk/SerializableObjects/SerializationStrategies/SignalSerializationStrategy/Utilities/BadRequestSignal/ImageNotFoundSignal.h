@@ -1,0 +1,7 @@
+#ifndef IMAGENOTFOUNDSIGNAL_H
+#define IMAGENOTFOUNDSIGNAL_H
+
+
+class ImageNotFoundSignal {};
+
+#endif // IMAGENOTFOUNDSIGNAL_H
