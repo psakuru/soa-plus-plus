@@ -44,8 +44,8 @@ protected:
 	/**
 	 * Protocollo di comunicazione dello Stub.
 	 * Il protocollo consiste nell' invio di entrambe le liste, quella di input e quella di output e nella ricezione dei parametri di output.
-	 */    
-	void protocol(); 
+	 */
+	void protocol();
     void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection);
 public:
     Stub();
@@ -57,7 +57,7 @@ public:
 	 * Rieffettua la bind.
 	 * Necessaria in caso di modifiche al serviceRegistryAddress.
 	 */
-    void rebind(); 
+    void rebind();
 	/**
 	 * Consente di impostare staticamente l' indirizzo del serviceProvider, evitando il protocollo di richiesta al Register.
 	 *
