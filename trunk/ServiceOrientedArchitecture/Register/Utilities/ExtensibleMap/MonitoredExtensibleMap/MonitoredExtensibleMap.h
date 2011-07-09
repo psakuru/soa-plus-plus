@@ -25,6 +25,7 @@
 #include "../ExtensibleMap.h"
 #include <boost/thread/shared_mutex.hpp>
 #include <boost/thread/locks.hpp>
+#include "../../../../../Utilities/ColorPrint/ColorPrint.h"
 
 /**
  * @class MonitoredExtensibleMap
@@ -86,17 +87,20 @@ public:
      */
     void print()
     {
+        boost::shared_lock<boost::shared_mutex> readersLock(mutex);
         typename map<Key, pair<SchedulingInformation, list<Element> > >::iterator i = this->dataStructure.begin();
+        cout << RED_TXT << "~::" << WHITE_TXT << BLUE_BKG << "Register content" << DEFAULT << RED_TXT << "::~" << DEFAULT <<  endl;
         for(; i != this->dataStructure.end(); i++)
         {
-            cout << "[" << (*i).first << "]::";
+            cout << BLUE_TXT << "[" << GREEN_TXT << (*i).first << BLUE_TXT << "]::" << DEFAULT;
             typename list<Element>::iterator j = (((*i).second).second).begin();
             for(; j != (((*i).second).second).end(); j++)
             {
-                cout << "--->" << (*j);
+                cout << GREEN_BKG << WHITE_TXT << (*j) << DEFAULT << BLUE_TXT << "~" << DEFAULT;
             }
             cout << endl;
         }
+        cout << endl;
     }
 };
 
