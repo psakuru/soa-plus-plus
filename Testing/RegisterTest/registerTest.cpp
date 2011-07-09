@@ -9,13 +9,12 @@ int main()
         new RegistrableSkeletonThreadPool
     <
     RegistrablePoolableCallableSkeletonWrapper
-    <
-    RegisterManager
-    <
-    RRFIFOMonitoredExtensibleMap
-    >
-    >,
-    3
+    	<
+    	RegisterManager
+    		<
+    		RRFIFOMonitoredExtensibleMap
+    		>
+    	>, 3
     >
     ("127.0.0.1", 4000, SOMAXCONN);
     while(1) {}

@@ -107,9 +107,9 @@ public:
     virtual void receiveParameters()
     {
         //TODO non size_type ma qualcos'altro!
-        SerializableObjectList::size_type* incomingParametersSizePointer =
-            ((SerializableObjectList::size_type*)socket->receiveMessage(sizeof(SerializableObjectList::size_type)));
-        SerializableObjectList::size_type incomingParametersSize = *incomingParametersSizePointer;
+        uint32_t* incomingParametersSizePointer =
+            ((uint32_t*)socket->receiveMessage(sizeof(uint32_t)));
+        uint32_t incomingParametersSize = *incomingParametersSizePointer;
         free(incomingParametersSizePointer);
         if((int)incomingParametersSize > 1024 || (int)incomingParametersSize <= 0)
         {
@@ -117,11 +117,11 @@ public:
             throw DOSAttackInProgress();
         }
         SerializableObjectList* incomingParameters = new SerializableObjectList;
-        for(unsigned int i = 0; i < (incomingParametersSize); i++)
+        for(uint32_t i = 0; i < (incomingParametersSize); i++)
         {
             inputParameters.push_back(new String);
         }
-        for(unsigned int i = 0; i < incomingParametersSize; i++)
+        for(uint32_t i = 0; i < incomingParametersSize; i++)
         {
             incomingParameters->push_back(receiveParameter());
         }

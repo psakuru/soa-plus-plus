@@ -25,7 +25,7 @@ uint64_t StringSerializationStrategy::serialize(void** destinationBuffer)
     *destinationBuffer = malloc(size);
     *((Type*)(*destinationBuffer)) = getType();
     *((uint64_t*)(((Type*)(*destinationBuffer))+1)) = wrappedReference.length();
-    for(unsigned int i = 0; i < wrappedReference.length(); i++)
+    for(size_t i = 0; i < wrappedReference.length(); i++)
     {
         *((char*)(((uint8_t*)(*destinationBuffer)) + sizeof(Type) + sizeof(uint64_t) + i)) = wrappedReference.at(i);
     }
