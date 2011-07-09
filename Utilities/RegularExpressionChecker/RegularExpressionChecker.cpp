@@ -21,5 +21,5 @@ bool RegularExpressionChecker::setRegularExpression(string regularExpressionToSe
 
 bool RegularExpressionChecker::checkForMatch(string stringToCheck)
 {
-    return boost::regex_match(stringToCheck, regularExpression);
+    return (unset)? false : boost::regex_match(stringToCheck, regularExpression);
 }

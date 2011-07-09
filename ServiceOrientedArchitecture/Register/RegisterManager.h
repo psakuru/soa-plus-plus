@@ -27,6 +27,7 @@
 #include "../Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../Service/Skeleton/Exceptions/DOSAttackInProgress.h"
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
+#include "../../Utilities/RegularExpressionChecker/RegularExpressionChecker.h"
 #include <string>
 using namespace std;
 
@@ -46,9 +47,9 @@ template <template<typename, typename> class RegisterMap>
 class RegisterManager : public RegistrablePoolableCyclicCallableSkeleton
 {
 protected:
-	/**
-	 * Esegue l' operazione richiesta in base al comando ricevuto.
-	 */
+    /**
+     * Esegue l' operazione richiesta in base al comando ricevuto.
+     */
     void doService()
     {
         string* requestedOperation = (string*)(inputParameters.front())->getValue();
@@ -59,16 +60,25 @@ protected:
         delete requestedOperation;
         inputParameters.clear();
     }
-	/**
-	 * Modifica la mappa in base al parametro command.
-	 */
+    /**
+     * Modifica la mappa in base al parametro command.
+     */
     virtual void editMap(string command)
     {
         RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         while(i != inputParameters.end())
         {
+            RegularExpressionChecker* serviceIDRegexChecker = SingletonObject<RegularExpressionChecker>::getInstance();
+            serviceIDRegexChecker->setRegularExpression
+            (
+                "\\w*\\((\\s(IN|INOUT)\\:\\s\\w*)*\\)\
+                \\@\
+                \\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b\
+                \\:(4915[0-1]|491[0-4]\\d|490\\d\\d|4[0-8]\\d{3}|[1-3]\\d{4}|[2-9]\\d{3}|1[1-9]\\d{2}|10[3-9]\\d|102[4-9])"
+            ); //Matcha con serviceID( IN: int ... INOUT: double)@IP:port
             string* entry = (string*)(*i)->getValue();
+            if(!serviceIDRegexChecker->checkForMatch(*entry)) return;
             string key = entry->substr(0, entry->find_first_of('@'));
             string element = entry->substr(entry->find_first_of('@')+1);
             if(command.compare("publish") == 0)
@@ -84,9 +94,9 @@ protected:
             i++;
         }
     }
-	/**
-	 * Ricerca il servizio richiesto nella mappa e lo invia come output.
-	 */
+    /**
+     * Ricerca il servizio richiesto nella mappa e lo invia come output.
+     */
     virtual void searchInMap()
     {
         cout << "Ricevuta richiesta di ricerca sulla Map: " << endl;
@@ -133,6 +143,7 @@ public:
     ~RegisterManager()
     {
         SingletonObject< RegisterMap<string, string> >::destroyInstance();  // Elimina l' istanza Singleton.
+        SingletonObject<RegularExpressionChecker>::destroyInstance();  // Elimina l' istanza Singleton.
     }
 };
 
