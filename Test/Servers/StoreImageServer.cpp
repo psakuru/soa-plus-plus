@@ -10,6 +10,7 @@
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "ImageRegisterSharedState.h"
+#include "StoreImageServer.h"
 #include <string>
 #include <list>
 #include <iostream>
