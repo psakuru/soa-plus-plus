@@ -8,7 +8,7 @@
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
-#include "GetList.h"
+#include "GetListServer.h"
 #include <string>
 #include <list>
 #include <iostream>
