@@ -68,8 +68,8 @@ void Stub::bind()
     outputParameters = outputParametersBackup; // Non è una deep copy, vengono copiati i puntatori.
 	inputParametersBackup.popPointers();
     outputParametersBackup.popPointers();
-	serviceID = serviceID.substr(0, serviceID.find_first_of('(')); //TODO Ripulisco il serviceID.
-	serviceID.append("()");
+	/*serviceID = serviceID.substr(0, serviceID.find_first_of('(')); //TODO Ripulisco il serviceID.
+	serviceID.append("()");*/
 }
 
 void Stub::staticallyBind(string serviceProviderAddressToSet)
@@ -124,6 +124,8 @@ void Stub::remoteProcedureCall()
 	protocol();
 	inputParameters.clear();
 	outputParameters.clear();
+	serviceID = serviceID.substr(0, serviceID.find_first_of('(')); //TODO Ripulisco il serviceID.
+	serviceID.append("()");
 }
 
 void Stub::addParameter(SerializableObject* parameterToAdd, Direction parameterDirection)
