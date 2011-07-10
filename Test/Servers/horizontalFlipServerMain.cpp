@@ -28,16 +28,31 @@ int main(int argc, char** argv)
 		servicePublisher.setPublishingMode(publish);
 		servicePublisher.addObjectToPublish(serviceThreadPool);
 		/* Pubblicazione */
-		servicePublisher();
+		try
+		{
+		    servicePublisher(); // Registrazione
+		}
+		catch(const exception& caughtException)
+		{
+		    cout << "Publishing problem" << endl;
+		}
 		/* Graceful shutdown sequence */
 		string shutdown;
 		while(shutdown.compare("shutdown") != 0) cin >> shutdown; // Attesa del comando
 		servicePublisher.setPublishingMode(censor); // Modalità di publishing: deregistrazione
 		servicePublisher.addObjectToPublish(serviceThreadPool);
-		servicePublisher(); // Deregistrazione
+		try
+		{
+		    servicePublisher(); // Deregistrazione
+		}
+		catch(const exception& caughtException)
+		{
+		    delete serviceThreadPool; //Graceful shutdown
+		    throw caughtException;
+		}
 		delete serviceThreadPool; //Graceful shutdown
     }
-	catch(exception& caughtException)
+	catch(const exception& caughtException)
 	{
     	cout << caughtException.what() << endl;
     	return 1;
