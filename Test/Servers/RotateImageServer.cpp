@@ -13,6 +13,7 @@
 #include "boost/thread/thread.hpp"
 #include "../CImg/CImg.h"
 #include "stdint.h"
+#include "RotateImageServer.h"
 using namespace std;
 using namespace cimg_library;
 
