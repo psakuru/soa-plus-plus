@@ -4,6 +4,7 @@
 #include "HorizontalFlipImageServer.h"
 #include <string>
 #include <boost/lexical_cast.hpp>
+#include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 using namespace std;
 
 int main(int argc, char** argv)
@@ -16,8 +17,7 @@ int main(int argc, char** argv)
 	try
 	{
 	    /* Pool di thread */
-		RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >*
-		serviceThreadPool =
+		RegistrableObject* serviceThreadPool =
 		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >
 		(boost::lexical_cast<int>(argv[1]), argv[2], boost::lexical_cast<int>(argv[3]), SOMAXCONN);
 		/* Publisher */
@@ -34,9 +34,10 @@ int main(int argc, char** argv)
 		servicePublisher(); // Deregistrazione
 		delete serviceThreadPool; //Graceful shutdown
     }
-	catch(exception& e)
+	catch(exception& caughtException)
 	{
-    	cout << e.what() << endl;
+    	cout << caughtException.what() << endl;
+    	return 1;
 	}
     return 0;
 }
