@@ -15,7 +15,7 @@
 #include <stdio.h>
 using namespace std;
 
-GetList::doService()
+void GetList::doService()
 {
 	// Acquisisco il lock sulla lista.
 	boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
