@@ -22,6 +22,7 @@
 #ifndef POOLABLECALLABLESKELETONWRAPPER_H
 #define POOLABLECALLABLESKELETONWRAPPER_H
 
+#include "../../../../../TcpIpSocket/TcpIpPassiveSocket/TcpIpPassiveSocket.h"
 #include <boost/thread/mutex.hpp>
 
 /**
