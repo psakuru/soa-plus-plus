@@ -1,27 +1,40 @@
 #include <iostream>
-#include <fstream>
 #include <exception>
 #include "RotateImageServer.h"
+#include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 using namespace std;
 
 int main(int argc, char** argv)
 {
-	if(argc < 1)
+	if(argc < 5)
 	{
-		cout << "Necessita del parametro [ip:porta] riferendosi all'indirizzo del Register.";
-		return 0;
-	}	
+		cout << "Usage: register <thread_pool_size> <listening_IP> <listening_port> <registerIP:registerPort>";
+		return 1;
+	}
     try
 	{
-		RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<RotateImage> >(3, "127.0.0.1", 3000, SOMAXCONN);
-		Publisher p(argv[1]);
-		p.setPublishingMode(publish);
-		p.addObjectToPublish(r);
-		p();
+		/* Pool di thread */
+		RegistrableObject* serviceThreadPool =
+		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<RotateImage> >
+		(boost::lexical_cast<int>(argv[1]), argv[2], boost::lexical_cast<int>(argv[3]), SOMAXCONN);
+		/* Publisher */
+		Publisher servicePublisher(argv[4]);
+		servicePublisher.setPublishingMode(publish);
+		servicePublisher.addObjectToPublish(serviceThreadPool);
+		/* Pubblicazione */
+		servicePublisher();
+		/* Graceful shutdown sequence */
+		string shutdown;
+		while(shutdown.compare("shutdown") != 0) cin >> shutdown; // Attesa del comando
+		servicePublisher.setPublishingMode(censor); // Modalità di publishing: deregistrazione
+		servicePublisher.addObjectToPublish(serviceThreadPool);
+		servicePublisher(); // Deregistrazione
+		delete serviceThreadPool; //Graceful shutdown
     }
-	catch(exception& e)
+	catch(exception& caughtException)
 	{
-    	cout << e.what() << endl;
+    	cout << caughtException.what() << endl;
+    	return 1;
 	}
     return 0;
 }

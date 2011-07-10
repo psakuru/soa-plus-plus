@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <exception>
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
@@ -13,26 +12,47 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-	if(argc < 2)
+	if(argc < 5)
 	{
-		cout << "Necessita del parametro [ip:porta] riferendosi all'indirizzo del Register.";
-		return 0;
+		cout << "Usage: register <thread_pools_size> <listening_IP> <listening_base_port> <registerIP:registerPort>";
+		return 1;
 	}
-	try 
+	try
 	{
-		RegistrableObject* r = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<StoreImage> >(3, "127.0.0.1", 5000, SOMAXCONN);
-		RegistrableObject* s = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<GetImage> >(3, "127.0.0.1", 5001, SOMAXCONN);
-		RegistrableObject* t = new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<GetList> >(3, "127.0.0.1", 5002, SOMAXCONN);
-		Publisher p(argv[1]);
-		p.setPublishingMode(publish);
-		p.addObjectToPublish(r);
-		p.addObjectToPublish(s);
-		p.addObjectToPublish(t);
-		p();
+	    /* Pools di thread. Per semplicità ascoltano su porte consecutive e hanno la stessa dimensione del pool.
+         * per il caso generale è sufficiente aggiungere più parametri in argv
+         */
+		RegistrableObject* StoreImageServer =
+		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper< StoreImage > >
+        (boost::lexical_cast<int>(argv[1]), argv[2], boost::lexical_cast<int>(argv[3]), SOMAXCONN);
+		RegistrableObject* GetImageServer =
+		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper< GetImage > >
+		(boost::lexical_cast<int>(argv[1]), argv[2], (boost::lexical_cast<int>(argv[3]))+1, SOMAXCONN);
+		RegistrableObject* GetListServer =
+		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper< GetList > >
+		(boost::lexical_cast<int>(argv[1]), argv[2], (boost::lexical_cast<int>(argv[3]))+2, SOMAXCONN);
+		/* Publisher */
+		Publisher servicePublisher(argv[4]);
+		servicePublisher.setPublishingMode(publish);
+		servicePublisher.addObjectToPublish(StoreImageServer);
+		servicePublisher.addObjectToPublish(GetImageServer);
+		servicePublisher.addObjectToPublish(GetListServer);
+		/* Pubblicazione */
+		servicePublisher();
+		/* Graceful shutdown sequence */
+		string shutdown;
+		while(shutdown.compare("shutdown") != 0) cin >> shutdown; // Attesa del comando
+		servicePublisher.setPublishingMode(censor); // Modalità di publishing: deregistrazione
+		servicePublisher.addObjectToPublish(StoreImageServer);
+		servicePublisher.addObjectToPublish(GetImageServer);
+		servicePublisher.addObjectToPublish(GetListServer);
+		servicePublisher(); // Deregistrazione
+		delete serviceThreadPool; //Graceful shutdown
     }
-	catch(exception& e)
+	catch(exception& caughtException)
 	{
-    	cout << e.what() << endl;
+    	cout << caughtException.what() << endl;
+    	return 1;
 	}
     return 0;
 }
