@@ -8,6 +8,7 @@
 #include "StoreImageServer.h"
 #include "GetImageServer.h"
 #include "GetListServer.h"
+#include <boost/lexical_cast.hpp>
 using namespace std;
 
 int main(int argc, char** argv)
