@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 		}
 		catch(const exception& caughtException)
 		{
-		    cout << "Publishing problem" << endl;
+		    cout << "Publishing problem" << endl; //Il servizio é stato attivato ma non è pubblicato
 		}
 		/* Graceful shutdown sequence */
 		string shutdown;
