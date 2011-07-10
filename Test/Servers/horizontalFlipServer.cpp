@@ -3,30 +3,35 @@
 #include <exception>
 #include "HorizontalFlipImageServer.h"
 #include <string>
+#include <boost/lexical_cast.hpp>
 using namespace std;
 
 int main(int argc, char** argv)
 {
-	if(argc < 2)
+	if(argc < 5)
 	{
-		cout << "Necessita del parametro [ip:porta] riferendosi all'indirizzo del Register.";
+		cout << "Usage: register <thread_pool_size> <listening_IP> <listening_port> <registerIP:registerPort>";
 		return 1;
 	}
 	try
 	{
+	    /* Pool di thread */
 		RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >*
 		serviceThreadPool =
 		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >
-		(3, "127.0.0.1", 3001, SOMAXCONN);
-		Publisher servicePublisher(argv[1]);
+		(boost::lexical_cast<int>(argv[1]), argv[2], boost::lexical_cast<int>(argv[3]), SOMAXCONN);
+		/* Publisher */
+		Publisher servicePublisher(argv[4]);
 		servicePublisher.setPublishingMode(publish);
 		servicePublisher.addObjectToPublish(serviceThreadPool);
+		/* Pubblicazione */
 		servicePublisher();
+		/* Graceful shutdown sequence */
 		string shutdown;
-		while(shutdown.compare("shutdown") != 0) cin >> shutdown;
-		servicePublisher.setPublishingMode(censor);
+		while(shutdown.compare("shutdown") != 0) cin >> shutdown; // Attesa del comando
+		servicePublisher.setPublishingMode(censor); // Modalità di publishing: deregistrazione
 		servicePublisher.addObjectToPublish(serviceThreadPool);
-		servicePublisher();
+		servicePublisher(); // Deregistrazione
 		delete serviceThreadPool; //Graceful shutdown
     }
 	catch(exception& e)
