@@ -65,8 +65,8 @@ int main()
     GenericSignalValue b;
     ParticularServiceStreamStub p;
     p(43,2.4,"ciao",fileBytes, b);
-//    p(43,2.4,"ciao",fileBytes, b);
-  //  p(43,2.4,"ciao",fileBytes, b);
+    p(43,2.4,"ciao",fileBytes, b);
+    p(43,2.4,"ciao",fileBytes, b);
     ofstream outfile ("ricevutoDalServer.jpg",ofstream::binary | ofstream::out);
     outfile.write((char*)fileBytes.getPointer(),fileBytes.getLength());
     outfile.close();
