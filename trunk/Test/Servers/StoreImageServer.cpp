@@ -28,7 +28,7 @@ void StoreImage::doService()
 	delete entry;
 	i++;
 	ByteArray* receivedImage = (ByteArray*)((*i)->getValue());
-	ofstream outfile(name.c_str(), ofstream::binary | ofstream::out);
+	ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
 	outfile.write((char*) (receivedImage->getPointer()), receivedImage->getLength());
 	outfile.close();
 	delete receivedImage;
