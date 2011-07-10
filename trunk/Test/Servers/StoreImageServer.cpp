@@ -11,6 +11,7 @@
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "ImageRegisterSharedState.h"
 #include "StoreImageServer.h"
+#include <fstream>
 #include <string>
 #include <list>
 #include <iostream>
