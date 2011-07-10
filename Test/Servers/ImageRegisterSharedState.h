@@ -25,7 +25,7 @@
 #include <string>
 #include <list>
 #include <stdio.h>
-#include <boost/thread/mutex.hpp>
+#include <boost/thread/shared_mutex.hpp>
 using namespace std;
 
 class ImageRegisterSharedState

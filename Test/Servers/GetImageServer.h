@@ -19,24 +19,10 @@
  *
  */
 
-#include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
-#include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
-#include "../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
+#ifndef GET_IMAGE_SERVER_H
+#define GET_IMAGE_SERVER_H
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
-#include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
-#include "../../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
-#include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
-#include "../../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
-#include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
-#include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
-#include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
-#include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/GenericSignalSerializationStrategy/GenericSignalSerializationStrategy.h"
-#include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/ImageNotFoundSerializationStrategy/ImageNotFoundSerializationStrategy.h"
 #include "ImageRegisterSharedState.h"
-#include <string>
-#include <list>
-#include <iostream>
-#include <stdio.h>
 using namespace std;
 
 class GetImage : public RegistrablePoolableCyclicCallableSkeleton
@@ -44,52 +30,10 @@ class GetImage : public RegistrablePoolableCyclicCallableSkeleton
 private:
     ImageRegisterSharedState* sharedState;
 protected:
-    void doService()
-    {
-		// Acquisisco il lock sulla lista.
-        boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
-		// Recupero i parametri di input.
-		SerializableObjectList::iterator i = inputParameters.begin();
-		string* entry = (string*)(*i)->getValue();
-		string name = *entry;
-		delete entry;
-		if(sharedState->findString(name))
-		{
-		char* memblock;
-		uint64_t size = 0;
-		ifstream file(name.c_str(), ios::in | ios::binary | ios::ate);
-	
-			size = (int) file.tellg();
-			memblock = (char*) malloc(size);
-			file.seekg(0, ios::beg);
-			file.read(memblock, size);
-			file.close();
-		// Inserisco l'immagine nei parametri di output.
-		ByteArray* fileBytes = new ByteArray((void*)memblock, size);
-		free(memblock);
-		remove(name.c_str());
-		RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
-		outputParameters.push_back(objectToBeSent);
-		GenericSignalWrapper* signal = new GenericSignalWrapper();
-		outputParameters.push_back(signal);
-		}
-		else 
-		{
-			// Alla deserializzazione del segnale verrà richiamato il suo handler che gestirà
-			// la situazione di errore (immagine non presente sul server).
-			RawByteBuffer* objectToBeSent = new RawByteBuffer();
-			outputParameters.push_back(objectToBeSent);
-			ImageNotFound* signal = new ImageNotFound();
-			outputParameters.push_back(signal);
-		}
-
-    }
+    void doService();
 public:
-    GetImage() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
-    {
-        sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
-        addParameter(new String, IN);
-        addParameter(new RawByteBuffer, INOUT);
-		addParameter(new GenericSignalWrapper, INOUT);
-    }
+    GetImage();
 };
+
+#endif //GET_IMAGE_SERVER_H
+

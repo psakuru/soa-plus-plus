@@ -6,7 +6,6 @@ ImageNotFoundSerializationStrategy::ImageNotFoundSerializationStrategy(ImageNotF
 
 void ImageNotFoundSerializationStrategy::signalHandler()
 {
-    
     throw ImageNotFoundException();
 }
 
