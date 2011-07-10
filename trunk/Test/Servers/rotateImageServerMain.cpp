@@ -2,6 +2,10 @@
 #include <exception>
 #include "RotateImageServer.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 using namespace std;
 
 int main(int argc, char** argv)
