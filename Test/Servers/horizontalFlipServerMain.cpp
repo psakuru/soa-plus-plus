@@ -5,6 +5,8 @@
 #include <string>
 #include <boost/lexical_cast.hpp>
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/SkeletonThreadPool/RegistrableSkeletonThreadPool/RegistrableSkeletonThreadPool.h"
+#include "../../ServiceOrientedArchitecture/Service/Skeleton/Utilities/PoolableCallableSkeletonWrappers/RegistrablePoolableCallableSkeletonWrapper/RegistrablePoolableCallableSkeletonWrapper.h"
 using namespace std;
 
 int main(int argc, char** argv)

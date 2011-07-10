@@ -12,6 +12,7 @@
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "../CImg/CImg.h"
+#include "HorizontalFlipImageServer.h"
 using namespace std;
 using namespace cimg_library;
 
