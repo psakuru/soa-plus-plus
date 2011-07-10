@@ -48,7 +48,9 @@ int main(int argc, char** argv)
 		servicePublisher.addObjectToPublish(GetImageServer);
 		servicePublisher.addObjectToPublish(GetListServer);
 		servicePublisher(); // Deregistrazione
-		delete serviceThreadPool; //Graceful shutdown
+		delete StoreImageServer; //Graceful shutdown
+		delete GetImageServer;
+		delete GetListServer;
     }
 	catch(exception& caughtException)
 	{
