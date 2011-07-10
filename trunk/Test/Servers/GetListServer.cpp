@@ -14,7 +14,7 @@
 #include <stdio.h>
 using namespace std;
 
-void GetList::doService()
+GetList::doService()
 {
 	// Acquisisco il lock sulla lista.
 	boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
@@ -27,6 +27,7 @@ void GetList::doService()
 	}
 	outputParameters.push_back(new String(new string(stringToReturn), false));
 }
+
 GetList::GetList() : Skeleton("GetList"), RegistrablePoolableCyclicCallableSkeleton("GetList")
 {
 	// Stato condiviso fra i thread del pool. E' un'istanza singleton.
