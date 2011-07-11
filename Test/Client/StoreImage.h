@@ -20,14 +20,19 @@
  */
 
 #include "../../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
+#include <string>
 
-class StoreImage: public StreamStub {
+class StoreImage: public StreamStub
+{
 public:
-	StoreImage() : StreamStub("StoreImage", "127.0.0.1:4000") {}
-	void operator()(string name, ByteArray& img) 
-	{
-		(*this) << name; (*this) << img; 
-		bind();
-		protocol();
-	}
+    StoreImage() : StreamStub("StoreImage", "127.0.0.1:4000") {}
+    StoreImage(string serviceRegisterToSet)
+        : StreamStub("StoreImage", serviceRegisterToSet) {}
+    void operator()(string name, ByteArray& img)
+    {
+        (*this) << name;
+        (*this) << img;
+        bind();
+        protocol();
+    }
 };

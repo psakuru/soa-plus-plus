@@ -20,14 +20,20 @@
  */
 
 #include "../../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
+#include <string>
+using namespace std;
 
-class GetList: public StreamStub {
+class GetList: public StreamStub
+{
 public:
-	GetList() : StreamStub("GetList", "127.0.0.1:4000") {}
-	void operator()(string& list) 
-	{
-		(*this) >> list; 
-		bind();
-		protocol();
-	}
+    GetList() : StreamStub("GetList", "127.0.0.1:4000") {}
+    GetList(string serviceRegistryToSet)
+        : StreamStub("GetList", serviceRegistryToSet) {}
+    void operator()(string& list)
+    {
+        (*this) >> list;
+        bind();
+        protocol();
+    }
 };
+

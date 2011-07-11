@@ -21,13 +21,18 @@
 
 #include "../../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
 
-class RotateImage: public StreamStub {
+class RotateImage: public StreamStub
+{
 public:
-	RotateImage() : StreamStub("RotateImage", "127.0.0.1:4000") {}
-	void operator()(int direction, ByteArray img, ByteArray& img2)
-	{
-		(*this) << direction; (*this) << img; (*this) >> img2; 
-		bind(); 
-		protocol();
-	}
+    RotateImage() : StreamStub("RotateImage", "127.0.0.1:4000") {}
+    RotateImage(string serviceRegistryToSet)
+        : StreamStub("RotateImage", serviceRegistryToSet) {}
+    void operator()(int direction, ByteArray img, ByteArray& img2)
+    {
+        (*this) << direction;
+        (*this) << img;
+        (*this) >> img2;
+        bind();
+        protocol();
+    }
 };
