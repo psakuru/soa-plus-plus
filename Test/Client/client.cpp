@@ -27,7 +27,15 @@ int main(int argc, char** argv)
 			cout << "Usage: client <filename.jpg> [registerIP:registerPort]";
 			return 0;
 		}
-		if(argc == 3) serviceRegistryAddressToSet = argv[2];
+		if(argc == 3)
+		{
+		    serviceRegistryAddressToSet = argv[2];
+		}
+		else
+		{
+			cout << "indirizzo di default"<< endl;
+		    serviceRegistryAddressToSet = "127.0.0.1:4000";
+		}
 		char * memblock;
 		uint64_t size = 0;
 		ifstream file (argv[1], ios::in|ios::binary|ios::ate);
@@ -65,7 +73,7 @@ int main(int argc, char** argv)
 		srand( time(0) );
 		int random = rand() % entries.size();
 		string nameOfFileToReceive = entries[random];
-		cout << "Richiedo un'immagine a caso fra quelle presenti sul server." << endl;
+		cout << "Richiedo un'immagine a caso fra quelle presenti sul server: " << nameOfFileToReceive << endl;
 		GetImage s(serviceRegistryAddressToSet);
 		ByteArray fileRicevuto;
 		s(nameOfFileToReceive, fileRicevuto);
