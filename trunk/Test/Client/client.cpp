@@ -40,6 +40,7 @@ int main(int argc, char** argv)
 		else 
 		{
 			cout << "Unable to open file.";
+			return;
 		}
 		ByteArray fileBytes((void*)memblock, size);
 		delete[] memblock;
