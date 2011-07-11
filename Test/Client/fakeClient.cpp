@@ -4,6 +4,11 @@
 #include <string>
 using namespace std;
 
+/* Lo scopo del test è quello di mostrare le possibilità
+ * di invio di segnali tra servizi.
+ * Un segnale è un oggetto serializzabile la cui deserializzazione
+ * ha come effetto l' invocazione di un signal handler.
+ */
 int main(int argc, char** argv)
 {
     try
@@ -19,7 +24,7 @@ int main(int argc, char** argv)
         }
         GetImage imageGetter(serviceRegistryAddressToSet);
         ByteArray receivedFile;
-        s("inesistenteSulServer.jpg", receivedFile);
+        imageGetter("inesistenteSulServer.jpg", receivedFile);
     }
     catch(const exception& e)
     {
