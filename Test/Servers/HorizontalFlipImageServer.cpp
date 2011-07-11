@@ -11,6 +11,7 @@
 #include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../Utilities/ColorPrint/ColorPrint.h"
 #include "../CImg/CImg.h"
 #include "HorizontalFlipImageServer.h"
 using namespace std;
@@ -18,6 +19,7 @@ using namespace cimg_library;
 
 void HorizontalFlipImage::doService()
 {
+    cout << BLUE_TXT << "Horizontal flip request received" << DEFAULT << endl;
 	// Recupero i parametri di input.
 	SerializableObjectList::iterator i = inputParameters.begin();
 	SerializableObject* r = (*i);
@@ -51,6 +53,7 @@ void HorizontalFlipImage::doService()
 	remove(name.c_str());
 	RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 	outputParameters.push_back(objectToBeSent);
+	cout << BLUE_TXT << "Image flipped" << DEFAULT << endl;
 }
 HorizontalFlipImage::HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {

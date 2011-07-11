@@ -10,6 +10,7 @@
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../Utilities/ColorPrint/ColorPrint.h"
 #include "boost/thread/thread.hpp"
 #include "../CImg/CImg.h"
 #include "stdint.h"
@@ -19,10 +20,12 @@ using namespace cimg_library;
 
 void RotateImage::doService()
 {
+    cout << GREEN_TXT << "Richiesta di rotazione ricevuta" << DEFAULT << endl;
 	// Recupero i parametri di input.
 	SerializableObjectList::iterator i = inputParameters.begin();
 	int32_t* directionPointer = (int32_t*)((*i)->getValue());
 	int32_t direction = *directionPointer;
+	cout << RED_TXT << "Rotazione: " << direction << " gradi" << DEFAULT << endl;
 	delete directionPointer;
 	i++;
 	ByteArray* pb = (ByteArray*)((*i)->getValue());
@@ -56,6 +59,7 @@ void RotateImage::doService()
 	remove(name.c_str());
 	RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
 	outputParameters.push_back(objectToBeSent);
+	cout << GREEN_TXT << "Immagine ruotata" << DEFAULT << endl;
 }
 RotateImage::RotateImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
 {
