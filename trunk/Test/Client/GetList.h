@@ -31,9 +31,7 @@ public:
         : StreamStub("GetList", serviceRegistryToSet) {}
     void operator()(string& list)
     {
-        (*this) >> list;
-        bind();
-        protocol();
+        (*this) >> list; remoteProcedureCall();
     }
 };
 

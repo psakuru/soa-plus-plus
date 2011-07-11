@@ -29,9 +29,6 @@ public:
         : StreamStub("HorizontalFlipImage", serviceRegistryToSet) {}
     void operator()(ByteArray img, ByteArray& img2)
     {
-        (*this) << img;
-        (*this) >> img2;
-        bind();
-        protocol();
+        (*this) << img; (*this) >> img2; remoteProcedureCall();
     }
 };

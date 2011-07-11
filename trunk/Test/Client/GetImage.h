@@ -41,8 +41,6 @@ public:
 	void operator()(string name, ByteArray& img)
 	{
 		GenericSignalValue signal; // Il servizio attende l' arrivo di un segnale in risposta dal server
-		(*this) << name; (*this) >> img; (*this) >> signal;
-		bind();
-		protocol();
+		(*this) << name; (*this) >> img; (*this) >> signal; remoteProcedureCall();
 	}
 };

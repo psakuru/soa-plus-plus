@@ -30,9 +30,6 @@ public:
         : StreamStub("StoreImage", serviceRegisterToSet) {}
     void operator()(string name, ByteArray& img)
     {
-        (*this) << name;
-        (*this) << img;
-        bind();
-        protocol();
+        (*this) << name; (*this) << img; remoteProcedureCall();
     }
 };
