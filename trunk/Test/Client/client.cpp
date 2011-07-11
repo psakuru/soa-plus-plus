@@ -40,7 +40,7 @@ int main(int argc, char** argv)
 		else 
 		{
 			cout << "Unable to open file.";
-			return;
+			return 1;
 		}
 		ByteArray fileBytes((void*)memblock, size);
 		delete[] memblock;
@@ -101,7 +101,7 @@ int main(int argc, char** argv)
     }
     catch(const exception& e)
 	{
-    	cout e.what() << endl;
+    	cout <<  e.what() << endl;
 	}
 	return 0;
 }
