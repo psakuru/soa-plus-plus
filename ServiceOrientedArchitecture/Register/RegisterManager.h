@@ -28,6 +28,7 @@
 #include "../Service/Skeleton/Exceptions/DOSAttackInProgress.h"
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../Utilities/RegularExpressionChecker/RegularExpressionChecker.h"
+#include "../../Utilities/ColorPrint/ColorPrint.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -94,7 +95,7 @@ protected:
      */
     virtual void searchInMap()
     {
-        cout << "Ricevuta una richiesta di ricerca: " << endl;
+        cout << GREEN_TXT << "Ricevuta una richiesta di ricerca: " << DEFAULT << endl;
         RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         string key = *((string*)(*i)->getValue());

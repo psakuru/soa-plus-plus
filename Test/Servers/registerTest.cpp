@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 {
     if(argc < 4)
 	{
-		cout << "Usage: register <thread_pool_size> <listening_IP> <listening_port>";
+		cout << "Usage: register <thread_pool_size> <listening_IP> <listening_port>" << endl;
 		return 1;
 	}
 	try
