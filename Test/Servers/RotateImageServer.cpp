@@ -11,6 +11,7 @@
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "../../Utilities/ColorPrint/ColorPrint.h"
+#include "Utilities/UtilityFunctions.h"
 #include "boost/thread/thread.hpp"
 #include "../CImg/CImg.h"
 #include "stdint.h"
@@ -35,9 +36,7 @@ void RotateImage::doService()
 	threadIDToStringConverter << boost::this_thread::get_id();
 	threadIDToStringConverter >> name;
 	name.append(".jpg");
-	ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
-	outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
-	outfile.close();
+	storeImage(name,pb);
 	delete pb;
 	// Ruoto.
 	CImg<unsigned char> image;
@@ -46,19 +45,10 @@ void RotateImage::doService()
 	image.rotate((float)direction,0,1);
 	image.save_jpeg(name.c_str(),90U);
 	// Inserisco l'immagine ruotata nei parametri di output in modo che sia inviata come risposta.
-	char * memblock;
-	uint64_t size = 0;
-	ifstream file (name.c_str(), ios::in|ios::binary|ios::ate);
-	size = (int)file.tellg();
-	memblock = (char*)malloc(size);
-	file.seekg (0, ios::beg);
-	file.read (memblock, size);
-	file.close();
-	ByteArray* fileBytes = new ByteArray((void*)memblock, size);
-	free(memblock);
-	remove(name.c_str());
-	RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
+	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
+	// Rimuovo l'immagine temporaneamente salvata.
+	remove(name.c_str());
 	cout << GREEN_TXT << "Immagine ruotata" << DEFAULT << endl;
 }
 RotateImage::RotateImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")

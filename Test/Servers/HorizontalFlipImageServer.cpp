@@ -12,6 +12,7 @@
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "../../Utilities/ColorPrint/ColorPrint.h"
+#include "Utilities/UtilityFunctions.h"
 #include "../CImg/CImg.h"
 #include "HorizontalFlipImageServer.h"
 using namespace std;
@@ -30,9 +31,7 @@ void HorizontalFlipImage::doService()
 	threadIDToStringConverter << boost::this_thread::get_id();
 	threadIDToStringConverter >> name;
 	name.append(".jpg");
-	ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
-	outfile.write( (char*)(bufferPointer->getPointer() ) , bufferPointer->getLength() );
-	outfile.close();
+	storeImage(name,bufferPointer);
 	delete bufferPointer;
 	// Eseguo il flip.
 	CImg<unsigned char> image;
@@ -40,19 +39,10 @@ void HorizontalFlipImage::doService()
 	image.mirror('x');
 	image.save_jpeg(name.c_str(),90U);
 	// Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
-	char* memoryBlock;
-	uint64_t size = 0;
-	ifstream file (name.c_str(), ios::in|ios::binary|ios::ate);
-	size = (int)file.tellg();
-	memoryBlock = (char*)malloc(size);
-	file.seekg (0, ios::beg);
-	file.read (memoryBlock, size);
-	file.close();
-	ByteArray* fileBytes = new ByteArray((void*)memoryBlock, size);
-	free(memoryBlock);
-	remove(name.c_str());
-	RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
+	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
+	// Rimuovo l'immagine temporaneamente salvata.
+	remove(name.c_str());
 	cout << BLUE_TXT << "Image flipped" << DEFAULT << endl;
 }
 HorizontalFlipImage::HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")

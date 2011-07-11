@@ -7,6 +7,7 @@
 #include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
+#include "Utilities/UtilityFunctions.h"
 #include <boost/thread/shared_mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include <string>
@@ -28,16 +29,8 @@ void GetImage::doService()
     if(sharedState->findString(name))
     {
         cout << "Request fo file: " << name.c_str() << endl;
-        char* memoryBlock;
-        uint64_t size = 0;
-        ifstream file(name.c_str(), ios::in | ios::binary | ios::ate);
-        size = (int)file.tellg();
-        memoryBlock = (char*)malloc(size);
-        file.seekg(0, ios::beg); file.read(memoryBlock, size); file.close();
         // Inserisco l'immagine nei parametri di output.
-        ByteArray* fileBytes = new ByteArray((void*)memoryBlock, size);
-        free(memoryBlock);
-        RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
+        RawByteBuffer* objectToBeSent = loadImage(name);
         outputParameters.push_back(objectToBeSent);
         GenericSignalWrapper* signal = new GenericSignalWrapper();
         outputParameters.push_back(signal);
