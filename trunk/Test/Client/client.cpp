@@ -72,6 +72,7 @@ int main(int argc, char** argv)
 		outfile.close();
 		cout << "Immagine ricevuta e salvata: " << nameOfFileToReceive << endl;
 		//Richiedo a caso il servizio di flip o quello di rotate sull'immagine appena ricevuta.
+		srand( time(0) );
 		random = rand() % 2;
 		ByteArray fileDaRicevere;
 		if (random == 0)
@@ -88,6 +89,7 @@ int main(int argc, char** argv)
 			cout << "Richiedo il servizio di Rotate sull'immagine: " << nameOfFileToReceive;
 			RotateImage ri;
 			// L'angolo di rotazione viene scelto a caso.
+			srand( time(0) );
 			random = rand() % 360;
 			cout << " di un angolo di " << random << " gradi." << endl;
 			ri(random,fileRicevuto,fileDaRicevere);
