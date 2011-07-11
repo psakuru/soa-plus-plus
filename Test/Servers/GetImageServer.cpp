@@ -53,10 +53,15 @@ void GetImage::doService()
     }
 
 }
+
 GetImage::GetImage() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
 {
     sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
+	// Si aggiunge alla gerarchia dei builders il builder necessario alla costruzione del particolare segnale richiesto.
+	buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_IMAGENOTFOUND, new TerminalSerializableObjectBuilder<ImageNotFound>());
     addParameter(new String, IN);
     addParameter(new RawByteBuffer, INOUT);
     addParameter(new GenericSignalWrapper, INOUT);
 }
+
+
