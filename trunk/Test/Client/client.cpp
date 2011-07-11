@@ -21,11 +21,13 @@ int main(int argc, char** argv)
 {
 	try
 	{
-		if(argc < 1)
+	    string serviceRegistryAddressToSet;
+		if(argc < 2)
 		{
-			cout << "Usage: client <filename.jpg>";
+			cout << "Usage: client <filename.jpg> [registerIP:registerPort]";
 			return 0;
 		}
+		if(argc == 3) serviceRegistryAddressToSet = argv[2];
 		char * memblock;
 		uint64_t size = 0;
 		ifstream file (argv[1], ios::in|ios::binary|ios::ate);
@@ -37,7 +39,7 @@ int main(int argc, char** argv)
 			file.read (memblock, size);
 			file.close();
 		}
-		else 
+		else
 		{
 			cout << "Unable to open file.";
 			return 1;
@@ -45,10 +47,10 @@ int main(int argc, char** argv)
 		ByteArray fileBytes((void*)memblock, size);
 		delete[] memblock;
 		cout << "Richiedo il servizio StoreImage.";
-		StoreImage p;
+		StoreImage p(serviceRegistryAddressToSet);
 		p(argv[1], fileBytes);
 		cout << "Richiedo la lista di immagini registrate.";
-		GetList z;
+		GetList z(serviceRegistryAddressToSet);
 		string lista;
 		z(lista);
 		boost::char_separator<char> separator(";");
@@ -64,7 +66,7 @@ int main(int argc, char** argv)
 		int random = rand() % entries.size();
 		string nameOfFileToReceive = entries[random];
 		cout << "Richiedo un'immagine a caso fra quelle presenti sul server." << endl;
-		GetImage s;
+		GetImage s(serviceRegistryAddressToSet);
 		ByteArray fileRicevuto;
 		s(nameOfFileToReceive, fileRicevuto);
 		ofstream outfile (nameOfFileToReceive.c_str(),ofstream::binary | ofstream::out);
@@ -78,16 +80,16 @@ int main(int argc, char** argv)
 		if (random == 0)
 		{
 			cout << "Richiedo il servizio di HorizontalFlip sull'immagine: " << nameOfFileToReceive << endl;
-			HorizontalFlipImage hfi;
+			HorizontalFlipImage hfi(serviceRegistryAddressToSet);
 			hfi(fileRicevuto,fileDaRicevere);
 			ofstream outfile (nameOfFileToReceive.c_str(),ofstream::binary | ofstream::out);
 			outfile.write((char*)fileDaRicevere.getPointer(),fileDaRicevere.getLength());
-			outfile.close();			
+			outfile.close();
 		}
 		else
 		{
 			cout << "Richiedo il servizio di Rotate sull'immagine: " << nameOfFileToReceive;
-			RotateImage ri;
+			RotateImage ri(serviceRegistryAddressToSet);
 			// L'angolo di rotazione viene scelto a caso.
 			srand( time(0) );
 			random = rand() % 360;
@@ -95,10 +97,10 @@ int main(int argc, char** argv)
 			ri(random,fileRicevuto,fileDaRicevere);
 			ofstream outfile (nameOfFileToReceive.c_str(),ofstream::binary | ofstream::out);
 			outfile.write((char*)fileDaRicevere.getPointer(),fileDaRicevere.getLength());
-			outfile.close();			
+			outfile.close();
 		}
 		cout << "Richiedo il servizio di StoreImage sull'immagine modificata: " << nameOfFileToReceive << endl;
-		StoreImage si;
+		StoreImage si(serviceRegistryAddressToSet);
 		si(nameOfFileToReceive,fileDaRicevere);
     }
     catch(const exception& e)
