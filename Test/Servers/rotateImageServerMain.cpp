@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 {
 	if(argc < 5)
 	{
-		cout << "Usage: register <thread_pool_size> <listening_IP> <listening_port> <registerIP:registerPort>" << endl;
+		cout << "Usage: rotateImageServer <thread_pool_size> <listening_IP> <listening_port> <registerIP:registerPort>" << endl;
 		return 1;
 	}
     try
