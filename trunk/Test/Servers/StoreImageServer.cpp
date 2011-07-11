@@ -10,6 +10,7 @@
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../Utilities/RegularExpressionChecker/RegularExpressionChecker.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "Utilities/UtilityFunctions.h"
 #include "ImageRegisterSharedState.h"
 #include "StoreImageServer.h"
 #include <fstream>
@@ -33,9 +34,7 @@ void StoreImage::doService()
 	{
 		i++;
 		ByteArray* receivedImage = (ByteArray*)((*i)->getValue());
-		ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
-		outfile.write((char*) (receivedImage->getPointer()), receivedImage->getLength());
-		outfile.close();
+		storeImage(receivedImage);
 		delete receivedImage;
 		// Inserisco il nome dell'immagine nella lista solamente se non è già presente.
 		if(!sharedState->findString(name))
