@@ -38,6 +38,11 @@ cecho "\t$> cd soa-plus-plus/Test/Client" $blue
 cd soa-plus-plus/Test/Client
 cecho "\t$> ./makeClient.sh" $blue
 ./makeClient.sh
+cp client client0/
+cp client client1/
+cp client client2/
+cp client client3/
+cp client client4/
 cecho "\t$> cd ../Servers" $blue
 cd ../Servers
 cecho "\t$> ./makeRegister.sh" $blue
