@@ -28,7 +28,7 @@ void StoreImage::doService()
 	string* entry = (string*)((*i)->getValue());
 	string name = *entry;
 	delete entry;
-	RegularExpressionChecker checker = RegularExpressionChecker("\w*\.jpg");
+	RegularExpressionChecker checker = RegularExpressionChecker("\\w*\\.jpg");
 	if(checker.checkForMatch(name))
 	{
 		i++;
