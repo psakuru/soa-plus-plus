@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	{
 		if(argc < 1)
 		{
-			cout << "Necessita del parametro [nome_file_da_inviare].jpg";
+			cout << "Usage: client <filename.jpg>";
 			return 0;
 		}
 		char * memblock;
