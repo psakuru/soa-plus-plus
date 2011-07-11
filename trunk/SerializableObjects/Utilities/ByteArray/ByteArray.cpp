@@ -45,7 +45,7 @@ byte& ByteArray::operator[](const uint64_t index)
 
 void ByteArray::operator=(const ByteArray& byteArrayToCopy)
 {
-	erase();                                                       
+	erase();
     length = byteArrayToCopy.length;
     byteArray = (byte*)malloc(length*sizeof(byte));
     memcpy(byteArray, byteArrayToCopy.byteArray, length);}
@@ -68,9 +68,9 @@ void ByteArray::append(byte* bufferToUse, uint64_t startingPosition, uint64_t fr
     }
 	else
 	{
-		throw exception(); //TODO ECCEZIONE GIUSTA
+		throw exception();
 	}
-    
+
 }
 
 uint64_t ByteArray::getLength()

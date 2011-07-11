@@ -4,10 +4,10 @@
 #include "../Exceptions/ParameterDirectionException.h"
 using namespace std;
 
-Skeleton::Skeleton() : listeningSocket(NULL), sharedListeningSocket(false) {} //TODO TRUE
+Skeleton::Skeleton() : listeningSocket(NULL), sharedListeningSocket(false) {}
 
 Skeleton::Skeleton(string serviceIDToSet)
-    : Service(serviceIDToSet), listeningSocket(NULL), sharedListeningSocket(false) {} //TODO TRUE
+    : Service(serviceIDToSet), listeningSocket(NULL), sharedListeningSocket(false) {}
 
 Skeleton::Skeleton(string serviceIDToSet, TcpIpPassiveSocket* listeningSocketToShare)
     : Service(serviceIDToSet), listeningSocket(listeningSocketToShare), sharedListeningSocket(true) {}
@@ -31,7 +31,7 @@ Skeleton::~Skeleton()
 
 void Skeleton::shareListeningSocket(TcpIpPassiveSocket* listeningSocketToShare)
 {
-	if(!sharedListeningSocket) //TODO attenzione cehe abbiamo aggiunto sta roba. cosimo non è sicuro che funzioni.
+	if(!sharedListeningSocket)
     {
         delete listeningSocket;
     }

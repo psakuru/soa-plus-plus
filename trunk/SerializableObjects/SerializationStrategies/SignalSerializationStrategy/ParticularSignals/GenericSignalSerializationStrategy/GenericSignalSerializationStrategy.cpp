@@ -7,12 +7,7 @@ GenericSignalSerializationStrategy::GenericSignalSerializationStrategy() {}
 
 GenericSignalSerializationStrategy::GenericSignalSerializationStrategy(GenericSignalValue& userReference) {} // Per uniformità con gli altri SerializableObject.
 
-void GenericSignalSerializationStrategy::signalHandler()
-{
-    /* Your signal handler here */
-    cout << "GenericSignal handler" << endl;
-    //throw exception(); //TODO fare una eccezione a modo!
-}
+void GenericSignalSerializationStrategy::signalHandler() {}
 
 Type GenericSignalSerializationStrategy::getSignalType() const
 {

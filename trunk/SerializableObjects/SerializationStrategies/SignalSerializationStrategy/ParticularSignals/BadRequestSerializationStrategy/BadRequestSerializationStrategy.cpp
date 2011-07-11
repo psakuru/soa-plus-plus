@@ -9,9 +9,7 @@ BadRequestSerializationStrategy::BadRequestSerializationStrategy(BadRequestSigna
 
 void BadRequestSerializationStrategy::signalHandler()
 {
-    /* Your signal handler here */
-    cout << "Andromalius" << endl;
-    //throw exception(); //TODO fare una eccezione a modo!
+    /* Corpo del signal handler */
 }
 
 Type BadRequestSerializationStrategy::getSignalType() const
