@@ -20,7 +20,7 @@
  */
 
 #include "../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
-#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/Utilities/GenericSignalValue.h"
+#include "../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/Utilities/GenericSignalValue/GenericSignalValue.h"
 
 class GetImage: public StreamStub {
 public:
