@@ -15,7 +15,7 @@ int main(int argc, char** argv)
 {
 	if(argc < 5)
 	{
-		cout << "Usage: register <thread_pools_size> <listening_IP> <listening_base_port> <registerIP:registerPort>";
+		cout << "Usage: register <thread_pools_size> <listening_IP> <listening_base_port> <registerIP:registerPort>" << endl;
 		return 1;
 	}
 	try
