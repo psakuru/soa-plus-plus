@@ -122,7 +122,7 @@ void Stub::remoteProcedureCall()
 	protocol();
 	inputParameters.clear();
 	outputParameters.clear();
-	serviceID = serviceID.substr(0, serviceID.find_first_of('(')); //TODO Ripulisco il serviceID.
+	serviceID = serviceID.substr(0, serviceID.find_first_of('('));
 	serviceID.append("()");
 }
 
