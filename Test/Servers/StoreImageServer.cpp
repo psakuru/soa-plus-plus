@@ -8,6 +8,7 @@
 #include "../../SerializableObjects/SerializationStrategies/IntegerSerializationStrategy/IntegerSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
+#include "../../Utilities/RegularExpressionChecker/RegularExpressionChecker.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
 #include "ImageRegisterSharedState.h"
 #include "StoreImageServer.h"
@@ -27,16 +28,20 @@ void StoreImage::doService()
 	string* entry = (string*)((*i)->getValue());
 	string name = *entry;
 	delete entry;
-	i++;
-	ByteArray* receivedImage = (ByteArray*)((*i)->getValue());
-	ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
-	outfile.write((char*) (receivedImage->getPointer()), receivedImage->getLength());
-	outfile.close();
-	delete receivedImage;
-	// Inserisco il nome dell'immagine nella lista solamente se non è già presente.
-	if(!sharedState->findString(name))
+	RegularExpressionChecker checker = RegularExpressionChecker("\w*\.jpg");
+	if(checker.checkForMatch(name))
 	{
-		sharedState->imageList.push_front(name);
+		i++;
+		ByteArray* receivedImage = (ByteArray*)((*i)->getValue());
+		ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
+		outfile.write((char*) (receivedImage->getPointer()), receivedImage->getLength());
+		outfile.close();
+		delete receivedImage;
+		// Inserisco il nome dell'immagine nella lista solamente se non è già presente.
+		if(!sharedState->findString(name))
+		{
+			sharedState->imageList.push_front(name);
+		}
 	}
 }
 StoreImage::StoreImage() : Skeleton("StoreImage"), RegistrablePoolableCyclicCallableSkeleton("StoreImage")
