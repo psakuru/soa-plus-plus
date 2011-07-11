@@ -10,11 +10,11 @@
 #include <boost/foreach.hpp>
 #include <boost/token_functions.hpp>
 #include <time.h>
-#include "../GetImage.h"
-#include "../StoreImage.h"
-#include "../GetList.h"
-#include "../RotateImage.h"
-#include "../HorizontalFlipImage.h"
+#include "GetImage.h"
+#include "StoreImage.h"
+#include "GetList.h"
+#include "RotateImage.h"
+#include "HorizontalFlipImage.h"
 using namespace std;
 
 int main(int argc, char** argv)
