@@ -54,22 +54,20 @@ void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
     {
         throw SocketException();
     }
-    cout << "SOCKET>> " << dec << length << " bytes sent" << endl;
 }
 
 void* TcpIpActiveSocket::receiveMessage(uint64_t length)
 {
     void* bufferToReturn = malloc(length);
     uint64_t readBytes = recv(socketDescriptor, bufferToReturn, length, MSG_WAITALL);
-	//MSG_WAITALL fa in modo che la funzione recv attenda la completa ricezione di length byte. 
+	//MSG_WAITALL fa in modo che la funzione recv attenda la completa ricezione di length byte.
 	//La funzione recv può ritornare prima della ricezione completa di length byte se è risvegliata da un segnale,
-	//se la connessione è terminata, o se è avvenuto un errore relativo al socket.	
+	//se la connessione è terminata, o se è avvenuto un errore relativo al socket.
     if(readBytes < length) // Include sia le ricezioni incomplete che gli stati erronei ( < 0)
     {
         free(bufferToReturn);
         bufferToReturn = NULL;
         throw SocketException();
     }
-    cout << "SOCKET<< " << dec << readBytes << " bytes received" << endl;
     return bufferToReturn;
 }

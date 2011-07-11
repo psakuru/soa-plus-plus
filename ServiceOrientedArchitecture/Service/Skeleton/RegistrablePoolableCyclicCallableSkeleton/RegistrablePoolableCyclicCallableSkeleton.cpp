@@ -31,9 +31,6 @@ void RegistrablePoolableCyclicCallableSkeleton::operator()()
                 }
                 catch(const SocketException& socketException)
                 {
-                    //boost::this_thread::restore_interruption restoreInterruptions(disableInterruptions);
-                    //boost::this_thread::interruption_point();
-                    cout << "entro nel catch" << endl;
                     delete socket;
                     socket = NULL;
                     return;

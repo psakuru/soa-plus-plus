@@ -27,10 +27,9 @@ void GetImage::doService()
     delete entry;
     if(sharedState->findString(name))
     {
-        cout << "Nome del file richiesto: " << name.c_str() << endl;
+        cout << "Request fo file: " << name.c_str() << endl;
         char* memoryBlock;
         uint64_t size = 0;
-        //TODO controlli vari
         ifstream file(name.c_str(), ios::in | ios::binary | ios::ate);
         size = (int)file.tellg();
         memoryBlock = (char*)malloc(size);

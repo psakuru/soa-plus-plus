@@ -11,7 +11,7 @@ RegularExpressionChecker::RegularExpressionChecker(string regularExpressionToSet
 
 bool RegularExpressionChecker::setRegularExpression(string regularExpressionToSet)
 {
-    if(unset) //TODO se non è unset digli che non hai settato.
+    if(unset)
     {
         regularExpression = regularExpressionToSet;
         unset = false;
@@ -25,7 +25,4 @@ bool RegularExpressionChecker::checkForMatch(string stringToCheck)
     return (unset)? false : boost::regex_match(stringToCheck, regularExpression);
 }
 
-RegularExpressionChecker::~RegularExpressionChecker()
-{
-    cout << "Distruttore di RegularExpressionChecker" << endl;
-}
+RegularExpressionChecker::~RegularExpressionChecker() {}

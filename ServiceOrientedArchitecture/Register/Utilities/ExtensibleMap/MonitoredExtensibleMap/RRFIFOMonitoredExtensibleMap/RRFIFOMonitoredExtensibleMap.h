@@ -85,14 +85,10 @@ protected:
         if(i != this->dataStructure[selectingKey].second.end()) // Se l' elemento da eliminare esiste.
         {
             this->dataStructure[selectingKey].second.erase(i);
-			/*//TODO aggiunta oggi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!///////////////////||||||||||||||\\\\\\\\\\\\\\\\\\\\
-			 */
 			if(this->dataStructure[selectingKey].second.empty() == true) // Se è l'ultimo elemento della lista.
 			{
 				this->dataStructure.erase(selectingKey);
 			}
-			/*//TODO aggiunta oggi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!///////////////////||||||||||||||\\\\\\\\\\\\\\\\\\\\
-			 */
 			else {
 				// Aggiorno la SchedulingInformation per implementare la politica RR.
 				if(this->dataStructure[selectingKey].first <= j)
