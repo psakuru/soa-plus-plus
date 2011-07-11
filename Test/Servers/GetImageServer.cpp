@@ -3,6 +3,7 @@
 #include "../../SerializableObjects/SerializationStrategies/StringSerializationStrategy/StringSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/GenericSignalSerializationStrategy/GenericSignalSerializationStrategy.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/ImageNotFoundSerializationStrategy/ImageNotFoundSerializationStrategy.h"
+#include "../../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
 #include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
