@@ -29,10 +29,6 @@ public:
         : StreamStub("RotateImage", serviceRegistryToSet) {}
     void operator()(int direction, ByteArray img, ByteArray& img2)
     {
-        (*this) << direction;
-        (*this) << img;
-        (*this) >> img2;
-        bind();
-        protocol();
+        (*this) << direction; (*this) << img; (*this) >> img2; remoteProcedureCall();
     }
 };
