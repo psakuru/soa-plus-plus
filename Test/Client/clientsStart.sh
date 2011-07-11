@@ -1,9 +1,14 @@
 #!/bin/bash
 {
-client0/./client i.jpg &
-client1/./client l.jpg &
-client2/./client j.jpg &
-client3/./client s.jpg &
-client4/./client tux.jpg &
+cd client0
+./client i.jpg &
+cd ../client1
+./client l.jpg &
+cd ../client2
+./client j.jpg &
+cd ../client3
+./client s.jpg &
+cd ../client4
+./client tux.jpg &
 wait
 }
