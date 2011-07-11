@@ -21,7 +21,7 @@ void HorizontalFlipImage::doService()
 	// Recupero i parametri di input.
 	SerializableObjectList::iterator i = inputParameters.begin();
 	SerializableObject* r = (*i);
-	ByteArray* pb = (ByteArray*)(r->getValue());
+	ByteArray* bufferPointer = (ByteArray*)(r->getValue());
 	// Salvo l'immagine ricevuta.
 	string name;
 	stringstream threadIDToStringConverter;
@@ -29,28 +29,28 @@ void HorizontalFlipImage::doService()
 	threadIDToStringConverter >> name;
 	name.append(".jpg");
 	ofstream outfile (name.c_str(),ofstream::binary | ofstream::out);
-	outfile.write( (char*)( pb->getPointer() ) , pb->getLength() );
+	outfile.write( (char*)(bufferPointer->getPointer() ) , bufferPointer->getLength() );
 	outfile.close();
-	delete pb;
+	delete bufferPointer;
 	// Eseguo il flip.
 	CImg<unsigned char> image;
 	image = image.load_jpeg(name.c_str());
 	image.mirror('x');
 	image.save_jpeg(name.c_str(),90U);
 	// Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
-	char * memblock;
+	char* memoryBlock;
 	uint64_t size = 0;
 	ifstream file (name.c_str(), ios::in|ios::binary|ios::ate);
 	size = (int)file.tellg();
-	memblock = (char*)malloc(size);
+	memoryBlock = (char*)malloc(size);
 	file.seekg (0, ios::beg);
-	file.read (memblock, size);
+	file.read (memoryBlock, size);
 	file.close();
-	ByteArray* fileBytes = new ByteArray((void*)memblock, size);
-	free(memblock);
+	ByteArray* fileBytes = new ByteArray((void*)memoryBlock, size);
+	free(memoryBlock);
 	remove(name.c_str());
 	RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
-	outputParameters.push_back(objectToBeSent); 
+	outputParameters.push_back(objectToBeSent);
 }
 HorizontalFlipImage::HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {
