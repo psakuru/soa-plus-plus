@@ -26,8 +26,10 @@ void GetImage::doService()
     delete entry;
     if(sharedState->findString(name))
     {
+        cout << "Nome del file richiesto: " << name.c_str() << endl;
         char* memoryBlock;
         uint64_t size = 0;
+        //TODO controlli vari
         ifstream file(name.c_str(), ios::in | ios::binary | ios::ate);
         size = (int)file.tellg();
         memoryBlock = (char*)malloc(size);
@@ -35,7 +37,6 @@ void GetImage::doService()
         // Inserisco l'immagine nei parametri di output.
         ByteArray* fileBytes = new ByteArray((void*)memoryBlock, size);
         free(memoryBlock);
-        remove(name.c_str());
         RawByteBuffer* objectToBeSent = new RawByteBuffer(fileBytes, false);
         outputParameters.push_back(objectToBeSent);
         GenericSignalWrapper* signal = new GenericSignalWrapper();
