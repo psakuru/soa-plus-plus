@@ -21,10 +21,17 @@
 
 #include "../../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
 #include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/Utilities/GenericSignalValue/GenericSignalValue.h"
+#include "../../SerializableObjects/SerializationStrategies/SignalSerializationStrategy/ParticularSignals/ImageNotFoundSerializationStrategy/ImageNotFoundSerializationStrategy.h"
+#include "../../SerializableObjects/DeserializationStrategies/TerminalSerializableObjectBuilder.h"
 
 class GetImage: public StreamStub {
 public:
-	GetImage() : StreamStub("GetImage", "127.0.0.1:4000") {}
+	GetImage() : StreamStub("GetImage", "127.0.0.1:4000") {
+		
+		// Si aggiunge alla gerarchia dei builders il builder necessario alla costruzione del particolare segnale richiesto.
+		buildersHierarchy[SERIALIZABLE_SIGNAL]->addSerializableObjectBuilder(SIGNAL_IMAGENOTFOUND, new TerminalSerializableObjectBuilder<ImageNotFound>());
+
+	}
 	void operator()(string name, ByteArray& img) 
 	{
 		GenericSignalValue signal; // Lo invio per gestire il caso in cui l'immagine non sia presente sul server.

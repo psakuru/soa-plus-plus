@@ -66,8 +66,8 @@ int main(int argc, char** argv)
 		cout << "Richiedo un'immagine a caso fra quelle presenti sul server." << endl;
 		GetImage s;
 		ByteArray fileRicevuto;
-		s(nameOfFileToReceive, fileRicevuto);
-		ofstream outfile ("stocavolo.jpg",ofstream::binary | ofstream::out);
+		s("boh.jpg", fileRicevuto);
+		ofstream outfile ("boh.jpg",ofstream::binary | ofstream::out);
 		outfile.write((char*)fileRicevuto.getPointer(),fileRicevuto.getLength());
 		outfile.close();
 		cout << "Immagine ricevuta e salvata: " << nameOfFileToReceive << endl;
