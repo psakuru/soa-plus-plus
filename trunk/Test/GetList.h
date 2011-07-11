@@ -19,7 +19,7 @@
  *
  */
 
-#include "../../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
+#include "../ServiceOrientedArchitecture/Service/Stub/StreamStub/StreamStub.h"
 
 class GetList: public StreamStub {
 public:
