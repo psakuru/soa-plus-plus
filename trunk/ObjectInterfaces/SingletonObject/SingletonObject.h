@@ -73,6 +73,18 @@ public:
 	/**
 	 * Distrugge l'istanza singleton.
 	 * La distruzione è protetta da una guardia di mutua esclusione.
+	 * Deve valere la precondizione che il thread invocante questo metodo
+	 * deve essere l' unico owner dell' istanza da distruggere. Qualora
+	 * tale precondizione non fosse verificata, l' oggetto potrebbe essere
+	 * lasciato in uno stato incoerente. Ad esempio, se il thread A ottiene
+	 * il puntatore all' istanza ma questa viene distrutta dal thread B
+	 * prima che A la utilizzi, A avrà un puntatore non valido che,
+	 * dereferenziato, produrrà un errore di segmentazione.
+	 * La distruzione di un singleton, va effettuata solo essendo verificata
+	 * la precondizione di cui sopra. Lasciare che il singleton venga deallocato
+	 * dal singletonMemoryManager registrato con atexit(void (*function)(void))
+	 * al momento della creazione é la scelta più semplice e sicura.
+	 * @pre Il thread che invoca il metodo deve essere l' unico owner del singleton.
      */
     static void destroyInstance()
     {
