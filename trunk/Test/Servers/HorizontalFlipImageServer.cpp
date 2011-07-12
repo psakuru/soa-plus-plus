@@ -20,7 +20,7 @@
 using namespace std;
 using namespace cimg_library;
 
-void HorizontalFlipImage::doService()
+void HorizontalFlipImageServer::doService()
 {
     cout << BLUE_TXT << "Horizontal flip request received" << DEFAULT << endl;
 	// Recupero i parametri di input.
@@ -46,7 +46,7 @@ void HorizontalFlipImage::doService()
 	outputParameters.push_back(objectToBeSent);
 	cout << BLUE_TXT << "Image flipped" << DEFAULT << endl;
 }
-HorizontalFlipImage::HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
+HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new RawByteBuffer, IN);

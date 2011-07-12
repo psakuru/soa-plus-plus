@@ -25,14 +25,14 @@
 #include "ImageRegisterSharedState.h"
 using namespace std;
 
-class GetImage : public RegistrablePoolableCyclicCallableSkeleton
+class GetImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
     ImageRegisterSharedState* sharedState;
 protected:
     void doService();
 public:
-    GetImage();
+    GetImageServer();
 };
 
 #endif //GET_IMAGE_SERVER_H
