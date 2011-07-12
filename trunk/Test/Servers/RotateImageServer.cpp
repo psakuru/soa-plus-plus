@@ -41,8 +41,9 @@ void RotateImageServer::doService()
 	CImg<float> image;
 	image = image.load_jpeg(name.c_str());
 	direction = direction % 360;
-	image = image.rotate((float)direction,0,1);
-	image.save_jpeg(name.c_str(),90U);
+	image = image.rotate((float)direction);
+	image.save_jpeg(name.c_str());
+	remove(name.c_ster());
 	// Inserisco l'immagine ruotata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
@@ -51,7 +52,7 @@ void RotateImageServer::doService()
 RotateImageServer::RotateImageServer() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
 {
 	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
-	uniqueID = "R";
+	uniqueID = "r";
 	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
 	uniqueID.append(".jpg");
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.

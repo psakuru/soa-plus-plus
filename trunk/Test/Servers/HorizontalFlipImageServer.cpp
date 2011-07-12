@@ -36,7 +36,8 @@ void HorizontalFlipImageServer::doService()
 	CImg<float> image;
 	image = image.load_jpeg(name.c_str());
 	image = image.mirror('x');
-	image.save_jpeg(name.c_str(),90U);
+	image.save_jpeg(name.c_str());
+	remove(name.c_str());
 	// Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
@@ -45,7 +46,7 @@ void HorizontalFlipImageServer::doService()
 HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {
 	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
-	uniqueID = "H";
+	uniqueID = "h";
 	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
 	uniqueID.append(".jpg");
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
