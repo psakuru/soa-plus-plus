@@ -7,6 +7,7 @@
 #include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
 #include "../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
+#include "../../Utilities/ColorPrint/ColorPrint.h"
 #include "Utilities/UtilityFunctions.h"
 #include <boost/thread/shared_mutex.hpp>
 #include <boost/thread/locks.hpp>
@@ -28,7 +29,7 @@ void GetImage::doService()
     delete entry;
     if(sharedState->findString(name))
     {
-        cout << "Request fo file: " << name.c_str() << endl;
+        cout << BLUE_TXT << "Request for file: " << GREEN_TXT << name.c_str() << DEFAULT << endl;
         // Inserisco l'immagine nei parametri di output.
         RawByteBuffer* objectToBeSent = loadImage(name);
         outputParameters.push_back(objectToBeSent);
