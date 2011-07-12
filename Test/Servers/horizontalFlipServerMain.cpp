@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 	{
 	    /* Pool di thread */
 		RegistrableObject* serviceThreadPool =
-		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImage> >
+		new RegistrableSkeletonThreadPool< RegistrablePoolableCallableSkeletonWrapper<HorizontalFlipImageServer> >
 		(boost::lexical_cast<int>(argv[1]), argv[2], boost::lexical_cast<int>(argv[3]), SOMAXCONN);
 		/* Publisher */
 		Publisher servicePublisher(argv[4]);

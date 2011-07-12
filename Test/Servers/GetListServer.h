@@ -22,7 +22,7 @@
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "ImageRegisterSharedState.h"
 
-class GetList : public RegistrablePoolableCyclicCallableSkeleton
+class GetListServer : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
 	// Stato condiviso fra i thread del pool.
@@ -30,5 +30,5 @@ private:
 protected:
     void doService();
 public:
-    GetList();
+    GetListServer();
 };

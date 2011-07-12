@@ -21,10 +21,10 @@
 
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 
-class RotateImage : public RegistrablePoolableCyclicCallableSkeleton
+class RotateImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
 protected:
 	void doService();
 public:
-    RotateImage();
+    RotateImageServer();
 };

@@ -21,11 +21,11 @@
 
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 
-class HorizontalFlipImage : public RegistrablePoolableCyclicCallableSkeleton
+class HorizontalFlipImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
 protected:
 	void doService();
 public:
-	HorizontalFlipImage();
+	HorizontalFlipImageServer();
 };
 

@@ -20,7 +20,7 @@
 #include <stdio.h>
 using namespace std;
 
-void StoreImage::doService()
+void StoreImageServer::doService()
 {
 	// Acquisisco il lock sulla lista.
 	boost::unique_lock<boost::shared_mutex> writersLock(sharedState->sharedMutex);
@@ -43,7 +43,7 @@ void StoreImage::doService()
 		}
 	}
 }
-StoreImage::StoreImage() : Skeleton("StoreImage"), RegistrablePoolableCyclicCallableSkeleton("StoreImage")
+StoreImageServer::StoreImageServer() : Skeleton("StoreImage"), RegistrablePoolableCyclicCallableSkeleton("StoreImage")
 {
 	sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
 	addParameter(new String, IN);

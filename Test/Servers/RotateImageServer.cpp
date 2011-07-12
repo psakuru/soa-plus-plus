@@ -21,7 +21,7 @@
 using namespace std;
 using namespace cimg_library;
 
-void RotateImage::doService()
+void RotateImageServer::doService()
 {
     cout << GREEN_TXT << "Richiesta di rotazione ricevuta" << DEFAULT << endl;
 	// Recupero i parametri di input.
@@ -53,7 +53,7 @@ void RotateImage::doService()
 	outputParameters.push_back(objectToBeSent);
 	cout << GREEN_TXT << "Immagine ruotata" << DEFAULT << endl;
 }
-RotateImage::RotateImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
+RotateImageServer::RotateImageServer() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
 {
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new Integer, IN);

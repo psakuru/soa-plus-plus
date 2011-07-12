@@ -22,12 +22,12 @@
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
 #include "ImageRegisterSharedState.h"
 
-class StoreImage : public RegistrablePoolableCyclicCallableSkeleton
+class StoreImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
     ImageRegisterSharedState* sharedState;
 protected:
     void doService();
 public:
-    StoreImage();
+    StoreImageServer();
 };

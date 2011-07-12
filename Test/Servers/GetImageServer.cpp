@@ -18,7 +18,7 @@
 #include <stdio.h>
 using namespace std;
 
-void GetImage::doService()
+void GetImageServer::doService()
 {
     // Acquisisco il lock sulla lista.
     boost::shared_lock<boost::shared_mutex> readersLock(sharedState->sharedMutex);
@@ -48,7 +48,7 @@ void GetImage::doService()
 
 }
 
-GetImage::GetImage() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
+GetImageServer::GetImageServer() : Skeleton("GetImage"), RegistrablePoolableCyclicCallableSkeleton("GetImage")
 {
     sharedState = SingletonObject<ImageRegisterSharedState>::getInstance();
 	addParameter(new String, IN);
