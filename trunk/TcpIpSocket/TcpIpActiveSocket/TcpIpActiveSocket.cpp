@@ -49,7 +49,7 @@ string TcpIpActiveSocket::getAddress()
 
 void TcpIpActiveSocket::sendMessage(void* buffer, uint64_t length)
 {
-    uint64_t error = send(socketDescriptor, buffer, length, 0);
+    uint64_t error = send(socketDescriptor, buffer, length, MSG_NOSIGNAL);
     if(error < length)
     {
         throw SocketException();
