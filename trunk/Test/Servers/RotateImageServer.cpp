@@ -36,7 +36,7 @@ void RotateImageServer::doService()
 	// Salvo l'immagine ricevuta.
 	string name = uniqueID;
 	// Nome univoco: {TID + PID}.jpg
-	storeImage(name,pb);
+	storeImage(name.c_str(),pb);
 	delete pb;
 	// Ruoto.
 	CImg<unsigned char> image;
