@@ -26,6 +26,8 @@
 #include <boost/thread/shared_mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include "../../../../../Utilities/ColorPrint/ColorPrint.h"
+#include <iostream>
+using namespace std;
 
 /**
  * @class MonitoredExtensibleMap
