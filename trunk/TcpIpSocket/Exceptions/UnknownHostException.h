@@ -24,14 +24,6 @@
 
 #include <exception>
 
-/**
- * @class UnknownHostException
- *
- * @brief Host non riconosciuto.
- *
- * L' eccezione indica che l' host non è stato riconosciuto.
- */
-
 class UnknownHostException : public exception
 {
 public:

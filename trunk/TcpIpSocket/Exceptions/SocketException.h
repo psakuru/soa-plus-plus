@@ -26,15 +26,6 @@
 #include <string.h>
 #include <errno.h>
 
-
-/**
- * @class SocketException
- *
- * @brief Situazioni erronee nella creazione e nell' utilizzo del socket.
- *
- * L' eccezione SocketException segnala situazioni erronee nella creazione e nell' utilizzo del socket.
- */
-
 class SocketException : public exception
 {
 public:
