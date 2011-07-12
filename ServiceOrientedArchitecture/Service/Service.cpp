@@ -51,7 +51,16 @@ void Service::sendParameters()
     for(; i != outputParameters.end(); i++)
     {
         uint64_t serializedObjectLength = (*i)->serialize(&serializedObject);
-        socket->sendMessage(serializedObject, serializedObjectLength);
+        try
+        {
+        	socket->sendMessage(serializedObject, serializedObjectLength);
+        }
+        catch(const exception& caughtException)
+        {
+        	free(serializedObject);
+            serializedObject = NULL;
+            throw caughtException;
+        }
         free(serializedObject);
         serializedObject = NULL;
     }
