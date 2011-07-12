@@ -15,6 +15,8 @@
 #include "Utilities/UtilityFunctions.h"
 #include "../CImg/CImg.h"
 #include "HorizontalFlipImageServer.h"
+#include <boost/lexical_cast.hpp>
+#include <unistd.h>
 using namespace std;
 using namespace cimg_library;
 
@@ -30,6 +32,7 @@ void HorizontalFlipImage::doService()
 	stringstream threadIDToStringConverter;
 	threadIDToStringConverter << boost::this_thread::get_id();
 	threadIDToStringConverter >> name;
+	name.append(boost::lexical_cast(getpid()));
 	name.append(".jpg");
 	storeImage(name,bufferPointer);
 	delete bufferPointer;
@@ -42,7 +45,6 @@ void HorizontalFlipImage::doService()
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
 	// Rimuovo l'immagine temporaneamente salvata.
-	remove(name.c_str());
 	cout << BLUE_TXT << "Image flipped" << DEFAULT << endl;
 }
 HorizontalFlipImage::HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
