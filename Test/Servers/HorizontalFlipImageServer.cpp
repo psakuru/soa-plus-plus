@@ -46,7 +46,7 @@ HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFli
 {
 	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
 	uniqueID = "H";
-	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator.getUnivocalNumber()));
+	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
 	uniqueID.append(".jpg");
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new RawByteBuffer, IN);
