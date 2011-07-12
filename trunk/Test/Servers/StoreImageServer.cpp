@@ -34,7 +34,7 @@ void StoreImage::doService()
 	{
 		i++;
 		ByteArray* receivedImage = (ByteArray*)((*i)->getValue());
-		storeImage(receivedImage);
+		storeImage(name, receivedImage);
 		delete receivedImage;
 		// Inserisco il nome dell'immagine nella lista solamente se non è già presente.
 		if(!sharedState->findString(name))
