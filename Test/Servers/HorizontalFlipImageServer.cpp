@@ -45,8 +45,9 @@ void HorizontalFlipImageServer::doService()
 }
 HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {
-	univoqueNumberGenerator = SingletonObject<UnivoqueNumberGenerator>::getInstance();
-	uniqueID = boost::lexical_cast<string>(univoqueNumberGenerator.getUniqueNumber());
+	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
+	uniqueID = "H";
+	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator.getUnivocalNumber()));
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new RawByteBuffer, IN);
 	addParameter(new RawByteBuffer, INOUT);
