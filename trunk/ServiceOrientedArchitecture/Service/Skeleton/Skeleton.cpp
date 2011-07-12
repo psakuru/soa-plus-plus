@@ -54,10 +54,19 @@ void Skeleton::protocol()
     catch(const exception& caughtException)
     {
         cout << caughtException.what() << endl;
-        return;
+        return; //Non sono riuscito a ricevere i parametri: questa iterazione non può essere eseguita
     }
     this->doService();
-    sendParameters();
+    try
+    {
+        sendParameters();
+    }
+    catch(const exception& caughtException)
+    {
+        cout << caughtException.what() << endl;
+        outputParameters.clear();
+        return;
+    }
     outputParameters.clear(); // La lista di output contenteva i parametri inviati, quindi è possibile cancellarla.
 							  // La lista di input invece continua a mantenere i tipi che il servente si aspetta.
 }
