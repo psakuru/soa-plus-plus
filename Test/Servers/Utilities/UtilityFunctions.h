@@ -22,7 +22,7 @@
  *
  */
 
-#include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
+#include "../../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../../SerializableObjects/Utilities/ByteArray/ByteArray.h"
 #include <string>
 #include <iostream>
