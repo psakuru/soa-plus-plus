@@ -95,13 +95,13 @@ protected:
      */
     virtual void searchInMap()
     {
-        cout << GREEN_TXT << "Ricevuta una richiesta di ricerca: " << DEFAULT << endl;
+        cout << YELLOW_TXT << "Ricevuta una richiesta di ricerca: " << DEFAULT << endl;
         RegisterMap<string, string>* sharedRegister = SingletonObject< RegisterMap<string, string> >::getInstance();
         SerializableObjectList::iterator i = inputParameters.begin();
         string key = *((string*)(*i)->getValue());
-        cout << "Chiave di ricerca:: " << key << endl;
+        cout << YELLOW_TXT << "Chiave di ricerca:: " << BLUE_TXT << key << DEFAULT << endl;
         string* searchResult = new string((*sharedRegister)[key]);
-        cout << "Risultato della ricerca:: " << *searchResult << endl;
+        cout << YELLOW_TXT << "Risultato della ricerca:: " << BLUE_TXT << *searchResult << DEFAULT << endl;
         outputParameters.push_back(new String(searchResult, false));
     }
 public:
