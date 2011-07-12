@@ -1,3 +1,4 @@
+#define cimg_use_jpeg
 #include <iostream>
 #include <fstream>
 #include "../../ObjectInterfaces/SerializableObject/SerializableObject.h"
@@ -43,7 +44,6 @@ void RotateImageServer::doService()
 	direction = direction % 360;
 	image = image.rotate((float)direction);
 	image.save_jpeg(name.c_str());
-	remove(name.c_str());
 	// Inserisco l'immagine ruotata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);

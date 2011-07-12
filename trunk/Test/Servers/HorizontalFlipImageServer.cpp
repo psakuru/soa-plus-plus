@@ -37,7 +37,6 @@ void HorizontalFlipImageServer::doService()
 	image = image.load_jpeg(name.c_str());
 	image = image.mirror('x');
 	image.save_jpeg(name.c_str());
-	remove(name.c_str());
 	// Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
