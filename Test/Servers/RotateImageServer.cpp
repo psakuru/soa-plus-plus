@@ -35,7 +35,6 @@ void RotateImageServer::doService()
 	ByteArray* pb = (ByteArray*)((*i)->getValue());
 	// Salvo l'immagine ricevuta.
 	string name = uniqueID;
-	// Nome univoco: {TID + PID}.jpg
 	storeImage(name.c_str(),pb);
 	delete pb;
 	// Ruoto.
