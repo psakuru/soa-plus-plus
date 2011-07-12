@@ -29,10 +29,7 @@ void HorizontalFlipImageServer::doService()
 	ByteArray* bufferPointer = (ByteArray*)(r->getValue());
 	// Salvo l'immagine ricevuta.
 	string name;
-	stringstream threadIDToStringConverter;
-	threadIDToStringConverter << boost::this_thread::get_id();
-	threadIDToStringConverter >> name;
-	name.append(boost::lexical_cast<string>(getpid()));
+	name.append(uniqueID);
 	name.append(".jpg");
 	storeImage(name,bufferPointer);
 	delete bufferPointer;
@@ -48,6 +45,8 @@ void HorizontalFlipImageServer::doService()
 }
 HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {
+	univoqueNumberGenerator = SingletonObject<UnivoqueNumberGenerator>::getInstance();
+	uniqueID = boost::lexical_cast<string>(univoqueNumberGenerator.getUniqueNumber());
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new RawByteBuffer, IN);
 	addParameter(new RawByteBuffer, INOUT);
