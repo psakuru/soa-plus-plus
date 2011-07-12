@@ -26,7 +26,6 @@ class RotateImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
 private:
 	UnivocalNumberGenerator* univocalNumberGenerator;
-	string uniqueID;
 protected:
 	void doService();
 public:
