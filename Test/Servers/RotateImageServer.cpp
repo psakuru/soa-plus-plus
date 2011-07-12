@@ -35,7 +35,7 @@ void RotateImageServer::doService()
 	ByteArray* pb = (ByteArray*)((*i)->getValue());
 	// Salvo l'immagine ricevuta.
 	string name = uniqueID;
-	storeImage(name.c_str(),pb);
+	storeImage(name,pb);
 	delete pb;
 	// Ruoto.
 	CImg<float> image;
