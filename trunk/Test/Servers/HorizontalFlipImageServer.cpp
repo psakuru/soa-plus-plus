@@ -28,9 +28,7 @@ void HorizontalFlipImageServer::doService()
 	SerializableObject* r = (*i);
 	ByteArray* bufferPointer = (ByteArray*)(r->getValue());
 	// Salvo l'immagine ricevuta.
-	string name;
-	name.append(uniqueID);
-	name.append(".jpg");
+	string name = uniqueID;
 	storeImage(name,bufferPointer);
 	delete bufferPointer;
 	// Eseguo il flip.
@@ -48,6 +46,7 @@ HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFli
 	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
 	uniqueID = "H";
 	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator.getUnivocalNumber()));
+	uniqueID.append(".jpg");
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new RawByteBuffer, IN);
 	addParameter(new RawByteBuffer, INOUT);
