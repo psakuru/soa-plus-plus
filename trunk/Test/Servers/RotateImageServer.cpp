@@ -16,6 +16,7 @@
 #include "../CImg/CImg.h"
 #include "stdint.h"
 #include "RotateImageServer.h"
+#include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include <boost/lexical_cast.hpp>
 #include <unistd.h>
 using namespace std;

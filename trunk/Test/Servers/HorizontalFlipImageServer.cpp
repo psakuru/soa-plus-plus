@@ -11,6 +11,7 @@
 #include "../../SerializableObjects/SerializationStrategies/RawByteBufferSerializationStrategy/RawByteBufferSerializationStrategy.h"
 #include "../../ServiceOrientedArchitecture/Publisher/Publisher.h"
 #include "../../ObjectInterfaces/RegistrableObject/RegistrableObject.h"
+#include "../../ObjectInterfaces/SingletonObject/SingletonObject.h"
 #include "../../Utilities/ColorPrint/ColorPrint.h"
 #include "Utilities/UtilityFunctions.h"
 #include "../CImg/CImg.h"
