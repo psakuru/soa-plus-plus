@@ -22,6 +22,7 @@
 #ifndef UNIVOCALNUMBERGENERATOR_H
 #define UNIVOCALNUMBERGENERATOR_H
 #include <boost/thread/mutex.hpp>
+#include <boost/guard.hpp>
 
 class UnivocalNumberGenerator
 {
