@@ -20,9 +20,14 @@
  */
 
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "Utilities/UnivoqueNumberGenerator/UnivoqueNumberGenerator.h"
+
 
 class HorizontalFlipImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
+private:
+	string uniqueID;
+	UnivoqueNumberGenerator* univoqueNumberGenerator;
 protected:
 	void doService();
 public:

@@ -20,9 +20,13 @@
  */
 
 #include "../../ServiceOrientedArchitecture/Service/Skeleton/RegistrablePoolableCyclicCallableSkeleton/RegistrablePoolableCyclicCallableSkeleton.h"
+#include "Utilities/UnivoqueNumberGenerator/UnivoqueNumberGenerator.h"
 
 class RotateImageServer : public RegistrablePoolableCyclicCallableSkeleton
 {
+private:
+	UnivoqueNumberGenerator* univoqueNumberGenerator;
+	string uniqueId;
 protected:
 	void doService();
 public:
