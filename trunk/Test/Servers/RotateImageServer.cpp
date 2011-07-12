@@ -16,6 +16,8 @@
 #include "../CImg/CImg.h"
 #include "stdint.h"
 #include "RotateImageServer.h"
+#include <boost/lexical_cast.hpp>
+#include <unistd.h>
 using namespace std;
 using namespace cimg_library;
 
@@ -35,7 +37,9 @@ void RotateImage::doService()
 	stringstream threadIDToStringConverter;
 	threadIDToStringConverter << boost::this_thread::get_id();
 	threadIDToStringConverter >> name;
+	name.append(boost::lexical_cast(getpid()));
 	name.append(".jpg");
+	// Nome univoco: {TID + PID}.jpg
 	storeImage(name,pb);
 	delete pb;
 	// Ruoto.
@@ -48,7 +52,6 @@ void RotateImage::doService()
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
 	// Rimuovo l'immagine temporaneamente salvata.
-	remove(name.c_str());
 	cout << GREEN_TXT << "Immagine ruotata" << DEFAULT << endl;
 }
 RotateImage::RotateImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
