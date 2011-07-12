@@ -33,9 +33,9 @@ void HorizontalFlipImageServer::doService()
 	storeImage(name.c_str(),bufferPointer);
 	delete bufferPointer;
 	// Eseguo il flip.
-	CImg<unsigned char> image;
+	CImg<float> image;//unsigned_char
 	image = image.load_jpeg(name.c_str());
-	image.mirror('x');
+	image = image.mirror('x');//no assign
 	image.save_jpeg(name.c_str(),90U);
 	// Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
