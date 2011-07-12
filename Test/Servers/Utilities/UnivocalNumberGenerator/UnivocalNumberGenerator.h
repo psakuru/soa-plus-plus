@@ -33,7 +33,7 @@ public:
 	{
 		seed = 0;
 	}
-	void getUnivocalNumber()
+	unsigned int getUnivocalNumber()
 	{
 		boost::lock_guard<boost::mutex> lock(mutex);
 		unsigned int numberToReturn = seed;
