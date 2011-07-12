@@ -24,13 +24,6 @@
 
 #include <exception>
 
-/**
- * @class ImageNotFoundException
- *
- * @brief Immagine non presente sul server.
- *
- */
-
 class ImageNotFoundException : public exception
 {
 public:
