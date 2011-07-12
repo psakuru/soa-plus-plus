@@ -51,7 +51,6 @@ void RotateImage::doService()
 	// Inserisco l'immagine ruotata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
-	// Rimuovo l'immagine temporaneamente salvata.
 	cout << GREEN_TXT << "Immagine ruotata" << DEFAULT << endl;
 }
 RotateImage::RotateImage() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
