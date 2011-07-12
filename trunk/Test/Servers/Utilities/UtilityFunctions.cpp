@@ -1,4 +1,5 @@
 #include "UtilityFunctions.h"
+#include <stdlib.h>
 
 RawByteBuffer* loadImage(string name)
 {
