@@ -32,7 +32,7 @@ void HorizontalFlipImage::doService()
 	stringstream threadIDToStringConverter;
 	threadIDToStringConverter << boost::this_thread::get_id();
 	threadIDToStringConverter >> name;
-	name.append(boost::lexical_cast(getpid()));
+	name.append(boost::lexical_cast<string>(getpid()));
 	name.append(".jpg");
 	storeImage(name,bufferPointer);
 	delete bufferPointer;
