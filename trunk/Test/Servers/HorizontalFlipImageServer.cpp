@@ -44,7 +44,6 @@ void HorizontalFlipImage::doService()
 	// Inserisco l'immagine modificata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
 	outputParameters.push_back(objectToBeSent);
-	// Rimuovo l'immagine temporaneamente salvata.
 	cout << BLUE_TXT << "Image flipped" << DEFAULT << endl;
 }
 HorizontalFlipImage::HorizontalFlipImage() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
