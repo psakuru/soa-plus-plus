@@ -22,13 +22,12 @@
 #ifndef UNIVOCALNUMBERGENERATOR_H
 #define UNIVOCALNUMBERGENERATOR_H
 #include <boost/thread/mutex.hpp>
-//cazzata
 
 class UnivocalNumberGenerator
 {
 private:
 	unsigned int seed;
-	boost::mutex* sharedMutex;
+	boost::mutex* mutex;
 public:
 	UnivocalNumberGenerator()
 	{
@@ -36,7 +35,7 @@ public:
 	}
 	void getUnivocalNumber()
 	{
-		//cazzata
+		boost::lock_guard<boost::mutex> lock(mutex);
 		unsigned int numberToReturn = seed;
 		seed++;
 		return numberToReturn;
