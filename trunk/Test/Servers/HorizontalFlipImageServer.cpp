@@ -44,7 +44,7 @@ void HorizontalFlipImageServer::doService()
 }
 HorizontalFlipImageServer::HorizontalFlipImageServer() : Skeleton("HorizontalFlipImage"), RegistrablePoolableCyclicCallableSkeleton("HorizontalFlipImage")
 {
-	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
+	UnivocalNumberGenerator* univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
 	uniqueID = "h";
 	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
 	uniqueID.append(".jpg");

@@ -51,7 +51,7 @@ void RotateImageServer::doService()
 }
 RotateImageServer::RotateImageServer() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
 {
-	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
+	UnivocalNumberGenerator* univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
 	uniqueID = "r";
 	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
 	uniqueID.append(".jpg");

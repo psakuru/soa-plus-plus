@@ -27,7 +27,6 @@ class HorizontalFlipImageServer : public RegistrablePoolableCyclicCallableSkelet
 {
 private:
 	string uniqueID;
-	UnivocalNumberGenerator* univocalNumberGenerator;
 protected:
 	void doService();
 public:
