@@ -35,9 +35,6 @@ void RotateImageServer::doService()
 	i++;
 	ByteArray* pb = (ByteArray*)((*i)->getValue());
 	// Salvo l'immagine ricevuta.
-	string uniqueID = "r";
-	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
-	uniqueID.append(".jpg");
 	string name = uniqueID;
 	storeImage(name,pb);
 	delete pb;
@@ -55,6 +52,9 @@ void RotateImageServer::doService()
 RotateImageServer::RotateImageServer() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
 {
 	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
+	uniqueID = "r";
+	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator->getUnivocalNumber()));
+	uniqueID.append(".jpg");
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new Integer, IN);
 	addParameter(new RawByteBuffer, IN);
