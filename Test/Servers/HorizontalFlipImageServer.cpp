@@ -30,7 +30,7 @@ void HorizontalFlipImageServer::doService()
 	ByteArray* bufferPointer = (ByteArray*)(r->getValue());
 	// Salvo l'immagine ricevuta.
 	string name = uniqueID;
-	storeImage(name,bufferPointer);
+	storeImage(name.c_str(),bufferPointer);
 	delete bufferPointer;
 	// Eseguo il flip.
 	CImg<unsigned char> image;
