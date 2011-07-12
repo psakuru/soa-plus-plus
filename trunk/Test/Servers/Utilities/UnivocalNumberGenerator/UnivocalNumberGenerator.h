@@ -27,7 +27,7 @@ class UnivocalNumberGenerator
 {
 private:
 	unsigned int seed;
-	boost::mutex* mutex;
+	boost::mutex mutex;
 public:
 	UnivocalNumberGenerator()
 	{
