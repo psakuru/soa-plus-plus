@@ -38,10 +38,10 @@ void RotateImageServer::doService()
 	storeImage(name.c_str(),pb);
 	delete pb;
 	// Ruoto.
-	CImg<unsigned char> image;
+	CImg<float> image;
 	image = image.load_jpeg(name.c_str());
 	direction = direction % 360;
-	image.rotate((float)direction,0,1);
+	image = image.rotate((float)direction,0,1);
 	image.save_jpeg(name.c_str(),90U);
 	// Inserisco l'immagine ruotata nei parametri di output in modo che sia inviata come risposta.
 	RawByteBuffer* objectToBeSent = loadImage(name);
