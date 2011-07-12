@@ -52,8 +52,9 @@ void RotateImageServer::doService()
 }
 RotateImageServer::RotateImageServer() : Skeleton("RotateImage"), RegistrablePoolableCyclicCallableSkeleton("RotateImage")
 {
-	univoqueNumberGenerator = SingletonObject<UnivoqueNumberGenerator>::getInstance();
-	uniqueID = boost::lexical_cast<string>(univoqueNumberGenerator.getUniqueNumber());
+	univocalNumberGenerator = SingletonObject<UnivocalNumberGenerator>::getInstance();
+	uniqueID = "R";
+	uniqueID.append(boost::lexical_cast<string>(univocalNumberGenerator.getUnivocalNumber()));
 	// Aggiungo al serviceId e alla lista di input i parametri che mi aspetto di ricevere.
 	addParameter(new Integer, IN);
 	addParameter(new RawByteBuffer, IN);
