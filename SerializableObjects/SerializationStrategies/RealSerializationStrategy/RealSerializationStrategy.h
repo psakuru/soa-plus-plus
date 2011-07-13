@@ -31,7 +31,7 @@
  *
  * @brief Serializzazione di un double.
  *
- * La classe specializza il layer per trattare i double.
+ * La classe specializza il GenericSerializableReferenceLayer per trattare i double.
  *
  */
 

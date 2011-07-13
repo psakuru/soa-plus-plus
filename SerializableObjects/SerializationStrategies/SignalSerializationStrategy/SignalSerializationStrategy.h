@@ -34,8 +34,16 @@ typedef int Fake; // E' un semplice segnale, quindi non necessita di una wrapped
  *
  * @brief Serializzazione di un segnale.
  *
- * La classe specializza il layer per trattare i segnali.
- *
+ * La classe specializza il layer per serializzare i segnali. In particolare,
+ * la classe definisce il protocollo di serializzazione e deserializzazione di un segnale.
+ * Serializzare un segnale vuol dire salvare in un buffer le informazioni relative al
+ * tipo di segnale (le uniche informazioni che un segnale trasmette).
+ * La deserializzazione di un segnale comporta l' esecuzione del suo signal handler.
+ * L' esistenza di segnali particolari è nascosta a livello di protocollo di serializzazione,
+ * e diviene manifesta solo al livello successivo, quello del sotto-protocollo di serializzazione
+ * contenuto nel campo value. Pertanto, i segnali hanno tutti uno stesso type, e solo a livello
+ * di value diventano tangibili i diversi signalType, che permettono l' invocazione
+ * degli adeguati signal handler.
  */
 
 class SignalSerializationStrategy : public GenericSerializableReferenceLayer<Fake>
@@ -56,10 +64,10 @@ public:
     virtual Type getSignalType() const = 0;
     int getValueLengthLength() = 0;
 	/**
-	 * La serializzazione produce un buffer con la seguente
-	 * struttura: | Type | Length | Value = tipo del particular signal |
+	 * La serializzazione produce un buffer con la seguente struttura:
+	 * buffer := {header, value}, header := {type, valueLength}, value := {signalType}
 	 *
-	 * @param destinationBuffer 
+	 * @param destinationBuffer
 	 *
 	 * @return Lunghezza del buffer.
 	 */

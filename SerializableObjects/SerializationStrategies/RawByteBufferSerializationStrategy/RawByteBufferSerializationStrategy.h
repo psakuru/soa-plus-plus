@@ -32,7 +32,7 @@
  *
  * @brief Serializzazione di array di byte.
  *
- * La classe specializza il layer per trattare array di byte.
+ * La classe specializza il GenericSerializableReferenceLayer per trattare array di byte.
  *
  */
 

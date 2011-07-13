@@ -33,7 +33,8 @@ using namespace std;
  *
  * Il layer è pensato per rendere serializzabili dei riferimenti ad oggetti locali.
  * I metodi esposti da SerializableObject ed implementati dal layer sono indipendenti dal particolare tipo del riferimento gestito.
- * I rimanenti, che invece dipendono dal particolare tipo, verranno implementati da classi derivate dal layer secondo strategie opportune.
+ * I rimanenti, che invece dipendono dal particolare tipo, verranno implementati da classi derivate dal layer e implementanti
+ * le opportune strategie di serializzazine e deserializzazione.
  *
  */
 

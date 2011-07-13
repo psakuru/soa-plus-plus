@@ -35,7 +35,8 @@ using namespace std;
 typedef PointerList<SerializableObject*> SerializableObjectList;
 
 /**
- * Direzioni associate ai parametri. 
+ * @enum Direction
+ * @brief Direzioni associate ai parametri.
  * IN = parametro di input,
  * OUT = parametro di output,
  * INOUT = parametro di input da modificare e reinviare,
@@ -57,7 +58,7 @@ class Service
 private:
 	/**
 	 * Metodo template che riceve dal socket il campo length (la lunghezza del campo value) e lo assegna al parametro valueLength.
-	 * 
+	 *
 	 * @param valueLength
 	 */
     template <typename IntegralFixedSizedType>
@@ -79,7 +80,7 @@ protected:
     SerializableObjectList outputParameters;
 	/**
 	 * Identificatore del servizio.
-	 * Il formato è il seguente: serviceID; serviceID:={baseId(opt list parameter)}; parameter:={direction:type}; direction:={oneof IN, OUT, INOUT, OUTIN}; 
+	 * Il formato è il seguente: serviceID; serviceID:={baseId(opt list parameter)}; parameter:={direction:type}; direction:={oneof IN, OUT, INOUT, OUTIN};
 	 */
     string serviceID;
 	/**
@@ -111,27 +112,27 @@ protected:
 	 * Ricezione di un oggetto serializzato.
 	 *
 	 * @return Oggetto ricevuto.
-	 */	
+	 */
     SerializableObject* receiveParameter();
 	/**
 	 * Protocollo di comunicazione del particolare servizio.
-	 */	
+	 */
     virtual void protocol() = 0;
 	/**
 	 * Operazioni preliminari per il deploy del servizio.
-	 */	
+	 */
     virtual void bind() = 0;
 	/**
 	 * Aggiunge parameterToAdd ad una lista in base alla direzione specificata.
 	 *
-	 * @parameter parameterToAdd 
+	 * @parameter parameterToAdd
 	 * @parameter parameterDirection
 	 */
     virtual void addParameter(SerializableObject* parameterToAdd, Direction parameterDirection) = 0;
 	/**
 	 * Aggiorna il serviceID in base al parametro parameterToAdd e alla direzione specificata.
 	 *
-	 * @parameter parameterToAdd 
+	 * @parameter parameterToAdd
 	 * @parameter parameterDirection
 	 */
     void updateServiceID(SerializableObject* parameterToAdd, Direction parameterDirection);

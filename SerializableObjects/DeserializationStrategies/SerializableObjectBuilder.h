@@ -34,12 +34,6 @@ using namespace std;
  *
  * Classe base del sistema di costruzione di SerializableObject a partire dalla loro rappresentazione serializzata.
  *
- *												SerializableObjectBuilder
- *												|					 |
- *               TerminalSerializableObjectBuilder<Integer>	...	 SignalBuilder
- *																	 |
- *												TerminalSerializableObjectBuilder<BadRequestSignalBuilder>
- *
  */
 
 class SerializableObjectBuilder
