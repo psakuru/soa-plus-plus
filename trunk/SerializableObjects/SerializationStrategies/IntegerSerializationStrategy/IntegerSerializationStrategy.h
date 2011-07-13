@@ -32,7 +32,7 @@
  *
  * @brief Serializzazione di un intero.
  *
- * La classe specializza il layer per trattare gli interi.
+ * La classe specializza il GenericSerializableReferenceLayer per trattare gli interi.
  *
  */
 

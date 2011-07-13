@@ -34,74 +34,76 @@ using namespace std;
  *
  * Gli oggetti serializzabili implementano l' interfaccia SerializableObject.
  *
- * Il protocollo di serializzazione è definito come segue:
- *
- *                      serialize
- *                          |
- *	OggettoSerializzabile  --->	[  type  |  length  |  value  ]
+ * Il protocollo di serializzazione è definito come segue: serializedObject := {header, value},
+ * header := {type, valueLength}. Il campo value supporta un protocollo di serializzazione
+ * di ordine superiore, secondo il modello ISO/OSI. Il campo type specifica il sotto-protocollo di
+ * serializzazione adottato nel campo value. Esiste corrispondenza biunivoca tra sotto-protocollo
+ * di serializzazione adottato e tipo di dati serializzato, pertanto si utilizza lo stesso
+ * valore di type per indicare sia il tipo di dati serializzato che il sotto-protocollo di serializzazione
+ * adottato.
  *
  */
 
 class SerializableObject
 {
 public:
-	/**
-	 * Distruttore virtuale puro.
+    /**
+     * Distruttore virtuale puro.
      */
     virtual ~SerializableObject() = 0;
-	/**
-	 * Operatore assegnamento.
-	 *
-	 * @param serializableObjectToBeAssigned
+    /**
+     * Operatore assegnamento.
+     *
+     * @param serializableObjectToBeAssigned
      */
     virtual void operator=(const SerializableObject& serializableObjectToBeAssigned) = 0;
-	/**
-	 * Ritorna la lunghezza del campo length (lunghezza del campo value).
+    /**
+     * Ritorna la lunghezza del campo length (lunghezza del campo value).
      *
-	 * @return Lunghezza del campo length.
+     * @return Lunghezza del campo length.
      */
     virtual int getValueLengthLength() = 0;
-	/**
-	 * Ritorna il tipo dell' oggetto serializzabile.
+    /**
+     * Ritorna il tipo dell' oggetto serializzabile.
      *
-	 * @return Tipo di oggetto serializzabile.
+     * @return Tipo di oggetto serializzabile.
      */
     virtual Type getType() const = 0; // const perché lavora su un serializableObject const (quello passato con l' assegnamento).
-	/**
-	 * Effettua la serializzazione secondo il protocollo.
+    /**
+     * Effettua la serializzazione secondo il protocollo.
      *
-	 * @param destinationBuffer Puntatore al buffer di destinazione.
-	 *
-	 * @return Lunghezza del buffer.
+     * @param destinationBuffer Puntatore al buffer di destinazione.
+     *
+     * @return Lunghezza del buffer.
      */
-    virtual uint64_t serialize(void** destinationBuffer) = 0; 
-	/**
-	 * Effettua la deserializzazione secondo il protocollo.
+    virtual uint64_t serialize(void** destinationBuffer) = 0;
+    /**
+     * Effettua la deserializzazione secondo il protocollo.
      *
-	 * @param length
-	 * @param bufferToUse
-	 *
+     * @param length
+     * @param bufferToUse
+     *
      */
     virtual void deserialize(uint64_t length, void* bufferToUse) = 0;
-	/**
-	 * Setta il valore dell' oggetto serializzabile.
+    /**
+     * Setta il valore dell' oggetto serializzabile.
      *
-	 * @param valueToSet
-	 *
+     * @param valueToSet
+     *
      */
     virtual void setValue(void* valueToSet) = 0;
-	/**
-	 * Ritorna il valore dell' oggetto serializzabile.
+    /**
+     * Ritorna il valore dell' oggetto serializzabile.
      *
-	 * @return Valore dell' oggetto serializzabile.
-	 *
+     * @return Valore dell' oggetto serializzabile.
+     *
      */
     virtual void* getValue() = 0;
-	/**
-	 * Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
+    /**
+     * Ritorna una rappresentazione human readable del tipo relativo all' oggetto serializzabile.
      *
-	 * @return Rappresentazione human readable del tipo dell' oggetto.
-	 *
+     * @return Rappresentazione human readable del tipo dell' oggetto.
+     *
      */
     virtual string getValueTypeStringRepresentation() = 0;
 };

@@ -33,7 +33,7 @@ using namespace std;
  *
  * @brief Serializzazione di una stringa.
  *
- * La classe specializza il layer per trattare le stringe.
+ * La classe specializza il GenericSerializableReferenceLayer per trattare le stringe.
  *
  */
 
