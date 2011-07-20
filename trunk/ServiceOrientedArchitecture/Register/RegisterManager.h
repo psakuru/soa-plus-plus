@@ -31,6 +31,7 @@
 #include "../../Utilities/ColorPrint/ColorPrint.h"
 #include <iostream>
 #include <string>
+#include <exception>
 using namespace std;
 
 /**
@@ -119,27 +120,31 @@ public:
         SerializableObjectList* incomingParameters = new SerializableObjectList;
         for(uint32_t i = 0; i < (incomingParametersSize); i++)
         {
-            inputParameters.push_back(new String);
+	    	inputParameters.push_back(new String);
         }
-        for(uint32_t i = 0; i < incomingParametersSize; i++)
+        try
         {
-            incomingParameters->push_back(receiveParameter());
+        	for(uint32_t i = 0; i < incomingParametersSize; i++)
+        	{
+	            incomingParameters->push_back(receiveParameter());
+        	}
+        	SerializableObjectList::iterator i = inputParameters.begin();
+        	SerializableObjectList::iterator j = incomingParameters->begin();
+        	while(i != inputParameters.end())
+        	{
+	            *(*i) = *(*j); // In caso di type-mismatch lancia un' eccezione.
+            	i++;
+            	j++;
+        	}
         }
-        SerializableObjectList::iterator i = inputParameters.begin();
-        SerializableObjectList::iterator j = incomingParameters->begin();
-        while(i != inputParameters.end())
+        catch(const exception& caughtException)
         {
-            *(*i) = *(*j); // In caso di type-mismatch lancia un' eccezione.
-            i++;
-            j++;
+        	delete incomingParameters;
+        	throw caughtException;
         }
         delete incomingParameters;
     }
-    ~RegisterManager()
-    {
-        //SingletonObject< RegisterMap<string, string> >::destroyInstance();  // Elimina l' istanza Singleton.
-        //SingletonObject<RegularExpressionChecker>::destroyInstance();  // Elimina l' istanza Singleton.
-    }
+    ~RegisterManager() {}
 };
 
 #endif // REGISTERMANAGER_H
