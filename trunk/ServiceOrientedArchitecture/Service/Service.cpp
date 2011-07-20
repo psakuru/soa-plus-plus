@@ -100,16 +100,14 @@ void Service::receiveParameters()
     {
         throw InvalidParameterListSize();
     }
-    //TODO ATTENZIONE: nel seguente for ci va un try catch: se almeno un parametro arriva bene
-    //e uno dei successivi da eccezione, la lista momentanea incomingParameters va eliminata in profondità
-    for(uint32_t i = 0; i < inputParametersSize; i++)
-    {
-        incomingParameters->push_back(receiveParameter());
-    }
-    SerializableObjectList::iterator i = inputParameters.begin();
-    SerializableObjectList::iterator j = incomingParameters->begin();
     try
     {
+	    for(uint32_t i = 0; i < inputParametersSize; i++)
+    	{
+        	incomingParameters->push_back(receiveParameter());
+    	}
+    	SerializableObjectList::iterator i = inputParameters.begin();
+    	SerializableObjectList::iterator j = incomingParameters->begin();
         while(i != inputParameters.end())
         {
             *(*i) = *(*j); // Confronto fra i tipi dei parametri. In caso non coincidessero viene lanciata un' eccezione.
