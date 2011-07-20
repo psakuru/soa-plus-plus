@@ -54,10 +54,28 @@ cecho "\t$> ./makeRotateImageServer.sh" $blue
 cecho "\t$> ./makeImageRegisterServer.sh" $blue
 ./makeImageRegisterServer.sh
 cecho ":: compilazione terminata, eseguibili prodotti:" $green
-cecho "\t Service Register: Services/register" $blue
-cecho "\t Horizontal Flip Server: Services/horizontalFlipServer" $blue
-cecho "\t Rotate Image Server: Services/rotateImageServer" $blue
-cecho "\t Image Register: Services/imageRegisterServer" $blue
+cecho "\t Service Register: Servers/register" $blue
+cecho "\t Horizontal Flip Server: Servers/horizontalFlipServer" $blue
+cecho "\t Rotate Image Server: Servers/rotateImageServer" $blue
+cecho "\t Image Register: Servers/imageRegisterServer" $blue
 cecho "\t Clients: Client/client{0,1,2,3,4}/client" $blue
-exit 0
+cecho ":: test start" $green
+cecho "\t Service Register" $blue
+./register 9 127.0.0.1 4000 &
+sleep(3)
+cecho "\t Image Register" $blue
+./imageRegisterServer 8 127.0.0.1 4100 127.0.0.1:4000 &
+sleep(3)
+cecho "\t Rotate Image Server" $blue
+./rotateImageServer 8 127.0.0.1 4200 127.0.0.1:4000 &
+sleep (3)
+cecho "\t Horizontal Flip Server" $blue
+./horizontalFlipServer 8 127.0.0.1 4300 127.0.0.1:4000 &
+sleep (3)
+cecho "\t Clients[5]" $blue
+cd ../Client/
+./clientsStart
 
+cecho "Test completato." $green
+
+exit 0
